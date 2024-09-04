@@ -9,12 +9,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        //   add BLoCs here
-      ],
-      child: _Starter(),
-    );
+    return _Starter();
   }
 }
 
