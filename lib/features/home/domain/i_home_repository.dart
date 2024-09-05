@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gelirx/app/network/api_exception.dart';

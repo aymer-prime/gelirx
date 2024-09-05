@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
+import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/utils/connectivity.dart';
 
+@injectable
 class DioClient {
   // Default http options for [Dio].
   BaseOptions httpOptions = BaseOptions(
@@ -12,9 +13,11 @@ class DioClient {
     followRedirects: false,
   );
 
+  final Dio _dio;
+  //final LocalService _etagService;
+
   DioClient(
     this._dio,
-    //this._etagService,
   ) {
     _dio.options = httpOptions;
 
@@ -45,32 +48,5 @@ class DioClient {
     ]);
   }
 
-  final Dio _dio;
-  //final LocalService _etagService;
-
   Dio get dio => _dio;
-
-  bool refreshCompleted = true;
-
-  // void _etagHeader(RequestOptions options) {
-  //   final value = _etagService.get(options.uri.path);
-
-  //   if (options.method.toUpperCase() == 'GET' && value != null && value.isNotEmpty) {
-  //     options.headers['If-None-Match'] = value;
-  //   }
-  // }
-
-  // void _etagSave(Response<dynamic> response) {
-  //   final etagBlackListUrls = [
-  //     //   put BlackList URLs here
-  //   ];
-
-  //   if (response.requestOptions.method.toUpperCase() == 'GET' &&
-  //       !etagBlackListUrls.contains(response.requestOptions.path)) {
-  //     final etag = response.headers.map['ETag']?[0];
-  //     if (etag != null && etag.isNotEmpty) {
-  //       _etagService.save(response.realUri.path, etag);
-  //     }
-  //   }
-  // }
 }

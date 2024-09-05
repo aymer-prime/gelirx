@@ -3,7 +3,7 @@ import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) {
-  return GoogleFonts.poppins(
+  return GoogleFonts.inter(
     fontSize: fontSize,
     fontWeight: fontWeight,
     color: color,

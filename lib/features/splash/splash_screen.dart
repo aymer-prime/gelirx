@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extentions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
+import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 
 @RoutePage()
@@ -17,13 +18,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  late Timer timer;
   @override
   void initState() {
-    var timer = Timer(Duration(seconds: 2), () {
-      print('timer run trigger');
+    timer = Timer(const Duration(seconds: 2), () {
       context.router.replace(const HomeRoute());
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -36,9 +43,14 @@ class _PageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.themeData.primaryColorDark,
+      backgroundColor: context.themeData.primaryColor,
       body: Center(
-        child: Text(AppStrings.spalshTitle1),
+        child: Text(
+          AppStrings.spalshTitle1,
+          style: context.textTheme.displayLarge!.copyWith(
+            color: ColorManager.white,
+          ),
+        ),
         //child: SvgPicture.asset(ImageAssets.),
       ),
     );

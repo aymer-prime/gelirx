@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/view/app.dart';
 import 'package:loggy/loggy.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _initLoggy();
   //_initGoogleFonts();
-  configureDependencies();
+  final sharedPreferences = await SharedPreferences.getInstance();
+  configureDependencies(sharedPreferences);
   runApp(const App());
 }
 

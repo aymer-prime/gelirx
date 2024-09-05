@@ -8,6 +8,7 @@ ThemeData getApplicationTheme() {
   return ThemeData(
 //main theme
     primaryColor: ColorManager.primary,
+    scaffoldBackgroundColor: ColorManager.background,
     primaryColorLight: ColorManager.lightPrimary,
     primaryColorDark: ColorManager.darkPrimary,
     disabledColor: ColorManager.disabledButtonColor,
@@ -82,40 +83,64 @@ ThemeData getApplicationTheme() {
     ),
 //text theme
     textTheme: TextTheme(
-      titleLarge: getMediumStyle(
-        color: ColorManager.black,
-        fontSize: FontSizeManager.s26,
+      displayLarge: getSemiBoldStyle(
+        color: ColorManager.textTitleColor,
+        fontSize: FontSizeManager.s48,
       ),
-      titleMedium: getSemiBoldStyle(
-        color: ColorManager.white,
-        fontSize: FontSizeManager.s14,
+      displayMedium: getBoldStyle(
+        color: ColorManager.textTitleColor,
+        fontSize: FontSizeManager.s32,
       ),
-      titleSmall: getRegularStyle(
-        color: ColorManager.black,
-        fontSize: FontSizeManager.s14,
-      ),
-      bodyLarge: getSemiBoldStyle(
-        color: ColorManager.black,
-        fontSize: FontSizeManager.s26,
-      ),
-      bodyMedium: getRegularStyle(
-        color: ColorManager.black,
-        fontSize: FontSizeManager.s26,
-      ),
-      bodySmall: getMediumStyle(
-        color: ColorManager.black,
-        fontSize: FontSizeManager.s14,
-      ),
-      labelLarge: getSemiBoldStyle(
-        color: ColorManager.black,
+      displaySmall: getBoldStyle(
+        color: ColorManager.textTitleColor,
         fontSize: FontSizeManager.s20,
       ),
-      labelMedium: getRegularStyle(
-        color: ColorManager.black,
+      headlineLarge: getSemiBoldStyle(
+        color: ColorManager.textTitleColor,
+        fontSize: FontSizeManager.s18,
+      ),
+      headlineMedium: getSemiBoldStyle(
+        color: ColorManager.textTitleColor,
         fontSize: FontSizeManager.s16,
       ),
-      labelSmall: getRegularStyle(
-        color: ColorManager.black,
+      headlineSmall: getBoldStyle(
+        color: ColorManager.textTitleColor,
+        fontSize: FontSizeManager.s16,
+      ),
+      titleLarge: getBoldStyle(
+        color: ColorManager.textTitleColor,
+        fontSize: FontSizeManager.s14,
+      ),
+      titleMedium: getSemiBoldStyle(
+        color: ColorManager.textTitleLightColor,
+        fontSize: FontSizeManager.s14,
+      ),
+      titleSmall: getMediumStyle(
+        color: ColorManager.textTitleLightColor,
+        fontSize: FontSizeManager.s14,
+      ),
+      bodyLarge: getMediumStyle(
+        color: ColorManager.textTitleLightColor,
+        fontSize: FontSizeManager.s16,
+      ),
+      bodyMedium: getMediumStyle(
+        color: ColorManager.textTitleLightColor,
+        fontSize: FontSizeManager.s14,
+      ),
+      bodySmall: getSemiBoldStyle(
+        color: ColorManager.textTitleLightColor,
+        fontSize: FontSizeManager.s12,
+      ),
+      labelLarge: getSemiBoldStyle(
+        color: ColorManager.textTitleLightColor,
+        fontSize: FontSizeManager.s14,
+      ),
+      labelMedium: getSemiBoldStyle(
+        color: ColorManager.textTitleLightColor,
+        fontSize: FontSizeManager.s12,
+      ),
+      labelSmall: getMediumStyle(
+        color: ColorManager.textTitleLightColor,
         fontSize: FontSizeManager.s12,
       ),
     ),

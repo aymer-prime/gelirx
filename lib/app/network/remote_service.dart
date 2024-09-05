@@ -35,7 +35,6 @@ class RemoteService<T> {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-
       return result;
     } on DioException catch (e) {
       throw ApiExceptionHandler.handleException(e);
