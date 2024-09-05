@@ -5,6 +5,7 @@ import 'package:gelirx/app/network/dio_client.dart';
 
 import 'package:injectable/injectable.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @immutable
 @module
@@ -14,4 +15,7 @@ abstract class InjectableModules {
       InternetConnectionChecker();
   @lazySingleton
   Dio get dio => getIt<DioClient>().dio;
+  @lazySingleton
+  Future<SharedPreferences> get appPreferences async =>
+      await SharedPreferences.getInstance();
 }

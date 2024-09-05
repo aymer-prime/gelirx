@@ -1,7 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class EtagService {
-  EtagService(this._preferences);
+@injectable
+class LocalService {
+  final SharedPreferences _preferences;
+  LocalService(this._preferences);
 
   Future<void> save(String key, String value) {
     return _preferences.setString(key, value);
@@ -16,6 +19,4 @@ class EtagService {
   }
 
   Future<void> clearAll() => _preferences.clear();
-
-  final SharedPreferences _preferences;
 }

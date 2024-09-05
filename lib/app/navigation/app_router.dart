@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:gelirx/features/home/persentation/pages/home_page.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
 
 part 'app_router.gr.dart';
@@ -10,6 +11,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: SplashRoute.page,
           initial: true,
+        ),
+        AutoRoute(
+          page: HomeRoute.page,
         ),
       ];
 }

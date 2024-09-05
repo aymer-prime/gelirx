@@ -7,7 +7,7 @@ part of 'response_wrapper.dart';
 // **************************************************************************
 
 _$ResponseWrapperImpl<T> _$$ResponseWrapperImplFromJson<T>(
-  Map<String, dynamic> json,
+  Map json,
   T Function(Object? json) fromJsonT,
 ) =>
     _$ResponseWrapperImpl<T>(
