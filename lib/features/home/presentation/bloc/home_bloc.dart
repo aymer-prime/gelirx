@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
 import 'package:gelirx/features/home/presentation/misc/functions.dart';
 import 'package:geolocator/geolocator.dart';
@@ -19,6 +20,28 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(
         state.copyWith(
           userPosition: some(position),
+        ),
+      );
+    });
+    on<_GetCategories>((event, emit) async {
+      emit(
+        state.copyWith(
+          isLoading: true,
+        ),
+      );
+      var categories = await _iHomeRepository.getCategories();
+      categories.fold(
+        (l) => emit(
+          state.copyWith(
+            isLoading: false,
+            categories: [],
+          ),
+        ),
+        (categories) => emit(
+          state.copyWith(
+            isLoading: false,
+            categories: categories,
+          ),
         ),
       );
     });

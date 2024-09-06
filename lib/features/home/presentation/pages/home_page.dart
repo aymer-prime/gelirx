@@ -8,6 +8,7 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/tile_provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -21,6 +22,9 @@ class HomePage extends StatelessWidget {
       create: (_) => getIt<HomeBloc>()
         ..add(
           const HomeEvent.getCurrentPosition(),
+        )
+        ..add(
+          const HomeEvent.getCategories(),
         ),
       child: Scaffold(
         body: BlocBuilder<HomeBloc, HomeState>(
@@ -31,28 +35,34 @@ class HomePage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(AppPadding.p16),
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hello Guest 👋',
-                          style: context.textTheme.titleMedium,
-                        ),
-                        Text(
-                          'What you are looking for today',
-                          style: context.textTheme.displayMedium,
-                        ),
-                      ],
+                  Flexible(
+                    flex: 2,
+                    child: Container(
+                      padding: const EdgeInsets.all(AppPadding.p16),
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hello Guest 👋',
+                            style: context.textTheme.titleMedium,
+                          ),
+                          Text(
+                            'What you are looking for today',
+                            style: context.textTheme.displayMedium,
+                          ),
+                          const SizedBox(height: AppSize.s16),
+                          TextField()
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: AppSize.s16),
-                  Expanded(
+                  Flexible(
+                    flex: 3,
                     child: Container(
                       padding: const EdgeInsets.all(AppPadding.p16),
                       decoration: BoxDecoration(color: ColorManager.white),
@@ -62,6 +72,78 @@ class HomePage extends StatelessWidget {
                         ),
                         (userPosition) => HomeMap(userPosition: userPosition),
                       ),
+                    ),
+                  ),
+                  const SizedBox(height: AppSize.s16),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
+                      padding: const EdgeInsets.all(AppPadding.p16),
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: state.categories.isEmpty
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : Row(
+                              children: [
+                                Expanded(
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: state.categories.length,
+                                    itemBuilder: (context, index) {
+                                      var category = state.categories[index];
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: AppPadding.p4,
+                                        ),
+                                        child: SizedBox(
+                                          width: AppSize.s60,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              CircleAvatar(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      AppPadding.p8),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: category.img,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                category.name.split(' ').first,
+                                                style: context
+                                                    .textTheme.labelSmall,
+                                                overflow: TextOverflow.ellipsis,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                const Column(
+                                  children: [
+                                    CircleAvatar(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.all(AppPadding.p8),
+                                        child:
+                                            Icon(Icons.arrow_forward_rounded),
+                                      ),
+                                    ),
+                                    const Text(
+                                      'see all',
+                                      overflow: TextOverflow.ellipsis,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                     ),
                   ),
                 ],

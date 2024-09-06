@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/remote_service.dart';
@@ -14,25 +15,45 @@ import 'package:injectable/injectable.dart';
 @LazySingleton(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
   final RemoteService _remoteService;
-  final LocalService _localDataSource;
-  //final NetworkInfo _networkInfo;
 
   HomeRepository(
     this._remoteService,
-    //this._networkInfo,
-    this._localDataSource,
   );
 
   @override
-  Future<Either<ApiException, List<Category>>> getCategories(
-      String pokemonSpeciesUrl) async {
+  Future<Either<ApiException, List<Category>>> getCategories() async {
     try {
-      var responce = await _remoteService.getList(
-        '${Constants.baseUrl}categories.php',
-        queryParameters: {'lang': 'en'},
-        fromJson: CategoryDto.fromJson,
+      // var responce = await _remoteService.getList<CategoryDto>(
+      //   '${Constants.baseUrl}categories/categories.php',
+      //   data: {'lang': 'en'},
+      //   fromJson: CategoryDto.fromJson,
+      // );
+      // var resultList = responce
+      //     .map(
+      //       (e) => e.toDomain(),
+      //     )
+      //     .toList();
+      // return right(resultList);
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}categories/categories.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: {'lang': 'en'},
       );
-      //var result = ;
-    } on ApiException catch (e) {}
+
+      final List<dynamic> responseData =
+          response; // Casting the dynamic type to List<dynamic>
+      final List<Category> resultList = responseData
+          .map(
+            (e) => CategoryDto.fromJson(e).toDomain(),
+          )
+          .toList();
+      return right(resultList);
+    } on ApiException catch (e) {
+      return left(e);
+    }
   }
 }

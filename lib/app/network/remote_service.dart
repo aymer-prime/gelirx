@@ -1,15 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/api_exception_handler.dart';
+import 'package:gelirx/app/network/dio_client.dart';
 import 'package:gelirx/app/network/response_wrapper.dart';
 import 'package:gelirx/app/utils/connectivity.dart';
 import 'package:injectable/injectable.dart';
 
 /// [RemoteService] is a class responsible for http requests
 @injectable
-class RemoteService<T> {
-  final Dio _dio;
-  const RemoteService(this._dio);
+class RemoteService {
+  final DioClient _dioClient;
+  const RemoteService(this._dioClient);
 
   Future<void> _checkConnection() async {
     final hasConnection = await ConnectivityUtils.isConnected;
@@ -27,7 +28,7 @@ class RemoteService<T> {
   }) async {
     await _checkConnection();
     try {
-      final result = await _dio.get<Map<String, dynamic>>(
+      final result = await _dioClient.dio.get<Map<String, dynamic>>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -50,7 +51,7 @@ class RemoteService<T> {
   /// ```dart
   /// getSingle('path',fromJson: Dto.fromJson);
   /// ```
-  Future<T?> getSingle(
+  Future<T?> getSingle<T>(
     String path, {
     required T Function(Map<String, dynamic> json) fromJson,
     Object? data,
@@ -61,7 +62,7 @@ class RemoteService<T> {
   }) async {
     await _checkConnection();
     try {
-      final result = await _dio.get<Map<String, dynamic>>(
+      final result = await _dioClient.dio.get<Map<String, dynamic>>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -91,7 +92,7 @@ class RemoteService<T> {
   /// ```dart
   /// getList('path',fromJson: Dto.fromJson);
   /// ```
-  Future<Iterable<T>> getList(
+  Future<Iterable<T>> getList<T>(
     String path, {
     required T Function(Map<String, dynamic> json) fromJson,
     Object? data,
@@ -102,7 +103,7 @@ class RemoteService<T> {
   }) async {
     await _checkConnection();
     try {
-      final result = await _dio.get<Map<String, dynamic>>(
+      final result = await _dioClient.dio.get<Map<String, dynamic>>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -141,7 +142,7 @@ class RemoteService<T> {
   }) async {
     await _checkConnection();
     try {
-      final result = await _dio.post<Map<String, dynamic>>(
+      final result = await _dioClient.dio.post<Map<String, dynamic>>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -150,7 +151,7 @@ class RemoteService<T> {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return result.data?['data'];
+      return result.data?['result'];
     } on DioException catch (e) {
       throw ApiExceptionHandler.handleException(e);
     }
@@ -168,7 +169,7 @@ class RemoteService<T> {
   }) async {
     await _checkConnection();
     try {
-      final result = await _dio.put<Map<String, dynamic>>(
+      final result = await _dioClient.dio.put<Map<String, dynamic>>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -195,7 +196,7 @@ class RemoteService<T> {
   }) async {
     await _checkConnection();
     try {
-      final result = await _dio.patch<Map<String, dynamic>>(
+      final result = await _dioClient.dio.patch<Map<String, dynamic>>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -220,7 +221,7 @@ class RemoteService<T> {
   }) async {
     try {
       await _checkConnection();
-      final result = await _dio.delete<Map<String, dynamic>>(
+      final result = await _dioClient.dio.delete<Map<String, dynamic>>(
         path,
         data: data,
         queryParameters: queryParameters,

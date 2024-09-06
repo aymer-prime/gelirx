@@ -147,44 +147,46 @@ ThemeData getApplicationTheme() {
 //input decoration theme (text form field)
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.only(left: AppPadding.p16),
+      fillColor: ColorManager.textfieldFillColor,
+      filled: true,
       hintStyle: getRegularStyle(
         color: ColorManager.textfieldHintColor,
-        fontSize: FontSizeManager.s16,
+        fontSize: FontSizeManager.s12,
       ),
       labelStyle: getMediumStyle(
         color: ColorManager.grey,
-        fontSize: FontSizeManager.s14,
+        fontSize: FontSizeManager.s12,
       ),
       errorStyle: getRegularStyle(
         color: ColorManager.textErrorColor,
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorManager.grey,
-          width: AppSize.s1_5,
+          color: ColorManager.textfieldBorderColor,
+          width: AppSize.s1,
         ),
         borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.primary,
-          width: AppSize.s1_5,
+          width: AppSize.s1,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s10)),
       ),
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.textErrorColor,
           width: AppSize.s1_5,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s10)),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.primary,
           width: AppSize.s1_5,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s10)),
       ),
     ),
   );

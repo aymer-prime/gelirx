@@ -41,14 +41,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => injectableModules.internetConnectionChecker);
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
-    gh.factory<_i464.RemoteService<dynamic>>(
-        () => _i464.RemoteService<dynamic>(gh<_i361.Dio>()));
+    gh.factory<_i464.RemoteService>(
+        () => _i464.RemoteService(gh<_i667.DioClient>()));
+    gh.lazySingleton<_i317.IHomeRepository>(
+        () => _i65.HomeRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
-    gh.lazySingleton<_i317.IHomeRepository>(() => _i65.HomeRepository(
-          gh<_i464.RemoteService<dynamic>>(),
-          gh<_i902.LocalService>(),
-        ));
     gh.factory<_i202.HomeBloc>(
         () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
     return this;

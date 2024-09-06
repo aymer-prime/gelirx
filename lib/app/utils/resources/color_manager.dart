@@ -21,4 +21,6 @@ class ColorManager {
   static Color outlineButtonBorderColor = const Color(0xffDBDCDD);
   //text_field
   static Color textfieldHintColor = const Color(0xff999999);
+  static Color textfieldBorderColor = const Color(0xfff2f2f2);
+  static Color textfieldFillColor = const Color(0xfffbfbfb);
 }

@@ -454,8 +454,9 @@ abstract class _GetSubCategories implements HomeEvent {
 
 /// @nodoc
 mixin _$HomeState {
+  bool get isLoading => throw _privateConstructorUsedError;
   Option<Position> get userPosition => throw _privateConstructorUsedError;
-  List<dynamic> get categories => throw _privateConstructorUsedError;
+  List<Category> get categories => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -469,7 +470,10 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({Option<Position> userPosition, List<dynamic> categories});
+  $Res call(
+      {bool isLoading,
+      Option<Position> userPosition,
+      List<Category> categories});
 }
 
 /// @nodoc
@@ -487,10 +491,15 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
   }) {
     return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       userPosition: null == userPosition
           ? _value.userPosition
           : userPosition // ignore: cast_nullable_to_non_nullable
@@ -498,7 +507,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Category>,
     ) as $Val);
   }
 }
@@ -511,7 +520,10 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Option<Position> userPosition, List<dynamic> categories});
+  $Res call(
+      {bool isLoading,
+      Option<Position> userPosition,
+      List<Category> categories});
 }
 
 /// @nodoc
@@ -527,10 +539,15 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
   }) {
     return _then(_$HomeStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       userPosition: null == userPosition
           ? _value.userPosition
           : userPosition // ignore: cast_nullable_to_non_nullable
@@ -538,7 +555,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as List<Category>,
     ));
   }
 }
@@ -547,14 +564,18 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
-      {required this.userPosition, required final List<dynamic> categories})
+      {required this.isLoading,
+      required this.userPosition,
+      required final List<Category> categories})
       : _categories = categories;
 
   @override
-  final Option<Position> userPosition;
-  final List<dynamic> _categories;
+  final bool isLoading;
   @override
-  List<dynamic> get categories {
+  final Option<Position> userPosition;
+  final List<Category> _categories;
+  @override
+  List<Category> get categories {
     if (_categories is EqualUnmodifiableListView) return _categories;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categories);
@@ -562,7 +583,7 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(userPosition: $userPosition, categories: $categories)';
+    return 'HomeState(isLoading: $isLoading, userPosition: $userPosition, categories: $categories)';
   }
 
   @override
@@ -570,6 +591,8 @@ class _$HomeStateImpl implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.userPosition, userPosition) ||
                 other.userPosition == userPosition) &&
             const DeepCollectionEquality()
@@ -577,7 +600,7 @@ class _$HomeStateImpl implements _HomeState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userPosition,
+  int get hashCode => Object.hash(runtimeType, isLoading, userPosition,
       const DeepCollectionEquality().hash(_categories));
 
   /// Create a copy of HomeState
@@ -591,13 +614,16 @@ class _$HomeStateImpl implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {required final Option<Position> userPosition,
-      required final List<dynamic> categories}) = _$HomeStateImpl;
+      {required final bool isLoading,
+      required final Option<Position> userPosition,
+      required final List<Category> categories}) = _$HomeStateImpl;
 
+  @override
+  bool get isLoading;
   @override
   Option<Position> get userPosition;
   @override
-  List<dynamic> get categories;
+  List<Category> get categories;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
