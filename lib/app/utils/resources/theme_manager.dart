@@ -48,17 +48,22 @@ ThemeData getApplicationTheme() {
     //elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-          textStyle: getSemiBoldStyle(
-            color: ColorManager.white,
-            fontSize: FontSizeManager.s18,
-          ),
-          foregroundColor: ColorManager.white,
-          backgroundColor: ColorManager.primary,
-          shape: const StadiumBorder()),
+        padding: EdgeInsets.zero,
+        textStyle: getBoldStyle(
+          color: ColorManager.white,
+          fontSize: FontSizeManager.s15,
+        ),
+        foregroundColor: ColorManager.white,
+        backgroundColor: ColorManager.primary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
     ),
     //outlined button theme
     outlinedButtonTheme: OutlinedButtonThemeData(
-      style: ElevatedButton.styleFrom(
+      style: OutlinedButton.styleFrom(
+        padding: EdgeInsets.zero,
         textStyle: getRegularStyle(
           color: ColorManager.black,
           fontSize: FontSizeManager.s18,
@@ -68,7 +73,9 @@ ThemeData getApplicationTheme() {
           color: ColorManager.outlineButtonBorderColor,
           width: 1.5,
         ),
-        shape: StadiumBorder(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     ),
     //Text button theme
@@ -120,7 +127,7 @@ ThemeData getApplicationTheme() {
         fontSize: FontSizeManager.s14,
       ),
       bodyLarge: getMediumStyle(
-        color: ColorManager.textTitleLightColor,
+        color: ColorManager.textTitleColor,
         fontSize: FontSizeManager.s16,
       ),
       bodyMedium: getMediumStyle(

@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:geolocator/geolocator.dart';
 
 Future<Position> determinePosition() async {
@@ -39,4 +43,21 @@ Future<Position> determinePosition() async {
   // When we reach here, permissions are granted and we can
   // continue accessing the position of the device.
   return await Geolocator.getCurrentPosition();
+}
+
+Color getCategoryColor() {
+  var colors = [
+    ColorManager.categoryColor1,
+    ColorManager.categoryColor2,
+    ColorManager.categoryColor3,
+    ColorManager.categoryColor4,
+    ColorManager.categoryColor5,
+    ColorManager.categoryColor6,
+    ColorManager.categoryColor7,
+    ColorManager.categoryColor8,
+    ColorManager.categoryColor9,
+  ];
+  Random random = Random();
+  int randomNumber = random.nextInt(9);
+  return colors[randomNumber];
 }

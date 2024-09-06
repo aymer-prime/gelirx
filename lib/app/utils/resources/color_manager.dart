@@ -18,9 +18,19 @@ class ColorManager {
   static Color buttonTextColor = const Color(0xffffffff);
   static Color disabledButtonColor = const Color(0xff999999);
   static Color disabledButtonTextColor = const Color(0xffe6e6e6);
-  static Color outlineButtonBorderColor = const Color(0xffDBDCDD);
+  static Color outlineButtonBorderColor = const Color(0xff2E4460);
   //text_field
   static Color textfieldHintColor = const Color(0xff999999);
   static Color textfieldBorderColor = const Color(0xfff2f2f2);
   static Color textfieldFillColor = const Color(0xfffbfbfb);
+  //categories
+  static Color categoryColor1 = const Color(0xffFFBC99);
+  static Color categoryColor2 = const Color(0xffCABDFF);
+  static Color categoryColor3 = const Color(0xffB1E5FC);
+  static Color categoryColor4 = const Color(0xffB5EBCD);
+  static Color categoryColor5 = const Color(0xffFFD88D);
+  static Color categoryColor6 = const Color(0xffCBEBA4);
+  static Color categoryColor7 = const Color(0xffFB9B9B);
+  static Color categoryColor8 = const Color(0xffF8B0ED);
+  static Color categoryColor9 = const Color(0xffAFC6FF);
 }

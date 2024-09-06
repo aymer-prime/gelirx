@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/view/app.dart';
 import 'package:loggy/loggy.dart';
@@ -9,6 +10,8 @@ void main() async {
   _initLoggy();
   //_initGoogleFonts();
   final sharedPreferences = await SharedPreferences.getInstance();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: []);
   configureDependencies(sharedPreferences);
   runApp(const App());
 }
