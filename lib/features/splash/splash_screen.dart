@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     timer = Timer(const Duration(seconds: 2), () {
-      context.router.replace(const HomeRoute());
+      context.router.replace(const MainRoute());
     });
     super.initState();
   }

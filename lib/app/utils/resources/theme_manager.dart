@@ -13,6 +13,7 @@ ThemeData getApplicationTheme() {
     primaryColorDark: ColorManager.darkPrimary,
     disabledColor: ColorManager.disabledButtonColor,
     splashColor: ColorManager.lightPrimary, //ripple effect
+    canvasColor: ColorManager.white,
 //cardveiw theme
     cardTheme: CardTheme(
       color: ColorManager.white,
@@ -32,6 +33,7 @@ ThemeData getApplicationTheme() {
     ),
 //bottom navbar theme
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: ColorManager.white,
       selectedLabelStyle: getMediumStyle(
         color: ColorManager.primary,
         fontSize: FontSizeManager.s12,

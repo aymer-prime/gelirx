@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:gelirx/app/extentions/context.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
@@ -51,17 +54,17 @@ class HomePage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello Guest 👋',
+                            AppStrings.welcomeSubtitle,
                             style: context.textTheme.titleMedium,
                           ),
                           Text(
-                            'What you are looking for today',
+                            AppStrings.welcomeTitle,
                             style: context.textTheme.displayMedium,
                           ),
                           const SizedBox(height: AppSize.s16),
                           TextField(
                             decoration: InputDecoration(
-                              hintText: 'Search what you need...',
+                              hintText: AppStrings.searchHint,
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.all(AppPadding.p8),
                                 child: SizedBox(
@@ -92,7 +95,7 @@ class HomePage extends StatelessWidget {
                         ),
                         (userPosition) => Column(
                           children: [
-                            const CardLabelWidget(label: 'Location'),
+                            const CardLabelWidget(label: AppStrings.location),
                             const SizedBox(height: AppSize.s16),
                             SizedBox(
                               height: AppSize.s200,
@@ -103,7 +106,7 @@ class HomePage extends StatelessWidget {
                               thickness: AppSize.s1,
                               color: ColorManager.textfieldBorderColor,
                             ),
-                            const RangeEditWidget(label: 'Range (KM)'),
+                            const RangeEditWidget(label: AppStrings.range),
                           ],
                         ),
                       ),
@@ -112,8 +115,8 @@ class HomePage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(AppPadding.p16),
                       width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                      decoration: BoxDecoration(
+                        color: ColorManager.white,
                       ),
                       child: state.categories.isEmpty
                           ? const Center(
@@ -126,10 +129,67 @@ class HomePage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     const CardLabelWidget(
-                                        label: 'Top Categories'),
+                                        label: AppStrings.topCat),
                                     OutlinedButton(
-                                      onPressed: () {},
-                                      child: const Text('All'),
+                                      style: OutlinedButton.styleFrom(
+                                        side: BorderSide(
+                                          color:
+                                              ColorManager.textfieldBorderColor,
+                                          width: 1.5,
+                                        ),
+                                        shape: StadiumBorder(),
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) => Container(
+                                            padding: const EdgeInsets.all(
+                                              AppPadding.p16,
+                                            ),
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: ColorManager.white,
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                const CardLabelWidget(
+                                                  label: AppStrings.allCat,
+                                                ),
+                                                const SizedBox(
+                                                  height: AppSize.s16,
+                                                ),
+                                                Expanded(
+                                                  child: CategoriesGridWidget(
+                                                    categories:
+                                                        state.categories,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: AppPadding.p16,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(
+                                              AppStrings.seeAll,
+                                              style:
+                                                  context.textTheme.labelMedium,
+                                            ),
+                                            const SizedBox(width: AppSize.s2),
+                                            const Icon(
+                                              Icons.arrow_forward_ios_rounded,
+                                              size: AppSize.s12,
+                                            )
+                                          ],
+                                        ),
+                                      ),
                                     )
                                   ],
                                 ),
