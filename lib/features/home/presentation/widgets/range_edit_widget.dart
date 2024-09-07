@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gelirx/app/extentions/context.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 
 class RangeEditWidget extends StatelessWidget {
   final String label;
-  const RangeEditWidget({super.key, required this.label});
+  final int range;
+  const RangeEditWidget({
+    super.key,
+    required this.label,
+    required this.range,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,23 +30,37 @@ class RangeEditWidget extends StatelessWidget {
               SizedBox(
                 width: AppSize.s36,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    var newRange = range - 1;
+                    if (newRange > 0) {
+                      context.read<HomeBloc>().add(
+                            HomeEvent.getRange(newRange),
+                          );
+                    } else {}
+                  },
                   child: Icon(
                     Icons.remove_rounded,
                     color: ColorManager.outlineButtonBorderColor,
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(
+              Padding(
+                padding: const EdgeInsets.symmetric(
                   horizontal: AppPadding.p16,
                 ),
-                child: Text('5'),
+                child: Text('$range'),
               ),
               SizedBox(
                 width: AppSize.s36,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    var newRange = range + 1;
+                    if (newRange <= 5) {
+                      context.read<HomeBloc>().add(
+                            HomeEvent.getRange(newRange),
+                          );
+                    } else {}
+                  },
                   child: Icon(
                     Icons.add_rounded,
                     color: ColorManager.white,

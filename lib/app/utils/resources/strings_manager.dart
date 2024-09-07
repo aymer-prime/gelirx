@@ -10,7 +10,7 @@ class AppStrings {
   static const homeTitle1 = 'Home Page !!!';
   static const welcomeSubtitle = 'Hello Guest 👋';
   static const welcomeTitle = 'What you are looking for today';
-  static const searchHint = 'Search what you need ...';
+  static const searchHint = 'Search what you need . . .';
   static const location = 'Location';
   static const range = 'Range (Km)';
   static const topCat = 'Top Categories';

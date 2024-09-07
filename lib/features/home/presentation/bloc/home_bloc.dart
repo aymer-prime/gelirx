@@ -23,6 +23,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       );
     });
+    on<_GetRange>((event, emit) async {
+      emit(
+        state.copyWith(
+          range: event.range,
+        ),
+      );
+    });
     on<_GetCategories>((event, emit) async {
       emit(
         state.copyWith(

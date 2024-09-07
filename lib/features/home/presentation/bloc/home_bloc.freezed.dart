@@ -19,6 +19,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentPosition,
+    required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(String catId) getSubCategories,
   }) =>
@@ -26,6 +27,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCurrentPosition,
+    TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(String catId)? getSubCategories,
   }) =>
@@ -33,6 +35,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentPosition,
+    TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(String catId)? getSubCategories,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
   }) =>
@@ -48,6 +52,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
   }) =>
@@ -55,6 +60,7 @@ mixin _$HomeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
     required TResult orElse(),
@@ -124,6 +130,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentPosition,
+    required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(String catId) getSubCategories,
   }) {
@@ -134,6 +141,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCurrentPosition,
+    TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(String catId)? getSubCategories,
   }) {
@@ -144,6 +152,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentPosition,
+    TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(String catId)? getSubCategories,
     required TResult orElse(),
@@ -158,6 +167,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
   }) {
@@ -168,6 +178,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
   }) {
@@ -178,6 +189,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
     required TResult orElse(),
@@ -191,6 +203,158 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
 
 abstract class _GetCurrentPosition implements HomeEvent {
   const factory _GetCurrentPosition() = _$GetCurrentPositionImpl;
+}
+
+/// @nodoc
+abstract class _$$GetRangeImplCopyWith<$Res> {
+  factory _$$GetRangeImplCopyWith(
+          _$GetRangeImpl value, $Res Function(_$GetRangeImpl) then) =
+      __$$GetRangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int range});
+}
+
+/// @nodoc
+class __$$GetRangeImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetRangeImpl>
+    implements _$$GetRangeImplCopyWith<$Res> {
+  __$$GetRangeImplCopyWithImpl(
+      _$GetRangeImpl _value, $Res Function(_$GetRangeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? range = null,
+  }) {
+    return _then(_$GetRangeImpl(
+      null == range
+          ? _value.range
+          : range // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetRangeImpl implements _GetRange {
+  const _$GetRangeImpl(this.range);
+
+  @override
+  final int range;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getRange(range: $range)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetRangeImpl &&
+            (identical(other.range, range) || other.range == range));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, range);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetRangeImplCopyWith<_$GetRangeImpl> get copyWith =>
+      __$$GetRangeImplCopyWithImpl<_$GetRangeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCurrentPosition,
+    required TResult Function(int range) getRange,
+    required TResult Function() getCategories,
+    required TResult Function(String catId) getSubCategories,
+  }) {
+    return getRange(range);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCurrentPosition,
+    TResult? Function(int range)? getRange,
+    TResult? Function()? getCategories,
+    TResult? Function(String catId)? getSubCategories,
+  }) {
+    return getRange?.call(range);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCurrentPosition,
+    TResult Function(int range)? getRange,
+    TResult Function()? getCategories,
+    TResult Function(String catId)? getSubCategories,
+    required TResult orElse(),
+  }) {
+    if (getRange != null) {
+      return getRange(range);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetRange value) getRange,
+    required TResult Function(_GetCategories value) getCategories,
+    required TResult Function(_GetSubCategories value) getSubCategories,
+  }) {
+    return getRange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetRange value)? getRange,
+    TResult? Function(_GetCategories value)? getCategories,
+    TResult? Function(_GetSubCategories value)? getSubCategories,
+  }) {
+    return getRange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetRange value)? getRange,
+    TResult Function(_GetCategories value)? getCategories,
+    TResult Function(_GetSubCategories value)? getSubCategories,
+    required TResult orElse(),
+  }) {
+    if (getRange != null) {
+      return getRange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetRange implements HomeEvent {
+  const factory _GetRange(final int range) = _$GetRangeImpl;
+
+  int get range;
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetRangeImplCopyWith<_$GetRangeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -235,6 +399,7 @@ class _$GetCategoriesImpl implements _GetCategories {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentPosition,
+    required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(String catId) getSubCategories,
   }) {
@@ -245,6 +410,7 @@ class _$GetCategoriesImpl implements _GetCategories {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCurrentPosition,
+    TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(String catId)? getSubCategories,
   }) {
@@ -255,6 +421,7 @@ class _$GetCategoriesImpl implements _GetCategories {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentPosition,
+    TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(String catId)? getSubCategories,
     required TResult orElse(),
@@ -269,6 +436,7 @@ class _$GetCategoriesImpl implements _GetCategories {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
   }) {
@@ -279,6 +447,7 @@ class _$GetCategoriesImpl implements _GetCategories {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
   }) {
@@ -289,6 +458,7 @@ class _$GetCategoriesImpl implements _GetCategories {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
     required TResult orElse(),
@@ -374,6 +544,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getCurrentPosition,
+    required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(String catId) getSubCategories,
   }) {
@@ -384,6 +555,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCurrentPosition,
+    TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(String catId)? getSubCategories,
   }) {
@@ -394,6 +566,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCurrentPosition,
+    TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(String catId)? getSubCategories,
     required TResult orElse(),
@@ -408,6 +581,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
   }) {
@@ -418,6 +592,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
   }) {
@@ -428,6 +603,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
     required TResult orElse(),
@@ -454,6 +630,7 @@ abstract class _GetSubCategories implements HomeEvent {
 
 /// @nodoc
 mixin _$HomeState {
+  int get range => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Option<Position> get userPosition => throw _privateConstructorUsedError;
   List<Category> get categories => throw _privateConstructorUsedError;
@@ -471,7 +648,8 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call(
-      {bool isLoading,
+      {int range,
+      bool isLoading,
       Option<Position> userPosition,
       List<Category> categories});
 }
@@ -491,11 +669,16 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? range = null,
     Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
   }) {
     return _then(_value.copyWith(
+      range: null == range
+          ? _value.range
+          : range // ignore: cast_nullable_to_non_nullable
+              as int,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -521,7 +704,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading,
+      {int range,
+      bool isLoading,
       Option<Position> userPosition,
       List<Category> categories});
 }
@@ -539,11 +723,16 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? range = null,
     Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
   }) {
     return _then(_$HomeStateImpl(
+      range: null == range
+          ? _value.range
+          : range // ignore: cast_nullable_to_non_nullable
+              as int,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -564,11 +753,14 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
-      {required this.isLoading,
+      {required this.range,
+      required this.isLoading,
       required this.userPosition,
       required final List<Category> categories})
       : _categories = categories;
 
+  @override
+  final int range;
   @override
   final bool isLoading;
   @override
@@ -583,7 +775,7 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, userPosition: $userPosition, categories: $categories)';
+    return 'HomeState(range: $range, isLoading: $isLoading, userPosition: $userPosition, categories: $categories)';
   }
 
   @override
@@ -591,6 +783,7 @@ class _$HomeStateImpl implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
+            (identical(other.range, range) || other.range == range) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.userPosition, userPosition) ||
@@ -600,7 +793,7 @@ class _$HomeStateImpl implements _HomeState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, userPosition,
+  int get hashCode => Object.hash(runtimeType, range, isLoading, userPosition,
       const DeepCollectionEquality().hash(_categories));
 
   /// Create a copy of HomeState
@@ -614,10 +807,13 @@ class _$HomeStateImpl implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {required final bool isLoading,
+      {required final int range,
+      required final bool isLoading,
       required final Option<Position> userPosition,
       required final List<Category> categories}) = _$HomeStateImpl;
 
+  @override
+  int get range;
   @override
   bool get isLoading;
   @override

@@ -10,6 +10,25 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AlternateHomePage]
+class AlternateHomeRoute extends PageRouteInfo<void> {
+  const AlternateHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          AlternateHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AlternateHomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AlternateHomePage();
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

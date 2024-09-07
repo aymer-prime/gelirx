@@ -8,9 +8,11 @@ import 'package:latlong2/latlong.dart';
 
 class HomeMap extends StatelessWidget {
   final Position userPosition;
+  final int range;
   const HomeMap({
     super.key,
     required this.userPosition,
+    required this.range,
   });
 
   @override
@@ -40,7 +42,7 @@ class HomeMap extends StatelessWidget {
               circles: [
                 CircleMarker(
                     useRadiusInMeter: true,
-                    radius: 5000,
+                    radius: range * 1000,
                     point: LatLng(
                       userPosition.latitude,
                       userPosition.longitude,

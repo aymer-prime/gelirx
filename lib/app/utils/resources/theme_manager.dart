@@ -156,7 +156,7 @@ ThemeData getApplicationTheme() {
 //input decoration theme (text form field)
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.only(left: AppPadding.p16),
-      fillColor: ColorManager.textfieldHintColor,
+      fillColor: ColorManager.textfieldFillColor,
       filled: true,
       hintStyle: getRegularStyle(
         color: ColorManager.textfieldHintColor,
@@ -171,7 +171,7 @@ ThemeData getApplicationTheme() {
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorManager.textfieldHintColor,
+          color: ColorManager.textfieldBorderColor,
           width: AppSize.s1,
         ),
         borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
