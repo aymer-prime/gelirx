@@ -5,6 +5,7 @@ class ImageAssets {
   //misc
   static const String searchIcon = '$imagePath/misc/search.svg';
   static const String noBookings = '$imagePath/misc/no_bookings.svg';
+  static const String logo = '$imagePath/misc/logo.png';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
