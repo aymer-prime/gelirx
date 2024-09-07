@@ -23,6 +23,7 @@ mixin _$ApiException {
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
     required TResult Function() notConnection,
+    required TResult Function(String code, String message) defaultException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$ApiException {
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
     TResult? Function()? notConnection,
+    TResult? Function(String code, String message)? defaultException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$ApiException {
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
     TResult Function()? notConnection,
+    TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$ApiException {
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
     required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_defaultException value) defaultException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$ApiException {
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
     TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_defaultException value)? defaultException,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$ApiException {
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
     TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +147,7 @@ class _$NotModifiedImpl extends _NotModified {
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
     required TResult Function() notConnection,
+    required TResult Function(String code, String message) defaultException,
   }) {
     return notModified();
   }
@@ -153,6 +160,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
     TResult? Function()? notConnection,
+    TResult? Function(String code, String message)? defaultException,
   }) {
     return notModified?.call();
   }
@@ -165,6 +173,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
     TResult Function()? notConnection,
+    TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
     if (notModified != null) {
@@ -181,6 +190,7 @@ class _$NotModifiedImpl extends _NotModified {
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
     required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_defaultException value) defaultException,
   }) {
     return notModified(this);
   }
@@ -193,6 +203,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
     TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_defaultException value)? defaultException,
   }) {
     return notModified?.call(this);
   }
@@ -205,6 +216,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
     TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
     if (notModified != null) {
@@ -265,6 +277,7 @@ class _$UnautorizedImpl extends _Unautorized {
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
     required TResult Function() notConnection,
+    required TResult Function(String code, String message) defaultException,
   }) {
     return unauthorized();
   }
@@ -277,6 +290,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
     TResult? Function()? notConnection,
+    TResult? Function(String code, String message)? defaultException,
   }) {
     return unauthorized?.call();
   }
@@ -289,6 +303,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
     TResult Function()? notConnection,
+    TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -305,6 +320,7 @@ class _$UnautorizedImpl extends _Unautorized {
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
     required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_defaultException value) defaultException,
   }) {
     return unauthorized(this);
   }
@@ -317,6 +333,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
     TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_defaultException value)? defaultException,
   }) {
     return unauthorized?.call(this);
   }
@@ -329,6 +346,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
     TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -424,6 +442,7 @@ class _$ValidationImpl extends _Validation {
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
     required TResult Function() notConnection,
+    required TResult Function(String code, String message) defaultException,
   }) {
     return badRequest(keys);
   }
@@ -436,6 +455,7 @@ class _$ValidationImpl extends _Validation {
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
     TResult? Function()? notConnection,
+    TResult? Function(String code, String message)? defaultException,
   }) {
     return badRequest?.call(keys);
   }
@@ -448,6 +468,7 @@ class _$ValidationImpl extends _Validation {
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
     TResult Function()? notConnection,
+    TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
     if (badRequest != null) {
@@ -464,6 +485,7 @@ class _$ValidationImpl extends _Validation {
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
     required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_defaultException value) defaultException,
   }) {
     return badRequest(this);
   }
@@ -476,6 +498,7 @@ class _$ValidationImpl extends _Validation {
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
     TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_defaultException value)? defaultException,
   }) {
     return badRequest?.call(this);
   }
@@ -488,6 +511,7 @@ class _$ValidationImpl extends _Validation {
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
     TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
     if (badRequest != null) {
@@ -556,6 +580,7 @@ class _$UnknownImpl extends _Unknown {
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
     required TResult Function() notConnection,
+    required TResult Function(String code, String message) defaultException,
   }) {
     return unknown();
   }
@@ -568,6 +593,7 @@ class _$UnknownImpl extends _Unknown {
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
     TResult? Function()? notConnection,
+    TResult? Function(String code, String message)? defaultException,
   }) {
     return unknown?.call();
   }
@@ -580,6 +606,7 @@ class _$UnknownImpl extends _Unknown {
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
     TResult Function()? notConnection,
+    TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -596,6 +623,7 @@ class _$UnknownImpl extends _Unknown {
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
     required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_defaultException value) defaultException,
   }) {
     return unknown(this);
   }
@@ -608,6 +636,7 @@ class _$UnknownImpl extends _Unknown {
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
     TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_defaultException value)? defaultException,
   }) {
     return unknown?.call(this);
   }
@@ -620,6 +649,7 @@ class _$UnknownImpl extends _Unknown {
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
     TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -680,6 +710,7 @@ class _$NoConnectionImpl extends _NoConnection {
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
     required TResult Function() notConnection,
+    required TResult Function(String code, String message) defaultException,
   }) {
     return notConnection();
   }
@@ -692,6 +723,7 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
     TResult? Function()? notConnection,
+    TResult? Function(String code, String message)? defaultException,
   }) {
     return notConnection?.call();
   }
@@ -704,6 +736,7 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
     TResult Function()? notConnection,
+    TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
     if (notConnection != null) {
@@ -720,6 +753,7 @@ class _$NoConnectionImpl extends _NoConnection {
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
     required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_defaultException value) defaultException,
   }) {
     return notConnection(this);
   }
@@ -732,6 +766,7 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
     TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_defaultException value)? defaultException,
   }) {
     return notConnection?.call(this);
   }
@@ -744,6 +779,7 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
     TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
     if (notConnection != null) {
@@ -756,4 +792,180 @@ class _$NoConnectionImpl extends _NoConnection {
 abstract class _NoConnection extends ApiException {
   const factory _NoConnection() = _$NoConnectionImpl;
   const _NoConnection._() : super._();
+}
+
+/// @nodoc
+abstract class _$$defaultExceptionImplCopyWith<$Res> {
+  factory _$$defaultExceptionImplCopyWith(_$defaultExceptionImpl value,
+          $Res Function(_$defaultExceptionImpl) then) =
+      __$$defaultExceptionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String code, String message});
+}
+
+/// @nodoc
+class __$$defaultExceptionImplCopyWithImpl<$Res>
+    extends _$ApiExceptionCopyWithImpl<$Res, _$defaultExceptionImpl>
+    implements _$$defaultExceptionImplCopyWith<$Res> {
+  __$$defaultExceptionImplCopyWithImpl(_$defaultExceptionImpl _value,
+      $Res Function(_$defaultExceptionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ApiException
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = null,
+    Object? message = null,
+  }) {
+    return _then(_$defaultExceptionImpl(
+      null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$defaultExceptionImpl extends _defaultException {
+  const _$defaultExceptionImpl(this.code, this.message) : super._();
+
+  @override
+  final String code;
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'ApiException.defaultException(code: $code, message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$defaultExceptionImpl &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, code, message);
+
+  /// Create a copy of ApiException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$defaultExceptionImplCopyWith<_$defaultExceptionImpl> get copyWith =>
+      __$$defaultExceptionImplCopyWithImpl<_$defaultExceptionImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() notModified,
+    required TResult Function() unauthorized,
+    required TResult Function(Map<String, dynamic> keys) badRequest,
+    required TResult Function() unknown,
+    required TResult Function() notConnection,
+    required TResult Function(String code, String message) defaultException,
+  }) {
+    return defaultException(code, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? notModified,
+    TResult? Function()? unauthorized,
+    TResult? Function(Map<String, dynamic> keys)? badRequest,
+    TResult? Function()? unknown,
+    TResult? Function()? notConnection,
+    TResult? Function(String code, String message)? defaultException,
+  }) {
+    return defaultException?.call(code, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notModified,
+    TResult Function()? unauthorized,
+    TResult Function(Map<String, dynamic> keys)? badRequest,
+    TResult Function()? unknown,
+    TResult Function()? notConnection,
+    TResult Function(String code, String message)? defaultException,
+    required TResult orElse(),
+  }) {
+    if (defaultException != null) {
+      return defaultException(code, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NotModified value) notModified,
+    required TResult Function(_Unautorized value) unauthorized,
+    required TResult Function(_Validation value) badRequest,
+    required TResult Function(_Unknown value) unknown,
+    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_defaultException value) defaultException,
+  }) {
+    return defaultException(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NotModified value)? notModified,
+    TResult? Function(_Unautorized value)? unauthorized,
+    TResult? Function(_Validation value)? badRequest,
+    TResult? Function(_Unknown value)? unknown,
+    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_defaultException value)? defaultException,
+  }) {
+    return defaultException?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NotModified value)? notModified,
+    TResult Function(_Unautorized value)? unauthorized,
+    TResult Function(_Validation value)? badRequest,
+    TResult Function(_Unknown value)? unknown,
+    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_defaultException value)? defaultException,
+    required TResult orElse(),
+  }) {
+    if (defaultException != null) {
+      return defaultException(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _defaultException extends ApiException {
+  const factory _defaultException(final String code, final String message) =
+      _$defaultExceptionImpl;
+  const _defaultException._() : super._();
+
+  String get code;
+  String get message;
+
+  /// Create a copy of ApiException
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$defaultExceptionImplCopyWith<_$defaultExceptionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
