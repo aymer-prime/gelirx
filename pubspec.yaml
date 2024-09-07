@@ -65,6 +65,11 @@ dependencies:
   geolocator: ^13.0.1
   intl_phone_field: ^3.2.0
   firebase_core: ^2.24.2
+  google_sign_in: ^6.2.1
+  flutter_facebook_auth: ^7.0.1
+  sign_in_with_apple: ^6.1.2
+  crypto: ^3.0.5
+  firebase_auth: ^4.16.0
   #flutter_native_splash: ^2.3.8
 
 dev_dependencies:

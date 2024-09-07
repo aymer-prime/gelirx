@@ -16,9 +16,10 @@ class ApiExceptionHandler {
         final data = e.response?.data as Map<String, dynamic>?;
         final errors = data?['errors'] as Map<String, dynamic>?;
         return ApiException.badRequest(errors ?? {});
+
       default:
         //i.get<Logger>().severe(e);
-        return const ApiException.unknown();
+        return ApiException.defaultException(e.response?.statusCode.toString() ?? "", e.response?.statusMessage ?? 'unknown');
     }
   }
 }
