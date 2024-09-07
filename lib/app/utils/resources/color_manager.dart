@@ -9,6 +9,8 @@ class ColorManager {
   static Color white = const Color(0xffffffff);
   static Color black = const Color(0xff000000);
   static Color grey = const Color(0xff737477);
+  static Color male = const Color(0xff2551C3);
+  static Color female = const Color(0xffFF7596);
   //text
   static Color textTitleColor = const Color(0xff172B4D);
   static Color textTitleLightColor = const Color(0xff666C89);
@@ -23,6 +25,7 @@ class ColorManager {
   static Color textfieldHintColor = const Color(0xff999999);
   static Color textfieldBorderColor = const Color(0xfff2f2f2);
   static Color textfieldFillColor = const Color(0xfffbfbfb);
+  static Color textfieldColor = const Color(0xFFEFEFEF);
   //categories
   static Color categoryColor1 = const Color(0xffFFBC99);
   static Color categoryColor2 = const Color(0xffCABDFF);
