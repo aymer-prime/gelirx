@@ -16,4 +16,12 @@ class AppStrings {
   static const topCat = 'Top Categories';
   static const allCat = 'All Categories';
   static const seeAll = 'See all';
+
+  static const loginTitle = "Sign in";
+
+  static const phoneNumberTitle = "Phone Number";
+
+  static const countryCodeTitle = 'TR';
+
+  static const signinWithTitle = 'Sign in with';
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "815277572520",
+    "project_id": "gelirx-25b5d",
+    "storage_bucket": "gelirx-25b5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815277572520:android:9b1a01103818fb97819d9d",
+        "android_client_info": {
+          "package_name": "com.aymer_prime.gelirx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvVohKI5YcTgKYiWrf66nArsTWCHZyF6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
