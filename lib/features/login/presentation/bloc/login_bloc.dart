@@ -60,13 +60,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           isLoading: false,
           exception: some(failure),
         )),
-            (user) => emit(state.copyWith(
+            (user) {
+              print("user {$user}");
+              emit(state.copyWith(
           isLoading: false,
           user: some(user),
-        )),
+        ));}
       );
     });
-
-
   }
 }
