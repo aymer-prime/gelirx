@@ -15,13 +15,14 @@ part 'login_bloc.freezed.dart';
 
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final SignInWithSocialMediaUseCase _SignInWithSocialMediaUseCase;
+  final SignInUseCase _SignInUseCase;
 
-  AuthBloc(this._SignInWithSocialMediaUseCase) : super(AuthState.initial()) {
+  AuthBloc(this._SignInUseCase) : super(AuthState.initial()) {
 
     on<_SocialMediaLogin>((event, emit) async {
       emit(state.copyWith(isLoading: true));
-      final result = await _SignInWithSocialMediaUseCase.call(event.type);
+      print(event.type);
+      final result = await _SignInUseCase.call(event.type);
       result.fold(
             (failure) => emit(state.copyWith(
           isLoading: false,
@@ -33,5 +34,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         )),
       );
     });
+
+    on<_PhoneLoginRequested>((event, emit) async {
+      emit(state.copyWith(isLoading: true));
+      final result = await _SignInUseCase.signInWithPhoneNumber(event.phoneNumber);
+      result.fold(
+            (failure) => emit(state.copyWith(
+          isLoading: false,
+          exception: some(failure),
+        )),
+            (user) => emit(state.copyWith(
+          isLoading: false,
+          user: none(),
+        )),
+      );
+    });
+
+    on<_VerifyPhoneNumber>((event, emit) async {
+      emit(state.copyWith(isLoading: true));
+      print(event.verificationId); // You may want to log this instead.
+
+      final result = await _SignInUseCase.otpVerification(event.verificationId, event.smsCode); // Assuming you pass both.
+      result.fold(
+            (failure) => emit(state.copyWith(
+          isLoading: false,
+          exception: some(failure),
+        )),
+            (user) => emit(state.copyWith(
+          isLoading: false,
+          user: some(user),
+        )),
+      );
+    });
+
+
   }
 }

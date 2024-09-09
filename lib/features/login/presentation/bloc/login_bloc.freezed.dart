@@ -19,9 +19,6 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function() googleLoginRequested,
-    required TResult Function() facebookLoginRequested,
-    required TResult Function() appleLoginRequested,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -30,9 +27,6 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function()? googleLoginRequested,
-    TResult? Function()? facebookLoginRequested,
-    TResult? Function()? appleLoginRequested,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) =>
@@ -40,9 +34,6 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function()? googleLoginRequested,
-    TResult Function()? facebookLoginRequested,
-    TResult Function()? appleLoginRequested,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -51,10 +42,6 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
-    required TResult Function(_GoogleLoginRequested value) googleLoginRequested,
-    required TResult Function(_FacebookLoginRequested value)
-        facebookLoginRequested,
-    required TResult Function(_AppleLoginRequested value) appleLoginRequested,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) =>
@@ -62,9 +49,6 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult? Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult? Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult? Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) =>
@@ -72,9 +56,6 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),
@@ -172,9 +153,6 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function() googleLoginRequested,
-    required TResult Function() facebookLoginRequested,
-    required TResult Function() appleLoginRequested,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -186,9 +164,6 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function()? googleLoginRequested,
-    TResult? Function()? facebookLoginRequested,
-    TResult? Function()? appleLoginRequested,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
@@ -199,9 +174,6 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function()? googleLoginRequested,
-    TResult Function()? facebookLoginRequested,
-    TResult Function()? appleLoginRequested,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -216,10 +188,6 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
-    required TResult Function(_GoogleLoginRequested value) googleLoginRequested,
-    required TResult Function(_FacebookLoginRequested value)
-        facebookLoginRequested,
-    required TResult Function(_AppleLoginRequested value) appleLoginRequested,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) {
@@ -230,9 +198,6 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult? Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult? Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult? Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) {
@@ -243,9 +208,6 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),
@@ -268,404 +230,6 @@ abstract class _SocialMediaLogin implements AuthEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SocialMediaLoginImplCopyWith<_$SocialMediaLoginImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$GoogleLoginRequestedImplCopyWith<$Res> {
-  factory _$$GoogleLoginRequestedImplCopyWith(_$GoogleLoginRequestedImpl value,
-          $Res Function(_$GoogleLoginRequestedImpl) then) =
-      __$$GoogleLoginRequestedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GoogleLoginRequestedImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$GoogleLoginRequestedImpl>
-    implements _$$GoogleLoginRequestedImplCopyWith<$Res> {
-  __$$GoogleLoginRequestedImplCopyWithImpl(_$GoogleLoginRequestedImpl _value,
-      $Res Function(_$GoogleLoginRequestedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$GoogleLoginRequestedImpl implements _GoogleLoginRequested {
-  const _$GoogleLoginRequestedImpl();
-
-  @override
-  String toString() {
-    return 'AuthEvent.googleLoginRequested()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GoogleLoginRequestedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function() googleLoginRequested,
-    required TResult Function() facebookLoginRequested,
-    required TResult Function() appleLoginRequested,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
-        verifyPhoneNumber,
-  }) {
-    return googleLoginRequested();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function()? googleLoginRequested,
-    TResult? Function()? facebookLoginRequested,
-    TResult? Function()? appleLoginRequested,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-  }) {
-    return googleLoginRequested?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function()? googleLoginRequested,
-    TResult Function()? facebookLoginRequested,
-    TResult Function()? appleLoginRequested,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    required TResult orElse(),
-  }) {
-    if (googleLoginRequested != null) {
-      return googleLoginRequested();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SocialMediaLogin value) socialMediaLogin,
-    required TResult Function(_GoogleLoginRequested value) googleLoginRequested,
-    required TResult Function(_FacebookLoginRequested value)
-        facebookLoginRequested,
-    required TResult Function(_AppleLoginRequested value) appleLoginRequested,
-    required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
-    required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
-  }) {
-    return googleLoginRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult? Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult? Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult? Function(_AppleLoginRequested value)? appleLoginRequested,
-    TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
-    TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
-  }) {
-    return googleLoginRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult Function(_AppleLoginRequested value)? appleLoginRequested,
-    TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
-    TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
-    required TResult orElse(),
-  }) {
-    if (googleLoginRequested != null) {
-      return googleLoginRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GoogleLoginRequested implements AuthEvent {
-  const factory _GoogleLoginRequested() = _$GoogleLoginRequestedImpl;
-}
-
-/// @nodoc
-abstract class _$$FacebookLoginRequestedImplCopyWith<$Res> {
-  factory _$$FacebookLoginRequestedImplCopyWith(
-          _$FacebookLoginRequestedImpl value,
-          $Res Function(_$FacebookLoginRequestedImpl) then) =
-      __$$FacebookLoginRequestedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FacebookLoginRequestedImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$FacebookLoginRequestedImpl>
-    implements _$$FacebookLoginRequestedImplCopyWith<$Res> {
-  __$$FacebookLoginRequestedImplCopyWithImpl(
-      _$FacebookLoginRequestedImpl _value,
-      $Res Function(_$FacebookLoginRequestedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$FacebookLoginRequestedImpl implements _FacebookLoginRequested {
-  const _$FacebookLoginRequestedImpl();
-
-  @override
-  String toString() {
-    return 'AuthEvent.facebookLoginRequested()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FacebookLoginRequestedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function() googleLoginRequested,
-    required TResult Function() facebookLoginRequested,
-    required TResult Function() appleLoginRequested,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
-        verifyPhoneNumber,
-  }) {
-    return facebookLoginRequested();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function()? googleLoginRequested,
-    TResult? Function()? facebookLoginRequested,
-    TResult? Function()? appleLoginRequested,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-  }) {
-    return facebookLoginRequested?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function()? googleLoginRequested,
-    TResult Function()? facebookLoginRequested,
-    TResult Function()? appleLoginRequested,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    required TResult orElse(),
-  }) {
-    if (facebookLoginRequested != null) {
-      return facebookLoginRequested();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SocialMediaLogin value) socialMediaLogin,
-    required TResult Function(_GoogleLoginRequested value) googleLoginRequested,
-    required TResult Function(_FacebookLoginRequested value)
-        facebookLoginRequested,
-    required TResult Function(_AppleLoginRequested value) appleLoginRequested,
-    required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
-    required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
-  }) {
-    return facebookLoginRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult? Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult? Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult? Function(_AppleLoginRequested value)? appleLoginRequested,
-    TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
-    TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
-  }) {
-    return facebookLoginRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult Function(_AppleLoginRequested value)? appleLoginRequested,
-    TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
-    TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
-    required TResult orElse(),
-  }) {
-    if (facebookLoginRequested != null) {
-      return facebookLoginRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FacebookLoginRequested implements AuthEvent {
-  const factory _FacebookLoginRequested() = _$FacebookLoginRequestedImpl;
-}
-
-/// @nodoc
-abstract class _$$AppleLoginRequestedImplCopyWith<$Res> {
-  factory _$$AppleLoginRequestedImplCopyWith(_$AppleLoginRequestedImpl value,
-          $Res Function(_$AppleLoginRequestedImpl) then) =
-      __$$AppleLoginRequestedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$AppleLoginRequestedImplCopyWithImpl<$Res>
-    extends _$AuthEventCopyWithImpl<$Res, _$AppleLoginRequestedImpl>
-    implements _$$AppleLoginRequestedImplCopyWith<$Res> {
-  __$$AppleLoginRequestedImplCopyWithImpl(_$AppleLoginRequestedImpl _value,
-      $Res Function(_$AppleLoginRequestedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$AppleLoginRequestedImpl implements _AppleLoginRequested {
-  const _$AppleLoginRequestedImpl();
-
-  @override
-  String toString() {
-    return 'AuthEvent.appleLoginRequested()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AppleLoginRequestedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function() googleLoginRequested,
-    required TResult Function() facebookLoginRequested,
-    required TResult Function() appleLoginRequested,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
-        verifyPhoneNumber,
-  }) {
-    return appleLoginRequested();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function()? googleLoginRequested,
-    TResult? Function()? facebookLoginRequested,
-    TResult? Function()? appleLoginRequested,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
-  }) {
-    return appleLoginRequested?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function()? googleLoginRequested,
-    TResult Function()? facebookLoginRequested,
-    TResult Function()? appleLoginRequested,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
-    required TResult orElse(),
-  }) {
-    if (appleLoginRequested != null) {
-      return appleLoginRequested();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SocialMediaLogin value) socialMediaLogin,
-    required TResult Function(_GoogleLoginRequested value) googleLoginRequested,
-    required TResult Function(_FacebookLoginRequested value)
-        facebookLoginRequested,
-    required TResult Function(_AppleLoginRequested value) appleLoginRequested,
-    required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
-    required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
-  }) {
-    return appleLoginRequested(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult? Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult? Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult? Function(_AppleLoginRequested value)? appleLoginRequested,
-    TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
-    TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
-  }) {
-    return appleLoginRequested?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult Function(_AppleLoginRequested value)? appleLoginRequested,
-    TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
-    TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
-    required TResult orElse(),
-  }) {
-    if (appleLoginRequested != null) {
-      return appleLoginRequested(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AppleLoginRequested implements AuthEvent {
-  const factory _AppleLoginRequested() = _$AppleLoginRequestedImpl;
 }
 
 /// @nodoc
@@ -739,9 +303,6 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function() googleLoginRequested,
-    required TResult Function() facebookLoginRequested,
-    required TResult Function() appleLoginRequested,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -753,9 +314,6 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function()? googleLoginRequested,
-    TResult? Function()? facebookLoginRequested,
-    TResult? Function()? appleLoginRequested,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
@@ -766,9 +324,6 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function()? googleLoginRequested,
-    TResult Function()? facebookLoginRequested,
-    TResult Function()? appleLoginRequested,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -783,10 +338,6 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
-    required TResult Function(_GoogleLoginRequested value) googleLoginRequested,
-    required TResult Function(_FacebookLoginRequested value)
-        facebookLoginRequested,
-    required TResult Function(_AppleLoginRequested value) appleLoginRequested,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) {
@@ -797,9 +348,6 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult? Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult? Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult? Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) {
@@ -810,9 +358,6 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),
@@ -917,9 +462,6 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function() googleLoginRequested,
-    required TResult Function() facebookLoginRequested,
-    required TResult Function() appleLoginRequested,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -931,9 +473,6 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function()? googleLoginRequested,
-    TResult? Function()? facebookLoginRequested,
-    TResult? Function()? appleLoginRequested,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
@@ -944,9 +483,6 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function()? googleLoginRequested,
-    TResult Function()? facebookLoginRequested,
-    TResult Function()? appleLoginRequested,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -961,10 +497,6 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
-    required TResult Function(_GoogleLoginRequested value) googleLoginRequested,
-    required TResult Function(_FacebookLoginRequested value)
-        facebookLoginRequested,
-    required TResult Function(_AppleLoginRequested value) appleLoginRequested,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) {
@@ -975,9 +507,6 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult? Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult? Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult? Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) {
@@ -988,9 +517,6 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
-    TResult Function(_GoogleLoginRequested value)? googleLoginRequested,
-    TResult Function(_FacebookLoginRequested value)? facebookLoginRequested,
-    TResult Function(_AppleLoginRequested value)? appleLoginRequested,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),

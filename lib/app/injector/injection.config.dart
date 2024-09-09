@@ -67,12 +67,11 @@ extension GetItInjectableX on _i174.GetIt {
           facebookAuth: gh<_i806.FacebookAuth>(),
           phoneAuth: gh<_i59.FirebaseAuth>(),
         ));
-    gh.lazySingleton<_i387.SignInWithSocialMediaUseCase>(
-        () => _i387.SignInWithSocialMediaUseCase(gh<_i549.IAuthRepository>()));
+    gh.lazySingleton<_i387.SignInUseCase>(
+        () => _i387.SignInUseCase(gh<_i549.IAuthRepository>()));
     gh.factory<_i202.HomeBloc>(
         () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
-    gh.factory<_i664.AuthBloc>(
-        () => _i664.AuthBloc(gh<_i387.SignInWithSocialMediaUseCase>()));
+    gh.factory<_i664.AuthBloc>(() => _i664.AuthBloc(gh<_i387.SignInUseCase>()));
     return this;
   }
 }

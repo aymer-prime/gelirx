@@ -1,19 +1,27 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/view/app.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'features/login/presentation/bloc/login_bloc.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
   _initLoggy();
   //_initGoogleFonts();
   final sharedPreferences = await SharedPreferences.getInstance();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
       overlays: []);
   configureDependencies(sharedPreferences);
-  runApp(const App());
+  runApp(
+      BlocProvider(
+          create: (context) => getIt<AuthBloc>(),
+            child: const App()));
 }
 
 void _initLoggy() {
