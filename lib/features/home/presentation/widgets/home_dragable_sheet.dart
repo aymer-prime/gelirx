@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:gelirx/app/extentions/List.dart';
+import 'package:gelirx/app/extentions/context.dart';
+import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:gelirx/features/home/presentation/misc/functions.dart';
 import 'package:gelirx/features/home/presentation/widgets/card_label_widget.dart';
-import 'package:gelirx/features/home/presentation/widgets/categories_grid_widget.dart';
+import 'package:gelirx/features/home/presentation/widgets/filter_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/range_edit_widget.dart';
 
 class HomeDraggableSheet extends StatefulWidget {
   final List<Category> categories;
+  final List<Category> subCategories;
+  final int catIndex;
+  final int subCatIndex;
   const HomeDraggableSheet({
     super.key,
     required this.categories,
+    required this.subCategories,
+    required this.catIndex,
+    required this.subCatIndex,
   });
 
   @override
@@ -137,21 +149,102 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                       ),
                     ),
                   ),
-                  const SliverToBoxAdapter(
-                    child: CardLabelWidget(label: AppStrings.allCat),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(height: AppSize.s16),
-                  ),
                   SliverToBoxAdapter(
-                    child: widget.categories.isEmpty
+                    child: (widget.categories.isEmpty ||
+                            widget.subCategories.isEmpty)
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
-                        : CategoriesGridWidget(
-                            categories: widget.categories,
+                        : SizedBox(
+                            height: AppSize.s80,
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: Column(
+                                    children: [
+                                      const CardLabelWidget(
+                                          label: AppStrings.cats),
+                                      const SizedBox(height: AppSize.s16),
+                                      FilterWidget(
+                                        title: widget
+                                            .categories[widget.catIndex].name,
+                                        data: widget.categories,
+                                        currentFilterIndex: widget.catIndex,
+                                        onSelect: (int index) {
+                                          context.read<HomeBloc>().add(
+                                                HomeEvent.getSubCategories(
+                                                  catIndex: index,
+                                                ),
+                                              );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: AppSize.s16),
+                                Flexible(
+                                  child: Column(
+                                    children: [
+                                      const CardLabelWidget(
+                                          label: AppStrings.subCats),
+                                      const SizedBox(height: AppSize.s16),
+                                      FilterWidget(
+                                        title: widget
+                                            .subCategories[widget.subCatIndex]
+                                            .name,
+                                        data: widget.subCategories,
+                                        currentFilterIndex: 0,
+                                        onSelect: (int index) {},
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                  )
+                    //  CategoriesGridWidget(
+                    //     categories: widget.categories,
+                    //   ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppPadding.p16,
+                        horizontal: AppPadding.p32,
+                      ),
+                      child: Divider(
+                        thickness: AppSize.s1,
+                        color: ColorManager.textfieldBorderColor,
+                      ),
+                    ),
+                  ),
+                  const SliverToBoxAdapter(
+                    child: CardLabelWidget(
+                      label: AppStrings.services,
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        ServiceWidget(),
+                        ServiceWidget(),
+                        ServiceWidget(),
+                        ServiceWidget(),
+                        ServiceWidget(),
+                      ].separateWith(
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: AppPadding.p8,
+                            horizontal: AppPadding.p32,
+                          ),
+                          child: Divider(
+                            thickness: AppSize.s1,
+                            color: ColorManager.textfieldBorderColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -159,5 +252,102 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
         },
       );
     });
+  }
+}
+
+class ServiceWidget extends StatelessWidget {
+  const ServiceWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppPadding.p8,
+      ),
+      child: SizedBox(
+        height: AppSize.s80,
+        child: Row(
+          children: [
+            Flexible(
+              flex: 3,
+              fit: FlexFit.tight,
+              child: Container(
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                      color: getCategoryColor(),
+                      borderRadius: BorderRadius.circular(
+                        AppSize.s12,
+                      )),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppPadding.p16,
+                    ),
+                    child: SvgPicture.asset(ImageAssets.acIcon),
+                  )),
+            ),
+            const SizedBox(width: AppSize.s16),
+            Flexible(
+              flex: 7,
+              fit: FlexFit.tight,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'AC Check-Up',
+                        style: context.textTheme.labelLarge,
+                      ),
+                      Row(
+                        children: [
+                          SvgPicture.asset(ImageAssets.star),
+                          const SizedBox(width: AppSize.s4),
+                          Text(
+                            '4.8',
+                            style: context.textTheme.labelMedium,
+                          ),
+                          const SizedBox(width: AppSize.s4),
+                          Text(
+                            '(87)',
+                            style: context.textTheme.labelSmall,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Starts from:',
+                        style: context.textTheme.labelSmall,
+                      ),
+                      const SizedBox(width: AppSize.s16),
+                      Container(
+                        padding: const EdgeInsets.all(AppPadding.p6),
+                        decoration: BoxDecoration(
+                          color: ColorManager.priceLabel,
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s8,
+                          ),
+                        ),
+                        child: Text(
+                          '\$128',
+                          style: context.textTheme.labelMedium,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

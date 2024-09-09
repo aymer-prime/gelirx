@@ -5,6 +5,6 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.getCurrentPosition() = _GetCurrentPosition;
   const factory HomeEvent.getRange(int range) = _GetRange;
   const factory HomeEvent.getCategories() = _GetCategories;
-  const factory HomeEvent.getSubCategories({required String catId}) =
+  const factory HomeEvent.getSubCategories({required int catIndex}) =
       _GetSubCategories;
 }

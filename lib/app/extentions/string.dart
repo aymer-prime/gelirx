@@ -4,4 +4,8 @@ extension StringExtension on String {
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(this);
   }
+
+  String capitalizeFirst() {
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+  }
 }

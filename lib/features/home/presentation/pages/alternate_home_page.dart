@@ -10,6 +10,7 @@ import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/widgets/home_dragable_sheet.dart';
 import 'package:gelirx/features/home/presentation/widgets/home_map_widget.dart';
+import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 @RoutePage()
 class AlternateHomePage extends StatelessWidget {
@@ -26,7 +27,19 @@ class AlternateHomePage extends StatelessWidget {
           const HomeEvent.getCategories(),
         ),
       child: Scaffold(
-        body: BlocBuilder<HomeBloc, HomeState>(
+        body: BlocConsumer<HomeBloc, HomeState>(
+          listenWhen: (previous, current) =>
+              previous.isLoading != current.isLoading,
+          listener: (context, state) {
+            if (state.isLoading) {
+              LoadingScreen.instance().showLoadingScreen(
+                context: context,
+                text: 'Loading . . .',
+              );
+            } else {
+              LoadingScreen.instance().hide();
+            }
+          },
           builder: (context, state) {
             return Stack(
               children: [
@@ -84,6 +97,9 @@ class AlternateHomePage extends StatelessWidget {
                 ),
                 HomeDraggableSheet(
                   categories: state.categories,
+                  subCategories: state.subCategories,
+                  catIndex: state.catIndex,
+                  subCatIndex: state.subCatIndex,
                 ),
               ],
             );

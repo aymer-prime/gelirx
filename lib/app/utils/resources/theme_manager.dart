@@ -141,11 +141,11 @@ ThemeData getApplicationTheme() {
         fontSize: FontSizeManager.s12,
       ),
       labelLarge: getSemiBoldStyle(
-        color: ColorManager.textTitleLightColor,
+        color: ColorManager.textTitleColor,
         fontSize: FontSizeManager.s14,
       ),
-      labelMedium: getSemiBoldStyle(
-        color: ColorManager.textTitleLightColor,
+      labelMedium: getBoldStyle(
+        color: ColorManager.textTitleColor,
         fontSize: FontSizeManager.s12,
       ),
       labelSmall: getMediumStyle(

@@ -38,16 +38,45 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
       var categories = await _iHomeRepository.getCategories();
       categories.fold(
+          (l) => emit(
+                state.copyWith(
+                  isLoading: false,
+                  categories: [],
+                ),
+              ), (categories) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            categories: categories,
+          ),
+        );
+        add(
+          const _GetSubCategories(
+            catIndex: 0,
+          ),
+        );
+      });
+    });
+    on<_GetSubCategories>((event, emit) async {
+      emit(
+        state.copyWith(
+          isLoading: true,
+          catIndex: event.catIndex,
+        ),
+      );
+      var catId = state.categories[event.catIndex].id;
+      var categories = await _iHomeRepository.getSubCategories(catId);
+      categories.fold(
         (l) => emit(
           state.copyWith(
             isLoading: false,
-            categories: [],
+            subCategories: [],
           ),
         ),
         (categories) => emit(
           state.copyWith(
             isLoading: false,
-            categories: categories,
+            subCategories: categories,
           ),
         ),
       );

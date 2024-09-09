@@ -15,6 +15,9 @@ class AppStrings {
   static const range = 'Range (Km)';
   static const topCat = 'Top Categories';
   static const allCat = 'All Categories';
+  static const cats = 'Categories';
+  static const subCats = 'Sub Categories';
+  static const services = 'Services';
   static const seeAll = 'See all';
 
   static const loginTitle = "Sign in";

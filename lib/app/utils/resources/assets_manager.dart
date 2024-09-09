@@ -6,11 +6,15 @@ class ImageAssets {
   static const String searchIcon = '$imagePath/misc/search.svg';
   static const String noBookings = '$imagePath/misc/no_bookings.svg';
   static const String logo = '$imagePath/misc/logo.png';
+  static const String star = '$imagePath/misc/star.svg';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
-  static const String navbarNotification = '$imagePath/navbar/navbar_notification.svg';
+  static const String navbarNotification =
+      '$imagePath/navbar/navbar_notification.svg';
   static const String navbarProfile = '$imagePath/navbar/navbar_profile.svg';
+  //services
+  static const String acIcon = '$imagePath/services/ac_icon.svg';
 }
 
 class JsonAssets {

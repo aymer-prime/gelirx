@@ -21,7 +21,7 @@ mixin _$HomeEvent {
     required TResult Function() getCurrentPosition,
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
-    required TResult Function(String catId) getSubCategories,
+    required TResult Function(int catIndex) getSubCategories,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$HomeEvent {
     TResult? Function()? getCurrentPosition,
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
-    TResult? Function(String catId)? getSubCategories,
+    TResult? Function(int catIndex)? getSubCategories,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$HomeEvent {
     TResult Function()? getCurrentPosition,
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
-    TResult Function(String catId)? getSubCategories,
+    TResult Function(int catIndex)? getSubCategories,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,7 +132,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     required TResult Function() getCurrentPosition,
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
-    required TResult Function(String catId) getSubCategories,
+    required TResult Function(int catIndex) getSubCategories,
   }) {
     return getCurrentPosition();
   }
@@ -143,7 +143,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult? Function()? getCurrentPosition,
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
-    TResult? Function(String catId)? getSubCategories,
+    TResult? Function(int catIndex)? getSubCategories,
   }) {
     return getCurrentPosition?.call();
   }
@@ -154,7 +154,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult Function()? getCurrentPosition,
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
-    TResult Function(String catId)? getSubCategories,
+    TResult Function(int catIndex)? getSubCategories,
     required TResult orElse(),
   }) {
     if (getCurrentPosition != null) {
@@ -276,7 +276,7 @@ class _$GetRangeImpl implements _GetRange {
     required TResult Function() getCurrentPosition,
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
-    required TResult Function(String catId) getSubCategories,
+    required TResult Function(int catIndex) getSubCategories,
   }) {
     return getRange(range);
   }
@@ -287,7 +287,7 @@ class _$GetRangeImpl implements _GetRange {
     TResult? Function()? getCurrentPosition,
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
-    TResult? Function(String catId)? getSubCategories,
+    TResult? Function(int catIndex)? getSubCategories,
   }) {
     return getRange?.call(range);
   }
@@ -298,7 +298,7 @@ class _$GetRangeImpl implements _GetRange {
     TResult Function()? getCurrentPosition,
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
-    TResult Function(String catId)? getSubCategories,
+    TResult Function(int catIndex)? getSubCategories,
     required TResult orElse(),
   }) {
     if (getRange != null) {
@@ -401,7 +401,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     required TResult Function() getCurrentPosition,
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
-    required TResult Function(String catId) getSubCategories,
+    required TResult Function(int catIndex) getSubCategories,
   }) {
     return getCategories();
   }
@@ -412,7 +412,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult? Function()? getCurrentPosition,
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
-    TResult? Function(String catId)? getSubCategories,
+    TResult? Function(int catIndex)? getSubCategories,
   }) {
     return getCategories?.call();
   }
@@ -423,7 +423,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult Function()? getCurrentPosition,
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
-    TResult Function(String catId)? getSubCategories,
+    TResult Function(int catIndex)? getSubCategories,
     required TResult orElse(),
   }) {
     if (getCategories != null) {
@@ -480,7 +480,7 @@ abstract class _$$GetSubCategoriesImplCopyWith<$Res> {
           $Res Function(_$GetSubCategoriesImpl) then) =
       __$$GetSubCategoriesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String catId});
+  $Res call({int catIndex});
 }
 
 /// @nodoc
@@ -496,13 +496,13 @@ class __$$GetSubCategoriesImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catId = null,
+    Object? catIndex = null,
   }) {
     return _then(_$GetSubCategoriesImpl(
-      catId: null == catId
-          ? _value.catId
-          : catId // ignore: cast_nullable_to_non_nullable
-              as String,
+      catIndex: null == catIndex
+          ? _value.catIndex
+          : catIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -510,14 +510,14 @@ class __$$GetSubCategoriesImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetSubCategoriesImpl implements _GetSubCategories {
-  const _$GetSubCategoriesImpl({required this.catId});
+  const _$GetSubCategoriesImpl({required this.catIndex});
 
   @override
-  final String catId;
+  final int catIndex;
 
   @override
   String toString() {
-    return 'HomeEvent.getSubCategories(catId: $catId)';
+    return 'HomeEvent.getSubCategories(catIndex: $catIndex)';
   }
 
   @override
@@ -525,11 +525,12 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetSubCategoriesImpl &&
-            (identical(other.catId, catId) || other.catId == catId));
+            (identical(other.catIndex, catIndex) ||
+                other.catIndex == catIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, catId);
+  int get hashCode => Object.hash(runtimeType, catIndex);
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -546,9 +547,9 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     required TResult Function() getCurrentPosition,
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
-    required TResult Function(String catId) getSubCategories,
+    required TResult Function(int catIndex) getSubCategories,
   }) {
-    return getSubCategories(catId);
+    return getSubCategories(catIndex);
   }
 
   @override
@@ -557,9 +558,9 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult? Function()? getCurrentPosition,
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
-    TResult? Function(String catId)? getSubCategories,
+    TResult? Function(int catIndex)? getSubCategories,
   }) {
-    return getSubCategories?.call(catId);
+    return getSubCategories?.call(catIndex);
   }
 
   @override
@@ -568,11 +569,11 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult Function()? getCurrentPosition,
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
-    TResult Function(String catId)? getSubCategories,
+    TResult Function(int catIndex)? getSubCategories,
     required TResult orElse(),
   }) {
     if (getSubCategories != null) {
-      return getSubCategories(catId);
+      return getSubCategories(catIndex);
     }
     return orElse();
   }
@@ -616,10 +617,10 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
 }
 
 abstract class _GetSubCategories implements HomeEvent {
-  const factory _GetSubCategories({required final String catId}) =
+  const factory _GetSubCategories({required final int catIndex}) =
       _$GetSubCategoriesImpl;
 
-  String get catId;
+  int get catIndex;
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -631,9 +632,12 @@ abstract class _GetSubCategories implements HomeEvent {
 /// @nodoc
 mixin _$HomeState {
   int get range => throw _privateConstructorUsedError;
+  int get catIndex => throw _privateConstructorUsedError;
+  int get subCatIndex => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Option<Position> get userPosition => throw _privateConstructorUsedError;
   List<Category> get categories => throw _privateConstructorUsedError;
+  List<Category> get subCategories => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -649,9 +653,12 @@ abstract class $HomeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {int range,
+      int catIndex,
+      int subCatIndex,
       bool isLoading,
       Option<Position> userPosition,
-      List<Category> categories});
+      List<Category> categories,
+      List<Category> subCategories});
 }
 
 /// @nodoc
@@ -670,14 +677,25 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? range = null,
+    Object? catIndex = null,
+    Object? subCatIndex = null,
     Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
+    Object? subCategories = null,
   }) {
     return _then(_value.copyWith(
       range: null == range
           ? _value.range
           : range // ignore: cast_nullable_to_non_nullable
+              as int,
+      catIndex: null == catIndex
+          ? _value.catIndex
+          : catIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      subCatIndex: null == subCatIndex
+          ? _value.subCatIndex
+          : subCatIndex // ignore: cast_nullable_to_non_nullable
               as int,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -690,6 +708,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
+      subCategories: null == subCategories
+          ? _value.subCategories
+          : subCategories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
     ) as $Val);
   }
@@ -705,9 +727,12 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {int range,
+      int catIndex,
+      int subCatIndex,
       bool isLoading,
       Option<Position> userPosition,
-      List<Category> categories});
+      List<Category> categories,
+      List<Category> subCategories});
 }
 
 /// @nodoc
@@ -724,14 +749,25 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? range = null,
+    Object? catIndex = null,
+    Object? subCatIndex = null,
     Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
+    Object? subCategories = null,
   }) {
     return _then(_$HomeStateImpl(
       range: null == range
           ? _value.range
           : range // ignore: cast_nullable_to_non_nullable
+              as int,
+      catIndex: null == catIndex
+          ? _value.catIndex
+          : catIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      subCatIndex: null == subCatIndex
+          ? _value.subCatIndex
+          : subCatIndex // ignore: cast_nullable_to_non_nullable
               as int,
       isLoading: null == isLoading
           ? _value.isLoading
@@ -745,6 +781,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
+      subCategories: null == subCategories
+          ? _value._subCategories
+          : subCategories // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
     ));
   }
 }
@@ -754,13 +794,21 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
       {required this.range,
+      required this.catIndex,
+      required this.subCatIndex,
       required this.isLoading,
       required this.userPosition,
-      required final List<Category> categories})
-      : _categories = categories;
+      required final List<Category> categories,
+      required final List<Category> subCategories})
+      : _categories = categories,
+        _subCategories = subCategories;
 
   @override
   final int range;
+  @override
+  final int catIndex;
+  @override
+  final int subCatIndex;
   @override
   final bool isLoading;
   @override
@@ -773,9 +821,17 @@ class _$HomeStateImpl implements _HomeState {
     return EqualUnmodifiableListView(_categories);
   }
 
+  final List<Category> _subCategories;
+  @override
+  List<Category> get subCategories {
+    if (_subCategories is EqualUnmodifiableListView) return _subCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_subCategories);
+  }
+
   @override
   String toString() {
-    return 'HomeState(range: $range, isLoading: $isLoading, userPosition: $userPosition, categories: $categories)';
+    return 'HomeState(range: $range, catIndex: $catIndex, subCatIndex: $subCatIndex, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories)';
   }
 
   @override
@@ -784,17 +840,30 @@ class _$HomeStateImpl implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
             (identical(other.range, range) || other.range == range) &&
+            (identical(other.catIndex, catIndex) ||
+                other.catIndex == catIndex) &&
+            (identical(other.subCatIndex, subCatIndex) ||
+                other.subCatIndex == subCatIndex) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.userPosition, userPosition) ||
                 other.userPosition == userPosition) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            const DeepCollectionEquality()
+                .equals(other._subCategories, _subCategories));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, range, isLoading, userPosition,
-      const DeepCollectionEquality().hash(_categories));
+  int get hashCode => Object.hash(
+      runtimeType,
+      range,
+      catIndex,
+      subCatIndex,
+      isLoading,
+      userPosition,
+      const DeepCollectionEquality().hash(_categories),
+      const DeepCollectionEquality().hash(_subCategories));
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -808,18 +877,27 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {required final int range,
+      required final int catIndex,
+      required final int subCatIndex,
       required final bool isLoading,
       required final Option<Position> userPosition,
-      required final List<Category> categories}) = _$HomeStateImpl;
+      required final List<Category> categories,
+      required final List<Category> subCategories}) = _$HomeStateImpl;
 
   @override
   int get range;
+  @override
+  int get catIndex;
+  @override
+  int get subCatIndex;
   @override
   bool get isLoading;
   @override
   Option<Position> get userPosition;
   @override
   List<Category> get categories;
+  @override
+  List<Category> get subCategories;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
