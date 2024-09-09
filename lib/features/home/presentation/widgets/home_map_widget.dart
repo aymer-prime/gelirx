@@ -17,58 +17,46 @@ class HomeMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppSize.s14),
-        border: Border.all(
-          color: ColorManager.lightPrimary,
-          width: AppSize.s1_5,
+    return FlutterMap(
+      options: MapOptions(
+        initialCenter: LatLng(
+          userPosition.latitude,
+          userPosition.longitude,
         ),
+        initialZoom: 12,
+        minZoom: 12,
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(AppSize.s14),
-        child: FlutterMap(
-          options: MapOptions(
-            initialCenter: LatLng(
-              userPosition.latitude,
-              userPosition.longitude,
-            ),
-            initialZoom: 12,
-            minZoom: 12,
-          ),
-          children: [
-            openStreetMapTileLayer,
-            CircleLayer(
-              circles: [
-                CircleMarker(
-                    useRadiusInMeter: true,
-                    radius: range * 1000,
-                    point: LatLng(
-                      userPosition.latitude,
-                      userPosition.longitude,
-                    ),
-                    color: Colors.blue.withOpacity(0.15),
-                    borderColor: Colors.blue,
-                    borderStrokeWidth: AppSize.s1)
-              ],
-            ),
-            MarkerLayer(
-              markers: [
-                Marker(
-                  point: LatLng(
-                    userPosition.latitude,
-                    userPosition.longitude,
-                  ),
-                  child: Icon(
-                    Icons.location_on,
-                    color: ColorManager.darkPrimary,
-                  ),
+      children: [
+        openStreetMapTileLayer,
+        CircleLayer(
+          circles: [
+            CircleMarker(
+                useRadiusInMeter: true,
+                radius: range * 1000,
+                point: LatLng(
+                  userPosition.latitude,
+                  userPosition.longitude,
                 ),
-              ],
+                color: Colors.blue.withOpacity(0.1),
+                borderColor: Colors.blue,
+                borderStrokeWidth: AppSize.s1)
+          ],
+        ),
+        MarkerLayer(
+          markers: [
+            Marker(
+              point: LatLng(
+                userPosition.latitude,
+                userPosition.longitude,
+              ),
+              child: Icon(
+                Icons.location_on,
+                color: ColorManager.darkPrimary,
+              ),
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }

@@ -5,7 +5,6 @@ import 'package:gelirx/app/extentions/List.dart';
 import 'package:gelirx/app/extentions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
-import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
@@ -267,7 +266,7 @@ class ServiceWidget extends StatelessWidget {
         vertical: AppPadding.p8,
       ),
       child: SizedBox(
-        height: AppSize.s80,
+        height: AppSize.s100,
         child: Row(
           children: [
             Flexible(
@@ -298,10 +297,6 @@ class ServiceWidget extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'AC Check-Up',
-                        style: context.textTheme.labelLarge,
-                      ),
                       Row(
                         children: [
                           SvgPicture.asset(ImageAssets.star),
@@ -317,16 +312,21 @@ class ServiceWidget extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Text(
+                        'AC Check-Up',
+                        style: context.textTheme.labelLarge,
+                      ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Starts from:',
                         style: context.textTheme.labelSmall,
                       ),
-                      const SizedBox(width: AppSize.s16),
+                      const SizedBox(height: AppSize.s16),
                       Container(
                         padding: const EdgeInsets.all(AppPadding.p6),
                         decoration: BoxDecoration(
