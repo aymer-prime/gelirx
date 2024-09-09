@@ -15,117 +15,148 @@ import '../../../../../app/utils/resources/values_manager.dart';
 
 @RoutePage()
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController otpController = TextEditingController();
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(AppPadding.p28),
-        child: Container(
-          child: BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-             return Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: AppSize.s80),
-              Center(
-                  child: Image.asset(
-                ImageAssets.logo,
-                height: AppSize.s120,
-              )),
-              const SizedBox(height: AppSize.s20),
-              const Text(
-                AppStrings.loginTitle,
-                style: TextStyle(
-                    fontSize: FontSizeManager.s32,
-                    fontWeight: FontWeightManager.semiBold),
-              ),
-              const SizedBox(height: AppSize.s20),
-              IntlPhoneField(
-                dropdownTextStyle: getMediumStyle(color: ColorManager.black),
-                decoration: InputDecoration(
-                  filled: true,
-                  labelText: AppStrings.phoneNumberTitle,
-                  fillColor: ColorManager.textfieldColor,
-                  labelStyle: getMediumStyle(color: ColorManager.black),
-                  floatingLabelStyle: getMediumStyle(color: ColorManager.black),
-                  suffixStyle: getMediumStyle(color: ColorManager.black),
-                  counterStyle: getMediumStyle(color: ColorManager.black),
-                  helperStyle: getMediumStyle(color: ColorManager.black),
-                  prefixStyle: getMediumStyle(color: ColorManager.black),
-                  hintStyle: getMediumStyle(color: ColorManager.black),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    // Increase the circular radius
-                    borderSide: BorderSide.none, // Remove the border
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    // Increase the circular radius
-                    borderSide: BorderSide.none, // Remove the border
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    // Increase the circular radius
-                    borderSide: BorderSide.none, // Remove the border
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    // Increase the circular radius
-                    borderSide: BorderSide.none, // Remove the border
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    // Increase the circular radius
-                    borderSide: BorderSide.none, // Remove the border
-                  ),
-                ),
-                initialCountryCode: AppStrings.countryCodeTitle,
-                style: getMediumStyle(color: ColorManager.black),
-                pickerDialogStyle: PickerDialogStyle(
-                  countryNameStyle: getMediumStyle(color: ColorManager.black),
-                ),
-                onChanged: (phone) {
-                  print(phone.completeNumber);
-                },
-              ),
-              SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(const AuthEvent.phoneLoginRequested(phoneNumber: "+971588250549"));
-                    },
-                    child: Text(AppStrings.loginTitle,
-                        style: getMediumStyle(color: ColorManager.black)),
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            ColorManager.textfieldColor)),
+        body: GestureDetector(
+          onTap: (){
+            FocusScope.of(context).unfocus();
+          },
+          child: SafeArea(
+                child: Padding(
+          padding: const EdgeInsets.all(AppPadding.p28),
+          child: Container(
+            child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) {
+               return SingleChildScrollView(
+                 child: Column(
+                             mainAxisSize: MainAxisSize.max,
+                             mainAxisAlignment: MainAxisAlignment.start,
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             children: [
+                  const SizedBox(height: AppSize.s80),
+                  Center(
+                      child: Image.asset(
+                    ImageAssets.logo,
+                    height: AppSize.s120,
                   )),
-              const SizedBox(height: AppSize.s64),
-               Center(
-                 child: Text(
-                  AppStrings.signinWithTitle,
-                  style: getMediumStyle(color: ColorManager.black)
-                 ),
-               ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  socialLoginButton(image: ImageAssets.googleLogo, onTap: () { context.read<AuthBloc>().add(const AuthEvent.socialMediaLogin(SocialMediaType.Google)); }),
-                  socialLoginButton(image: ImageAssets.facebookLogo, onTap: () { context.read<AuthBloc>().add(const AuthEvent.socialMediaLogin(SocialMediaType.Facebook)); }),
-                  socialLoginButton(image: ImageAssets.appleLogo, onTap: () { context.read<AuthBloc>().add(const AuthEvent.socialMediaLogin(SocialMediaType.Apple)); })
-                ],
-              )
-            ],
-          );
-  },
-),
-        ),
-      ),
-    ));
+                  const SizedBox(height: AppSize.s20),
+                  const Text(
+                    AppStrings.loginTitle,
+                    style: TextStyle(
+                        fontSize: FontSizeManager.s32,
+                        fontWeight: FontWeightManager.semiBold),
+                  ),
+                  const SizedBox(height: AppSize.s20),
+                  IntlPhoneField(
+                    dropdownTextStyle: getMediumStyle(color: ColorManager.black),
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: AppStrings.phoneNumberTitle,
+                      fillColor: ColorManager.textfieldColor,
+                      labelStyle: getMediumStyle(color: ColorManager.black),
+                      floatingLabelStyle: getMediumStyle(color: ColorManager.black),
+                      suffixStyle: getMediumStyle(color: ColorManager.black),
+                      counterStyle: getMediumStyle(color: ColorManager.black),
+                      helperStyle: getMediumStyle(color: ColorManager.black),
+                      prefixStyle: getMediumStyle(color: ColorManager.black),
+                      hintStyle: getMediumStyle(color: ColorManager.black),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        // Increase the circular radius
+                        borderSide: BorderSide.none, // Remove the border
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        // Increase the circular radius
+                        borderSide: BorderSide.none, // Remove the border
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        // Increase the circular radius
+                        borderSide: BorderSide.none, // Remove the border
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        // Increase the circular radius
+                        borderSide: BorderSide.none, // Remove the border
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                        // Increase the circular radius
+                        borderSide: BorderSide.none, // Remove the border
+                      ),
+                    ),
+                    initialCountryCode: AppStrings.countryCodeTitle,
+                    style: getMediumStyle(color: ColorManager.black),
+                    pickerDialogStyle: PickerDialogStyle(
+                      countryNameStyle: getMediumStyle(color: ColorManager.black),
+                    ),
+                    onChanged: (phone) {
+                      phoneController.text = phone.completeNumber;
+                    },
+                  ),
+                 if (state.verificationId.isSome()) ...[
+                   const SizedBox(height: AppSize.s20), // Add spacing
+                   TextField(
+                     controller: otpController,
+                     decoration: InputDecoration(
+                       labelText: AppStrings.enterOTPTitle,
+                       border: OutlineInputBorder(
+                         borderRadius: BorderRadius.circular(30.0),
+                         borderSide: BorderSide.none,
+                       ),
+                       fillColor: ColorManager.textfieldColor,
+                       filled: true,
+                     ),
+                     onChanged: (otp) {
+                       context.read<AuthBloc>().add(AuthEvent.verifyPhoneNumber(
+                         verificationId: state.verificationId.getOrElse(() => ''),
+                         smsCode: otp,
+                       ));
+                     },
+                   ),
+                   const SizedBox(height: AppSize.s20), // Add spacing
+                 ],
+                  SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<AuthBloc>().add(AuthEvent.phoneLoginRequested(phoneNumber: phoneController.text));
+                          },
+                        child: Text(AppStrings.loginTitle,
+                            style: getMediumStyle(color: ColorManager.black)),
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                ColorManager.textfieldColor)),
+                      )),
+                  const SizedBox(height: AppSize.s64),
+                   Center(
+                     child: Text(
+                      AppStrings.signinWithTitle,
+                      style: getMediumStyle(color: ColorManager.black)
+                     ),
+                   ),
+                             Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      socialLoginButton(image: ImageAssets.googleLogo, onTap: () { context.read<AuthBloc>().add(const AuthEvent.socialMediaLogin(SocialMediaType.Google)); }),
+                      socialLoginButton(image: ImageAssets.facebookLogo, onTap: () { context.read<AuthBloc>().add(const AuthEvent.socialMediaLogin(SocialMediaType.Facebook)); }),
+                      socialLoginButton(image: ImageAssets.appleLogo, onTap: () { context.read<AuthBloc>().add(const AuthEvent.socialMediaLogin(SocialMediaType.Apple)); })
+                    ],
+                  )
+                             ],
+                           ),
+               );
+            },
+          ),
+          ),
+                ),
+              ),
+        ));
   }
 }

@@ -9,6 +9,6 @@ abstract class IAuthRepository {
   Future<Either<ApiException, UserEntity>> signInWithGoogle();
   Future<Either<ApiException, UserEntity>> signInWithFacebook();
   Future<Either<ApiException, UserEntity>> signInWithApple();
-  Future<Either<ApiException, Unit>> signInWithPhone(String phoneNumber);
+  Future<Either<ApiException, String>> signInWithPhoneNumber(String phoneNumber);
   Future<Either<ApiException, UserEntity>> verifyPhoneNumber(String verificationId, String smsCode);
 }

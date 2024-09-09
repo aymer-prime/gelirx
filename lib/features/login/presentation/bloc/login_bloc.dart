@@ -43,9 +43,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           isLoading: false,
           exception: some(failure),
         )),
-            (user) => emit(state.copyWith(
+            (verificationId) => emit(state.copyWith(
           isLoading: false,
-          user: none(),
+          verificationId: some(verificationId),
         )),
       );
     });

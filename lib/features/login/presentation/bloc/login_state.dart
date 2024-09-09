@@ -6,12 +6,16 @@ class AuthState with _$AuthState {
     required bool isLoading,
     required Option<UserEntity> user, // UserEntity from your domain
     required Option<ApiException> exception, // For handling error messages
+    required Option<String> verificationId, // Store verification ID
+    required Option<String> otp, // Store OTP code
   }) = _LoginState;
 
   factory AuthState.initial() =>  AuthState(
     isLoading: false,
     user: none(),
     exception: none(),
+    verificationId: none(),
+    otp: none()
   );
 }
 
