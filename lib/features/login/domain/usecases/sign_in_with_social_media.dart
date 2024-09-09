@@ -7,10 +7,10 @@ import '../entities/user_entity.dart';
 import '../i_auth_repository.dart';
 
 @LazySingleton()
-class SignInWithSocialMediaUseCase {
+class SignInUseCase {
   final IAuthRepository repository;
 
-  SignInWithSocialMediaUseCase(this.repository);
+  SignInUseCase(this.repository);
 
   Future<Either<ApiException, UserEntity>> call(SocialMediaType type) async {
     switch (type) {
@@ -23,5 +23,13 @@ class SignInWithSocialMediaUseCase {
       default:
         return const Left(ApiException.unknown());
     }
+  }
+
+  Future<Either<ApiException, Unit>> signInWithPhoneNumber(String phoneNumber) async {
+    return await repository.signInWithPhone(phoneNumber);
+  }
+
+  Future<Either<ApiException, UserEntity>> otpVerification(String verificationId,String otp) async {
+    return await repository.verifyPhoneNumber(verificationId,otp);
   }
 }

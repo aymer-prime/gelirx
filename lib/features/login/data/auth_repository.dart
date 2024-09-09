@@ -106,7 +106,7 @@ class AuthRepository implements IAuthRepository {
 
   // Sign in with Phone Number (start verification)
   @override
-  Future<Either<ApiException, UserEntity>> signInWithPhone(String phoneNumber) async {
+  Future<Either<ApiException, Unit>> signInWithPhone(String phoneNumber) async {
     try {
       await firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
@@ -121,7 +121,7 @@ class AuthRepository implements IAuthRepository {
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
       );
-      return right(UserEntity(id: '', phoneNumber: phoneNumber));
+      return right(unit);
     } on FirebaseAuthException  catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
     }
