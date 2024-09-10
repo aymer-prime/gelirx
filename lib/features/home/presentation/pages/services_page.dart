@@ -7,8 +7,8 @@ import 'package:gelirx/features/home/presentation/widgets/home_map_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 @RoutePage()
-class AlternateHomePage extends StatelessWidget {
-  const AlternateHomePage({super.key});
+class ServicesPage extends StatelessWidget {
+  const ServicesPage({super.key});
 
   @override
   Widget build(BuildContext context) {

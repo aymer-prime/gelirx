@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
-import 'package:gelirx/features/home/presentation/misc/functions.dart';
 import 'package:gelirx/features/home/presentation/widgets/card_label_widget.dart';
-import 'package:gelirx/features/home/presentation/widgets/categories_grid_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 import 'package:gelirx/features/home/presentation/widgets/range_slider_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/sevice_widget.dart';
@@ -146,33 +142,51 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                     ),
                   ),
                   SliverToBoxAdapter(
-                    child: Row(
+                    child: Column(
                       children: [
-                        const CardLabelWidget(
-                          label: '${AppStrings.subCats} - ',
+                        Row(
+                          children: [
+                            const CardLabelWidget(
+                              label: '${AppStrings.subCats} - ',
+                            ),
+                            Flexible(
+                              child: Text(
+                                widget.categories[widget.catIndex].name,
+                                style: context.textTheme.bodyMedium,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
                         ),
-                        Flexible(
-                          child: Text(
-                            widget.categories[widget.catIndex].name,
-                            style: context.textTheme.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                        const SizedBox(height: AppSize.s16),
+                        (widget.categories.isEmpty ||
+                                widget.subCategories.isEmpty)
+                            ? const Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : Column(
+                                children: [
+                                  ...List.generate(
+                                    widget.subCategories.length,
+                                    (index) => ServiceWidget(
+                                      service: widget.subCategories[index],
+                                    ),
+                                  )
+                                ].separateWith(
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: AppPadding.p8,
+                                      horizontal: AppPadding.p32,
+                                    ),
+                                    child: Divider(
+                                      thickness: AppSize.s1,
+                                      color: ColorManager.textfieldBorderColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
                       ],
                     ),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(height: AppSize.s16),
-                  ),
-                  SliverToBoxAdapter(
-                    child: (widget.categories.isEmpty ||
-                            widget.subCategories.isEmpty)
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : CategoriesGridWidget(
-                            categories: widget.subCategories,
-                          ),
                     // : SizedBox(
                     //     height: AppSize.s80,
                     //     child: Row(
@@ -223,63 +237,6 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                     //  CategoriesGridWidget(
                     //     categories: widget.categories,
                     //   ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        //vertical: AppPadding.p16,
-                        horizontal: AppPadding.p32,
-                      ),
-                      child: Divider(
-                        thickness: AppSize.s1,
-                        color: ColorManager.textfieldBorderColor,
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Row(
-                      children: [
-                        const CardLabelWidget(
-                            label: '${AppStrings.services} - '),
-                        Flexible(
-                          child: Text(
-                            widget.categories[widget.catIndex].name,
-                            style: context.textTheme.bodyMedium,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          size: AppSize.s16,
-                        ),
-                        Text(
-                          widget.subCategories[widget.subCatIndex].name,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        ServiceWidget(),
-                        ServiceWidget(),
-                        ServiceWidget(),
-                        ServiceWidget(),
-                        ServiceWidget(),
-                      ].separateWith(
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: AppPadding.p8,
-                            horizontal: AppPadding.p32,
-                          ),
-                          child: Divider(
-                            thickness: AppSize.s1,
-                            color: ColorManager.textfieldBorderColor,
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),

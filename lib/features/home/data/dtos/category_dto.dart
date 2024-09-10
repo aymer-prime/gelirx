@@ -5,6 +5,7 @@ part 'category_dto.g.dart';
 
 @freezed
 abstract class CategoryDto with _$CategoryDto {
+  // ignore: invalid_annotation_target
   @JsonSerializable()
   const factory CategoryDto({
     required String id,

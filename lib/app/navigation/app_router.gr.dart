@@ -10,7 +10,7 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [AlternateHomePage]
+/// [ServicesPage]
 class AlternateHomeRoute extends PageRouteInfo<void> {
   const AlternateHomeRoute({List<PageRouteInfo>? children})
       : super(
@@ -23,7 +23,7 @@ class AlternateHomeRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const AlternateHomePage();
+      return const ServicesPage();
     },
   );
 }

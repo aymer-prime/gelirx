@@ -1,14 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/misc/functions.dart';
 
 class ServiceWidget extends StatelessWidget {
+  final Category service;
   const ServiceWidget({
     super.key,
+    required this.service,
   });
 
   @override
@@ -25,18 +29,21 @@ class ServiceWidget extends StatelessWidget {
               flex: 3,
               fit: FlexFit.tight,
               child: Container(
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                      color: getCategoryColor(),
-                      borderRadius: BorderRadius.circular(
-                        AppSize.s12,
-                      )),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.p16,
-                    ),
-                    child: SvgPicture.asset(ImageAssets.acIcon),
-                  )),
+                height: double.infinity,
+                decoration: BoxDecoration(
+                    color: getCategoryColor(),
+                    borderRadius: BorderRadius.circular(
+                      AppSize.s12,
+                    )),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppPadding.p16,
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl: service.img,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(width: AppSize.s16),
             Flexible(
@@ -65,7 +72,7 @@ class ServiceWidget extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        'AC Check-Up',
+                        service.name,
                         style: context.textTheme.labelLarge,
                       ),
                     ],

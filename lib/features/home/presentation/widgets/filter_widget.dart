@@ -6,7 +6,6 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
-import 'package:gelirx/features/home/presentation/misc/functions.dart';
 import 'package:gelirx/features/home/presentation/widgets/filter_button.dart';
 
 class FilterWidget extends StatelessWidget {
