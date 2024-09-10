@@ -7,7 +7,7 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
-import 'package:gelirx/features/home/presentation/widgets/card_label_widget.dart';
+import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 import 'package:gelirx/features/home/presentation/widgets/range_slider_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/sevice_widget.dart';

@@ -10,7 +10,7 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/functions.dart';
-import 'package:gelirx/features/home/presentation/widgets/card_label_widget.dart';
+import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 

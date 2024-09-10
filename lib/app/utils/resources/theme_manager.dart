@@ -66,9 +66,9 @@ ThemeData getApplicationTheme() {
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         padding: EdgeInsets.zero,
-        textStyle: getRegularStyle(
-          color: ColorManager.black,
-          fontSize: FontSizeManager.s18,
+        textStyle: getBoldStyle(
+          color: ColorManager.textTitleColor,
+          fontSize: FontSizeManager.s15,
         ),
         foregroundColor: ColorManager.black,
         side: BorderSide(
