@@ -548,7 +548,11 @@ mixin _$AuthState {
   bool get isLoading => throw _privateConstructorUsedError;
   Option<UserEntity> get user =>
       throw _privateConstructorUsedError; // UserEntity from your domain
-  Option<ApiException> get exception => throw _privateConstructorUsedError;
+  Option<ApiException> get exception =>
+      throw _privateConstructorUsedError; // For handling error messages
+  Option<String> get verificationId =>
+      throw _privateConstructorUsedError; // Store verification ID
+  Option<String> get otp => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -565,7 +569,9 @@ abstract class $AuthStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       Option<UserEntity> user,
-      Option<ApiException> exception});
+      Option<ApiException> exception,
+      Option<String> verificationId,
+      Option<String> otp});
 }
 
 /// @nodoc
@@ -586,6 +592,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? isLoading = null,
     Object? user = null,
     Object? exception = null,
+    Object? verificationId = null,
+    Object? otp = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -600,6 +608,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
               as Option<ApiException>,
+      verificationId: null == verificationId
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      otp: null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
     ) as $Val);
   }
 }
@@ -615,7 +631,9 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       Option<UserEntity> user,
-      Option<ApiException> exception});
+      Option<ApiException> exception,
+      Option<String> verificationId,
+      Option<String> otp});
 }
 
 /// @nodoc
@@ -634,6 +652,8 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? user = null,
     Object? exception = null,
+    Object? verificationId = null,
+    Object? otp = null,
   }) {
     return _then(_$LoginStateImpl(
       isLoading: null == isLoading
@@ -648,6 +668,14 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
               as Option<ApiException>,
+      verificationId: null == verificationId
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
+      otp: null == otp
+          ? _value.otp
+          : otp // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
     ));
   }
 }
@@ -656,7 +684,11 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 
 class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
-      {required this.isLoading, required this.user, required this.exception});
+      {required this.isLoading,
+      required this.user,
+      required this.exception,
+      required this.verificationId,
+      required this.otp});
 
   @override
   final bool isLoading;
@@ -665,10 +697,16 @@ class _$LoginStateImpl implements _LoginState {
 // UserEntity from your domain
   @override
   final Option<ApiException> exception;
+// For handling error messages
+  @override
+  final Option<String> verificationId;
+// Store verification ID
+  @override
+  final Option<String> otp;
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, user: $user, exception: $exception)';
+    return 'AuthState(isLoading: $isLoading, user: $user, exception: $exception, verificationId: $verificationId, otp: $otp)';
   }
 
   @override
@@ -680,11 +718,15 @@ class _$LoginStateImpl implements _LoginState {
                 other.isLoading == isLoading) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.exception, exception) ||
-                other.exception == exception));
+                other.exception == exception) &&
+            (identical(other.verificationId, verificationId) ||
+                other.verificationId == verificationId) &&
+            (identical(other.otp, otp) || other.otp == otp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, user, exception);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, user, exception, verificationId, otp);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -699,14 +741,20 @@ abstract class _LoginState implements AuthState {
   const factory _LoginState(
       {required final bool isLoading,
       required final Option<UserEntity> user,
-      required final Option<ApiException> exception}) = _$LoginStateImpl;
+      required final Option<ApiException> exception,
+      required final Option<String> verificationId,
+      required final Option<String> otp}) = _$LoginStateImpl;
 
   @override
   bool get isLoading;
   @override
   Option<UserEntity> get user; // UserEntity from your domain
   @override
-  Option<ApiException> get exception;
+  Option<ApiException> get exception; // For handling error messages
+  @override
+  Option<String> get verificationId; // Store verification ID
+  @override
+  Option<String> get otp;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.

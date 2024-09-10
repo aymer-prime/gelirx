@@ -14,7 +14,8 @@ class ImageAssets {
   static const String navbarNotification =
       '$imagePath/navbar/navbar_notification.svg';
   static const String navbarProfile = '$imagePath/navbar/navbar_profile.svg';
-
+  //services
+  static const String acIcon = '$imagePath/services/ac_icon.svg';
   //login buttons
   static const String googleLogo = '$imagePath/login_buttons/google.png';
   static const String facebookLogo = '$imagePath/login_buttons/facebook.png';

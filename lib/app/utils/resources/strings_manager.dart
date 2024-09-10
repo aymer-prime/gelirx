@@ -20,11 +20,10 @@ class AppStrings {
   static const services = 'Services';
   static const seeAll = 'See all';
 
+  //login
   static const loginTitle = "Sign in";
-
   static const phoneNumberTitle = "Phone Number";
-
   static const countryCodeTitle = 'TR';
-
   static const signinWithTitle = 'Sign in with';
+  static const enterOTPTitle = 'Enter OTP';
 }

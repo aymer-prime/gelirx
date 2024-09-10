@@ -105,24 +105,31 @@ class AuthRepository implements IAuthRepository {
   }
 
   // Sign in with Phone Number (start verification)
-  @override
-  Future<Either<ApiException, Unit>> signInWithPhone(String phoneNumber) async {
+  Future<Either<ApiException, String>> signInWithPhoneNumber(String phoneNumber) async {
     try {
+      final verificationIdCompleter = Completer<String>();
+
       await firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           await firebaseAuth.signInWithCredential(credential);
+          // Handle auto-sign-in here if needed
         },
         verificationFailed: (FirebaseAuthException e) {
-          throw ApiException.defaultException(e.code,  e.message ?? 'Verification failed');
+          throw ApiException.defaultException(e.code, e.message ?? 'Verification failed');
         },
         codeSent: (String verificationId, int? resendToken) {
-          // This would trigger UI to ask the user for the verification code.
+          verificationIdCompleter.complete(verificationId);
+          // This triggers UI to ask the user for the verification code.
         },
-        codeAutoRetrievalTimeout: (String verificationId) {},
+        codeAutoRetrievalTimeout: (String verificationId) {
+          // Optional: handle auto-retrieval timeout if necessary
+        },
       );
-      return right(unit);
-    } on FirebaseAuthException  catch (e) {
+
+      final verificationId = await verificationIdCompleter.future;
+      return right(verificationId);
+    } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
     }
   }
