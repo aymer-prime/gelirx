@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gelirx/app/extentions/context.dart';
-import 'package:gelirx/app/injector/injection.dart';
+import 'package:gelirx/app/extensions/List.dart';
+import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
@@ -102,6 +102,26 @@ class HomePage extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(AppPadding.p16),
                     decoration: BoxDecoration(color: ColorManager.white),
+                  ),
+                  const SizedBox(height: AppSize.s16),
+                  Container(
+                    height: AppSize.s200,
+                    padding: const EdgeInsets.all(AppPadding.p16),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: ColorManager.white,
+                    ),
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        OfferWidget(),
+                        OfferWidget(),
+                        OfferWidget(),
+                      ].separateWith(const SizedBox(
+                        width: AppSize.s16,
+                      )),
+                    ),
                   ),
                   const SizedBox(height: AppSize.s16),
                   Container(
@@ -205,6 +225,84 @@ class HomePage extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class OfferWidget extends StatelessWidget {
+  const OfferWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: AppSize.s220,
+      height: AppSize.s160,
+      padding: const EdgeInsets.symmetric(
+        vertical: AppPadding.p20,
+        horizontal: AppPadding.p12,
+      ),
+      decoration: BoxDecoration(
+        color: getCategoryColor(),
+        borderRadius: BorderRadius.circular(
+          AppSize.s8,
+        ),
+      ),
+      child: SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  'Offer Dry Cleaning',
+                  style: context.textTheme.labelLarge,
+                ),
+                const SizedBox(width: AppSize.s4),
+                const Icon(Icons.info)
+              ],
+            ),
+            const SizedBox(height: AppSize.s12),
+            Text(
+              'Get 25%',
+              style: context.textTheme.displayMedium,
+            ),
+            const SizedBox(height: AppSize.s12),
+            SizedBox(
+              height: AppSize.s32,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorManager.white,
+                  shape: StadiumBorder(),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppPadding.p12,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Grab offer',
+                        style: context.textTheme.labelLarge!.copyWith(
+                          color: ColorManager.lightPrimary,
+                        ),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_right_rounded,
+                        color: ColorManager.lightPrimary,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

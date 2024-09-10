@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gelirx/app/extentions/string.dart';
+import 'package:gelirx/app/extensions/string.dart';
 
 abstract class Validators {
   Validators._();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gelirx/app/extentions/context.dart';
+import 'package:gelirx/app/extensions/context.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

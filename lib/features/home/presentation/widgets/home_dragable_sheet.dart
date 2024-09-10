@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gelirx/app/extentions/List.dart';
-import 'package:gelirx/app/extentions/context.dart';
+import 'package:gelirx/app/extensions/List.dart';
+import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
@@ -312,7 +312,6 @@ class CategoriesWidget extends StatelessWidget {
               width: AppSize.s80,
               child: CategoryItem(
                 category: e,
-                isSelected: selectedIndex == categories.indexOf(e),
                 onTap: () {},
               ),
             ),

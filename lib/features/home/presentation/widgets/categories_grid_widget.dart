@@ -31,7 +31,6 @@ class CategoriesGridWidget extends StatelessWidget {
           ),
           child: CategoryItem(
             category: category,
-            isSelected: context.read<HomeBloc>().state.catIndex == index,
             onTap: () {
               context.router.popAndPush(const AlternateHomeRoute());
               context.read<HomeBloc>().add(

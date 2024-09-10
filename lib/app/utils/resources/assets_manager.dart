@@ -20,8 +20,6 @@ class ImageAssets {
   static const String googleLogo = '$imagePath/login_buttons/google.png';
   static const String facebookLogo = '$imagePath/login_buttons/facebook.png';
   static const String appleLogo = '$imagePath/login_buttons/apple.png';
-  //services
-  static const String acIcon = '$imagePath/services/ac_icon.svg';
 }
 
 class JsonAssets {

@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gelirx/app/extentions/context.dart';
+import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
@@ -98,7 +98,6 @@ class TopCategoriesWidgets extends StatelessWidget {
                 ),
                 child: CategoryItem(
                   category: categories[index],
-                  isSelected: context.read<HomeBloc>().state.catIndex == index,
                   onTap: () {
                     context.read<HomeBloc>().add(
                           HomeEvent.getSubCategories(catIndex: index),

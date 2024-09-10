@@ -10,7 +10,6 @@ import 'package:gelirx/features/home/data/mappers/home_mappers.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
 @LazySingleton(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
@@ -72,20 +71,13 @@ class HomeRepository implements IHomeRepository {
           'category_id': catId,
         },
       );
-      var allSubCats = CategoryDto(
-        id: Uuid().v4(),
-        name: 'All',
-        description: '',
-        link: '',
-        img: null,
-      );
       final List<dynamic> responseData = response;
       final List<Category> resultList = responseData
           .map(
             (e) => CategoryDto.fromJson(e).toDomain(),
           )
           .toList();
-      return right([allSubCats.toDomain(), ...resultList]);
+      return right(resultList);
     } on ApiException catch (e) {
       return left(e);
     }

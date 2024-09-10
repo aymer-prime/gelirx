@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/Material.dart';
-import 'package:gelirx/app/extentions/context.dart';
-import 'package:gelirx/app/extentions/string.dart';
+import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/extensions/string.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gelirx/app/extentions/context.dart';
+import 'package:gelirx/app/extensions/context.dart';
 
 class NotificationsPage extends StatelessWidget {
   const NotificationsPage({super.key});
