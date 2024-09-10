@@ -84,7 +84,9 @@ class FilterWidget extends StatelessWidget {
       child: Container(
         height: AppSize.s40,
         decoration: BoxDecoration(
-            color: getCategoryColor(), borderRadius: BorderRadius.circular(20)),
+          color: ColorManager.lightPrimary,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

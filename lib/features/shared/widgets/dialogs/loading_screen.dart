@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:gelirx/app/extentions/context.dart';
+import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen_controller.dart';
 
@@ -111,7 +112,9 @@ class LoadingWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CircularProgressIndicator(),
+          CircularProgressIndicator(
+            color: ColorManager.darkPrimary,
+          ),
           const SizedBox(height: 15),
           Text(
             text,

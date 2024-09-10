@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/view/app.dart';
+import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,13 +16,27 @@ void main() async {
   _initLoggy();
   //_initGoogleFonts();
   final sharedPreferences = await SharedPreferences.getInstance();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-      overlays: []);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   configureDependencies(sharedPreferences);
   runApp(
-      BlocProvider(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
           create: (context) => getIt<AuthBloc>(),
-            child: const App()));
+        ),
+        BlocProvider(
+          create: (_) => getIt<HomeBloc>()
+            ..add(
+              const HomeEvent.getCurrentPosition(),
+            )
+            ..add(
+              const HomeEvent.getCategories(),
+            ),
+        ),
+      ],
+      child: const App(),
+    ),
+  );
 }
 
 void _initLoggy() {

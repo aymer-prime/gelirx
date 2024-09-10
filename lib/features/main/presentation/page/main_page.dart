@@ -7,7 +7,7 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
-import 'package:gelirx/features/home/presentation/pages/alternate_home_page.dart';
+import 'package:gelirx/features/home/presentation/pages/home_page.dart';
 import 'package:gelirx/features/notifications/presentation/pages/notifications_page.dart';
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';
 
@@ -16,8 +16,8 @@ class MainPage extends HookWidget {
   const MainPage({super.key});
 
   final List<Widget> pages = const [
-    //HomePage(),
-    AlternateHomePage(),
+    HomePage(),
+    //AlternateHomePage(),
     BookingPage(),
     NotificationsPage(),
     ProfilePage(),

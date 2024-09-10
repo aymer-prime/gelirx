@@ -7,6 +7,7 @@ class ImageAssets {
   static const String noBookings = '$imagePath/misc/no_bookings.svg';
   static const String logo = '$imagePath/misc/logo.png';
   static const String star = '$imagePath/misc/star.svg';
+  static const String appliance = '$imagePath/misc/appliance.png';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
@@ -18,7 +19,8 @@ class ImageAssets {
   static const String googleLogo = '$imagePath/login_buttons/google.png';
   static const String facebookLogo = '$imagePath/login_buttons/facebook.png';
   static const String appleLogo = '$imagePath/login_buttons/apple.png';
-
+  //services
+  static const String acIcon = '$imagePath/services/ac_icon.svg';
 }
 
 class JsonAssets {

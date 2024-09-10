@@ -1,9 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gelirx/app/extentions/context.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
-import 'package:gelirx/features/home/presentation/misc/functions.dart';
+import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 
 class CategoriesGridWidget extends StatelessWidget {
   final List<Category> categories;
@@ -16,8 +18,9 @@ class CategoriesGridWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
+        crossAxisCount: 4,
       ),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: categories.length,
       itemBuilder: (context, index) {
@@ -26,31 +29,15 @@ class CategoriesGridWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
             horizontal: AppPadding.p4,
           ),
-          child: SizedBox(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: AppSize.s60,
-                  height: AppSize.s60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: getCategoryColor(),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppPadding.p16),
-                    child: CachedNetworkImage(
-                      imageUrl: category.img,
-                    ),
-                  ),
-                ),
-                Text(
-                  category.name,
-                  style: context.textTheme.labelSmall,
-                  overflow: TextOverflow.ellipsis,
-                )
-              ],
-            ),
+          child: CategoryItem(
+            category: category,
+            isSelected: context.read<HomeBloc>().state.catIndex == index,
+            onTap: () {
+              context.router.popAndPush(const AlternateHomeRoute());
+              context.read<HomeBloc>().add(
+                    HomeEvent.getSubCategories(catIndex: index),
+                  );
+            },
           ),
         );
       },

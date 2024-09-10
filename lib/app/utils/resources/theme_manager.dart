@@ -153,6 +153,11 @@ ThemeData getApplicationTheme() {
         fontSize: FontSizeManager.s12,
       ),
     ),
+    sliderTheme: SliderThemeData(
+      overlayShape: SliderComponentShape.noOverlay,
+      activeTrackColor: ColorManager.lightPrimary,
+      thumbColor: ColorManager.primary,
+    ),
 //input decoration theme (text form field)
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.only(left: AppPadding.p16),
