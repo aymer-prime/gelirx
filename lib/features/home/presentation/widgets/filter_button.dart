@@ -6,13 +6,13 @@ import 'package:gelirx/features/home/domain/entities/category.dart';
 
 class FilterButton extends StatelessWidget {
   final VoidCallback onSelect;
+  final String filter;
   const FilterButton({
     super.key,
     required this.filter,
     required this.onSelect,
   });
 
-  final Category filter;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class FilterButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            filter.name,
+            filter,
             style: context.textTheme.titleMedium,
           ),
         ),

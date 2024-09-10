@@ -4,6 +4,7 @@ import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/home/presentation/widgets/filter_widget.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -18,7 +19,22 @@ class NotificationsPage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            CardLabelWidget(label: 'Notifications'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Flexible(
+                  child: CardLabelWidget(label: 'Notifications'),
+                ),
+                Flexible(
+                  child: FilterWidget(
+                    title: 'title',
+                    data: ['All', 'Unread'],
+                    currentFilterIndex: 0,
+                    onSelect: (index) {},
+                  ),
+                )
+              ],
+            ),
             const SizedBox(height: AppSize.s16),
             Expanded(
               child: Container(

@@ -11,7 +11,7 @@ import 'package:gelirx/features/home/presentation/widgets/filter_button.dart';
 class FilterWidget extends StatelessWidget {
   final String title;
   final Function(int index) onSelect;
-  final List<Category> data;
+  final List<String> data;
   final int currentFilterIndex;
   const FilterWidget(
       {super.key,
@@ -81,31 +81,23 @@ class FilterWidget extends StatelessWidget {
         );
       },
       child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppPadding.p16,
+        ),
         height: AppSize.s40,
         decoration: BoxDecoration(
           color: ColorManager.lightPrimary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(AppPadding.p8),
-              child: CachedNetworkImage(
-                imageUrl: data[currentFilterIndex].img,
-                fit: BoxFit.cover,
-                height: AppSize.s18,
-              ),
+            Text(
+              data[currentFilterIndex].capitalizeFirst(),
+              style: context.textTheme.titleMedium,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
             ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: Text(
-                data[currentFilterIndex].name.capitalizeFirst(),
-                style: context.textTheme.titleMedium,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-              ),
-            ),
+            const Expanded(child: SizedBox()),
             Icon(
               Icons.keyboard_arrow_down_rounded,
               color: ColorManager.white,
