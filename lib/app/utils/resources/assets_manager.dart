@@ -22,6 +22,10 @@ class ImageAssets {
   static const String googleLogo = '$imagePath/login_buttons/google.png';
   static const String facebookLogo = '$imagePath/login_buttons/facebook.png';
   static const String appleLogo = '$imagePath/login_buttons/apple.png';
+  //onboarding
+  static const String onboardingImage1 = '$imagePath/onboarding/onboarding_1.png';
+  static const String onboardingImage2 = '$imagePath/onboarding/onboarding_2.png';
+  
 }
 
 class JsonAssets {

@@ -102,7 +102,7 @@ class TopCategoriesWidgets extends StatelessWidget {
                     context.read<HomeBloc>().add(
                           HomeEvent.getSubCategories(catIndex: index),
                         );
-                    context.router.push(const AlternateHomeRoute());
+                    context.router.push(const ServicesRoute());
                   },
                 ),
               ),

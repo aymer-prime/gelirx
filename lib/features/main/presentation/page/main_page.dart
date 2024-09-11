@@ -17,7 +17,6 @@ class MainPage extends HookWidget {
 
   final List<Widget> pages = const [
     HomePage(),
-    //AlternateHomePage(),
     BookingPage(),
     NotificationsPage(),
     ProfilePage(),
@@ -29,10 +28,11 @@ class MainPage extends HookWidget {
     return Scaffold(
       body: SafeArea(
         child: ValueListenableBuilder(
-            valueListenable: currentPage,
-            builder: (context, value, child) {
-              return pages[value];
-            }),
+          valueListenable: currentPage,
+          builder: (context, value, child) {
+            return pages[value];
+          },
+        ),
       ),
       bottomNavigationBar: ValueListenableBuilder(
           valueListenable: currentPage,

@@ -18,7 +18,7 @@ class CardLabelWidget extends StatelessWidget {
           width: 4,
           height: 24,
           decoration: BoxDecoration(
-              color: ColorManager.lightPrimary,
+              color: ColorManager.primary,
               borderRadius: BorderRadius.circular(
                 AppSize.s4,
               )),
@@ -26,7 +26,7 @@ class CardLabelWidget extends StatelessWidget {
         const SizedBox(width: AppSize.s8),
         Text(
           label,
-          style: context.textTheme.headlineLarge,
+          style: context.textTheme.displaySmall,
         )
       ],
     );

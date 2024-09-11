@@ -142,101 +142,54 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                     ),
                   ),
                   SliverToBoxAdapter(
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            const CardLabelWidget(
-                              label: '${AppStrings.subCats} - ',
-                            ),
-                            Flexible(
-                              child: Text(
-                                widget.categories[widget.catIndex].name,
-                                style: context.textTheme.bodyMedium,
-                                overflow: TextOverflow.ellipsis,
+                    child: SizedBox(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              const CardLabelWidget(
+                                label: '${AppStrings.subCats} - ',
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: AppSize.s16),
-                        (widget.categories.isEmpty ||
-                                widget.subCategories.isEmpty)
-                            ? const Center(
-                                child: CircularProgressIndicator(),
-                              )
-                            : Column(
-                                children: [
-                                  ...List.generate(
-                                    widget.subCategories.length,
-                                    (index) => ServiceWidget(
-                                      service: widget.subCategories[index],
-                                    ),
-                                  )
-                                ].separateWith(
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: AppPadding.p8,
-                                      horizontal: AppPadding.p32,
-                                    ),
-                                    child: Divider(
-                                      thickness: AppSize.s1,
-                                      color: ColorManager.textfieldBorderColor,
+                              Flexible(
+                                child: Text(
+                                  widget.categories[widget.catIndex].name,
+                                  style: context.textTheme.bodyMedium,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: AppSize.s16),
+                          (widget.categories.isEmpty ||
+                                  widget.subCategories.isEmpty)
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Column(
+                                  children: [
+                                    ...List.generate(
+                                      widget.subCategories.length,
+                                      (index) => ServiceWidget(
+                                        service: widget.subCategories[index],
+                                      ),
+                                    )
+                                  ].separateWith(
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: AppPadding.p8,
+                                        horizontal: AppPadding.p32,
+                                      ),
+                                      child: Divider(
+                                        thickness: AppSize.s1,
+                                        color:
+                                            ColorManager.textfieldBorderColor,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                      ],
+                        ],
+                      ),
                     ),
-                    // : SizedBox(
-                    //     height: AppSize.s80,
-                    //     child: Row(
-                    //       children: [
-                    //         Flexible(
-                    //           child: Column(
-                    //             children: [
-                    //               const CardLabelWidget(
-                    //                   label: AppStrings.cats),
-                    //               const SizedBox(height: AppSize.s16),
-                    //               FilterWidget(
-                    //                 title: widget
-                    //                     .categories[widget.catIndex].name,
-                    //                 data: widget.categories,
-                    //                 currentFilterIndex: widget.catIndex,
-                    //                 onSelect: (int index) {
-                    //                   context.read<HomeBloc>().add(
-                    //                         HomeEvent.getSubCategories(
-                    //                           catIndex: index,
-                    //                         ),
-                    //                       );
-                    //                 },
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         const SizedBox(width: AppSize.s16),
-                    //         Flexible(
-                    //           child: Column(
-                    //             children: [
-                    //               const CardLabelWidget(
-                    //                   label: AppStrings.subCats),
-                    //               const SizedBox(height: AppSize.s16),
-                    //               FilterWidget(
-                    //                 title: widget
-                    //                     .subCategories[widget.subCatIndex]
-                    //                     .name,
-                    //                 data: widget.subCategories,
-                    //                 currentFilterIndex: 0,
-                    //                 onSelect: (int index) {},
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    //  CategoriesGridWidget(
-                    //     categories: widget.categories,
-                    //   ),
                   ),
                 ],
               ),

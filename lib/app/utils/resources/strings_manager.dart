@@ -26,4 +26,12 @@ class AppStrings {
   static const countryCodeTitle = 'TR';
   static const signinWithTitle = 'Sign in with';
   static const enterOTPTitle = 'Enter OTP';
+  //onboarding
+  static const getStarted = 'Get Started';
+  static const onboardingTitle1 = 'Find Help Fast';
+  static const onboardingSubtitle1 =
+      'Easily hire trusted professionals like plumbers, cleaners, and handymen near you, anytime';
+  static const onboardingTitle2 = 'Get Things Done, Hassle-Free';
+  static const onboardingSubtitle2 =
+      'From repairs to cleaning, connect with reliable local experts and book services in minutes';
 }

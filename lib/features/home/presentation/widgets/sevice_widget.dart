@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -98,7 +97,7 @@ class ServiceWidget extends StatelessWidget {
           );
         },
         child: SizedBox(
-          //height: AppSize.s100,
+          height: AppSize.s100,
           child: Row(
             children: [
               Flexible(
@@ -150,6 +149,7 @@ class ServiceWidget extends StatelessWidget {
                         Text(
                           service.name,
                           style: context.textTheme.labelLarge,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),

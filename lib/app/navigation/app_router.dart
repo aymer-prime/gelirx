@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/Material.dart';
 import 'package:gelirx/features/home/presentation/pages/services_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
 import 'package:gelirx/features/main/presentation/page/main_page.dart';
+import 'package:gelirx/features/onboarding/presentation/onboarding_page.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
 
 import '../../features/login/presentation/pages/login_page.dart';
@@ -26,7 +28,10 @@ class AppRouter extends RootStackRouter {
           page: LoginRoute.page,
         ),
         AutoRoute(
-          page: AlternateHomeRoute.page,
+          page: ServicesRoute.page,
+        ),
+        AutoRoute(
+          page: OnboardingRoute.page,
         ),
       ];
 }

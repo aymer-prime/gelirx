@@ -10,25 +10,6 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [ServicesPage]
-class AlternateHomeRoute extends PageRouteInfo<void> {
-  const AlternateHomeRoute({List<PageRouteInfo>? children})
-      : super(
-          AlternateHomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'AlternateHomeRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const ServicesPage();
-    },
-  );
-}
-
-/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -49,10 +30,13 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [LoginPage]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
-      : super(
+class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           LoginRoute.name,
+          args: LoginRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -61,9 +45,22 @@ class LoginRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return  LoginPage();
+      final args =
+          data.argsAs<LoginRouteArgs>(orElse: () => const LoginRouteArgs());
+      return LoginPage(key: args.key);
     },
   );
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -81,6 +78,60 @@ class MainRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const MainPage();
+    },
+  );
+}
+
+/// generated route for
+/// [OnboardingPage]
+class OnboardingRoute extends PageRouteInfo<OnboardingRouteArgs> {
+  OnboardingRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OnboardingRoute.name,
+          args: OnboardingRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'OnboardingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OnboardingRouteArgs>(
+          orElse: () => const OnboardingRouteArgs());
+      return OnboardingPage(key: args.key);
+    },
+  );
+}
+
+class OnboardingRouteArgs {
+  const OnboardingRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'OnboardingRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [ServicesPage]
+class ServicesRoute extends PageRouteInfo<void> {
+  const ServicesRoute({List<PageRouteInfo>? children})
+      : super(
+          ServicesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ServicesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ServicesPage();
     },
   );
 }
