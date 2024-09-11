@@ -5,7 +5,7 @@ class AppStrings {
   static const notification = 'Notification';
   static const profile = 'Profile';
   //Splash
-  static const spalshTitle1 = 'GelirX';
+  static const splashTitle1 = 'GelirX';
   //home
   static const homeTitle1 = 'Home Page !!!';
   static const welcomeSubtitle = 'Hello Guest 👋';
@@ -24,8 +24,9 @@ class AppStrings {
   static const loginTitle = "Sign in";
   static const phoneNumberTitle = "Phone Number";
   static const countryCodeTitle = 'TR';
-  static const signinWithTitle = 'Sign in with';
+  static const signInWithTitle = 'Sign in with';
   static const enterOTPTitle = 'Enter OTP';
+  static const continueAsGuest = 'Continue as Guest';
   //onboarding
   static const getStarted = 'Get Started';
   static const onboardingTitle1 = 'Find Help Fast';

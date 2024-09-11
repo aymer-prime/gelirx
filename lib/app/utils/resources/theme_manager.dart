@@ -58,7 +58,7 @@ ThemeData getApplicationTheme() {
         foregroundColor: ColorManager.white,
         backgroundColor: ColorManager.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
     ),
@@ -76,7 +76,7 @@ ThemeData getApplicationTheme() {
           width: 1.5,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
     ),

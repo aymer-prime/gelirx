@@ -26,7 +26,7 @@ class ColorManager {
   //text_field
   static Color textfieldHintColor = const Color(0xff999999);
   static Color textfieldBorderColor = const Color(0xfff2f2f2);
-  static Color textfieldFillColor = const Color(0xfffbfbfb);
+  static Color textfieldFillColor = const Color(0xffFBFBFB);
   static Color textfieldColor = const Color(0xFFEFEFEF);
   //categories
   static Color categoryColor1 = const Color(0xffFFBC99);

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/features/home/presentation/widgets/filter_widget.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 
 class ProfilePage extends StatelessWidget {

@@ -104,7 +104,7 @@ class OnboardingPage extends HookWidget {
                             height: AppSize.s60,
                             child: ElevatedButton(
                               onPressed: () {
-                                context.router.replace(const MainRoute());
+                                context.router.replace(LoginRoute());
                               },
                               child: const Text(
                                 AppStrings.getStarted,

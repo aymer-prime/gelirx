@@ -8,6 +8,7 @@ class ImageAssets {
   static const String logo = '$imagePath/misc/logo.png';
   static const String star = '$imagePath/misc/star.svg';
   static const String appliance = '$imagePath/misc/appliance.png';
+  static const String logoWhite = '$imagePath/misc/logo_white.svg';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
