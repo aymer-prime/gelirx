@@ -19,6 +19,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
+    required TResult Function(bool isMaster) setUserType,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -27,6 +28,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
+    TResult? Function(bool isMaster)? setUserType,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) =>
@@ -34,6 +36,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
+    TResult Function(bool isMaster)? setUserType,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -42,6 +45,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
+    required TResult Function(_SetUserType value) setUserType,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) =>
@@ -49,6 +53,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult? Function(_SetUserType value)? setUserType,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) =>
@@ -56,6 +61,7 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult Function(_SetUserType value)? setUserType,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),
@@ -153,6 +159,7 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
+    required TResult Function(bool isMaster) setUserType,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -164,6 +171,7 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
+    TResult? Function(bool isMaster)? setUserType,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
@@ -174,6 +182,7 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
+    TResult Function(bool isMaster)? setUserType,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -188,6 +197,7 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
+    required TResult Function(_SetUserType value) setUserType,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) {
@@ -198,6 +208,7 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult? Function(_SetUserType value)? setUserType,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) {
@@ -208,6 +219,7 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult Function(_SetUserType value)? setUserType,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),
@@ -229,6 +241,160 @@ abstract class _SocialMediaLogin implements AuthEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SocialMediaLoginImplCopyWith<_$SocialMediaLoginImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetUserTypeImplCopyWith<$Res> {
+  factory _$$SetUserTypeImplCopyWith(
+          _$SetUserTypeImpl value, $Res Function(_$SetUserTypeImpl) then) =
+      __$$SetUserTypeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isMaster});
+}
+
+/// @nodoc
+class __$$SetUserTypeImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$SetUserTypeImpl>
+    implements _$$SetUserTypeImplCopyWith<$Res> {
+  __$$SetUserTypeImplCopyWithImpl(
+      _$SetUserTypeImpl _value, $Res Function(_$SetUserTypeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isMaster = null,
+  }) {
+    return _then(_$SetUserTypeImpl(
+      null == isMaster
+          ? _value.isMaster
+          : isMaster // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetUserTypeImpl implements _SetUserType {
+  const _$SetUserTypeImpl(this.isMaster);
+
+  @override
+  final bool isMaster;
+
+  @override
+  String toString() {
+    return 'AuthEvent.setUserType(isMaster: $isMaster)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetUserTypeImpl &&
+            (identical(other.isMaster, isMaster) ||
+                other.isMaster == isMaster));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isMaster);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetUserTypeImplCopyWith<_$SetUserTypeImpl> get copyWith =>
+      __$$SetUserTypeImplCopyWithImpl<_$SetUserTypeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SocialMediaType type) socialMediaLogin,
+    required TResult Function(bool isMaster) setUserType,
+    required TResult Function(String phoneNumber) phoneLoginRequested,
+    required TResult Function(String verificationId, String smsCode)
+        verifyPhoneNumber,
+  }) {
+    return setUserType(isMaster);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SocialMediaType type)? socialMediaLogin,
+    TResult? Function(bool isMaster)? setUserType,
+    TResult? Function(String phoneNumber)? phoneLoginRequested,
+    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
+  }) {
+    return setUserType?.call(isMaster);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SocialMediaType type)? socialMediaLogin,
+    TResult Function(bool isMaster)? setUserType,
+    TResult Function(String phoneNumber)? phoneLoginRequested,
+    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    required TResult orElse(),
+  }) {
+    if (setUserType != null) {
+      return setUserType(isMaster);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SocialMediaLogin value) socialMediaLogin,
+    required TResult Function(_SetUserType value) setUserType,
+    required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
+    required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
+  }) {
+    return setUserType(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult? Function(_SetUserType value)? setUserType,
+    TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
+    TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
+  }) {
+    return setUserType?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult Function(_SetUserType value)? setUserType,
+    TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
+    TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
+    required TResult orElse(),
+  }) {
+    if (setUserType != null) {
+      return setUserType(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetUserType implements AuthEvent {
+  const factory _SetUserType(final bool isMaster) = _$SetUserTypeImpl;
+
+  bool get isMaster;
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SetUserTypeImplCopyWith<_$SetUserTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -303,6 +469,7 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
+    required TResult Function(bool isMaster) setUserType,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -314,6 +481,7 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
+    TResult? Function(bool isMaster)? setUserType,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
@@ -324,6 +492,7 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
+    TResult Function(bool isMaster)? setUserType,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -338,6 +507,7 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
+    required TResult Function(_SetUserType value) setUserType,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) {
@@ -348,6 +518,7 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult? Function(_SetUserType value)? setUserType,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) {
@@ -358,6 +529,7 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult Function(_SetUserType value)? setUserType,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),
@@ -462,6 +634,7 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(SocialMediaType type) socialMediaLogin,
+    required TResult Function(bool isMaster) setUserType,
     required TResult Function(String phoneNumber) phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
@@ -473,6 +646,7 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(SocialMediaType type)? socialMediaLogin,
+    TResult? Function(bool isMaster)? setUserType,
     TResult? Function(String phoneNumber)? phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
@@ -483,6 +657,7 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(SocialMediaType type)? socialMediaLogin,
+    TResult Function(bool isMaster)? setUserType,
     TResult Function(String phoneNumber)? phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
@@ -497,6 +672,7 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SocialMediaLogin value) socialMediaLogin,
+    required TResult Function(_SetUserType value) setUserType,
     required TResult Function(_PhoneLoginRequested value) phoneLoginRequested,
     required TResult Function(_VerifyPhoneNumber value) verifyPhoneNumber,
   }) {
@@ -507,6 +683,7 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult? Function(_SetUserType value)? setUserType,
     TResult? Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult? Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
   }) {
@@ -517,6 +694,7 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SocialMediaLogin value)? socialMediaLogin,
+    TResult Function(_SetUserType value)? setUserType,
     TResult Function(_PhoneLoginRequested value)? phoneLoginRequested,
     TResult Function(_VerifyPhoneNumber value)? verifyPhoneNumber,
     required TResult orElse(),
@@ -546,6 +724,7 @@ abstract class _VerifyPhoneNumber implements AuthEvent {
 /// @nodoc
 mixin _$AuthState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isMaster => throw _privateConstructorUsedError;
   Option<UserEntity> get user =>
       throw _privateConstructorUsedError; // UserEntity from your domain
   Option<ApiException> get exception =>
@@ -568,6 +747,7 @@ abstract class $AuthStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
+      bool isMaster,
       Option<UserEntity> user,
       Option<ApiException> exception,
       Option<String> verificationId,
@@ -590,6 +770,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isMaster = null,
     Object? user = null,
     Object? exception = null,
     Object? verificationId = null,
@@ -599,6 +780,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isMaster: null == isMaster
+          ? _value.isMaster
+          : isMaster // ignore: cast_nullable_to_non_nullable
               as bool,
       user: null == user
           ? _value.user
@@ -630,6 +815,7 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
+      bool isMaster,
       Option<UserEntity> user,
       Option<ApiException> exception,
       Option<String> verificationId,
@@ -650,6 +836,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isMaster = null,
     Object? user = null,
     Object? exception = null,
     Object? verificationId = null,
@@ -659,6 +846,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isMaster: null == isMaster
+          ? _value.isMaster
+          : isMaster // ignore: cast_nullable_to_non_nullable
               as bool,
       user: null == user
           ? _value.user
@@ -685,6 +876,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
       {required this.isLoading,
+      required this.isMaster,
       required this.user,
       required this.exception,
       required this.verificationId,
@@ -692,6 +884,8 @@ class _$LoginStateImpl implements _LoginState {
 
   @override
   final bool isLoading;
+  @override
+  final bool isMaster;
   @override
   final Option<UserEntity> user;
 // UserEntity from your domain
@@ -706,7 +900,7 @@ class _$LoginStateImpl implements _LoginState {
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, user: $user, exception: $exception, verificationId: $verificationId, otp: $otp)';
+    return 'AuthState(isLoading: $isLoading, isMaster: $isMaster, user: $user, exception: $exception, verificationId: $verificationId, otp: $otp)';
   }
 
   @override
@@ -716,6 +910,8 @@ class _$LoginStateImpl implements _LoginState {
             other is _$LoginStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isMaster, isMaster) ||
+                other.isMaster == isMaster) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.exception, exception) ||
                 other.exception == exception) &&
@@ -725,8 +921,8 @@ class _$LoginStateImpl implements _LoginState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, user, exception, verificationId, otp);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, isMaster, user, exception, verificationId, otp);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -740,6 +936,7 @@ class _$LoginStateImpl implements _LoginState {
 abstract class _LoginState implements AuthState {
   const factory _LoginState(
       {required final bool isLoading,
+      required final bool isMaster,
       required final Option<UserEntity> user,
       required final Option<ApiException> exception,
       required final Option<String> verificationId,
@@ -747,6 +944,8 @@ abstract class _LoginState implements AuthState {
 
   @override
   bool get isLoading;
+  @override
+  bool get isMaster;
   @override
   Option<UserEntity> get user; // UserEntity from your domain
   @override

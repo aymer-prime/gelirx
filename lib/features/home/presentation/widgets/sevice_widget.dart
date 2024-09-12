@@ -7,7 +7,6 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
-import 'package:gelirx/features/home/presentation/misc/functions.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 
 class ServiceWidget extends StatelessWidget {
@@ -106,7 +105,7 @@ class ServiceWidget extends StatelessWidget {
                 child: Container(
                   height: double.infinity,
                   decoration: BoxDecoration(
-                      color: getCategoryColor(),
+                      color: ColorManager.lightPrimary,
                       borderRadius: BorderRadius.circular(
                         AppSize.s12,
                       )),
@@ -165,7 +164,7 @@ class ServiceWidget extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(AppPadding.p6),
                           decoration: BoxDecoration(
-                            color: ColorManager.priceLabel,
+                            color: ColorManager.lightPrimary.withOpacity(.4),
                             borderRadius: BorderRadius.circular(
                               AppSize.s8,
                             ),

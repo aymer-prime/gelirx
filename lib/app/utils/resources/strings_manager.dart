@@ -21,12 +21,21 @@ class AppStrings {
   static const seeAll = 'See all';
 
   //login
+  static const welcomeToGelirx = 'Welcome to GelirX';
   static const loginTitle = "Sign in";
+  static const masterSignIn = "Master Sign in";
+  static const userSignIn = "User Sign in";
+  static const master = "Master";
+  static const user = "User";
   static const phoneNumberTitle = "Phone Number";
   static const countryCodeTitle = 'TR';
   static const signInWithTitle = 'Sign in with';
   static const enterOTPTitle = 'Enter OTP';
   static const continueAsGuest = 'Continue as Guest';
+  static const photoGallery = "Photo from Galley";
+  static const photoCamera = "Photo from Camera";
+  static const profilePicture = "Upload Profile Picture";
+
   //onboarding
   static const getStarted = 'Get Started';
   static const onboardingTitle1 = 'Find Help Fast';
