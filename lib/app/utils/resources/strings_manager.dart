@@ -44,4 +44,11 @@ class AppStrings {
   static const onboardingTitle2 = 'Get Things Done, Hassle-Free';
   static const onboardingSubtitle2 =
       'From repairs to cleaning, connect with reliable local experts and book services in minutes';
+
+  //Booking
+  static const bookingsTitle = "Bookings";
+  static const statusTitle = "Status";
+  static const confirmedTitle = "Confirmed";
+  static const pendingTitle = "Pending";
+  static const callTitle = "Call";
 }

@@ -18,6 +18,8 @@ class ColorManager {
   static Color textTitleLightColor = const Color(0xff666C89);
   static Color textSubtitleColor = const Color(0xff9A9FA5);
   static Color textErrorColor = const Color(0xffcd3131);
+  static Color confirmedTextColor = const Color(0xff7FC09C);
+  static Color pendingTextColor = const Color(0xFFEB833C);
   //buttons
   static Color buttonTextColor = const Color(0xffffffff);
   static Color disabledButtonColor = const Color(0xff999999);
@@ -38,4 +40,8 @@ class ColorManager {
   static Color categoryColor7 = const Color(0xffFB9B9B);
   static Color categoryColor8 = const Color(0xffF8B0ED);
   static Color categoryColor9 = const Color(0xffAFC6FF);
+
+  //status
+  static Color confirmedColor = const Color(0xffECF8F1);
+  static Color pendingColor = const Color(0xFFEB833C).withOpacity(10.0);
 }
