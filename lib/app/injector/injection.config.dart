@@ -20,6 +20,9 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i264;
 
+import '../../features/booking/data/booking_repository.dart' as _i678;
+import '../../features/booking/domain/i_booking_repository.dart' as _i92;
+import '../../features/booking/domain/usecases/booking_usecase.dart' as _i216;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
@@ -59,6 +62,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
+    gh.lazySingleton<_i92.IBookingRepository>(() => _i678.BookingRepository());
     gh.lazySingleton<_i317.IHomeRepository>(
         () => _i65.HomeRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
@@ -73,6 +77,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i387.SignInUseCase(gh<_i549.IAuthRepository>()));
     gh.factory<_i202.HomeBloc>(
         () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
+    gh.lazySingleton<_i216.BookingUsecase>(
+        () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));
     gh.factory<_i712.AuthBloc>(() => _i712.AuthBloc(gh<_i387.SignInUseCase>()));
     return this;
   }

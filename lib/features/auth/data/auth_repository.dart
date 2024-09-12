@@ -41,11 +41,23 @@ class AuthRepository implements IAuthRepository {
       final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
       final User user = userCredential.user!;
 
+      User? user1 = FirebaseAuth.instance.currentUser;
+
+      if (user1 != null) {
+        // Asynchronously get the ID token
+        String? idToken = await user1.getIdToken();
+
+        // Now you can print the ID token
+        print(idToken);
+      } else {
+        print('No user is signed in.');
+      }
       return right(UserEntity(
         id: user.uid,
         name: user.displayName,
         email: user.email,
       ));
+
     } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.toString()));
     }
@@ -112,20 +124,30 @@ class AuthRepository implements IAuthRepository {
       await firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
-          await firebaseAuth.signInWithCredential(credential);
-          // Handle auto-sign-in here if needed
+          try {
+            await firebaseAuth.signInWithCredential(credential);
+            // Handle auto-sign-in if needed
+          } catch (signInError) {
+            print('Sign-in error: ${signInError.toString()}');
+          }
         },
         verificationFailed: (FirebaseAuthException e) {
+          // Print the detailed error message for more insight
+          print('Verification failed with error code: ${e.code}');
+          print('Error message: ${e.message}');
           throw ApiException.defaultException(e.code, e.message ?? 'Verification failed');
         },
         codeSent: (String verificationId, int? resendToken) {
           verificationIdCompleter.complete(verificationId);
-          // This triggers UI to ask the user for the verification code.
+          // Optionally, display a message or UI for inputting the verification code.
+          print('Code sent to $phoneNumber');
         },
         codeAutoRetrievalTimeout: (String verificationId) {
-          // Optional: handle auto-retrieval timeout if necessary
+          // Optionally, handle the timeout case.
+          print('Auto-retrieval timeout for verification ID: $verificationId');
         },
       );
+
 
       final verificationId = await verificationIdCompleter.future;
       return right(verificationId);
@@ -141,7 +163,17 @@ class AuthRepository implements IAuthRepository {
       final PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
       final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
       final User user = userCredential.user!;
+      User? user1 = FirebaseAuth.instance.currentUser;
 
+      if (user1 != null) {
+        // Asynchronously get the ID token
+        String? idToken = await user1.getIdToken();
+
+        // Now you can print the ID token
+        print(idToken);
+      } else {
+        print('No user is signed in.');
+      }
       return right(UserEntity(
         id: user.uid,
         phoneNumber: user.phoneNumber,
