@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
-import 'package:gelirx/features/login/presentation/bloc/login_bloc.dart';
-import 'package:gelirx/features/login/presentation/pages/auth_pageview_pages/login_page.dart';
-import 'package:gelirx/features/login/presentation/pages/auth_pageview_pages/master_info_page.dart';
-import 'package:gelirx/features/login/presentation/pages/auth_pageview_pages/user_type_page.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/login_page.dart';
+import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/master_info_page.dart';
+import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/user_type_page.dart';
 
 @RoutePage()
 class AuthPage extends HookWidget {
@@ -42,12 +42,12 @@ class AuthPage extends HookWidget {
                   nextPage(pageController);
                 },
               ),
-              LoginPage(
+              MasterInfoPage(
                 toPreviousPage: () {
                   previousPage(pageController);
                 },
               ),
-              MasterInfoPage(
+              LoginPage(
                 toPreviousPage: () {
                   previousPage(pageController);
                 },

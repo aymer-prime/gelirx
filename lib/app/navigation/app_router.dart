@@ -2,12 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/Material.dart';
 import 'package:gelirx/features/home/presentation/pages/services_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
-import 'package:gelirx/features/login/presentation/pages/auth_page.dart';
+import 'package:gelirx/features/auth/presentation/pages/auth_page.dart';
 import 'package:gelirx/features/main/presentation/page/main_page.dart';
 import 'package:gelirx/features/onboarding/presentation/onboarding_page.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
-
-import '../../features/login/presentation/pages/auth_pageview_pages/login_page.dart';
 
 part 'app_router.gr.dart';
 

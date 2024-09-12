@@ -13,6 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart' as _i806;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
+import 'package:image_picker/image_picker.dart' as _i183;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i973;
@@ -26,7 +27,7 @@ import '../../features/login/data/auth_repository.dart' as _i767;
 import '../../features/login/domain/i_auth_repository.dart' as _i549;
 import '../../features/login/domain/usecases/sign_in_with_social_media.dart'
     as _i387;
-import '../../features/login/presentation/bloc/login_bloc.dart' as _i664;
+import '../../features/login/presentation/bloc/auth_bloc.dart' as _i712;
 import '../local_services/local_services.dart' as _i902;
 import '../navigation/app_router.dart' as _i630;
 import '../network/dio_client.dart' as _i667;
@@ -46,6 +47,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final injectableModules = _$InjectableModules();
     gh.lazySingleton<_i630.AppRouter>(() => injectableModules.appRouter);
+    gh.lazySingleton<_i183.ImagePicker>(() => injectableModules.imagePicker);
     gh.lazySingleton<_i973.InternetConnectionChecker>(
         () => injectableModules.internetConnectionChecker);
     gh.lazySingleton<_i116.GoogleSignIn>(() => injectableModules.googleSignIn);
@@ -71,7 +73,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i387.SignInUseCase(gh<_i549.IAuthRepository>()));
     gh.factory<_i202.HomeBloc>(
         () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
-    gh.factory<_i664.AuthBloc>(() => _i664.AuthBloc(gh<_i387.SignInUseCase>()));
+    gh.factory<_i712.AuthBloc>(() => _i712.AuthBloc(gh<_i387.SignInUseCase>()));
     return this;
   }
 }

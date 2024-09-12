@@ -8,7 +8,7 @@ import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'features/login/presentation/bloc/login_bloc.dart';
+import 'features/auth/presentation/bloc/auth_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

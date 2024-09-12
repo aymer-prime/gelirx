@@ -4,8 +4,9 @@ import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/features/login/presentation/bloc/login_bloc.dart';
-import 'package:gelirx/features/login/presentation/widgets/user_type_widget.dart';
+import 'package:gelirx/features/Auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/auth/presentation/widgets/user_type_widget.dart';
+
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 
 class UserTypePage extends StatelessWidget {

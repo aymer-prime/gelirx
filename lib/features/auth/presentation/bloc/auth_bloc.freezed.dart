@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'login_bloc.dart';
+part of 'auth_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -725,6 +725,10 @@ abstract class _VerifyPhoneNumber implements AuthEvent {
 mixin _$AuthState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isMaster => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get surName => throw _privateConstructorUsedError;
+  String get idNumber => throw _privateConstructorUsedError;
+  Option<File> get userImage => throw _privateConstructorUsedError;
   Option<UserEntity> get user =>
       throw _privateConstructorUsedError; // UserEntity from your domain
   Option<ApiException> get exception =>
@@ -748,6 +752,10 @@ abstract class $AuthStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isMaster,
+      String firstName,
+      String surName,
+      String idNumber,
+      Option<File> userImage,
       Option<UserEntity> user,
       Option<ApiException> exception,
       Option<String> verificationId,
@@ -771,6 +779,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? isLoading = null,
     Object? isMaster = null,
+    Object? firstName = null,
+    Object? surName = null,
+    Object? idNumber = null,
+    Object? userImage = null,
     Object? user = null,
     Object? exception = null,
     Object? verificationId = null,
@@ -785,6 +797,22 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.isMaster
           : isMaster // ignore: cast_nullable_to_non_nullable
               as bool,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      surName: null == surName
+          ? _value.surName
+          : surName // ignore: cast_nullable_to_non_nullable
+              as String,
+      idNumber: null == idNumber
+          ? _value.idNumber
+          : idNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      userImage: null == userImage
+          ? _value.userImage
+          : userImage // ignore: cast_nullable_to_non_nullable
+              as Option<File>,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -816,6 +844,10 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isMaster,
+      String firstName,
+      String surName,
+      String idNumber,
+      Option<File> userImage,
       Option<UserEntity> user,
       Option<ApiException> exception,
       Option<String> verificationId,
@@ -837,6 +869,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isMaster = null,
+    Object? firstName = null,
+    Object? surName = null,
+    Object? idNumber = null,
+    Object? userImage = null,
     Object? user = null,
     Object? exception = null,
     Object? verificationId = null,
@@ -851,6 +887,22 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.isMaster
           : isMaster // ignore: cast_nullable_to_non_nullable
               as bool,
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      surName: null == surName
+          ? _value.surName
+          : surName // ignore: cast_nullable_to_non_nullable
+              as String,
+      idNumber: null == idNumber
+          ? _value.idNumber
+          : idNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      userImage: null == userImage
+          ? _value.userImage
+          : userImage // ignore: cast_nullable_to_non_nullable
+              as Option<File>,
       user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -877,6 +929,10 @@ class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
       {required this.isLoading,
       required this.isMaster,
+      required this.firstName,
+      required this.surName,
+      required this.idNumber,
+      required this.userImage,
       required this.user,
       required this.exception,
       required this.verificationId,
@@ -886,6 +942,14 @@ class _$LoginStateImpl implements _LoginState {
   final bool isLoading;
   @override
   final bool isMaster;
+  @override
+  final String firstName;
+  @override
+  final String surName;
+  @override
+  final String idNumber;
+  @override
+  final Option<File> userImage;
   @override
   final Option<UserEntity> user;
 // UserEntity from your domain
@@ -900,7 +964,7 @@ class _$LoginStateImpl implements _LoginState {
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, isMaster: $isMaster, user: $user, exception: $exception, verificationId: $verificationId, otp: $otp)';
+    return 'AuthState(isLoading: $isLoading, isMaster: $isMaster, firstName: $firstName, surName: $surName, idNumber: $idNumber, userImage: $userImage, user: $user, exception: $exception, verificationId: $verificationId, otp: $otp)';
   }
 
   @override
@@ -912,6 +976,13 @@ class _$LoginStateImpl implements _LoginState {
                 other.isLoading == isLoading) &&
             (identical(other.isMaster, isMaster) ||
                 other.isMaster == isMaster) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.surName, surName) || other.surName == surName) &&
+            (identical(other.idNumber, idNumber) ||
+                other.idNumber == idNumber) &&
+            (identical(other.userImage, userImage) ||
+                other.userImage == userImage) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.exception, exception) ||
                 other.exception == exception) &&
@@ -921,8 +992,8 @@ class _$LoginStateImpl implements _LoginState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isMaster, user, exception, verificationId, otp);
+  int get hashCode => Object.hash(runtimeType, isLoading, isMaster, firstName,
+      surName, idNumber, userImage, user, exception, verificationId, otp);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -937,6 +1008,10 @@ abstract class _LoginState implements AuthState {
   const factory _LoginState(
       {required final bool isLoading,
       required final bool isMaster,
+      required final String firstName,
+      required final String surName,
+      required final String idNumber,
+      required final Option<File> userImage,
       required final Option<UserEntity> user,
       required final Option<ApiException> exception,
       required final Option<String> verificationId,
@@ -946,6 +1021,14 @@ abstract class _LoginState implements AuthState {
   bool get isLoading;
   @override
   bool get isMaster;
+  @override
+  String get firstName;
+  @override
+  String get surName;
+  @override
+  String get idNumber;
+  @override
+  Option<File> get userImage;
   @override
   Option<UserEntity> get user; // UserEntity from your domain
   @override

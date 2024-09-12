@@ -134,31 +134,57 @@ class MasterInfoPage extends StatelessWidget {
   _showPicker(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (context) {
-        return SafeArea(
-            child: Wrap(
+      backgroundColor: ColorManager.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(AppSize.s32),
+          topRight: Radius.circular(AppSize.s32),
+        ),
+      ),
+      builder: (context) => Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppPadding.p16,
+          vertical: AppPadding.p8,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            ListTile(
-              leading: const Icon(Icons.camera),
-              title: const Text(AppStrings.photoGallery),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                _imageFromGallery();
-                Navigator.of(context).pop();
-              },
+            Center(
+              child: Container(
+                height: AppSize.s4,
+                width: AppSize.s64,
+                decoration: BoxDecoration(
+                    color: ColorManager.lightPrimary,
+                    borderRadius: BorderRadius.circular(
+                      AppSize.s4,
+                    )),
+              ),
             ),
-            ListTile(
-              leading: const Icon(Icons.camera_alt_outlined),
-              title: const Text(AppStrings.photoCamera),
-              trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                _imageFromCamera();
-                Navigator.of(context).pop();
-              },
-            )
+            Wrap(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.camera),
+                  title: const Text(AppStrings.photoGallery),
+                  trailing: const Icon(Icons.arrow_forward),
+                  onTap: () {
+                    _imageFromGallery();
+                    Navigator.of(context).pop();
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.camera_alt_outlined),
+                  title: const Text(AppStrings.photoCamera),
+                  trailing: const Icon(Icons.arrow_forward),
+                  onTap: () {
+                    _imageFromCamera();
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ),
           ],
-        ));
-      },
+        ),
+      ),
     );
   }
 
