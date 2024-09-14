@@ -14,7 +14,7 @@ class ApiException with _$ApiException implements Exception {
 
   const factory ApiException.unknown() = _Unknown;
 
-  const factory ApiException.notConnection() = _NoConnection;
+  const factory ApiException.noConnection() = _NoConnection;
 
   const factory ApiException.defaultException(String code, String message) = _defaultException;
 }

@@ -1,41 +1,23 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/view/app.dart';
-import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:gelirx/features/auth/domain/usecases/sign_in_with_social_media.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'features/auth/presentation/bloc/auth_bloc.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   Firebase.initializeApp();
   _initLoggy();
   //_initGoogleFonts();
   final sharedPreferences = await SharedPreferences.getInstance();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   configureDependencies(sharedPreferences);
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => getIt<AuthBloc>(),
-        ),
-        BlocProvider(
-          create: (_) => getIt<HomeBloc>()
-            ..add(
-              const HomeEvent.getCurrentPosition(),
-            )
-            ..add(
-              const HomeEvent.getCategories(),
-            ),
-        ),
-      ],
-      child: const App(),
-    ),
+    const App(),
   );
 }
 

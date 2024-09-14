@@ -14,7 +14,7 @@ class RemoteService {
 
   Future<void> _checkConnection() async {
     final hasConnection = await ConnectivityUtils.isConnected;
-    if (!hasConnection) throw const ApiException.notConnection();
+    if (!hasConnection) throw const ApiException.noConnection();
   }
 
   /// [get] http get methode that returns [Dio] [Response]

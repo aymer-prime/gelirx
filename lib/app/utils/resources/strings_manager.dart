@@ -29,12 +29,14 @@ class AppStrings {
   static const user = "User";
   static const phoneNumberTitle = "Phone Number";
   static const countryCodeTitle = 'TR';
+  static const countryCodeTitle2 = 'AE';
   static const signInWithTitle = 'Sign in with';
   static const enterOTPTitle = 'Enter OTP';
   static const continueAsGuest = 'Continue as Guest';
   static const photoGallery = "Photo from Galley";
   static const photoCamera = "Photo from Camera";
   static const profilePicture = "Upload Profile Picture";
+  static const continueTxt = 'Continue';
 
   //onboarding
   static const getStarted = 'Get Started';

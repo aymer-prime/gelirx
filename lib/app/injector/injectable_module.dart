@@ -24,12 +24,16 @@ abstract class InjectableModules {
 
   @lazySingleton
   GoogleSignIn get googleSignIn => GoogleSignIn();
+
   @lazySingleton
   FacebookAuth get facebookAuth => FacebookAuth.instance;
+
   @lazySingleton
   SignInWithApple get signInWithApple => SignInWithApple();
+
   @lazySingleton
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
+
   @lazySingleton
   Dio get dio => Dio();
 }

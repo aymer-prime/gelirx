@@ -22,7 +22,7 @@ mixin _$ApiException {
     required TResult Function() unauthorized,
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
-    required TResult Function() notConnection,
+    required TResult Function() noConnection,
     required TResult Function(String code, String message) defaultException,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,7 +32,7 @@ mixin _$ApiException {
     TResult? Function()? unauthorized,
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
-    TResult? Function()? notConnection,
+    TResult? Function()? noConnection,
     TResult? Function(String code, String message)? defaultException,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ mixin _$ApiException {
     TResult Function()? unauthorized,
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
-    TResult Function()? notConnection,
+    TResult Function()? noConnection,
     TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) =>
@@ -53,7 +53,7 @@ mixin _$ApiException {
     required TResult Function(_Unautorized value) unauthorized,
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_defaultException value) defaultException,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ mixin _$ApiException {
     TResult? Function(_Unautorized value)? unauthorized,
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_defaultException value)? defaultException,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,7 +73,7 @@ mixin _$ApiException {
     TResult Function(_Unautorized value)? unauthorized,
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
-    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_NoConnection value)? noConnection,
     TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) =>
@@ -146,7 +146,7 @@ class _$NotModifiedImpl extends _NotModified {
     required TResult Function() unauthorized,
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
-    required TResult Function() notConnection,
+    required TResult Function() noConnection,
     required TResult Function(String code, String message) defaultException,
   }) {
     return notModified();
@@ -159,7 +159,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult? Function()? unauthorized,
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
-    TResult? Function()? notConnection,
+    TResult? Function()? noConnection,
     TResult? Function(String code, String message)? defaultException,
   }) {
     return notModified?.call();
@@ -172,7 +172,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult Function()? unauthorized,
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
-    TResult Function()? notConnection,
+    TResult Function()? noConnection,
     TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
@@ -189,7 +189,7 @@ class _$NotModifiedImpl extends _NotModified {
     required TResult Function(_Unautorized value) unauthorized,
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_defaultException value) defaultException,
   }) {
     return notModified(this);
@@ -202,7 +202,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult? Function(_Unautorized value)? unauthorized,
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_defaultException value)? defaultException,
   }) {
     return notModified?.call(this);
@@ -215,7 +215,7 @@ class _$NotModifiedImpl extends _NotModified {
     TResult Function(_Unautorized value)? unauthorized,
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
-    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_NoConnection value)? noConnection,
     TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
@@ -276,7 +276,7 @@ class _$UnautorizedImpl extends _Unautorized {
     required TResult Function() unauthorized,
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
-    required TResult Function() notConnection,
+    required TResult Function() noConnection,
     required TResult Function(String code, String message) defaultException,
   }) {
     return unauthorized();
@@ -289,7 +289,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult? Function()? unauthorized,
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
-    TResult? Function()? notConnection,
+    TResult? Function()? noConnection,
     TResult? Function(String code, String message)? defaultException,
   }) {
     return unauthorized?.call();
@@ -302,7 +302,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult Function()? unauthorized,
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
-    TResult Function()? notConnection,
+    TResult Function()? noConnection,
     TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
@@ -319,7 +319,7 @@ class _$UnautorizedImpl extends _Unautorized {
     required TResult Function(_Unautorized value) unauthorized,
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_defaultException value) defaultException,
   }) {
     return unauthorized(this);
@@ -332,7 +332,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult? Function(_Unautorized value)? unauthorized,
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_defaultException value)? defaultException,
   }) {
     return unauthorized?.call(this);
@@ -345,7 +345,7 @@ class _$UnautorizedImpl extends _Unautorized {
     TResult Function(_Unautorized value)? unauthorized,
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
-    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_NoConnection value)? noConnection,
     TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
@@ -441,7 +441,7 @@ class _$ValidationImpl extends _Validation {
     required TResult Function() unauthorized,
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
-    required TResult Function() notConnection,
+    required TResult Function() noConnection,
     required TResult Function(String code, String message) defaultException,
   }) {
     return badRequest(keys);
@@ -454,7 +454,7 @@ class _$ValidationImpl extends _Validation {
     TResult? Function()? unauthorized,
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
-    TResult? Function()? notConnection,
+    TResult? Function()? noConnection,
     TResult? Function(String code, String message)? defaultException,
   }) {
     return badRequest?.call(keys);
@@ -467,7 +467,7 @@ class _$ValidationImpl extends _Validation {
     TResult Function()? unauthorized,
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
-    TResult Function()? notConnection,
+    TResult Function()? noConnection,
     TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
@@ -484,7 +484,7 @@ class _$ValidationImpl extends _Validation {
     required TResult Function(_Unautorized value) unauthorized,
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_defaultException value) defaultException,
   }) {
     return badRequest(this);
@@ -497,7 +497,7 @@ class _$ValidationImpl extends _Validation {
     TResult? Function(_Unautorized value)? unauthorized,
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_defaultException value)? defaultException,
   }) {
     return badRequest?.call(this);
@@ -510,7 +510,7 @@ class _$ValidationImpl extends _Validation {
     TResult Function(_Unautorized value)? unauthorized,
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
-    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_NoConnection value)? noConnection,
     TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
@@ -579,7 +579,7 @@ class _$UnknownImpl extends _Unknown {
     required TResult Function() unauthorized,
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
-    required TResult Function() notConnection,
+    required TResult Function() noConnection,
     required TResult Function(String code, String message) defaultException,
   }) {
     return unknown();
@@ -592,7 +592,7 @@ class _$UnknownImpl extends _Unknown {
     TResult? Function()? unauthorized,
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
-    TResult? Function()? notConnection,
+    TResult? Function()? noConnection,
     TResult? Function(String code, String message)? defaultException,
   }) {
     return unknown?.call();
@@ -605,7 +605,7 @@ class _$UnknownImpl extends _Unknown {
     TResult Function()? unauthorized,
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
-    TResult Function()? notConnection,
+    TResult Function()? noConnection,
     TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
@@ -622,7 +622,7 @@ class _$UnknownImpl extends _Unknown {
     required TResult Function(_Unautorized value) unauthorized,
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_defaultException value) defaultException,
   }) {
     return unknown(this);
@@ -635,7 +635,7 @@ class _$UnknownImpl extends _Unknown {
     TResult? Function(_Unautorized value)? unauthorized,
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_defaultException value)? defaultException,
   }) {
     return unknown?.call(this);
@@ -648,7 +648,7 @@ class _$UnknownImpl extends _Unknown {
     TResult Function(_Unautorized value)? unauthorized,
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
-    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_NoConnection value)? noConnection,
     TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
@@ -690,7 +690,7 @@ class _$NoConnectionImpl extends _NoConnection {
 
   @override
   String toString() {
-    return 'ApiException.notConnection()';
+    return 'ApiException.noConnection()';
   }
 
   @override
@@ -709,10 +709,10 @@ class _$NoConnectionImpl extends _NoConnection {
     required TResult Function() unauthorized,
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
-    required TResult Function() notConnection,
+    required TResult Function() noConnection,
     required TResult Function(String code, String message) defaultException,
   }) {
-    return notConnection();
+    return noConnection();
   }
 
   @override
@@ -722,10 +722,10 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult? Function()? unauthorized,
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
-    TResult? Function()? notConnection,
+    TResult? Function()? noConnection,
     TResult? Function(String code, String message)? defaultException,
   }) {
-    return notConnection?.call();
+    return noConnection?.call();
   }
 
   @override
@@ -735,12 +735,12 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult Function()? unauthorized,
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
-    TResult Function()? notConnection,
+    TResult Function()? noConnection,
     TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
-    if (notConnection != null) {
-      return notConnection();
+    if (noConnection != null) {
+      return noConnection();
     }
     return orElse();
   }
@@ -752,10 +752,10 @@ class _$NoConnectionImpl extends _NoConnection {
     required TResult Function(_Unautorized value) unauthorized,
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_defaultException value) defaultException,
   }) {
-    return notConnection(this);
+    return noConnection(this);
   }
 
   @override
@@ -765,10 +765,10 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult? Function(_Unautorized value)? unauthorized,
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_defaultException value)? defaultException,
   }) {
-    return notConnection?.call(this);
+    return noConnection?.call(this);
   }
 
   @override
@@ -778,12 +778,12 @@ class _$NoConnectionImpl extends _NoConnection {
     TResult Function(_Unautorized value)? unauthorized,
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
-    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_NoConnection value)? noConnection,
     TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {
-    if (notConnection != null) {
-      return notConnection(this);
+    if (noConnection != null) {
+      return noConnection(this);
     }
     return orElse();
   }
@@ -875,7 +875,7 @@ class _$defaultExceptionImpl extends _defaultException {
     required TResult Function() unauthorized,
     required TResult Function(Map<String, dynamic> keys) badRequest,
     required TResult Function() unknown,
-    required TResult Function() notConnection,
+    required TResult Function() noConnection,
     required TResult Function(String code, String message) defaultException,
   }) {
     return defaultException(code, message);
@@ -888,7 +888,7 @@ class _$defaultExceptionImpl extends _defaultException {
     TResult? Function()? unauthorized,
     TResult? Function(Map<String, dynamic> keys)? badRequest,
     TResult? Function()? unknown,
-    TResult? Function()? notConnection,
+    TResult? Function()? noConnection,
     TResult? Function(String code, String message)? defaultException,
   }) {
     return defaultException?.call(code, message);
@@ -901,7 +901,7 @@ class _$defaultExceptionImpl extends _defaultException {
     TResult Function()? unauthorized,
     TResult Function(Map<String, dynamic> keys)? badRequest,
     TResult Function()? unknown,
-    TResult Function()? notConnection,
+    TResult Function()? noConnection,
     TResult Function(String code, String message)? defaultException,
     required TResult orElse(),
   }) {
@@ -918,7 +918,7 @@ class _$defaultExceptionImpl extends _defaultException {
     required TResult Function(_Unautorized value) unauthorized,
     required TResult Function(_Validation value) badRequest,
     required TResult Function(_Unknown value) unknown,
-    required TResult Function(_NoConnection value) notConnection,
+    required TResult Function(_NoConnection value) noConnection,
     required TResult Function(_defaultException value) defaultException,
   }) {
     return defaultException(this);
@@ -931,7 +931,7 @@ class _$defaultExceptionImpl extends _defaultException {
     TResult? Function(_Unautorized value)? unauthorized,
     TResult? Function(_Validation value)? badRequest,
     TResult? Function(_Unknown value)? unknown,
-    TResult? Function(_NoConnection value)? notConnection,
+    TResult? Function(_NoConnection value)? noConnection,
     TResult? Function(_defaultException value)? defaultException,
   }) {
     return defaultException?.call(this);
@@ -944,7 +944,7 @@ class _$defaultExceptionImpl extends _defaultException {
     TResult Function(_Unautorized value)? unauthorized,
     TResult Function(_Validation value)? badRequest,
     TResult Function(_Unknown value)? unknown,
-    TResult Function(_NoConnection value)? notConnection,
+    TResult Function(_NoConnection value)? noConnection,
     TResult Function(_defaultException value)? defaultException,
     required TResult orElse(),
   }) {

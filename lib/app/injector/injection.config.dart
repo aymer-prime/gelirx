@@ -20,17 +20,19 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i264;
 
+import '../../features/auth/data/auth_repository.dart' as _i726;
+import '../../features/auth/domain/i_auth_repository.dart' as _i1026;
+import '../../features/auth/domain/usecases/sign_in_with_social_media.dart'
+    as _i309;
+import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
+import '../../features/auth/presentation/bloc/master_verification/master_verification_bloc.dart'
+    as _i908;
 import '../../features/booking/data/booking_repository.dart' as _i678;
 import '../../features/booking/domain/i_booking_repository.dart' as _i92;
 import '../../features/booking/domain/usecases/booking_usecase.dart' as _i216;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
-import '../../features/login/data/auth_repository.dart' as _i767;
-import '../../features/login/domain/i_auth_repository.dart' as _i549;
-import '../../features/login/domain/usecases/sign_in_with_social_media.dart'
-    as _i387;
-import '../../features/login/presentation/bloc/auth_bloc.dart' as _i712;
 import '../local_services/local_services.dart' as _i902;
 import '../navigation/app_router.dart' as _i630;
 import '../network/dio_client.dart' as _i667;
@@ -49,6 +51,8 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final injectableModules = _$InjectableModules();
+    gh.factory<_i908.MasterVerificationBloc>(
+        () => _i908.MasterVerificationBloc());
     gh.lazySingleton<_i630.AppRouter>(() => injectableModules.appRouter);
     gh.lazySingleton<_i183.ImagePicker>(() => injectableModules.imagePicker);
     gh.lazySingleton<_i973.InternetConnectionChecker>(
@@ -65,21 +69,22 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i92.IBookingRepository>(() => _i678.BookingRepository());
     gh.lazySingleton<_i317.IHomeRepository>(
         () => _i65.HomeRepository(gh<_i464.RemoteService>()));
-    gh.factory<_i902.LocalService>(
-        () => _i902.LocalService(gh<_i460.SharedPreferences>()));
-    gh.lazySingleton<_i549.IAuthRepository>(() => _i767.AuthRepository(
+    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
           firebaseAuth: gh<_i59.FirebaseAuth>(),
           googleSignIn: gh<_i116.GoogleSignIn>(),
           facebookAuth: gh<_i806.FacebookAuth>(),
           phoneAuth: gh<_i59.FirebaseAuth>(),
         ));
-    gh.lazySingleton<_i387.SignInUseCase>(
-        () => _i387.SignInUseCase(gh<_i549.IAuthRepository>()));
+    gh.factory<_i902.LocalService>(
+        () => _i902.LocalService(gh<_i460.SharedPreferences>()));
+    gh.lazySingleton<_i309.SignInUseCase>(
+        () => _i309.SignInUseCase(gh<_i1026.IAuthRepository>()));
     gh.factory<_i202.HomeBloc>(
         () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
     gh.lazySingleton<_i216.BookingUsecase>(
         () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));
-    gh.factory<_i712.AuthBloc>(() => _i712.AuthBloc(gh<_i387.SignInUseCase>()));
+    gh.lazySingleton<_i797.AuthBloc>(
+        () => _i797.AuthBloc(gh<_i309.SignInUseCase>()));
     return this;
   }
 }

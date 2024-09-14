@@ -10,25 +10,6 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [BookingPage]
-class BookingRoute extends PageRouteInfo<void> {
-  const BookingRoute({List<PageRouteInfo>? children})
-      : super(
-          BookingRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'BookingRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const BookingPage();
-    },
-  );
-}
-
-/// generated route for
 /// [AuthPage]
 class AuthRoute extends PageRouteInfo<void> {
   const AuthRoute({List<PageRouteInfo>? children})
@@ -43,6 +24,25 @@ class AuthRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const AuthPage();
+    },
+  );
+}
+
+/// generated route for
+/// [BookingPage]
+class BookingRoute extends PageRouteInfo<void> {
+  const BookingRoute({List<PageRouteInfo>? children})
+      : super(
+          BookingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BookingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BookingPage();
     },
   );
 }
@@ -81,6 +81,25 @@ class MainRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const MainPage();
+    },
+  );
+}
+
+/// generated route for
+/// [MasterVerificationPage]
+class MasterVerificationRoute extends PageRouteInfo<void> {
+  const MasterVerificationRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterVerificationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterVerificationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterVerificationPage();
     },
   );
 }

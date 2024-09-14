@@ -1,41 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/presentation/bloc/master_verification/master_verification_bloc.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:image_picker/image_picker.dart';
 
 class MasterInfoPage extends StatelessWidget {
-  final VoidCallback toPreviousPage;
+  final VoidCallback toNextPage;
   const MasterInfoPage({
     super.key,
-    required this.toPreviousPage,
+    required this.toNextPage,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        IconButton(
-          onPressed: toPreviousPage,
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
+    return Form(
+      autovalidateMode:
+          context.read<MasterVerificationBloc>().state.showErrorMessages
+              ? AutovalidateMode.always
+              : AutovalidateMode.disabled,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: AppSize.s24),
+          Center(
+            child: Text(
+              'Enter Your Info',
+              style: context.textTheme.displayMedium,
+            ),
           ),
-        ),
-        Center(
-          child: Text(
-            'Enter Your Info',
-            style: context.textTheme.displayMedium,
-          ),
-        ),
-        const SizedBox(height: AppSize.s24),
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p16),
-          child: SingleChildScrollView(
+          const SizedBox(height: AppSize.s24),
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p16),
             child: Column(
               children: [
                 GestureDetector(
@@ -53,10 +54,20 @@ class MasterInfoPage extends StatelessWidget {
                         width: AppSize.s2,
                       ),
                     ),
-                    child: const Icon(
-                      Icons.person,
-                      size: AppSize.s80,
-                    ),
+                    child: context
+                        .read<MasterVerificationBloc>()
+                        .state
+                        .userImage
+                        .fold(
+                          () => const Icon(
+                            Icons.person,
+                            size: AppSize.s80,
+                          ),
+                          (_) => const Icon(
+                            Icons.person,
+                            size: AppSize.s80,
+                          ),
+                        ),
                   ),
                 ),
                 const CardLabelWidget(label: 'Name'),
@@ -68,6 +79,21 @@ class MasterInfoPage extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: 'First Name . . .',
                         ),
+                        onChanged: (value) => context
+                            .read<MasterVerificationBloc>()
+                            .add(MasterVerificationEvent.firstNameChanged(
+                                value)),
+                        validator: (_) {
+                          var firstName = context
+                              .read<MasterVerificationBloc>()
+                              .state
+                              .firstName;
+                          if (firstName.isEmpty) {
+                            return 'Invalid Name';
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                     const SizedBox(width: AppSize.s8),
@@ -76,6 +102,20 @@ class MasterInfoPage extends StatelessWidget {
                         decoration: const InputDecoration(
                           hintText: 'Sur Name . . .',
                         ),
+                        onChanged: (value) => context
+                            .read<MasterVerificationBloc>()
+                            .add(MasterVerificationEvent.surNameChanged(value)),
+                        validator: (_) {
+                          var surname = context
+                              .read<MasterVerificationBloc>()
+                              .state
+                              .surName;
+                          if (surname.isEmpty) {
+                            return 'Invalid Id Number';
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   ],
@@ -95,6 +135,18 @@ class MasterInfoPage extends StatelessWidget {
                   decoration: const InputDecoration(
                     hintText: 'ID Number . . .',
                   ),
+                  onChanged: (value) => context
+                      .read<MasterVerificationBloc>()
+                      .add(MasterVerificationEvent.idChanged(value)),
+                  validator: (_) {
+                    var idNum =
+                        context.read<MasterVerificationBloc>().state.idNumber;
+                    if (idNum.isEmpty) {
+                      return 'Invalid SurName';
+                    } else {
+                      return null;
+                    }
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
@@ -111,23 +163,41 @@ class MasterInfoPage extends StatelessWidget {
                   decoration: const InputDecoration(
                     hintText: 'Year of Birth . . .',
                   ),
+                  onChanged: (value) => context
+                      .read<MasterVerificationBloc>()
+                      .add(MasterVerificationEvent.birthYearChanged(value)),
+                  validator: (_) {
+                    var birthYear =
+                        context.read<MasterVerificationBloc>().state.birthYear;
+                    if (birthYear.isEmpty || birthYear.length < 4) {
+                      return 'Invalid Year of birth';
+                    } else {
+                      return null;
+                    }
+                  },
                 ),
               ],
             ),
           ),
-        ),
-        const Expanded(child: SizedBox()),
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p16),
-          child: SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {},
-              child: const Text('Continue'),
+          const Expanded(child: SizedBox()),
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p16),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  context.read<MasterVerificationBloc>().add(
+                        MasterVerificationEvent.submitInfo(toNextPage),
+                      );
+                },
+                child: const Text(
+                  AppStrings.continueTxt,
+                ),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/Material.dart';
+import 'package:gelirx/features/auth/presentation/pages/master_verification_page.dart';
 import 'package:gelirx/features/home/presentation/pages/services_page.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
@@ -16,11 +17,10 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: SplashRoute.page,
-
+          initial: true,
         ),
         AutoRoute(
           page: MainRoute.page,
-
         ),
         AutoRoute(
           page: HomeRoute.page,
@@ -28,12 +28,17 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ServicesRoute.page,
         ),
-         AutoRoute(
-           page: BookingRoute.page,
-           initial: true,
-         ),
+        AutoRoute(
+          page: BookingRoute.page,
+        ),
+        AutoRoute(
+          page: OnboardingRoute.page,
+        ),
         AutoRoute(
           page: AuthRoute.page,
+        ),
+        AutoRoute(
+          page: MasterVerificationRoute.page,
         ),
       ];
 }

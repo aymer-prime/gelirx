@@ -14,10 +14,9 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 part 'auth_bloc.freezed.dart';
 
-@injectable
+@LazySingleton()
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignInUseCase _signInUseCase;
-
   AuthBloc(this._signInUseCase) : super(AuthState.initial()) {
     on<_SetUserType>(
       (event, emit) => emit(
@@ -34,11 +33,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       result.fold(
         (failure) => emit(state.copyWith(
           isLoading: false,
-          exception: some(failure),
+          authFailureOrSuccessOption: some(left(failure)),
         )),
         (user) => emit(state.copyWith(
           isLoading: false,
           user: some(user),
+          authFailureOrSuccessOption: some(right(unit)),
         )),
       );
     });
@@ -50,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       result.fold(
         (failure) => emit(state.copyWith(
           isLoading: false,
-          exception: some(failure),
+          authFailureOrSuccessOption: some(left(failure)),
         )),
         (verificationId) => emit(state.copyWith(
           isLoading: false,
@@ -66,16 +66,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final result = await _signInUseCase.otpVerification(
           event.verificationId, event.smsCode); // Assuming you pass both.
       result.fold(
-          (failure) => emit(state.copyWith(
-                isLoading: false,
-                exception: some(failure),
-              )), (user) {
-        print("user {$user}");
-        emit(state.copyWith(
+        (failure) => emit(state.copyWith(
           isLoading: false,
-          user: some(user),
-        ));
-      });
+          authFailureOrSuccessOption: some(left(failure)),
+        )),
+        (user) {
+          print("user {$user}");
+          emit(state.copyWith(
+            isLoading: false,
+            user: some(user),
+            authFailureOrSuccessOption: some(right(unit)),
+          ));
+        },
+      );
     });
   }
 }

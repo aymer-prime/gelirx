@@ -10,6 +10,7 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/widgets/social_login_button.dart';
+import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../../../app/utils/resources/font_manager.dart';
@@ -34,19 +35,19 @@ class LoginPage extends StatelessWidget {
       child: SafeArea(
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
-            return Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(
-                  onPressed: toPreviousPage,
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: toPreviousPage,
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                    ),
                   ),
-                ),
-                SingleChildScrollView(
-                  child: Padding(
+                  Padding(
                     padding: const EdgeInsets.all(
                       AppPadding.p28,
                     ),
@@ -76,7 +77,7 @@ class LoginPage extends StatelessWidget {
                           ),
                           dropdownTextStyle:
                               getMediumStyle(color: ColorManager.black),
-                          initialCountryCode: AppStrings.countryCodeTitle,
+                          initialCountryCode: AppStrings.countryCodeTitle2,
                           style: context.textTheme.headlineSmall,
                           pickerDialogStyle: PickerDialogStyle(
                             countryNameStyle:
@@ -87,7 +88,7 @@ class LoginPage extends StatelessWidget {
                           },
                         ),
                         if (state.verificationId.isSome()) ...[
-                          const SizedBox(height: AppSize.s20), // Add spacing
+                          const SizedBox(height: AppSize.s10),
                           TextField(
                             controller: otpController,
                             decoration: InputDecoration(
@@ -98,40 +99,63 @@ class LoginPage extends StatelessWidget {
                               ),
                               fillColor: ColorManager.textfieldFillColor,
                               filled: true,
+                              suffixIcon: Padding(
+                                padding: const EdgeInsets.all(AppPadding.p8),
+                                child: SizedBox(
+                                  height: AppSize.s32,
+                                  width: AppSize.s32,
+                                  child: ElevatedButton(
+                                      onPressed: () {
+                                        context.read<AuthBloc>().add(
+                                              AuthEvent.verifyPhoneNumber(
+                                                verificationId: state
+                                                    .verificationId
+                                                    .getOrElse(() => ''),
+                                                smsCode: otpController.text,
+                                              ),
+                                            );
+                                      },
+                                      child: const Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                      )),
+                                ),
+                              ),
                             ),
-                            onChanged: (otp) {
-                              context.read<AuthBloc>().add(
-                                    AuthEvent.verifyPhoneNumber(
-                                      verificationId: state.verificationId
-                                          .getOrElse(() => ''),
-                                      smsCode: otp,
-                                    ),
-                                  );
-                            },
+
+                            // onChanged: (otp) {
+                            //   context.read<AuthBloc>().add(
+                            //         AuthEvent.verifyPhoneNumber(
+                            //           verificationId: state.verificationId
+                            //               .getOrElse(() => ''),
+                            //           smsCode: otp,
+                            //         ),
+                            //       );
+                            // },
                           ),
                           const SizedBox(height: AppSize.s20),
                         ],
                         const SizedBox(height: AppSize.s2),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              context.read<AuthBloc>().add(
-                                    AuthEvent.phoneLoginRequested(
-                                      phoneNumber: phoneController.text,
-                                    ),
-                                  );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: ColorManager.textfieldColor,
-                              elevation: 0.0,
-                            ),
-                            child: Text(
-                              AppStrings.loginTitle,
-                              style: context.textTheme.headlineSmall,
+                        if (state.verificationId.isNone())
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context.read<AuthBloc>().add(
+                                      AuthEvent.phoneLoginRequested(
+                                        phoneNumber: phoneController.text,
+                                      ),
+                                    );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: ColorManager.textfieldColor,
+                                elevation: 0.0,
+                              ),
+                              child: Text(
+                                AppStrings.loginTitle,
+                                style: context.textTheme.headlineSmall,
+                              ),
                             ),
                           ),
-                        ),
                         const SizedBox(height: AppSize.s64),
 
                         if (!isMaster)
@@ -197,9 +221,9 @@ class LoginPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                //const SizedBox(height: AppSize.s64),
-              ],
+                  //const SizedBox(height: AppSize.s64),
+                ],
+              ),
             );
           },
         ),
