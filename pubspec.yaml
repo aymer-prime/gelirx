@@ -73,6 +73,7 @@ dependencies:
   uuid: ^4.5.0
   image_picker: ^1.1.2
   another_flushbar: ^1.12.30
+  yandex_maps_mapkit_lite: 4.7.2-beta6
   #flutter_native_splash: ^2.3.8
 
 dev_dependencies:

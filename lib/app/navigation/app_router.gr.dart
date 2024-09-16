@@ -105,6 +105,25 @@ class MasterVerificationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NavigationPage]
+class NavigationRoute extends PageRouteInfo<void> {
+  const NavigationRoute({List<PageRouteInfo>? children})
+      : super(
+          NavigationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NavigationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return NavigationPage();
+    },
+  );
+}
+
+/// generated route for
 /// [OnboardingPage]
 class OnboardingRoute extends PageRouteInfo<OnboardingRouteArgs> {
   OnboardingRoute({

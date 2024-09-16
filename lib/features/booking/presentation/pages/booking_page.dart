@@ -11,7 +11,7 @@ class BookingPage extends StatelessWidget {
   const BookingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)    {
     return Scaffold(
       body: SafeArea(
         child: Padding(
