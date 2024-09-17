@@ -5,14 +5,11 @@ import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/view/app.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yandex_maps_mapkit_lite/yandex_map.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await YandexMap..initMapkit(
-      apiKey: 'YOUR_API_KEY'
-  );
+
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   Firebase.initializeApp();
   _initLoggy();
