@@ -78,16 +78,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i92.IBookingRepository>(() => _i678.BookingRepository());
     gh.lazySingleton<_i317.IHomeRepository>(
         () => _i65.HomeRepository(gh<_i464.RemoteService>()));
-    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
-          firebaseAuth: gh<_i59.FirebaseAuth>(),
-          googleSignIn: gh<_i116.GoogleSignIn>(),
-          facebookAuth: gh<_i806.FacebookAuth>(),
-          phoneAuth: gh<_i59.FirebaseAuth>(),
-        ));
+    gh.lazySingleton<_i782.INavigationRepository>(
+        () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
-    gh.lazySingleton<_i309.SignInUseCase>(
-        () => _i309.SignInUseCase(gh<_i1026.IAuthRepository>()));
+    gh.lazySingleton<_i603.NavigationUsecase>(
+        () => _i603.NavigationUsecase(gh<_i782.INavigationRepository>()));
+    gh.factory<_i162.NavigationBloc>(
+        () => _i162.NavigationBloc(gh<_i603.NavigationUsecase>()));
     gh.factory<_i202.HomeBloc>(
         () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
     gh.lazySingleton<_i216.BookingUsecase>(

@@ -40,6 +40,8 @@ class ColorManager {
   static Color categoryColor7 = const Color(0xffFB9B9B);
   static Color categoryColor8 = const Color(0xffF8B0ED);
   static Color categoryColor9 = const Color(0xffAFC6FF);
+  //tire colors
+  static Color bronzeTire = const Color(0xffCE8946);
 
   //status
   static Color confirmedColor = const Color(0xffECF8F1);

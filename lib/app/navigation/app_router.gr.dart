@@ -143,6 +143,25 @@ class MasterInfoWrapperRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MasterMainPage]
+class MasterMainRoute extends PageRouteInfo<void> {
+  const MasterMainRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterMainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterMainRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterMainPage();
+    },
+  );
+}
+
+/// generated route for
 /// [MasterPicPage]
 class MasterPicRoute extends PageRouteInfo<void> {
   const MasterPicRoute({List<PageRouteInfo>? children})
