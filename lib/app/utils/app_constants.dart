@@ -9,4 +9,6 @@ class Constants {
   static const String tokenKey = 'TOKEN_KEY';
   static const String userIdKey = 'USER_ID_KEY';
 
+  // This is the distance in meters that will trigger listen function for geolocator
+  static const int distanceFilter = 10;
 }

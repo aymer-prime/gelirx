@@ -13,6 +13,8 @@ import 'package:gelirx/features/main/presentation/page/main_page.dart';
 import 'package:gelirx/features/onboarding/presentation/onboarding_page.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
 
+import '../../features/navigation/presentation/pages/navigation_page.dart';
+
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
@@ -21,10 +23,11 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: SplashRoute.page,
-          initial: true,
+
         ),
         AutoRoute(
           page: MainRoute.page,
+
         ),
         AutoRoute(
           page: HomeRoute.page,
@@ -32,12 +35,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ServicesRoute.page,
         ),
-        AutoRoute(
-          page: BookingRoute.page,
-        ),
-        AutoRoute(
-          page: OnboardingRoute.page,
-        ),
+         AutoRoute(
+           page: BookingRoute.page,
+
+         ),
         AutoRoute(
           page: AuthRoute.page,
         ),
@@ -56,5 +57,10 @@ class AppRouter extends RootStackRouter {
             ),
           ],
         ),
+
+       AutoRoute(
+         page: NavigationRoute.page,
+         initial: true,
+         ),
       ];
 }
