@@ -23,7 +23,12 @@ mixin _$MasterVerificationEvent {
     required TResult Function(String idNumber) idChanged,
     required TResult Function(String birthYear) birthYearChanged,
     required TResult Function(File image) imageChanged,
-    required TResult Function(Function onSuccess) submitInfo,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +38,12 @@ mixin _$MasterVerificationEvent {
     TResult? Function(String idNumber)? idChanged,
     TResult? Function(String birthYear)? birthYearChanged,
     TResult? Function(File image)? imageChanged,
-    TResult? Function(Function onSuccess)? submitInfo,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +53,12 @@ mixin _$MasterVerificationEvent {
     TResult Function(String idNumber)? idChanged,
     TResult Function(String birthYear)? birthYearChanged,
     TResult Function(File image)? imageChanged,
-    TResult Function(Function onSuccess)? submitInfo,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,7 +69,12 @@ mixin _$MasterVerificationEvent {
     required TResult Function(_IdChanged value) idChanged,
     required TResult Function(_BirthYearChanged value) birthYearChanged,
     required TResult Function(_ImageChanged value) imageChanged,
-    required TResult Function(_SubmitInfo value) submitInfo,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,7 +84,12 @@ mixin _$MasterVerificationEvent {
     TResult? Function(_IdChanged value)? idChanged,
     TResult? Function(_BirthYearChanged value)? birthYearChanged,
     TResult? Function(_ImageChanged value)? imageChanged,
-    TResult? Function(_SubmitInfo value)? submitInfo,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,7 +99,12 @@ mixin _$MasterVerificationEvent {
     TResult Function(_IdChanged value)? idChanged,
     TResult Function(_BirthYearChanged value)? birthYearChanged,
     TResult Function(_ImageChanged value)? imageChanged,
-    TResult Function(_SubmitInfo value)? submitInfo,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -177,7 +207,12 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     required TResult Function(String idNumber) idChanged,
     required TResult Function(String birthYear) birthYearChanged,
     required TResult Function(File image) imageChanged,
-    required TResult Function(Function onSuccess) submitInfo,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
   }) {
     return firstNameChanged(firstName);
   }
@@ -190,7 +225,12 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult? Function(String idNumber)? idChanged,
     TResult? Function(String birthYear)? birthYearChanged,
     TResult? Function(File image)? imageChanged,
-    TResult? Function(Function onSuccess)? submitInfo,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
   }) {
     return firstNameChanged?.call(firstName);
   }
@@ -203,7 +243,12 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult Function(String idNumber)? idChanged,
     TResult Function(String birthYear)? birthYearChanged,
     TResult Function(File image)? imageChanged,
-    TResult Function(Function onSuccess)? submitInfo,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -220,7 +265,12 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     required TResult Function(_IdChanged value) idChanged,
     required TResult Function(_BirthYearChanged value) birthYearChanged,
     required TResult Function(_ImageChanged value) imageChanged,
-    required TResult Function(_SubmitInfo value) submitInfo,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
   }) {
     return firstNameChanged(this);
   }
@@ -233,7 +283,12 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult? Function(_IdChanged value)? idChanged,
     TResult? Function(_BirthYearChanged value)? birthYearChanged,
     TResult? Function(_ImageChanged value)? imageChanged,
-    TResult? Function(_SubmitInfo value)? submitInfo,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
   }) {
     return firstNameChanged?.call(this);
   }
@@ -246,7 +301,12 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult Function(_IdChanged value)? idChanged,
     TResult Function(_BirthYearChanged value)? birthYearChanged,
     TResult Function(_ImageChanged value)? imageChanged,
-    TResult Function(_SubmitInfo value)? submitInfo,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -343,7 +403,12 @@ class _$SurNameChangedImpl implements _SurNameChanged {
     required TResult Function(String idNumber) idChanged,
     required TResult Function(String birthYear) birthYearChanged,
     required TResult Function(File image) imageChanged,
-    required TResult Function(Function onSuccess) submitInfo,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
   }) {
     return surNameChanged(surName);
   }
@@ -356,7 +421,12 @@ class _$SurNameChangedImpl implements _SurNameChanged {
     TResult? Function(String idNumber)? idChanged,
     TResult? Function(String birthYear)? birthYearChanged,
     TResult? Function(File image)? imageChanged,
-    TResult? Function(Function onSuccess)? submitInfo,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
   }) {
     return surNameChanged?.call(surName);
   }
@@ -369,7 +439,12 @@ class _$SurNameChangedImpl implements _SurNameChanged {
     TResult Function(String idNumber)? idChanged,
     TResult Function(String birthYear)? birthYearChanged,
     TResult Function(File image)? imageChanged,
-    TResult Function(Function onSuccess)? submitInfo,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (surNameChanged != null) {
@@ -386,7 +461,12 @@ class _$SurNameChangedImpl implements _SurNameChanged {
     required TResult Function(_IdChanged value) idChanged,
     required TResult Function(_BirthYearChanged value) birthYearChanged,
     required TResult Function(_ImageChanged value) imageChanged,
-    required TResult Function(_SubmitInfo value) submitInfo,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
   }) {
     return surNameChanged(this);
   }
@@ -399,7 +479,12 @@ class _$SurNameChangedImpl implements _SurNameChanged {
     TResult? Function(_IdChanged value)? idChanged,
     TResult? Function(_BirthYearChanged value)? birthYearChanged,
     TResult? Function(_ImageChanged value)? imageChanged,
-    TResult? Function(_SubmitInfo value)? submitInfo,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
   }) {
     return surNameChanged?.call(this);
   }
@@ -412,7 +497,12 @@ class _$SurNameChangedImpl implements _SurNameChanged {
     TResult Function(_IdChanged value)? idChanged,
     TResult Function(_BirthYearChanged value)? birthYearChanged,
     TResult Function(_ImageChanged value)? imageChanged,
-    TResult Function(_SubmitInfo value)? submitInfo,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (surNameChanged != null) {
@@ -508,7 +598,12 @@ class _$IdChangedImpl implements _IdChanged {
     required TResult Function(String idNumber) idChanged,
     required TResult Function(String birthYear) birthYearChanged,
     required TResult Function(File image) imageChanged,
-    required TResult Function(Function onSuccess) submitInfo,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
   }) {
     return idChanged(idNumber);
   }
@@ -521,7 +616,12 @@ class _$IdChangedImpl implements _IdChanged {
     TResult? Function(String idNumber)? idChanged,
     TResult? Function(String birthYear)? birthYearChanged,
     TResult? Function(File image)? imageChanged,
-    TResult? Function(Function onSuccess)? submitInfo,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
   }) {
     return idChanged?.call(idNumber);
   }
@@ -534,7 +634,12 @@ class _$IdChangedImpl implements _IdChanged {
     TResult Function(String idNumber)? idChanged,
     TResult Function(String birthYear)? birthYearChanged,
     TResult Function(File image)? imageChanged,
-    TResult Function(Function onSuccess)? submitInfo,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (idChanged != null) {
@@ -551,7 +656,12 @@ class _$IdChangedImpl implements _IdChanged {
     required TResult Function(_IdChanged value) idChanged,
     required TResult Function(_BirthYearChanged value) birthYearChanged,
     required TResult Function(_ImageChanged value) imageChanged,
-    required TResult Function(_SubmitInfo value) submitInfo,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
   }) {
     return idChanged(this);
   }
@@ -564,7 +674,12 @@ class _$IdChangedImpl implements _IdChanged {
     TResult? Function(_IdChanged value)? idChanged,
     TResult? Function(_BirthYearChanged value)? birthYearChanged,
     TResult? Function(_ImageChanged value)? imageChanged,
-    TResult? Function(_SubmitInfo value)? submitInfo,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
   }) {
     return idChanged?.call(this);
   }
@@ -577,7 +692,12 @@ class _$IdChangedImpl implements _IdChanged {
     TResult Function(_IdChanged value)? idChanged,
     TResult Function(_BirthYearChanged value)? birthYearChanged,
     TResult Function(_ImageChanged value)? imageChanged,
-    TResult Function(_SubmitInfo value)? submitInfo,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (idChanged != null) {
@@ -674,7 +794,12 @@ class _$BirthYearChangedImpl implements _BirthYearChanged {
     required TResult Function(String idNumber) idChanged,
     required TResult Function(String birthYear) birthYearChanged,
     required TResult Function(File image) imageChanged,
-    required TResult Function(Function onSuccess) submitInfo,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
   }) {
     return birthYearChanged(birthYear);
   }
@@ -687,7 +812,12 @@ class _$BirthYearChangedImpl implements _BirthYearChanged {
     TResult? Function(String idNumber)? idChanged,
     TResult? Function(String birthYear)? birthYearChanged,
     TResult? Function(File image)? imageChanged,
-    TResult? Function(Function onSuccess)? submitInfo,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
   }) {
     return birthYearChanged?.call(birthYear);
   }
@@ -700,7 +830,12 @@ class _$BirthYearChangedImpl implements _BirthYearChanged {
     TResult Function(String idNumber)? idChanged,
     TResult Function(String birthYear)? birthYearChanged,
     TResult Function(File image)? imageChanged,
-    TResult Function(Function onSuccess)? submitInfo,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (birthYearChanged != null) {
@@ -717,7 +852,12 @@ class _$BirthYearChangedImpl implements _BirthYearChanged {
     required TResult Function(_IdChanged value) idChanged,
     required TResult Function(_BirthYearChanged value) birthYearChanged,
     required TResult Function(_ImageChanged value) imageChanged,
-    required TResult Function(_SubmitInfo value) submitInfo,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
   }) {
     return birthYearChanged(this);
   }
@@ -730,7 +870,12 @@ class _$BirthYearChangedImpl implements _BirthYearChanged {
     TResult? Function(_IdChanged value)? idChanged,
     TResult? Function(_BirthYearChanged value)? birthYearChanged,
     TResult? Function(_ImageChanged value)? imageChanged,
-    TResult? Function(_SubmitInfo value)? submitInfo,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
   }) {
     return birthYearChanged?.call(this);
   }
@@ -743,7 +888,12 @@ class _$BirthYearChangedImpl implements _BirthYearChanged {
     TResult Function(_IdChanged value)? idChanged,
     TResult Function(_BirthYearChanged value)? birthYearChanged,
     TResult Function(_ImageChanged value)? imageChanged,
-    TResult Function(_SubmitInfo value)? submitInfo,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (birthYearChanged != null) {
@@ -839,7 +989,12 @@ class _$ImageChangedImpl implements _ImageChanged {
     required TResult Function(String idNumber) idChanged,
     required TResult Function(String birthYear) birthYearChanged,
     required TResult Function(File image) imageChanged,
-    required TResult Function(Function onSuccess) submitInfo,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
   }) {
     return imageChanged(image);
   }
@@ -852,7 +1007,12 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult? Function(String idNumber)? idChanged,
     TResult? Function(String birthYear)? birthYearChanged,
     TResult? Function(File image)? imageChanged,
-    TResult? Function(Function onSuccess)? submitInfo,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
   }) {
     return imageChanged?.call(image);
   }
@@ -865,7 +1025,12 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult Function(String idNumber)? idChanged,
     TResult Function(String birthYear)? birthYearChanged,
     TResult Function(File image)? imageChanged,
-    TResult Function(Function onSuccess)? submitInfo,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (imageChanged != null) {
@@ -882,7 +1047,12 @@ class _$ImageChangedImpl implements _ImageChanged {
     required TResult Function(_IdChanged value) idChanged,
     required TResult Function(_BirthYearChanged value) birthYearChanged,
     required TResult Function(_ImageChanged value) imageChanged,
-    required TResult Function(_SubmitInfo value) submitInfo,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
   }) {
     return imageChanged(this);
   }
@@ -895,7 +1065,12 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult? Function(_IdChanged value)? idChanged,
     TResult? Function(_BirthYearChanged value)? birthYearChanged,
     TResult? Function(_ImageChanged value)? imageChanged,
-    TResult? Function(_SubmitInfo value)? submitInfo,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
   }) {
     return imageChanged?.call(this);
   }
@@ -908,7 +1083,12 @@ class _$ImageChangedImpl implements _ImageChanged {
     TResult Function(_IdChanged value)? idChanged,
     TResult Function(_BirthYearChanged value)? birthYearChanged,
     TResult Function(_ImageChanged value)? imageChanged,
-    TResult Function(_SubmitInfo value)? submitInfo,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
     required TResult orElse(),
   }) {
     if (imageChanged != null) {
@@ -931,70 +1111,42 @@ abstract class _ImageChanged implements MasterVerificationEvent {
 }
 
 /// @nodoc
-abstract class _$$SubmitInfoImplCopyWith<$Res> {
-  factory _$$SubmitInfoImplCopyWith(
-          _$SubmitInfoImpl value, $Res Function(_$SubmitInfoImpl) then) =
-      __$$SubmitInfoImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Function onSuccess});
+abstract class _$$GetSkillsImplCopyWith<$Res> {
+  factory _$$GetSkillsImplCopyWith(
+          _$GetSkillsImpl value, $Res Function(_$GetSkillsImpl) then) =
+      __$$GetSkillsImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SubmitInfoImplCopyWithImpl<$Res>
-    extends _$MasterVerificationEventCopyWithImpl<$Res, _$SubmitInfoImpl>
-    implements _$$SubmitInfoImplCopyWith<$Res> {
-  __$$SubmitInfoImplCopyWithImpl(
-      _$SubmitInfoImpl _value, $Res Function(_$SubmitInfoImpl) _then)
+class __$$GetSkillsImplCopyWithImpl<$Res>
+    extends _$MasterVerificationEventCopyWithImpl<$Res, _$GetSkillsImpl>
+    implements _$$GetSkillsImplCopyWith<$Res> {
+  __$$GetSkillsImplCopyWithImpl(
+      _$GetSkillsImpl _value, $Res Function(_$GetSkillsImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of MasterVerificationEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? onSuccess = null,
-  }) {
-    return _then(_$SubmitInfoImpl(
-      null == onSuccess
-          ? _value.onSuccess
-          : onSuccess // ignore: cast_nullable_to_non_nullable
-              as Function,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SubmitInfoImpl implements _SubmitInfo {
-  const _$SubmitInfoImpl(this.onSuccess);
-
-  @override
-  final Function onSuccess;
+class _$GetSkillsImpl implements _GetSkills {
+  const _$GetSkillsImpl();
 
   @override
   String toString() {
-    return 'MasterVerificationEvent.submitInfo(onSuccess: $onSuccess)';
+    return 'MasterVerificationEvent.getSkills()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SubmitInfoImpl &&
-            (identical(other.onSuccess, onSuccess) ||
-                other.onSuccess == onSuccess));
+        (other.runtimeType == runtimeType && other is _$GetSkillsImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, onSuccess);
-
-  /// Create a copy of MasterVerificationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SubmitInfoImplCopyWith<_$SubmitInfoImpl> get copyWith =>
-      __$$SubmitInfoImplCopyWithImpl<_$SubmitInfoImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1004,9 +1156,14 @@ class _$SubmitInfoImpl implements _SubmitInfo {
     required TResult Function(String idNumber) idChanged,
     required TResult Function(String birthYear) birthYearChanged,
     required TResult Function(File image) imageChanged,
-    required TResult Function(Function onSuccess) submitInfo,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
   }) {
-    return submitInfo(onSuccess);
+    return getSkills();
   }
 
   @override
@@ -1017,9 +1174,14 @@ class _$SubmitInfoImpl implements _SubmitInfo {
     TResult? Function(String idNumber)? idChanged,
     TResult? Function(String birthYear)? birthYearChanged,
     TResult? Function(File image)? imageChanged,
-    TResult? Function(Function onSuccess)? submitInfo,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
   }) {
-    return submitInfo?.call(onSuccess);
+    return getSkills?.call();
   }
 
   @override
@@ -1030,11 +1192,16 @@ class _$SubmitInfoImpl implements _SubmitInfo {
     TResult Function(String idNumber)? idChanged,
     TResult Function(String birthYear)? birthYearChanged,
     TResult Function(File image)? imageChanged,
-    TResult Function(Function onSuccess)? submitInfo,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
     required TResult orElse(),
   }) {
-    if (submitInfo != null) {
-      return submitInfo(onSuccess);
+    if (getSkills != null) {
+      return getSkills();
     }
     return orElse();
   }
@@ -1047,9 +1214,14 @@ class _$SubmitInfoImpl implements _SubmitInfo {
     required TResult Function(_IdChanged value) idChanged,
     required TResult Function(_BirthYearChanged value) birthYearChanged,
     required TResult Function(_ImageChanged value) imageChanged,
-    required TResult Function(_SubmitInfo value) submitInfo,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
   }) {
-    return submitInfo(this);
+    return getSkills(this);
   }
 
   @override
@@ -1060,9 +1232,14 @@ class _$SubmitInfoImpl implements _SubmitInfo {
     TResult? Function(_IdChanged value)? idChanged,
     TResult? Function(_BirthYearChanged value)? birthYearChanged,
     TResult? Function(_ImageChanged value)? imageChanged,
-    TResult? Function(_SubmitInfo value)? submitInfo,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
   }) {
-    return submitInfo?.call(this);
+    return getSkills?.call(this);
   }
 
   @override
@@ -1073,25 +1250,1016 @@ class _$SubmitInfoImpl implements _SubmitInfo {
     TResult Function(_IdChanged value)? idChanged,
     TResult Function(_BirthYearChanged value)? birthYearChanged,
     TResult Function(_ImageChanged value)? imageChanged,
-    TResult Function(_SubmitInfo value)? submitInfo,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
     required TResult orElse(),
   }) {
-    if (submitInfo != null) {
-      return submitInfo(this);
+    if (getSkills != null) {
+      return getSkills(this);
     }
     return orElse();
   }
 }
 
-abstract class _SubmitInfo implements MasterVerificationEvent {
-  const factory _SubmitInfo(final Function onSuccess) = _$SubmitInfoImpl;
+abstract class _GetSkills implements MasterVerificationEvent {
+  const factory _GetSkills() = _$GetSkillsImpl;
+}
+
+/// @nodoc
+abstract class _$$GetSubSkillsImplCopyWith<$Res> {
+  factory _$$GetSubSkillsImplCopyWith(
+          _$GetSubSkillsImpl value, $Res Function(_$GetSubSkillsImpl) then) =
+      __$$GetSubSkillsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String skillId});
+}
+
+/// @nodoc
+class __$$GetSubSkillsImplCopyWithImpl<$Res>
+    extends _$MasterVerificationEventCopyWithImpl<$Res, _$GetSubSkillsImpl>
+    implements _$$GetSubSkillsImplCopyWith<$Res> {
+  __$$GetSubSkillsImplCopyWithImpl(
+      _$GetSubSkillsImpl _value, $Res Function(_$GetSubSkillsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? skillId = null,
+  }) {
+    return _then(_$GetSubSkillsImpl(
+      null == skillId
+          ? _value.skillId
+          : skillId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSubSkillsImpl implements _GetSubSkills {
+  const _$GetSubSkillsImpl(this.skillId);
+
+  @override
+  final String skillId;
+
+  @override
+  String toString() {
+    return 'MasterVerificationEvent.getSubSkills(skillId: $skillId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSubSkillsImpl &&
+            (identical(other.skillId, skillId) || other.skillId == skillId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, skillId);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSubSkillsImplCopyWith<_$GetSubSkillsImpl> get copyWith =>
+      __$$GetSubSkillsImplCopyWithImpl<_$GetSubSkillsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String surName) surNameChanged,
+    required TResult Function(String idNumber) idChanged,
+    required TResult Function(String birthYear) birthYearChanged,
+    required TResult Function(File image) imageChanged,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
+  }) {
+    return getSubSkills(skillId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String firstName)? firstNameChanged,
+    TResult? Function(String surName)? surNameChanged,
+    TResult? Function(String idNumber)? idChanged,
+    TResult? Function(String birthYear)? birthYearChanged,
+    TResult? Function(File image)? imageChanged,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
+  }) {
+    return getSubSkills?.call(skillId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String surName)? surNameChanged,
+    TResult Function(String idNumber)? idChanged,
+    TResult Function(String birthYear)? birthYearChanged,
+    TResult Function(File image)? imageChanged,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (getSubSkills != null) {
+      return getSubSkills(skillId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_SurNameChanged value) surNameChanged,
+    required TResult Function(_IdChanged value) idChanged,
+    required TResult Function(_BirthYearChanged value) birthYearChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
+  }) {
+    return getSubSkills(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FirstNameChanged value)? firstNameChanged,
+    TResult? Function(_SurNameChanged value)? surNameChanged,
+    TResult? Function(_IdChanged value)? idChanged,
+    TResult? Function(_BirthYearChanged value)? birthYearChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
+  }) {
+    return getSubSkills?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_SurNameChanged value)? surNameChanged,
+    TResult Function(_IdChanged value)? idChanged,
+    TResult Function(_BirthYearChanged value)? birthYearChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (getSubSkills != null) {
+      return getSubSkills(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSubSkills implements MasterVerificationEvent {
+  const factory _GetSubSkills(final String skillId) = _$GetSubSkillsImpl;
+
+  String get skillId;
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetSubSkillsImplCopyWith<_$GetSubSkillsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetUserSkillsImplCopyWith<$Res> {
+  factory _$$SetUserSkillsImplCopyWith(
+          _$SetUserSkillsImpl value, $Res Function(_$SetUserSkillsImpl) then) =
+      __$$SetUserSkillsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Category selectedSubSkill});
+
+  $CategoryCopyWith<$Res> get selectedSubSkill;
+}
+
+/// @nodoc
+class __$$SetUserSkillsImplCopyWithImpl<$Res>
+    extends _$MasterVerificationEventCopyWithImpl<$Res, _$SetUserSkillsImpl>
+    implements _$$SetUserSkillsImplCopyWith<$Res> {
+  __$$SetUserSkillsImplCopyWithImpl(
+      _$SetUserSkillsImpl _value, $Res Function(_$SetUserSkillsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedSubSkill = null,
+  }) {
+    return _then(_$SetUserSkillsImpl(
+      null == selectedSubSkill
+          ? _value.selectedSubSkill
+          : selectedSubSkill // ignore: cast_nullable_to_non_nullable
+              as Category,
+    ));
+  }
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res> get selectedSubSkill {
+    return $CategoryCopyWith<$Res>(_value.selectedSubSkill, (value) {
+      return _then(_value.copyWith(selectedSubSkill: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SetUserSkillsImpl implements _SetUserSkills {
+  const _$SetUserSkillsImpl(this.selectedSubSkill);
+
+  @override
+  final Category selectedSubSkill;
+
+  @override
+  String toString() {
+    return 'MasterVerificationEvent.setUserSkills(selectedSubSkill: $selectedSubSkill)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetUserSkillsImpl &&
+            (identical(other.selectedSubSkill, selectedSubSkill) ||
+                other.selectedSubSkill == selectedSubSkill));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedSubSkill);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetUserSkillsImplCopyWith<_$SetUserSkillsImpl> get copyWith =>
+      __$$SetUserSkillsImplCopyWithImpl<_$SetUserSkillsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String surName) surNameChanged,
+    required TResult Function(String idNumber) idChanged,
+    required TResult Function(String birthYear) birthYearChanged,
+    required TResult Function(File image) imageChanged,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
+  }) {
+    return setUserSkills(selectedSubSkill);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String firstName)? firstNameChanged,
+    TResult? Function(String surName)? surNameChanged,
+    TResult? Function(String idNumber)? idChanged,
+    TResult? Function(String birthYear)? birthYearChanged,
+    TResult? Function(File image)? imageChanged,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
+  }) {
+    return setUserSkills?.call(selectedSubSkill);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String surName)? surNameChanged,
+    TResult Function(String idNumber)? idChanged,
+    TResult Function(String birthYear)? birthYearChanged,
+    TResult Function(File image)? imageChanged,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (setUserSkills != null) {
+      return setUserSkills(selectedSubSkill);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_SurNameChanged value) surNameChanged,
+    required TResult Function(_IdChanged value) idChanged,
+    required TResult Function(_BirthYearChanged value) birthYearChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
+  }) {
+    return setUserSkills(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FirstNameChanged value)? firstNameChanged,
+    TResult? Function(_SurNameChanged value)? surNameChanged,
+    TResult? Function(_IdChanged value)? idChanged,
+    TResult? Function(_BirthYearChanged value)? birthYearChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
+  }) {
+    return setUserSkills?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_SurNameChanged value)? surNameChanged,
+    TResult Function(_IdChanged value)? idChanged,
+    TResult Function(_BirthYearChanged value)? birthYearChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (setUserSkills != null) {
+      return setUserSkills(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetUserSkills implements MasterVerificationEvent {
+  const factory _SetUserSkills(final Category selectedSubSkill) =
+      _$SetUserSkillsImpl;
+
+  Category get selectedSubSkill;
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SetUserSkillsImplCopyWith<_$SetUserSkillsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RegisterUserInfoImplCopyWith<$Res> {
+  factory _$$RegisterUserInfoImplCopyWith(_$RegisterUserInfoImpl value,
+          $Res Function(_$RegisterUserInfoImpl) then) =
+      __$$RegisterUserInfoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Function onSuccess});
+}
+
+/// @nodoc
+class __$$RegisterUserInfoImplCopyWithImpl<$Res>
+    extends _$MasterVerificationEventCopyWithImpl<$Res, _$RegisterUserInfoImpl>
+    implements _$$RegisterUserInfoImplCopyWith<$Res> {
+  __$$RegisterUserInfoImplCopyWithImpl(_$RegisterUserInfoImpl _value,
+      $Res Function(_$RegisterUserInfoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? onSuccess = null,
+  }) {
+    return _then(_$RegisterUserInfoImpl(
+      null == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as Function,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterUserInfoImpl implements _RegisterUserInfo {
+  const _$RegisterUserInfoImpl(this.onSuccess);
+
+  @override
+  final Function onSuccess;
+
+  @override
+  String toString() {
+    return 'MasterVerificationEvent.registerUserInfo(onSuccess: $onSuccess)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterUserInfoImpl &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, onSuccess);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterUserInfoImplCopyWith<_$RegisterUserInfoImpl> get copyWith =>
+      __$$RegisterUserInfoImplCopyWithImpl<_$RegisterUserInfoImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String surName) surNameChanged,
+    required TResult Function(String idNumber) idChanged,
+    required TResult Function(String birthYear) birthYearChanged,
+    required TResult Function(File image) imageChanged,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
+  }) {
+    return registerUserInfo(onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String firstName)? firstNameChanged,
+    TResult? Function(String surName)? surNameChanged,
+    TResult? Function(String idNumber)? idChanged,
+    TResult? Function(String birthYear)? birthYearChanged,
+    TResult? Function(File image)? imageChanged,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
+  }) {
+    return registerUserInfo?.call(onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String surName)? surNameChanged,
+    TResult Function(String idNumber)? idChanged,
+    TResult Function(String birthYear)? birthYearChanged,
+    TResult Function(File image)? imageChanged,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (registerUserInfo != null) {
+      return registerUserInfo(onSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_SurNameChanged value) surNameChanged,
+    required TResult Function(_IdChanged value) idChanged,
+    required TResult Function(_BirthYearChanged value) birthYearChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
+  }) {
+    return registerUserInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FirstNameChanged value)? firstNameChanged,
+    TResult? Function(_SurNameChanged value)? surNameChanged,
+    TResult? Function(_IdChanged value)? idChanged,
+    TResult? Function(_BirthYearChanged value)? birthYearChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
+  }) {
+    return registerUserInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_SurNameChanged value)? surNameChanged,
+    TResult Function(_IdChanged value)? idChanged,
+    TResult Function(_BirthYearChanged value)? birthYearChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (registerUserInfo != null) {
+      return registerUserInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RegisterUserInfo implements MasterVerificationEvent {
+  const factory _RegisterUserInfo(final Function onSuccess) =
+      _$RegisterUserInfoImpl;
 
   Function get onSuccess;
 
   /// Create a copy of MasterVerificationEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SubmitInfoImplCopyWith<_$SubmitInfoImpl> get copyWith =>
+  _$$RegisterUserInfoImplCopyWith<_$RegisterUserInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RegisterUserImageImplCopyWith<$Res> {
+  factory _$$RegisterUserImageImplCopyWith(_$RegisterUserImageImpl value,
+          $Res Function(_$RegisterUserImageImpl) then) =
+      __$$RegisterUserImageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Function onSuccess});
+}
+
+/// @nodoc
+class __$$RegisterUserImageImplCopyWithImpl<$Res>
+    extends _$MasterVerificationEventCopyWithImpl<$Res, _$RegisterUserImageImpl>
+    implements _$$RegisterUserImageImplCopyWith<$Res> {
+  __$$RegisterUserImageImplCopyWithImpl(_$RegisterUserImageImpl _value,
+      $Res Function(_$RegisterUserImageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? onSuccess = null,
+  }) {
+    return _then(_$RegisterUserImageImpl(
+      null == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as Function,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterUserImageImpl implements _RegisterUserImage {
+  const _$RegisterUserImageImpl(this.onSuccess);
+
+  @override
+  final Function onSuccess;
+
+  @override
+  String toString() {
+    return 'MasterVerificationEvent.registerUserImage(onSuccess: $onSuccess)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterUserImageImpl &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, onSuccess);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterUserImageImplCopyWith<_$RegisterUserImageImpl> get copyWith =>
+      __$$RegisterUserImageImplCopyWithImpl<_$RegisterUserImageImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String surName) surNameChanged,
+    required TResult Function(String idNumber) idChanged,
+    required TResult Function(String birthYear) birthYearChanged,
+    required TResult Function(File image) imageChanged,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
+  }) {
+    return registerUserImage(onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String firstName)? firstNameChanged,
+    TResult? Function(String surName)? surNameChanged,
+    TResult? Function(String idNumber)? idChanged,
+    TResult? Function(String birthYear)? birthYearChanged,
+    TResult? Function(File image)? imageChanged,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
+  }) {
+    return registerUserImage?.call(onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String surName)? surNameChanged,
+    TResult Function(String idNumber)? idChanged,
+    TResult Function(String birthYear)? birthYearChanged,
+    TResult Function(File image)? imageChanged,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (registerUserImage != null) {
+      return registerUserImage(onSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_SurNameChanged value) surNameChanged,
+    required TResult Function(_IdChanged value) idChanged,
+    required TResult Function(_BirthYearChanged value) birthYearChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
+  }) {
+    return registerUserImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FirstNameChanged value)? firstNameChanged,
+    TResult? Function(_SurNameChanged value)? surNameChanged,
+    TResult? Function(_IdChanged value)? idChanged,
+    TResult? Function(_BirthYearChanged value)? birthYearChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
+  }) {
+    return registerUserImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_SurNameChanged value)? surNameChanged,
+    TResult Function(_IdChanged value)? idChanged,
+    TResult Function(_BirthYearChanged value)? birthYearChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (registerUserImage != null) {
+      return registerUserImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RegisterUserImage implements MasterVerificationEvent {
+  const factory _RegisterUserImage(final Function onSuccess) =
+      _$RegisterUserImageImpl;
+
+  Function get onSuccess;
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RegisterUserImageImplCopyWith<_$RegisterUserImageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RegisterUserSkillsImplCopyWith<$Res> {
+  factory _$$RegisterUserSkillsImplCopyWith(_$RegisterUserSkillsImpl value,
+          $Res Function(_$RegisterUserSkillsImpl) then) =
+      __$$RegisterUserSkillsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Function onSuccess});
+}
+
+/// @nodoc
+class __$$RegisterUserSkillsImplCopyWithImpl<$Res>
+    extends _$MasterVerificationEventCopyWithImpl<$Res,
+        _$RegisterUserSkillsImpl>
+    implements _$$RegisterUserSkillsImplCopyWith<$Res> {
+  __$$RegisterUserSkillsImplCopyWithImpl(_$RegisterUserSkillsImpl _value,
+      $Res Function(_$RegisterUserSkillsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? onSuccess = null,
+  }) {
+    return _then(_$RegisterUserSkillsImpl(
+      null == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as Function,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterUserSkillsImpl implements _RegisterUserSkills {
+  const _$RegisterUserSkillsImpl(this.onSuccess);
+
+  @override
+  final Function onSuccess;
+
+  @override
+  String toString() {
+    return 'MasterVerificationEvent.registerUserSkills(onSuccess: $onSuccess)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterUserSkillsImpl &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, onSuccess);
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterUserSkillsImplCopyWith<_$RegisterUserSkillsImpl> get copyWith =>
+      __$$RegisterUserSkillsImplCopyWithImpl<_$RegisterUserSkillsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String surName) surNameChanged,
+    required TResult Function(String idNumber) idChanged,
+    required TResult Function(String birthYear) birthYearChanged,
+    required TResult Function(File image) imageChanged,
+    required TResult Function() getSkills,
+    required TResult Function(String skillId) getSubSkills,
+    required TResult Function(Category selectedSubSkill) setUserSkills,
+    required TResult Function(Function onSuccess) registerUserInfo,
+    required TResult Function(Function onSuccess) registerUserImage,
+    required TResult Function(Function onSuccess) registerUserSkills,
+  }) {
+    return registerUserSkills(onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String firstName)? firstNameChanged,
+    TResult? Function(String surName)? surNameChanged,
+    TResult? Function(String idNumber)? idChanged,
+    TResult? Function(String birthYear)? birthYearChanged,
+    TResult? Function(File image)? imageChanged,
+    TResult? Function()? getSkills,
+    TResult? Function(String skillId)? getSubSkills,
+    TResult? Function(Category selectedSubSkill)? setUserSkills,
+    TResult? Function(Function onSuccess)? registerUserInfo,
+    TResult? Function(Function onSuccess)? registerUserImage,
+    TResult? Function(Function onSuccess)? registerUserSkills,
+  }) {
+    return registerUserSkills?.call(onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String surName)? surNameChanged,
+    TResult Function(String idNumber)? idChanged,
+    TResult Function(String birthYear)? birthYearChanged,
+    TResult Function(File image)? imageChanged,
+    TResult Function()? getSkills,
+    TResult Function(String skillId)? getSubSkills,
+    TResult Function(Category selectedSubSkill)? setUserSkills,
+    TResult Function(Function onSuccess)? registerUserInfo,
+    TResult Function(Function onSuccess)? registerUserImage,
+    TResult Function(Function onSuccess)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (registerUserSkills != null) {
+      return registerUserSkills(onSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_SurNameChanged value) surNameChanged,
+    required TResult Function(_IdChanged value) idChanged,
+    required TResult Function(_BirthYearChanged value) birthYearChanged,
+    required TResult Function(_ImageChanged value) imageChanged,
+    required TResult Function(_GetSkills value) getSkills,
+    required TResult Function(_GetSubSkills value) getSubSkills,
+    required TResult Function(_SetUserSkills value) setUserSkills,
+    required TResult Function(_RegisterUserInfo value) registerUserInfo,
+    required TResult Function(_RegisterUserImage value) registerUserImage,
+    required TResult Function(_RegisterUserSkills value) registerUserSkills,
+  }) {
+    return registerUserSkills(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FirstNameChanged value)? firstNameChanged,
+    TResult? Function(_SurNameChanged value)? surNameChanged,
+    TResult? Function(_IdChanged value)? idChanged,
+    TResult? Function(_BirthYearChanged value)? birthYearChanged,
+    TResult? Function(_ImageChanged value)? imageChanged,
+    TResult? Function(_GetSkills value)? getSkills,
+    TResult? Function(_GetSubSkills value)? getSubSkills,
+    TResult? Function(_SetUserSkills value)? setUserSkills,
+    TResult? Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult? Function(_RegisterUserImage value)? registerUserImage,
+    TResult? Function(_RegisterUserSkills value)? registerUserSkills,
+  }) {
+    return registerUserSkills?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_SurNameChanged value)? surNameChanged,
+    TResult Function(_IdChanged value)? idChanged,
+    TResult Function(_BirthYearChanged value)? birthYearChanged,
+    TResult Function(_ImageChanged value)? imageChanged,
+    TResult Function(_GetSkills value)? getSkills,
+    TResult Function(_GetSubSkills value)? getSubSkills,
+    TResult Function(_SetUserSkills value)? setUserSkills,
+    TResult Function(_RegisterUserInfo value)? registerUserInfo,
+    TResult Function(_RegisterUserImage value)? registerUserImage,
+    TResult Function(_RegisterUserSkills value)? registerUserSkills,
+    required TResult orElse(),
+  }) {
+    if (registerUserSkills != null) {
+      return registerUserSkills(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RegisterUserSkills implements MasterVerificationEvent {
+  const factory _RegisterUserSkills(final Function onSuccess) =
+      _$RegisterUserSkillsImpl;
+
+  Function get onSuccess;
+
+  /// Create a copy of MasterVerificationEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RegisterUserSkillsImplCopyWith<_$RegisterUserSkillsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1103,7 +2271,8 @@ mixin _$MasterVerificationState {
   String get surName => throw _privateConstructorUsedError;
   String get birthYear => throw _privateConstructorUsedError;
   String get idNumber => throw _privateConstructorUsedError;
-  List<String> get skills => throw _privateConstructorUsedError;
+  List<UserSkills> get allSkills => throw _privateConstructorUsedError;
+  List<UserSkills> get userSkills => throw _privateConstructorUsedError;
   Option<File> get userImage => throw _privateConstructorUsedError;
   Option<Either<ApiException, Unit>> get authFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
@@ -1128,7 +2297,8 @@ abstract class $MasterVerificationStateCopyWith<$Res> {
       String surName,
       String birthYear,
       String idNumber,
-      List<String> skills,
+      List<UserSkills> allSkills,
+      List<UserSkills> userSkills,
       Option<File> userImage,
       Option<Either<ApiException, Unit>> authFailureOrSuccessOption});
 }
@@ -1155,7 +2325,8 @@ class _$MasterVerificationStateCopyWithImpl<$Res,
     Object? surName = null,
     Object? birthYear = null,
     Object? idNumber = null,
-    Object? skills = null,
+    Object? allSkills = null,
+    Object? userSkills = null,
     Object? userImage = null,
     Object? authFailureOrSuccessOption = null,
   }) {
@@ -1184,10 +2355,14 @@ class _$MasterVerificationStateCopyWithImpl<$Res,
           ? _value.idNumber
           : idNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      skills: null == skills
-          ? _value.skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      allSkills: null == allSkills
+          ? _value.allSkills
+          : allSkills // ignore: cast_nullable_to_non_nullable
+              as List<UserSkills>,
+      userSkills: null == userSkills
+          ? _value.userSkills
+          : userSkills // ignore: cast_nullable_to_non_nullable
+              as List<UserSkills>,
       userImage: null == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
@@ -1216,7 +2391,8 @@ abstract class _$$MasterVerificationStateImplCopyWith<$Res>
       String surName,
       String birthYear,
       String idNumber,
-      List<String> skills,
+      List<UserSkills> allSkills,
+      List<UserSkills> userSkills,
       Option<File> userImage,
       Option<Either<ApiException, Unit>> authFailureOrSuccessOption});
 }
@@ -1242,7 +2418,8 @@ class __$$MasterVerificationStateImplCopyWithImpl<$Res>
     Object? surName = null,
     Object? birthYear = null,
     Object? idNumber = null,
-    Object? skills = null,
+    Object? allSkills = null,
+    Object? userSkills = null,
     Object? userImage = null,
     Object? authFailureOrSuccessOption = null,
   }) {
@@ -1271,10 +2448,14 @@ class __$$MasterVerificationStateImplCopyWithImpl<$Res>
           ? _value.idNumber
           : idNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      skills: null == skills
-          ? _value._skills
-          : skills // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      allSkills: null == allSkills
+          ? _value._allSkills
+          : allSkills // ignore: cast_nullable_to_non_nullable
+              as List<UserSkills>,
+      userSkills: null == userSkills
+          ? _value._userSkills
+          : userSkills // ignore: cast_nullable_to_non_nullable
+              as List<UserSkills>,
       userImage: null == userImage
           ? _value.userImage
           : userImage // ignore: cast_nullable_to_non_nullable
@@ -1297,10 +2478,12 @@ class _$MasterVerificationStateImpl implements _MasterVerificationState {
       required this.surName,
       required this.birthYear,
       required this.idNumber,
-      required final List<String> skills,
+      required final List<UserSkills> allSkills,
+      required final List<UserSkills> userSkills,
       required this.userImage,
       required this.authFailureOrSuccessOption})
-      : _skills = skills;
+      : _allSkills = allSkills,
+        _userSkills = userSkills;
 
   @override
   final bool isLoading;
@@ -1314,12 +2497,20 @@ class _$MasterVerificationStateImpl implements _MasterVerificationState {
   final String birthYear;
   @override
   final String idNumber;
-  final List<String> _skills;
+  final List<UserSkills> _allSkills;
   @override
-  List<String> get skills {
-    if (_skills is EqualUnmodifiableListView) return _skills;
+  List<UserSkills> get allSkills {
+    if (_allSkills is EqualUnmodifiableListView) return _allSkills;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_skills);
+    return EqualUnmodifiableListView(_allSkills);
+  }
+
+  final List<UserSkills> _userSkills;
+  @override
+  List<UserSkills> get userSkills {
+    if (_userSkills is EqualUnmodifiableListView) return _userSkills;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userSkills);
   }
 
   @override
@@ -1329,7 +2520,7 @@ class _$MasterVerificationStateImpl implements _MasterVerificationState {
 
   @override
   String toString() {
-    return 'MasterVerificationState(isLoading: $isLoading, showErrorMessages: $showErrorMessages, firstName: $firstName, surName: $surName, birthYear: $birthYear, idNumber: $idNumber, skills: $skills, userImage: $userImage, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'MasterVerificationState(isLoading: $isLoading, showErrorMessages: $showErrorMessages, firstName: $firstName, surName: $surName, birthYear: $birthYear, idNumber: $idNumber, allSkills: $allSkills, userSkills: $userSkills, userImage: $userImage, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
@@ -1348,7 +2539,10 @@ class _$MasterVerificationStateImpl implements _MasterVerificationState {
                 other.birthYear == birthYear) &&
             (identical(other.idNumber, idNumber) ||
                 other.idNumber == idNumber) &&
-            const DeepCollectionEquality().equals(other._skills, _skills) &&
+            const DeepCollectionEquality()
+                .equals(other._allSkills, _allSkills) &&
+            const DeepCollectionEquality()
+                .equals(other._userSkills, _userSkills) &&
             (identical(other.userImage, userImage) ||
                 other.userImage == userImage) &&
             (identical(other.authFailureOrSuccessOption,
@@ -1366,7 +2560,8 @@ class _$MasterVerificationStateImpl implements _MasterVerificationState {
       surName,
       birthYear,
       idNumber,
-      const DeepCollectionEquality().hash(_skills),
+      const DeepCollectionEquality().hash(_allSkills),
+      const DeepCollectionEquality().hash(_userSkills),
       userImage,
       authFailureOrSuccessOption);
 
@@ -1388,7 +2583,8 @@ abstract class _MasterVerificationState implements MasterVerificationState {
       required final String surName,
       required final String birthYear,
       required final String idNumber,
-      required final List<String> skills,
+      required final List<UserSkills> allSkills,
+      required final List<UserSkills> userSkills,
       required final Option<File> userImage,
       required final Option<Either<ApiException, Unit>>
           authFailureOrSuccessOption}) = _$MasterVerificationStateImpl;
@@ -1406,7 +2602,9 @@ abstract class _MasterVerificationState implements MasterVerificationState {
   @override
   String get idNumber;
   @override
-  List<String> get skills;
+  List<UserSkills> get allSkills;
+  @override
+  List<UserSkills> get userSkills;
   @override
   Option<File> get userImage;
   @override
@@ -1418,4 +2616,173 @@ abstract class _MasterVerificationState implements MasterVerificationState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MasterVerificationStateImplCopyWith<_$MasterVerificationStateImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$UserSkills {
+  Category get skill => throw _privateConstructorUsedError;
+  List<Category> get subSkill => throw _privateConstructorUsedError;
+
+  /// Create a copy of UserSkills
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UserSkillsCopyWith<UserSkills> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserSkillsCopyWith<$Res> {
+  factory $UserSkillsCopyWith(
+          UserSkills value, $Res Function(UserSkills) then) =
+      _$UserSkillsCopyWithImpl<$Res, UserSkills>;
+  @useResult
+  $Res call({Category skill, List<Category> subSkill});
+
+  $CategoryCopyWith<$Res> get skill;
+}
+
+/// @nodoc
+class _$UserSkillsCopyWithImpl<$Res, $Val extends UserSkills>
+    implements $UserSkillsCopyWith<$Res> {
+  _$UserSkillsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of UserSkills
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? skill = null,
+    Object? subSkill = null,
+  }) {
+    return _then(_value.copyWith(
+      skill: null == skill
+          ? _value.skill
+          : skill // ignore: cast_nullable_to_non_nullable
+              as Category,
+      subSkill: null == subSkill
+          ? _value.subSkill
+          : subSkill // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
+    ) as $Val);
+  }
+
+  /// Create a copy of UserSkills
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res> get skill {
+    return $CategoryCopyWith<$Res>(_value.skill, (value) {
+      return _then(_value.copyWith(skill: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$UserSkillsImplCopyWith<$Res>
+    implements $UserSkillsCopyWith<$Res> {
+  factory _$$UserSkillsImplCopyWith(
+          _$UserSkillsImpl value, $Res Function(_$UserSkillsImpl) then) =
+      __$$UserSkillsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Category skill, List<Category> subSkill});
+
+  @override
+  $CategoryCopyWith<$Res> get skill;
+}
+
+/// @nodoc
+class __$$UserSkillsImplCopyWithImpl<$Res>
+    extends _$UserSkillsCopyWithImpl<$Res, _$UserSkillsImpl>
+    implements _$$UserSkillsImplCopyWith<$Res> {
+  __$$UserSkillsImplCopyWithImpl(
+      _$UserSkillsImpl _value, $Res Function(_$UserSkillsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserSkills
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? skill = null,
+    Object? subSkill = null,
+  }) {
+    return _then(_$UserSkillsImpl(
+      skill: null == skill
+          ? _value.skill
+          : skill // ignore: cast_nullable_to_non_nullable
+              as Category,
+      subSkill: null == subSkill
+          ? _value._subSkill
+          : subSkill // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserSkillsImpl implements _UserSkills {
+  const _$UserSkillsImpl(
+      {required this.skill, required final List<Category> subSkill})
+      : _subSkill = subSkill;
+
+  @override
+  final Category skill;
+  final List<Category> _subSkill;
+  @override
+  List<Category> get subSkill {
+    if (_subSkill is EqualUnmodifiableListView) return _subSkill;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_subSkill);
+  }
+
+  @override
+  String toString() {
+    return 'UserSkills(skill: $skill, subSkill: $subSkill)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserSkillsImpl &&
+            (identical(other.skill, skill) || other.skill == skill) &&
+            const DeepCollectionEquality().equals(other._subSkill, _subSkill));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, skill, const DeepCollectionEquality().hash(_subSkill));
+
+  /// Create a copy of UserSkills
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserSkillsImplCopyWith<_$UserSkillsImpl> get copyWith =>
+      __$$UserSkillsImplCopyWithImpl<_$UserSkillsImpl>(this, _$identity);
+}
+
+abstract class _UserSkills implements UserSkills {
+  const factory _UserSkills(
+      {required final Category skill,
+      required final List<Category> subSkill}) = _$UserSkillsImpl;
+
+  @override
+  Category get skill;
+  @override
+  List<Category> get subSkill;
+
+  /// Create a copy of UserSkills
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UserSkillsImplCopyWith<_$UserSkillsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -10,7 +10,6 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/widgets/social_login_button.dart';
-import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../../../app/utils/resources/font_manager.dart';

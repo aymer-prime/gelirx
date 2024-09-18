@@ -11,6 +11,15 @@ class MasterVerificationEvent with _$MasterVerificationEvent {
       _BirthYearChanged;
   const factory MasterVerificationEvent.imageChanged(File image) =
       _ImageChanged;
-  const factory MasterVerificationEvent.submitInfo(Function onSuccess) =
-      _SubmitInfo;
+  const factory MasterVerificationEvent.getSkills() = _GetSkills;
+  const factory MasterVerificationEvent.getSubSkills(String skillId) =
+      _GetSubSkills;
+  const factory MasterVerificationEvent.setUserSkills(
+      Category selectedSubSkill) = _SetUserSkills;
+  const factory MasterVerificationEvent.registerUserInfo(Function onSuccess) =
+      _RegisterUserInfo;
+  const factory MasterVerificationEvent.registerUserImage(Function onSuccess) =
+      _RegisterUserImage;
+  const factory MasterVerificationEvent.registerUserSkills(Function onSuccess) =
+      _RegisterUserSkills;
 }

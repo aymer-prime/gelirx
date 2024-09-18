@@ -9,7 +9,8 @@ class MasterVerificationState with _$MasterVerificationState {
     required String surName,
     required String birthYear,
     required String idNumber,
-    required List<String> skills,
+    required List<UserSkills> allSkills,
+    required List<UserSkills> userSkills,
     required Option<File> userImage,
     required Option<Either<ApiException, Unit>> authFailureOrSuccessOption,
   }) = _MasterVerificationState;
@@ -21,8 +22,17 @@ class MasterVerificationState with _$MasterVerificationState {
         surName: '',
         birthYear: '',
         idNumber: '',
-        skills: [],
+        allSkills: [],
+        userSkills: [],
         userImage: none(),
         authFailureOrSuccessOption: none(),
       );
+}
+
+@freezed
+abstract class UserSkills with _$UserSkills {
+  const factory UserSkills({
+    required Category skill,
+    required List<Category> subSkill,
+  }) = _UserSkills;
 }

@@ -86,20 +86,96 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MasterVerificationPage]
-class MasterVerificationRoute extends PageRouteInfo<void> {
-  const MasterVerificationRoute({List<PageRouteInfo>? children})
+/// [MasterFormPage]
+class MasterFormRoute extends PageRouteInfo<void> {
+  const MasterFormRoute({List<PageRouteInfo>? children})
       : super(
-          MasterVerificationRoute.name,
+          MasterFormRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'MasterVerificationRoute';
+  static const String name = 'MasterFormRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const MasterVerificationPage();
+      return const MasterFormPage();
+    },
+  );
+}
+
+/// generated route for
+/// [MasterHomePage]
+class MasterHomeRoute extends PageRouteInfo<void> {
+  const MasterHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterHomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterHomePage();
+    },
+  );
+}
+
+/// generated route for
+/// [MasterInfoWrapperPage]
+class MasterInfoWrapperRoute extends PageRouteInfo<void> {
+  const MasterInfoWrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterInfoWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterInfoWrapperRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterInfoWrapperPage();
+    },
+  );
+}
+
+/// generated route for
+/// [MasterPicPage]
+class MasterPicRoute extends PageRouteInfo<void> {
+  const MasterPicRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterPicRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterPicRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterPicPage();
+    },
+  );
+}
+
+/// generated route for
+/// [MasterSkillsPage]
+class MasterSkillsRoute extends PageRouteInfo<void> {
+  const MasterSkillsRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterSkillsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterSkillsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterSkillsPage();
     },
   );
 }

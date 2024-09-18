@@ -72,7 +72,7 @@ class AuthPage extends HookWidget {
                   (_) {
                     state.isMaster
                         ? context.router.replace(
-                            const MasterVerificationRoute(),
+                            const MasterFormRoute(),
                           )
                         : context.router.replace(
                             const MainRoute(),
@@ -83,23 +83,21 @@ class AuthPage extends HookWidget {
             );
           },
           builder: (context, state) {
-            return Expanded(
-              child: PageView(
-                controller: pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  UserTypePage(
-                    onContinue: () {
-                      nextPage(pageController);
-                    },
-                  ),
-                  LoginPage(
-                    toPreviousPage: () {
-                      previousPage(pageController);
-                    },
-                  ),
-                ],
-              ),
+            return PageView(
+              controller: pageController,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                UserTypePage(
+                  onContinue: () {
+                    nextPage(pageController);
+                  },
+                ),
+                LoginPage(
+                  toPreviousPage: () {
+                    previousPage(pageController);
+                  },
+                ),
+              ],
             );
           },
         ),

@@ -1,8 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/network/api_exception.dart';
+import 'package:gelirx/app/network/remote_service.dart';
+import 'package:gelirx/app/utils/app_constants.dart';
+import 'package:gelirx/features/auth/data/mappers/firebase_user_maper.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -15,13 +21,19 @@ class AuthRepository implements IAuthRepository {
   final GoogleSignIn googleSignIn;
   final FacebookAuth facebookAuth;
   final FirebaseAuth phoneAuth;
+  final FirebaseUserMapper firebaseUserMapper;
+  final LocalService _localService;
+  final RemoteService _remoteService;
 
-  AuthRepository({
-    required this.firebaseAuth,
-    required this.googleSignIn,
-    required this.facebookAuth,
-    required this.phoneAuth
-  });
+  AuthRepository(
+    this.firebaseAuth,
+    this.googleSignIn,
+    this.facebookAuth,
+    this.phoneAuth,
+    this.firebaseUserMapper,
+    this._localService,
+    this._remoteService,
+  );
 
   // Sign in with Google
   @override
@@ -29,16 +41,19 @@ class AuthRepository implements IAuthRepository {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       if (googleUser == null) {
-        return left(const ApiException.defaultException("12501", 'Google Sign-in cancelled'));
+        return left(const ApiException.defaultException(
+            "12501", 'Google Sign-in cancelled'));
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
+      final UserCredential userCredential =
+          await firebaseAuth.signInWithCredential(credential);
       final User user = userCredential.user!;
 
       User? user1 = FirebaseAuth.instance.currentUser;
@@ -57,7 +72,6 @@ class AuthRepository implements IAuthRepository {
         name: user.displayName,
         email: user.email,
       ));
-
     } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.toString()));
     }
@@ -69,9 +83,11 @@ class AuthRepository implements IAuthRepository {
     try {
       final LoginResult result = await facebookAuth.login();
       if (result.status == LoginStatus.success) {
-        final AuthCredential credential = FacebookAuthProvider.credential(result.accessToken!.tokenString);
+        final AuthCredential credential =
+            FacebookAuthProvider.credential(result.accessToken!.tokenString);
 
-        final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
+        final UserCredential userCredential =
+            await firebaseAuth.signInWithCredential(credential);
         final User user = userCredential.user!;
 
         return right(UserEntity(
@@ -80,9 +96,10 @@ class AuthRepository implements IAuthRepository {
           email: user.email,
         ));
       } else {
-        return left(ApiException.defaultException(result.status.name, result.message ?? ""));
+        return left(ApiException.defaultException(
+            result.status.name, result.message ?? ""));
       }
-    } on FirebaseAuthException  catch (e) {
+    } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
     }
   }
@@ -103,7 +120,8 @@ class AuthRepository implements IAuthRepository {
         accessToken: appleCredential.authorizationCode,
       );
 
-      final UserCredential userCredential = await firebaseAuth.signInWithCredential(oauthCredential);
+      final UserCredential userCredential =
+          await firebaseAuth.signInWithCredential(oauthCredential);
       final User user = userCredential.user!;
 
       return right(UserEntity(
@@ -111,13 +129,15 @@ class AuthRepository implements IAuthRepository {
         name: user.displayName,
         email: user.email,
       ));
-    } on FirebaseAuthException  catch (e) {
+    } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
     }
   }
 
   // Sign in with Phone Number (start verification)
-  Future<Either<ApiException, String>> signInWithPhoneNumber(String phoneNumber) async {
+  @override
+  Future<Either<ApiException, String>> signInWithPhoneNumber(
+      String phoneNumber) async {
     try {
       final verificationIdCompleter = Completer<String>();
 
@@ -135,7 +155,8 @@ class AuthRepository implements IAuthRepository {
           // Print the detailed error message for more insight
           print('Verification failed with error code: ${e.code}');
           print('Error message: ${e.message}');
-          throw ApiException.defaultException(e.code, e.message ?? 'Verification failed');
+          throw ApiException.defaultException(
+              e.code, e.message ?? 'Verification failed');
         },
         codeSent: (String verificationId, int? resendToken) {
           verificationIdCompleter.complete(verificationId);
@@ -148,7 +169,6 @@ class AuthRepository implements IAuthRepository {
         },
       );
 
-
       final verificationId = await verificationIdCompleter.future;
       return right(verificationId);
     } on FirebaseAuthException catch (e) {
@@ -158,10 +178,13 @@ class AuthRepository implements IAuthRepository {
 
   // Verify Phone Number with SMS Code
   @override
-  Future<Either<ApiException, UserEntity>> verifyPhoneNumber(String verificationId, String smsCode) async {
+  Future<Either<ApiException, UserEntity>> verifyPhoneNumber(
+      String verificationId, String smsCode) async {
     try {
-      final PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
-      final UserCredential userCredential = await firebaseAuth.signInWithCredential(credential);
+      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: smsCode);
+      final UserCredential userCredential =
+          await firebaseAuth.signInWithCredential(credential);
       final User user = userCredential.user!;
       User? user1 = FirebaseAuth.instance.currentUser;
 
@@ -181,5 +204,110 @@ class AuthRepository implements IAuthRepository {
     } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
     }
+  }
+
+  @override
+  Option<UserEntity> getSignedInUser() {
+    final authToken = _localService.get(Constants.tokenKey);
+    if (authToken != null) {
+      try {
+        //todo get the user data from the backend using the token
+        return optionOf(firebaseUserMapper.toDomain(firebaseAuth.currentUser));
+      } catch (e) {
+        return none();
+      }
+    } else {
+      return none();
+    }
+  }
+
+  @override
+  Future<List<void>> signOut() async {
+    return Future.wait([
+      firebaseAuth.signOut(),
+      googleSignIn.signOut(),
+      facebookAuth.logOut(),
+      phoneAuth.signOut(),
+    ]);
+  }
+
+  @override
+  Future<Either<ApiException, Unit>> registerUserInfo(
+    String firstName,
+    String surName,
+    String idNumber,
+    String birthYear,
+  ) async {
+    try {
+      var idToken = await firebaseAuth.currentUser!.getIdToken();
+      var data = {
+        'lang': 'tr',
+        'idToken': idToken,
+        'id_number': idNumber,
+        'name': firstName,
+        'surname': surName,
+        'birthdate': birthYear,
+      };
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}handyman/register.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      if (response != null) {
+        String userId = response['token'];
+        String token = response['user_id'];
+        await _localService.save(Constants.tokenKey, token);
+        await _localService.save(Constants.userIdKey, userId);
+      }
+
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<ApiException, Unit>> registerUserImage(File userImage) async {
+    try {
+      var token = _localService.get(Constants.tokenKey);
+      var userId = _localService.get(Constants.userIdKey);
+      var data = FormData.fromMap({
+        'lang': 'tr',
+        'user_id': userId,
+        'token': token,
+        'img': await MultipartFile.fromFile(userImage.path),
+      });
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}handyman/picture.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<ApiException, Unit>> registerUserSkills(
+      List<String> userSkills) async {
+    // TODO: implement registerUserSkills
+    throw UnimplementedError();
   }
 }

@@ -1,6 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/Material.dart';
-import 'package:gelirx/features/auth/presentation/pages/master_verification_page.dart';
+import 'package:gelirx/features/auth/presentation/pages/master_info/master_pic_page.dart';
+import 'package:gelirx/features/auth/presentation/pages/master_info/master_skills_page.dart';
+import 'package:gelirx/features/auth/presentation/pages/master_info/master_form_page.dart';
+import 'package:gelirx/features/auth/presentation/pages/master_info/master_info_wrapper.dart';
+import 'package:gelirx/features/home/presentation/pages/master/master_home_page.dart';
 import 'package:gelirx/features/home/presentation/pages/services_page.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
@@ -38,7 +42,19 @@ class AppRouter extends RootStackRouter {
           page: AuthRoute.page,
         ),
         AutoRoute(
-          page: MasterVerificationRoute.page,
+          page: MasterHomeRoute.page,
+        ),
+        AutoRoute(
+          page: MasterInfoWrapperRoute.page,
+          children: [
+            AutoRoute(page: MasterFormRoute.page, initial: true),
+            AutoRoute(
+              page: MasterPicRoute.page,
+            ),
+            AutoRoute(
+              page: MasterSkillsRoute.page,
+            ),
+          ],
         ),
       ];
 }

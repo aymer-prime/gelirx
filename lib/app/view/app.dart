@@ -5,6 +5,7 @@ import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/theme_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 
 class App extends StatelessWidget {
@@ -25,6 +26,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider<AuthBloc>(
           create: (_) => getIt<AuthBloc>(),
+        ),
+        BlocProvider<AuthStatusBloc>(
+          create: (_) => getIt<AuthStatusBloc>(),
         ),
       ],
       child: const _Starter(),

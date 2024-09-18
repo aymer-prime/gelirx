@@ -5,10 +5,10 @@ import 'package:dio/dio.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/remote_service.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
-import 'package:gelirx/features/home/data/dtos/category_dto.dart';
-import 'package:gelirx/features/home/data/mappers/home_mappers.dart';
+import 'package:gelirx/features/shared/domain/dtos/category/category_dto.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
+import 'package:gelirx/features/shared/domain/mappers/shared_mappers.dart';
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: IHomeRepository)

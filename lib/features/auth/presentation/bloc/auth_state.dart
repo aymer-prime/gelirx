@@ -5,10 +5,6 @@ class AuthState with _$AuthState {
   const factory AuthState({
     required bool isLoading,
     required bool isMaster,
-    required String firstName,
-    required String surName,
-    required String idNumber,
-    required Option<File> userImage,
     required Option<UserEntity> user, // UserEntity from your domain
     required Option<Either<ApiException, Unit>>
         authFailureOrSuccessOption, // For handling error messages
@@ -19,10 +15,6 @@ class AuthState with _$AuthState {
   factory AuthState.initial() => AuthState(
         isLoading: false,
         isMaster: false,
-        firstName: '',
-        surName: '',
-        idNumber: '',
-        userImage: none(),
         user: none(),
         authFailureOrSuccessOption: none(),
         verificationId: none(),
