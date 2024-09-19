@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -207,31 +208,6 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Option<UserEntity> getSignedInUser() {
-    final authToken = _localService.get(Constants.tokenKey);
-    if (authToken != null) {
-      try {
-        //todo get the user data from the backend using the token
-        return optionOf(firebaseUserMapper.toDomain(firebaseAuth.currentUser));
-      } catch (e) {
-        return none();
-      }
-    } else {
-      return none();
-    }
-  }
-
-  @override
-  Future<List<void>> signOut() async {
-    return Future.wait([
-      firebaseAuth.signOut(),
-      googleSignIn.signOut(),
-      facebookAuth.logOut(),
-      phoneAuth.signOut(),
-    ]);
-  }
-
-  @override
   Future<Either<ApiException, Unit>> registerUserInfo(
     String firstName,
     String surName,
@@ -258,8 +234,8 @@ class AuthRepository implements IAuthRepository {
         data: data,
       );
       if (response != null) {
-        String userId = response['token'];
-        String token = response['user_id'];
+        String token = response['token'];
+        String userId = response['user_id'];
         await _localService.save(Constants.tokenKey, token);
         await _localService.save(Constants.userIdKey, userId);
       }
@@ -279,11 +255,14 @@ class AuthRepository implements IAuthRepository {
     try {
       var token = _localService.get(Constants.tokenKey);
       var userId = _localService.get(Constants.userIdKey);
+      List<int> imageBytes = await userImage.readAsBytes();
+      String base64Image = base64Encode(imageBytes);
       var data = FormData.fromMap({
         'lang': 'tr',
         'user_id': userId,
         'token': token,
-        'img': await MultipartFile.fromFile(userImage.path),
+        'img': base64Image,
+        //'img': await MultipartFile.fromFile(userImage.path),
       });
       var response = await _remoteService.post(
         '${Constants.baseUrl}handyman/picture.php',
@@ -307,7 +286,59 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<Either<ApiException, Unit>> registerUserSkills(
       List<String> userSkills) async {
-    // TODO: implement registerUserSkills
-    throw UnimplementedError();
+    try {
+      var token = _localService.get(Constants.tokenKey);
+      var userId = _localService.get(Constants.userIdKey);
+      var data = {
+        'lang': 'tr',
+        'user_id': userId,
+        'token': token,
+        'category_id[]': userSkills,
+      };
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}handyman/choose_skills.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
+
+  @override
+  Option<UserEntity> getSignedInUser() {
+    final authToken = _localService.get(Constants.tokenKey);
+    final userId = _localService.get(Constants.userIdKey);
+    if (authToken != null && userId != null) {
+      try {
+        //todo get the user data from the backend using the token
+        return optionOf(firebaseUserMapper.toDomain(firebaseAuth.currentUser));
+      } catch (e) {
+        return none();
+      }
+    } else {
+      return none();
+    }
+  }
+
+  @override
+  Future<List<void>> signOut() async {
+    await _localService.delete(Constants.tokenKey);
+    await _localService.delete(Constants.userIdKey);
+    return Future.wait([
+      firebaseAuth.signOut(),
+      googleSignIn.signOut(),
+      facebookAuth.logOut(),
+      phoneAuth.signOut(),
+    ]);
   }
 }

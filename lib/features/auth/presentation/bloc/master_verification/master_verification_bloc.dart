@@ -157,6 +157,7 @@ class MasterVerificationBloc
                   ),
                 );
               }
+              event.onSuccess();
             },
           );
         },
@@ -167,6 +168,37 @@ class MasterVerificationBloc
         isLoading: true,
         authFailureOrSuccessOption: none(),
       ));
+      List<String> userSkills = [];
+      for (var userSkillItem in state.userSkills) {
+        userSkills.add(userSkillItem.skill.id);
+        for (var subSkill in userSkillItem.subSkill) {
+          userSkills.add(subSkill.id);
+        }
+      }
+      var result = await _iAuthRepository.registerUserSkills(userSkills);
+      result.fold(
+        (l) {
+          if (!emit.isDone) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                authFailureOrSuccessOption: some(left(l)),
+              ),
+            );
+          }
+        },
+        (_) {
+          if (!emit.isDone) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                authFailureOrSuccessOption: some(right(unit)),
+              ),
+            );
+          }
+          event.onSuccess();
+        },
+      );
     });
     on<_RegisterUserInfo>((event, emit) async {
       emit(
@@ -176,13 +208,6 @@ class MasterVerificationBloc
         ),
       );
       var isInfoValid = infoValidate();
-      List<String> userSkill = [];
-      for (var userSkillItem in state.userSkills) {
-        userSkill.add(userSkillItem.skill.id);
-        for (var subSkill in userSkillItem.subSkill) {
-          userSkill.add(subSkill.id);
-        }
-      }
       if (isInfoValid) {
         var result = await _iAuthRepository.registerUserInfo(
           state.firstName,
@@ -210,9 +235,9 @@ class MasterVerificationBloc
                 ),
               );
             }
+            event.onSuccess();
           },
         );
-        event.onSuccess();
       } else {
         emit(
           state.copyWith(

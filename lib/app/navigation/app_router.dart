@@ -24,6 +24,10 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: SplashRoute.page,
+          initial: true,
+        ),
+        AutoRoute(
+          page: OnboardingRoute.page,
         ),
         AutoRoute(
           page: MainRoute.page,
@@ -60,7 +64,6 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: MasterMainRoute.page,
-          initial: true,
         ),
       ];
 }

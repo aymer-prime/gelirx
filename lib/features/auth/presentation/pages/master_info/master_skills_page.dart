@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/map_extensions.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
@@ -75,13 +76,7 @@ class MasterSkillsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                ),
-              ),
-              //const SizedBox(height: AppSize.s24),
+              const SizedBox(height: AppSize.s24),
               Center(
                 child: Text(
                   'Choose Your Skills',
@@ -168,9 +163,10 @@ class MasterSkillsPage extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          // context.read<MasterVerificationBloc>().add(
-                          //       const MasterVerificationEvent.registerUserInfo(),
-                          //     );
+                          context.read<MasterVerificationBloc>().add(
+                              MasterVerificationEvent.registerUserSkills(() {
+                            context.router.replace(const MasterPicRoute());
+                          }));
                         },
                         child: const Text(
                           AppStrings.continueTxt,

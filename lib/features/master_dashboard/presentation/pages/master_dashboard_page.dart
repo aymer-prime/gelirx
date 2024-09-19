@@ -30,10 +30,12 @@ class MasterDashboardPage extends StatelessWidget {
                 ),
               ),
               child: Center(
-                child: Text('not Busy',
-                    style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.confirmedTextColor,
-                    )),
+                child: Text(
+                  'not Busy',
+                  style: context.textTheme.labelSmall!.copyWith(
+                    color: ColorManager.confirmedTextColor,
+                  ),
+                ),
               ),
             ),
           ],
@@ -195,7 +197,15 @@ class MasterBookingWidget extends StatelessWidget {
                 'Lorem ipsum odor amet, consectetuer adipiscing elit. Per maximus odio felis lacinia magna, fermentum placerat. In leo mollis posuere consectetur donec nostra.',
               ),
             ),
-            const SizedBox(height: AppSize.s8),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.p16,
+              ),
+              child: Divider(
+                color: ColorManager.textfieldBorderColor,
+                height: AppSize.s24,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

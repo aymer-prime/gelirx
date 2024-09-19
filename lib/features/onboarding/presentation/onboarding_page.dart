@@ -31,7 +31,17 @@ class OnboardingPage extends HookWidget {
     final currentPage = useValueNotifier<int>(0);
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          IconButton(
+            onPressed: () {
+              context.router.replace(const AuthRoute());
+            },
+            icon: Icon(
+              Icons.next_plan,
+              color: ColorManager.darkPrimary,
+            ),
+          ),
           Expanded(
             child: SizedBox(
               child: PageView.builder(

@@ -133,10 +133,7 @@ class MasterPicPage extends StatelessWidget {
                     onPressed: () {
                       context.read<MasterVerificationBloc>().add(
                         MasterVerificationEvent.registerUserImage(() {
-                          context.read<MasterVerificationBloc>().add(
-                                const MasterVerificationEvent.getSkills(),
-                              );
-                          context.router.replace(const MasterSkillsRoute());
+                          context.router.replace(const MasterMainRoute());
                         }),
                       );
                     },

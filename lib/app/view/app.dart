@@ -28,7 +28,10 @@ class App extends StatelessWidget {
           create: (_) => getIt<AuthBloc>(),
         ),
         BlocProvider<AuthStatusBloc>(
-          create: (_) => getIt<AuthStatusBloc>(),
+          create: (_) => getIt<AuthStatusBloc>()
+            ..add(
+              const AuthStatusEvent.authCheckRequested(),
+            ),
         ),
       ],
       child: const _Starter(),

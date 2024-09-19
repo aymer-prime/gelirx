@@ -234,8 +234,14 @@ class MasterFormPage extends StatelessWidget {
                             onPressed: () {
                               context.read<MasterVerificationBloc>().add(
                                 MasterVerificationEvent.registerUserInfo(() {
+                                  context.read<MasterVerificationBloc>().add(
+                                        const MasterVerificationEvent
+                                            .getSkills(),
+                                      );
                                   context.router
-                                      .replace(const MasterPicRoute());
+                                      .replace(const MasterSkillsRoute());
+                                  // context.router
+                                  //     .replace(const MasterPicRoute());
                                 }),
                               );
                             },
