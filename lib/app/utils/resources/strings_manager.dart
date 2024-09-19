@@ -37,6 +37,7 @@ class AppStrings {
   static const photoCamera = "Photo from Camera";
   static const profilePicture = "Upload Profile Picture";
   static const continueTxt = 'Continue';
+  static const logOut = 'Log Out';
 
   //onboarding
   static const getStarted = 'Get Started';
