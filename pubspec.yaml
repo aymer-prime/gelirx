@@ -73,6 +73,11 @@ dependencies:
   uuid: ^4.5.0
   image_picker: ^1.1.2
   another_flushbar: ^1.12.30
+  firebase_messaging: ^14.7.10
+  flutter_callkit_incoming: ^2.0.4+1
+
+
+
   #flutter_native_splash: ^2.3.8
 
 dev_dependencies:

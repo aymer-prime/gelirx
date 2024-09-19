@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
@@ -33,6 +34,9 @@ abstract class InjectableModules {
 
   @lazySingleton
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
+
+  @lazySingleton
+  FirebaseMessaging get firebaseMessaging => FirebaseMessaging.instance;
 
   @lazySingleton
   Dio get dio => Dio();
