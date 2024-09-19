@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
+import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart' as _i806;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
@@ -43,6 +44,7 @@ import '../../features/navigation/domain/usecases/navigation_usecase.dart'
 import '../../features/navigation/presentation/bloc/navigation_bloc.dart'
     as _i162;
 import '../local_services/local_services.dart' as _i902;
+import '../local_services/notifiaction_handler.dart' as _i468;
 import '../navigation/app_router.dart' as _i630;
 import '../network/dio_client.dart' as _i667;
 import '../network/remote_service.dart' as _i464;
@@ -69,10 +71,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i264.SignInWithApple>(
         () => injectableModules.signInWithApple);
     gh.lazySingleton<_i59.FirebaseAuth>(() => injectableModules.firebaseAuth);
+    gh.lazySingleton<_i892.FirebaseMessaging>(
+        () => injectableModules.firebaseMessaging);
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
     gh.lazySingleton<_i905.FirebaseUserMapper>(
         () => _i905.FirebaseUserMapper());
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
+    gh.factory<_i468.NotificationHandler>(
+        () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
     gh.lazySingleton<_i92.IBookingRepository>(() => _i678.BookingRepository());

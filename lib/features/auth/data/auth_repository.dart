@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/network/api_exception.dart';
@@ -216,6 +217,7 @@ class AuthRepository implements IAuthRepository {
   ) async {
     try {
       var idToken = await firebaseAuth.currentUser!.getIdToken();
+      var fcmToken = await FirebaseMessaging.instance.getToken();
       var data = {
         'lang': 'tr',
         'idToken': idToken,
