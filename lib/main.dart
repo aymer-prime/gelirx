@@ -10,12 +10,11 @@ import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app/local_services/notifiaction_handler.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   _initLoggy();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   //_initGoogleFonts();
@@ -27,6 +26,7 @@ void main() async {
     const App(),
   );
 }
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print('Handling a background message: ${message.messageId}');
 

@@ -9,6 +9,7 @@ class ImageAssets {
   static const String star = '$imagePath/misc/star.svg';
   static const String appliance = '$imagePath/misc/appliance.png';
   static const String logoWhite = '$imagePath/misc/logo_white.svg';
+  static const String logoPrimary = '$imagePath/misc/logo_primary.svg';
   static const String masterIcon = '$imagePath/misc/master_icon.png';
   static const String userIcon = '$imagePath/misc/user_icon.png';
   static const String tierIcon = '$imagePath/misc/tier_icon.svg';

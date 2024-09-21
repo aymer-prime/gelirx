@@ -20,7 +20,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       padding: const EdgeInsets.all(AppPadding.p8),
-      color: ColorManager.background,
+      color: Colors.transparent,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSize.s12),
         child: Container(

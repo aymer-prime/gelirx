@@ -10,8 +10,11 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/functions.dart';
-import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
+import 'package:gelirx/features/home/presentation/widgets/home_map_widget.dart';
+import 'package:gelirx/features/home/presentation/widgets/range_slider_widget.dart';
+import 'package:gelirx/features/home/presentation/widgets/sevice_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.dart';
+import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 @RoutePage()
@@ -35,12 +38,19 @@ class HomePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(
-              AppPadding.p16,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
+          return Stack(
+            children: [
+              state.userPosition.fold(
+                () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                (userPosition) => HomeMap(
+                  userPosition: userPosition,
+                  range: state.range,
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     padding: const EdgeInsets.all(AppPadding.p16),
@@ -49,18 +59,7 @@ class HomePage extends StatelessWidget {
                       color: Colors.white,
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          AppStrings.welcomeSubtitle,
-                          style: context.textTheme.titleMedium,
-                        ),
-                        Text(
-                          AppStrings.welcomeTitle,
-                          style: context.textTheme.displayMedium,
-                        ),
-                        const SizedBox(height: AppSize.s16),
                         TextField(
                           decoration: InputDecoration(
                             hintText: AppStrings.searchHint,
@@ -80,149 +79,89 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.s16),
-                  Container(
-                    padding: const EdgeInsets.all(AppPadding.p16),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                    ),
-                    child: state.categories.isEmpty
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : TopCategoriesWidgets(
-                            categories: state.categories,
-                          ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(AppPadding.p16),
-                    decoration: BoxDecoration(color: ColorManager.white),
-                  ),
-                  const SizedBox(height: AppSize.s16),
-                  Container(
-                    height: AppSize.s200,
-                    padding: const EdgeInsets.all(AppPadding.p16),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                    ),
-                    child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        OfferWidget(),
-                        OfferWidget(),
-                        OfferWidget(),
-                      ].separateWith(const SizedBox(
-                        width: AppSize.s16,
-                      )),
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.s16),
-                  Container(
-                    padding: const EdgeInsets.all(AppPadding.p16),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                    ),
-                    child: Column(
-                      children: [
-                        const CardLabelWidget(label: 'Appliance repair'),
-                        const SizedBox(
-                          height: AppSize.s16,
                         ),
-                        Container(
-                          width: double.infinity,
-                          height: AppSize.s200,
-                          decoration: BoxDecoration(
-                            color: ColorManager.lightPrimary,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s8,
-                            ),
-                          ),
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                bottom: 0,
-                                right: 0,
-                                child: Image.asset(ImageAssets.appliance),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: AppPadding.p16,
-                                ),
-                                child: SizedBox(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Offer Dry Cleaning',
-                                            style: context.textTheme.labelLarge,
-                                          ),
-                                          const SizedBox(width: AppSize.s4),
-                                          const Icon(Icons.info)
-                                        ],
-                                      ),
-                                      const SizedBox(height: AppSize.s12),
-                                      Text(
-                                        'Get 25%',
-                                        style: context.textTheme.displayMedium,
-                                      ),
-                                      const SizedBox(height: AppSize.s12),
-                                      ElevatedButton(
-                                        onPressed: () {},
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: ColorManager.white,
-                                          shape: StadiumBorder(),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: AppPadding.p12,
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Text(
-                                                'Grab offer',
-                                                style: context
-                                                    .textTheme.labelLarge!
-                                                    .copyWith(
-                                                  color:
-                                                      ColorManager.lightPrimary,
-                                                ),
-                                              ),
-                                              Icon(
-                                                Icons
-                                                    .keyboard_arrow_right_rounded,
-                                                color:
-                                                    ColorManager.lightPrimary,
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                        const SizedBox(height: AppSize.s16),
+                        const CardLabelWidget(label: 'Edit Range'),
+                        const SizedBox(height: AppSize.s8),
+                        RangeSliderWidget(
+                          label: AppStrings.range,
+                          range: context.read<HomeBloc>().state.range,
+                        ),
                       ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(AppPadding.p16),
+                    width: double.infinity,
+                    height: context.screenSize.height * 0.4,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          state.categories.isEmpty
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : TopCategoriesWidgets(
+                                  categories: state.categories,
+                                ),
+                          const SizedBox(height: AppSize.s16),
+                          (state.categories.isEmpty ||
+                                  state.subCategories.isEmpty)
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const CardLabelWidget(
+                                          label: '${AppStrings.services} - ',
+                                        ),
+                                        Flexible(
+                                          child: Text(
+                                            state.categories[state.catIndex]
+                                                .name,
+                                            style: context.textTheme.bodyMedium,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        ...List.generate(
+                                          state.subCategories.length,
+                                          (index) => ServiceWidget(
+                                            service: state.subCategories[index],
+                                          ),
+                                        )
+                                      ].separateWith(
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: AppPadding.p8,
+                                            horizontal: AppPadding.p32,
+                                          ),
+                                          child: Divider(
+                                            thickness: AppSize.s1,
+                                            color: ColorManager
+                                                .textfieldBorderColor,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                          const SizedBox(height: AppSize.s100),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-            ),
+            ],
           );
         },
       ),

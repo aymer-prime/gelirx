@@ -5,7 +5,6 @@ import 'package:gelirx/app/extensions/string.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/widgets/filter_button.dart';
 
 class FilterWidget extends StatelessWidget {
@@ -86,9 +85,11 @@ class FilterWidget extends StatelessWidget {
         ),
         height: AppSize.s40,
         decoration: BoxDecoration(
-          color: ColorManager.lightPrimary,
-          borderRadius: BorderRadius.circular(20),
-        ),
+            color: ColorManager.white,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: ColorManager.darkPrimary,
+            )),
         child: Row(
           children: [
             Text(
@@ -100,7 +101,7 @@ class FilterWidget extends StatelessWidget {
             const Expanded(child: SizedBox()),
             Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: ColorManager.white,
+              color: ColorManager.darkPrimary,
             )
           ],
         ),

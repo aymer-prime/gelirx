@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
@@ -51,9 +49,7 @@ class TopCategoriesWidgets extends StatelessWidget {
                         const CardLabelWidget(
                           label: AppStrings.allCat,
                         ),
-                        const SizedBox(
-                          height: AppSize.s16,
-                        ),
+                        const SizedBox(height: AppSize.s16),
                         Expanded(
                           child: CategoriesGridWidget(
                             categories: categories,
@@ -102,7 +98,7 @@ class TopCategoriesWidgets extends StatelessWidget {
                     context.read<HomeBloc>().add(
                           HomeEvent.getSubCategories(catIndex: index),
                         );
-                    context.router.push(const ServicesRoute());
+                    //context.router.push(const ServicesRoute());
                   },
                 ),
               ),

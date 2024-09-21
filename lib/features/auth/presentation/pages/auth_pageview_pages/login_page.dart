@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
@@ -55,9 +56,19 @@ class LoginPage extends StatelessWidget {
                       children: [
                         //const SizedBox(height: AppSize.s40),
                         Center(
-                          child: Image.asset(
-                            ImageAssets.logo,
-                            width: AppSize.s150,
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                ImageAssets.logoPrimary,
+                              ),
+                              const SizedBox(height: AppSize.s8),
+                              Text(
+                                AppStrings.splashTitle1,
+                                style: context.textTheme.displayLarge!.copyWith(
+                                  color: ColorManager.darkPrimary,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(height: AppSize.s60),
@@ -199,7 +210,7 @@ class LoginPage extends StatelessWidget {
                                 width: double.infinity,
                                 child: OutlinedButton(
                                   onPressed: () {
-                                    context.router.replace(const MainRoute());
+                                    context.router.replace(const AlternateMainRoute());
                                   },
                                   style: OutlinedButton.styleFrom(
                                     backgroundColor:

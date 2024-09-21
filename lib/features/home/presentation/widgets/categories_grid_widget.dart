@@ -32,7 +32,7 @@ class CategoriesGridWidget extends StatelessWidget {
           child: CategoryItem(
             category: category,
             onTap: () {
-              context.router.popAndPush(const ServicesRoute());
+              //context.router.popAndPush(const ServicesRoute());
               context.read<HomeBloc>().add(
                     HomeEvent.getSubCategories(catIndex: index),
                   );

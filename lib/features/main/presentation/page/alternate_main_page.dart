@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
 import 'package:gelirx/features/main/presentation/widgets/nav_bar.dart';
@@ -50,42 +53,50 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          IndexedStack(
-            index: selectedTab,
-            children: items
-                .map((page) => Navigator(
-                      key: page.navKey,
-                      onGenerateInitialRoutes: (navigator, initialRoute) {
-                        return [
-                          MaterialPageRoute(builder: (context) => page.page)
-                        ];
-                      },
-                    ))
-                .toList(),
-          ),
-          Column(
-            children: [
-              const Expanded(child: SizedBox()),
-              NavBar(
-                pageIndex: selectedTab,
-                onTap: (index) {
-                  if (index == selectedTab) {
-                    items[index]
-                        .navKey
-                        .currentState
-                        ?.popUntil((route) => route.isFirst);
-                  } else {
-                    setState(() {
-                      selectedTab = index;
-                    });
-                  }
-                },
-              ),
-            ],
-          ),
-        ],
+      body: BlocListener<AuthStatusBloc, AuthStatusState>(
+        listener: (context, state) {
+          state.maybeMap(
+            unAuthenticated: (_) => context.router.replace(const AuthRoute()),
+            orElse: () {},
+          );
+        },
+        child: Stack(
+          children: [
+            IndexedStack(
+              index: selectedTab,
+              children: items
+                  .map((page) => Navigator(
+                        key: page.navKey,
+                        onGenerateInitialRoutes: (navigator, initialRoute) {
+                          return [
+                            MaterialPageRoute(builder: (context) => page.page)
+                          ];
+                        },
+                      ))
+                  .toList(),
+            ),
+            Column(
+              children: [
+                const Expanded(child: SizedBox()),
+                NavBar(
+                  pageIndex: selectedTab,
+                  onTap: (index) {
+                    if (index == selectedTab) {
+                      items[index]
+                          .navKey
+                          .currentState
+                          ?.popUntil((route) => route.isFirst);
+                    } else {
+                      setState(() {
+                        selectedTab = index;
+                      });
+                    }
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(

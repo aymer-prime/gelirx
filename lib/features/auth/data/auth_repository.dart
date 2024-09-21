@@ -339,7 +339,7 @@ class AuthRepository implements IAuthRepository {
     return Future.wait([
       firebaseAuth.signOut(),
       googleSignIn.signOut(),
-      facebookAuth.logOut(),
+      //facebookAuth.logOut(),
       phoneAuth.signOut(),
     ]);
   }

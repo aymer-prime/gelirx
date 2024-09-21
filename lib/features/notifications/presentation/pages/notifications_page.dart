@@ -28,7 +28,7 @@ class NotificationsPage extends StatelessWidget {
                 Flexible(
                   child: FilterWidget(
                     title: 'Notifications',
-                    data: ['All', 'Unread'],
+                    data: const ['All', 'Unread', 'Read'],
                     currentFilterIndex: 0,
                     onSelect: (index) {},
                   ),
