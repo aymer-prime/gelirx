@@ -8,6 +8,7 @@ import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/features/auth/domain/i_auth_repository.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
+import 'package:gelirx/features/shared/misc/functions.dart';
 import 'package:injectable/injectable.dart';
 
 part 'master_verification_event.dart';
@@ -209,11 +210,13 @@ class MasterVerificationBloc
       );
       var isInfoValid = infoValidate();
       if (isInfoValid) {
+        var userPosition = await determinePosition();
         var result = await _iAuthRepository.registerUserInfo(
           state.firstName,
           state.surName,
           state.idNumber,
           state.birthYear,
+          userPosition,
         );
         result.fold(
           (l) {

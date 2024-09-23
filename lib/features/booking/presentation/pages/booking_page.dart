@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/features/main/presentation/page/master_main_page.dart';
+import 'package:gelirx/features/master_dashboard/presentation/pages/master_dashboard_page.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import '../../../../app/utils/resources/assets_manager.dart';
 import '../../../../app/utils/resources/values_manager.dart';
@@ -80,7 +81,7 @@ class BookingPage extends HookWidget {
                           controller: tabController,
                           children: [
                             UserBookingsWidget(),
-                            MasterMainPage(),
+                            MasterDashboardBody(),
                           ],
                         ),
                       ),

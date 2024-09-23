@@ -11,6 +11,7 @@ import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/remote_service.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:gelirx/features/auth/data/mappers/firebase_user_maper.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -214,6 +215,7 @@ class AuthRepository implements IAuthRepository {
     String surName,
     String idNumber,
     String birthYear,
+    Position userPosition,
   ) async {
     try {
       var idToken = await firebaseAuth.currentUser!.getIdToken();
@@ -221,13 +223,16 @@ class AuthRepository implements IAuthRepository {
       var data = {
         'lang': 'tr',
         'idToken': idToken,
+        'firebase_token': fcmToken, //FCM token
+        'longitude': userPosition.longitude,
+        'latitude': userPosition.latitude,
         'id_number': idNumber,
         'name': firstName,
         'surname': surName,
         'birthdate': birthYear,
       };
       var response = await _remoteService.post(
-        '${Constants.baseUrl}handyman/register.php',
+        '${Constants.baseUrl}master/register.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -267,7 +272,7 @@ class AuthRepository implements IAuthRepository {
         //'img': await MultipartFile.fromFile(userImage.path),
       });
       var response = await _remoteService.post(
-        '${Constants.baseUrl}handyman/picture.php',
+        '${Constants.baseUrl}master/picture.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -292,16 +297,15 @@ class AuthRepository implements IAuthRepository {
       var token = _localService.get(Constants.tokenKey);
       var userId = _localService.get(Constants.userIdKey);
       var data = {
-        'lang': 'tr',
         'user_id': userId,
-        'token': token,
-        'category_id[]': userSkills,
+        'skills': userSkills,
       };
       var response = await _remoteService.post(
-        '${Constants.baseUrl}handyman/choose_skills.php',
+        '${Constants.baseUrl}master/add_skills.php',
         options: Options(
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            //'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer $token',
           },
         ),
         data: data,

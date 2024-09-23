@@ -75,20 +75,31 @@ class MasterDashboardPage extends StatelessWidget {
           )
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(AppPadding.p16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CardLabelWidget(label: 'Current Bookings'),
-              SizedBox(height: AppSize.s16),
-              MasterBookingWidget(),
-              SizedBox(height: AppSize.s16),
-              MasterBookingWidget(),
-              SizedBox(height: AppSize.s16),
-              MasterBookingWidget(),
-            ],
-          ),
+      body: const MasterDashboardBody(),
+    );
+  }
+}
+
+class MasterDashboardBody extends StatelessWidget {
+  const MasterDashboardBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(AppPadding.p16),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CardLabelWidget(label: 'Current Bookings'),
+            SizedBox(height: AppSize.s16),
+            MasterBookingWidget(),
+            SizedBox(height: AppSize.s16),
+            MasterBookingWidget(),
+            SizedBox(height: AppSize.s16),
+            MasterBookingWidget(),
+          ],
         ),
       ),
     );

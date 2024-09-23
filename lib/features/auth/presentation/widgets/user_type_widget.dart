@@ -41,7 +41,7 @@ class UserTypeWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CardLabelWidget(label: label),
-              Image.asset(img),
+              Expanded(child: Image.asset(img)),
             ],
           ),
         ),

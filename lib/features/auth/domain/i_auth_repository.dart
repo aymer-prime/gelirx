@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:gelirx/app/network/api_exception.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'entities/user_entity.dart';
 
@@ -19,6 +20,7 @@ abstract class IAuthRepository {
     String surName,
     String idNumber,
     String birthYear,
+    Position userPosition,
   );
   Future<Either<ApiException, Unit>> registerUserImage(File userImage);
   Future<Either<ApiException, Unit>> registerUserSkills(
