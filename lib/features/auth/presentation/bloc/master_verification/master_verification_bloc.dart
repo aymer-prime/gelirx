@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/network/api_exception.dart';
+import 'package:gelirx/app/utils/validators.dart';
 import 'package:gelirx/features/auth/domain/i_auth_repository.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
@@ -254,8 +255,9 @@ class MasterVerificationBloc
   bool infoValidate() {
     var isNameValid = state.firstName.isNotEmpty;
     var isSurNameValid = state.surName.isNotEmpty;
-    var isIdValid = state.idNumber.isNotEmpty;
-    var isYearValid = state.birthYear.isNotEmpty;
+    var isIdValid = (!(state.idNumber.isEmpty || state.idNumber.length < 11) &&
+        Validators.positiveInteger(state.idNumber) == null);
+    var isYearValid = Validators.positiveInteger(state.birthYear) == null;
     return (isNameValid && isSurNameValid && isIdValid && isYearValid);
   }
 

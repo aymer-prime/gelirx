@@ -81,4 +81,36 @@ abstract class Validators {
 
     return null;
   }
+
+ static String? validateBirthYear(String birthYearInput) {
+    // Check if the input is empty
+    if (birthYearInput.isEmpty) {
+      return 'Birth year cannot be empty';
+    }
+
+    // Try to parse the birth year as an integer
+    int? birthYear = int.tryParse(birthYearInput);
+    if (birthYear == null) {
+      return 'Please enter a valid year';
+    }
+
+    // Get the current year
+    int currentYear = DateTime.now().year;
+
+    // Define the acceptable age range
+    int minAcceptableAge = 18;
+    int maxAcceptableAge = 100;
+
+    // Calculate the valid birth year range
+    int minYear = currentYear - maxAcceptableAge;
+    int maxYear = currentYear - minAcceptableAge;
+
+    // Validate if the birth year is within the acceptable range
+    if (birthYear < minYear || birthYear > maxYear) {
+      return 'Please enter a birth year between $minYear and $maxYear';
+    }
+
+    // If everything is fine, return null (no error)
+    return null;
+  }
 }

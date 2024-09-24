@@ -220,12 +220,19 @@ class AuthRepository implements IAuthRepository {
     try {
       var idToken = await firebaseAuth.currentUser!.getIdToken();
       var fcmToken = await FirebaseMessaging.instance.getToken();
+      //todo: remove this
+      var longitude = userPosition.longitude.isNegative
+          ? userPosition.longitude * -1
+          : userPosition.longitude;
+      var latitude = userPosition.latitude.isNegative
+          ? userPosition.latitude * -1
+          : userPosition.latitude;
       var data = {
         'lang': 'tr',
         'idToken': idToken,
-        'firebase_token': fcmToken, //FCM token
-        'longitude': userPosition.longitude,
-        'latitude': userPosition.latitude,
+        'firebase_token': fcmToken,
+        'longitude': longitude,
+        'latitude': latitude,
         'id_number': idNumber,
         'name': firstName,
         'surname': surName,
@@ -304,7 +311,7 @@ class AuthRepository implements IAuthRepository {
         '${Constants.baseUrl}master/add_skills.php',
         options: Options(
           headers: {
-            //'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization': 'Bearer $token',
           },
         ),

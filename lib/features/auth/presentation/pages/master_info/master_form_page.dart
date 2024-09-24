@@ -9,6 +9,7 @@ import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/app/utils/validators.dart';
 import 'package:gelirx/features/auth/presentation/bloc/master_verification/master_verification_bloc.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
@@ -179,9 +180,9 @@ class MasterFormPage extends StatelessWidget {
                                     .state
                                     .idNumber;
                                 if (idNum.isEmpty || idNum.length > 11) {
-                                  return 'Invalid ID';
+                                  return 'ID number too short';
                                 } else {
-                                  return null;
+                                  return Validators.positiveInteger(idNum);
                                 }
                               },
                             ),
@@ -215,11 +216,7 @@ class MasterFormPage extends StatelessWidget {
                                     .read<MasterVerificationBloc>()
                                     .state
                                     .birthYear;
-                                if (birthYear.isEmpty || birthYear.length < 4) {
-                                  return 'Invalid Year of birth';
-                                } else {
-                                  return null;
-                                }
+                                return Validators.validateBirthYear(birthYear);
                               },
                             ),
                           ],
