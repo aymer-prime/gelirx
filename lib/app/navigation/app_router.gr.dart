@@ -105,6 +105,25 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MasterDashboardPage]
+class MasterDashboardRoute extends PageRouteInfo<void> {
+  const MasterDashboardRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterDashboardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterDashboardRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterDashboardPage();
+    },
+  );
+}
+
+/// generated route for
 /// [MasterFormPage]
 class MasterFormRoute extends PageRouteInfo<void> {
   const MasterFormRoute({List<PageRouteInfo>? children})

@@ -7,9 +7,43 @@ import 'package:gelirx/app/utils/resources/theme_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+import '../utils/app_constants.dart';
+
+class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
+
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // App is back to foreground
+      _checkForStoredNavigation();
+    }
+
+  }
+  void _checkForStoredNavigation() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    String? navigateTo = sharedPreferences.getString(Constants.navigateToKey);
+
+    if (navigateTo != null) {
+      sharedPreferences.remove(Constants.navigateToKey);
+      final appRouter = getIt<AppRouter>();
+      if (navigateTo == MasterDashboardRoute.name) {
+        appRouter.push(MasterDashboardRoute());
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

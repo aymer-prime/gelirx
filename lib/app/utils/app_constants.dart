@@ -8,6 +8,7 @@ class Constants {
   //shared preferences Keys
   static const String tokenKey = 'TOKEN_KEY';
   static const String userIdKey = 'USER_ID_KEY';
+  static const String  navigateToKey = 'navigateTo';
 
   // This is the distance in meters that will trigger listen function for geolocator
   static const int distanceFilter = 10;
