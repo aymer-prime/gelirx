@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
@@ -8,6 +9,7 @@ import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:intl/intl.dart';
 
+@RoutePage()
 class MasterDashboardPage extends StatelessWidget {
   const MasterDashboardPage({super.key});
 

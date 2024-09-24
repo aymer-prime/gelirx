@@ -15,6 +15,7 @@ import 'package:gelirx/features/main/presentation/page/master_main_page.dart';
 import 'package:gelirx/features/onboarding/presentation/onboarding_page.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
 
+import '../../features/master_dashboard/presentation/pages/master_dashboard_page.dart';
 import '../../features/navigation/presentation/pages/navigation_page.dart';
 
 part 'app_router.gr.dart';
@@ -69,5 +70,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: AlternateMainRoute.page,
         ),
+    AutoRoute(
+      page: MasterDashboardRoute.page,
+    ),
       ];
 }
