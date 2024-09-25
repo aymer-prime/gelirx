@@ -4,6 +4,8 @@ import 'package:gelirx/features/auth/presentation/pages/master_info/master_pic_p
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_skills_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_form_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_info_wrapper.dart';
+import 'package:gelirx/features/auth/presentation/pages/user_info/user_info_page.dart';
+import 'package:gelirx/features/home/presentation/pages/home_page_old.dart';
 import 'package:gelirx/features/home/presentation/pages/master/master_home_page.dart';
 import 'package:gelirx/features/home/presentation/pages/services_page.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
@@ -70,8 +72,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: AlternateMainRoute.page,
         ),
-    AutoRoute(
-      page: MasterDashboardRoute.page,
-    ),
+        AutoRoute(
+          page: MasterDashboardRoute.page,
+        ),
+        AutoRoute(
+          page: UserInfoRoute.page,
+        ),
       ];
 }

@@ -212,7 +212,7 @@ class MasterVerificationBloc
       var isInfoValid = infoValidate();
       if (isInfoValid) {
         var userPosition = await determinePosition();
-        var result = await _iAuthRepository.registerUserInfo(
+        var result = await _iAuthRepository.registerMasterInfo(
           state.firstName,
           state.surName,
           state.idNumber,

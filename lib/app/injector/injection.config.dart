@@ -31,6 +31,8 @@ import '../../features/auth/presentation/bloc/auth_status/auth_status_bloc.dart'
     as _i663;
 import '../../features/auth/presentation/bloc/master_verification/master_verification_bloc.dart'
     as _i908;
+import '../../features/auth/presentation/bloc/user_verification/user_verification_bloc.dart'
+    as _i446;
 import '../../features/booking/data/booking_repository.dart' as _i678;
 import '../../features/booking/domain/i_booking_repository.dart' as _i92;
 import '../../features/booking/domain/usecases/booking_usecase.dart' as _i216;
@@ -115,6 +117,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i797.AuthBloc(gh<_i309.SignInUseCase>()));
     gh.factory<_i663.AuthStatusBloc>(
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
+    gh.factory<_i446.UserVerificationBloc>(
+        () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
     return this;
   }
 }

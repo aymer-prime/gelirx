@@ -15,13 +15,15 @@ abstract class IAuthRepository {
       String phoneNumber);
   Future<Either<ApiException, UserEntity>> verifyPhoneNumber(
       String verificationId, String smsCode);
-  Future<Either<ApiException, Unit>> registerUserInfo(
+  Future<Either<ApiException, Unit>> registerMasterInfo(
     String firstName,
     String surName,
     String idNumber,
     String birthYear,
     Position userPosition,
   );
+  Future<Either<ApiException, Unit>> registerUserInfo(
+      String firstName, String surName);
   Future<Either<ApiException, Unit>> registerUserImage(File userImage);
   Future<Either<ApiException, Unit>> registerUserSkills(
       List<String> userSkills);

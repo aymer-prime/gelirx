@@ -86,6 +86,25 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HomePageOld]
+class HomeRouteOld extends PageRouteInfo<void> {
+  const HomeRouteOld({List<PageRouteInfo>? children})
+      : super(
+          HomeRouteOld.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRouteOld';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomePageOld();
+    },
+  );
+}
+
+/// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
@@ -325,6 +344,25 @@ class SplashRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SplashPage();
+    },
+  );
+}
+
+/// generated route for
+/// [UserInfoPage]
+class UserInfoRoute extends PageRouteInfo<void> {
+  const UserInfoRoute({List<PageRouteInfo>? children})
+      : super(
+          UserInfoRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UserInfoRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const UserInfoPage();
     },
   );
 }

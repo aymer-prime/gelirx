@@ -131,16 +131,6 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-
-                            // onChanged: (otp) {
-                            //   context.read<AuthBloc>().add(
-                            //         AuthEvent.verifyPhoneNumber(
-                            //           verificationId: state.verificationId
-                            //               .getOrElse(() => ''),
-                            //           smsCode: otp,
-                            //         ),
-                            //       );
-                            // },
                           ),
                           const SizedBox(height: AppSize.s20),
                         ],
@@ -166,51 +156,52 @@ class LoginPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                        const SizedBox(height: AppSize.s64),
+                        const SizedBox(height: AppSize.s16),
 
                         if (!isMaster)
                           Column(
                             children: [
-                              Center(
-                                child: Text(
-                                  AppStrings.signInWithTitle,
-                                  style: context.textTheme.headlineSmall,
-                                ),
-                              ),
-                              const SizedBox(height: AppSize.s20),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  socialLoginButton(
-                                      image: ImageAssets.googleLogo,
-                                      onTap: () {
-                                        context.read<AuthBloc>().add(
-                                            const AuthEvent.socialMediaLogin(
-                                                SocialMediaType.Google));
-                                      }),
-                                  socialLoginButton(
-                                      image: ImageAssets.facebookLogo,
-                                      onTap: () {
-                                        context.read<AuthBloc>().add(
-                                            const AuthEvent.socialMediaLogin(
-                                                SocialMediaType.Facebook));
-                                      }),
-                                  socialLoginButton(
-                                      image: ImageAssets.appleLogo,
-                                      onTap: () {
-                                        context.read<AuthBloc>().add(
-                                            const AuthEvent.socialMediaLogin(
-                                                SocialMediaType.Apple));
-                                      })
-                                ],
-                              ),
-                              const SizedBox(height: AppSize.s32),
+                              // Center(
+                              //   child: Text(
+                              //     AppStrings.signInWithTitle,
+                              //     style: context.textTheme.headlineSmall,
+                              //   ),
+                              // ),
+                              // const SizedBox(height: AppSize.s20),
+                              // Row(
+                              //   mainAxisAlignment:
+                              //       MainAxisAlignment.spaceEvenly,
+                              //   children: [
+                              //     socialLoginButton(
+                              //         image: ImageAssets.googleLogo,
+                              //         onTap: () {
+                              //           context.read<AuthBloc>().add(
+                              //               const AuthEvent.socialMediaLogin(
+                              //                   SocialMediaType.Google));
+                              //         }),
+                              //     socialLoginButton(
+                              //         image: ImageAssets.facebookLogo,
+                              //         onTap: () {
+                              //           context.read<AuthBloc>().add(
+                              //               const AuthEvent.socialMediaLogin(
+                              //                   SocialMediaType.Facebook));
+                              //         }),
+                              //     socialLoginButton(
+                              //         image: ImageAssets.appleLogo,
+                              //         onTap: () {
+                              //           context.read<AuthBloc>().add(
+                              //               const AuthEvent.socialMediaLogin(
+                              //                   SocialMediaType.Apple));
+                              //         })
+                              //   ],
+                              // ),
+                              //const SizedBox(height: AppSize.s32),
                               SizedBox(
                                 width: double.infinity,
                                 child: OutlinedButton(
                                   onPressed: () {
-                                    context.router.replace(const AlternateMainRoute());
+                                    context.router
+                                        .replace(const AlternateMainRoute());
                                   },
                                   style: OutlinedButton.styleFrom(
                                     backgroundColor:

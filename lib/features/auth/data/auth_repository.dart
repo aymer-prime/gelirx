@@ -210,7 +210,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<ApiException, Unit>> registerUserInfo(
+  Future<Either<ApiException, Unit>> registerMasterInfo(
     String firstName,
     String surName,
     String idNumber,
@@ -349,5 +349,44 @@ class AuthRepository implements IAuthRepository {
       //facebookAuth.logOut(),
       phoneAuth.signOut(),
     ]);
+  }
+
+  @override
+  Future<Either<ApiException, Unit>> registerUserInfo(
+      String firstName, String surName) async {
+    try {
+      var idToken = await firebaseAuth.currentUser!.getIdToken();
+      var fcmToken = await FirebaseMessaging.instance.getToken();
+      var data = {
+        'lang': 'tr',
+        'idToken': idToken,
+        'firebase_token': fcmToken,
+        'name': firstName,
+        'surname': surName,
+      };
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}login/register.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      if (response != null) {
+        String token = response['token'];
+        String userId = response['user_id'];
+        await _localService.save(Constants.tokenKey, token);
+        await _localService.save(Constants.userIdKey, userId);
+      }
+
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
   }
 }
