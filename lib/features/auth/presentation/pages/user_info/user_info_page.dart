@@ -106,8 +106,10 @@ class UserInfoPage extends StatelessWidget {
                                 ],
                                 onChanged: (value) => context
                                     .read<UserVerificationBloc>()
-                                    .add(UserVerificationEvent.firstNameChanged(
-                                        value)),
+                                    .add(
+                                      UserVerificationEvent.firstNameChanged(
+                                          value),
+                                    ),
                                 validator: (_) {
                                   var firstName = context
                                       .read<UserVerificationBloc>()
