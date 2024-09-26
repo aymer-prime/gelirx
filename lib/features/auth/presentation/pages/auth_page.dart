@@ -7,6 +7,7 @@ import 'package:gelirx/app/extensions/map_extensions.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/login_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/user_type_page.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
@@ -70,13 +71,27 @@ class AuthPage extends HookWidget {
                     ).show(context);
                   },
                   (_) {
-                    state.isMaster
-                        ? context.router.replace(
-                            const MasterFormRoute(),
-                          )
-                        : context.router.replace(
-                            const MainRoute(),
-                          );
+                    if (state.isRegister) {
+                      state.isMaster
+                          ? context.router.replace(
+                              const MasterFormRoute(),
+                            )
+                          : context.router.replace(
+                              const UserInfoRoute(),
+                            );
+                    } else {
+                      state.user.fold(
+                        () {},
+                        (a) {
+                          context.read<AuthStatusBloc>().add(
+                                AuthStatusEvent.signedIn(a),
+                              );
+                        },
+                      );
+                      context.router.replace(
+                        const MainRoute(),
+                      );
+                    }
                   },
                 );
               },

@@ -56,7 +56,10 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
       body: BlocListener<AuthStatusBloc, AuthStatusState>(
         listener: (context, state) {
           state.maybeMap(
-            unAuthenticated: (_) => context.router.replace(const AuthRoute()),
+            unAuthenticated: (_) {
+              print('unauthenticated');
+              context.router.replace(const AuthRoute());
+            },
             orElse: () {},
           );
         },

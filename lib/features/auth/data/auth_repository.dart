@@ -344,8 +344,8 @@ class AuthRepository implements IAuthRepository {
     await _localService.delete(Constants.tokenKey);
     await _localService.delete(Constants.userIdKey);
     return Future.wait([
-      firebaseAuth.signOut(),
-      googleSignIn.signOut(),
+      //firebaseAuth.signOut(),
+      //googleSignIn.signOut(),
       //facebookAuth.logOut(),
       phoneAuth.signOut(),
     ]);
@@ -366,6 +366,69 @@ class AuthRepository implements IAuthRepository {
       };
       var response = await _remoteService.post(
         '${Constants.baseUrl}login/register.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      if (response != null) {
+        String token = response['token'];
+        String userId = response['user_id'];
+        await _localService.save(Constants.tokenKey, token);
+        await _localService.save(Constants.userIdKey, userId);
+      }
+
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<ApiException, bool>> checkPhoneNumber(
+      String phoneNumber) async {
+    try {
+      var data = {
+        'lang': 'tr',
+        'phone': phoneNumber,
+      };
+      bool response = await _remoteService.post(
+        '${Constants.baseUrl}login/phone_control.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      return right(response);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<ApiException, Unit>> userLogin() async {
+    try {
+      var idToken = await firebaseAuth.currentUser!.getIdToken();
+      var fcmToken = await FirebaseMessaging.instance.getToken();
+      var data = {
+        'lang': 'tr',
+        'idToken': idToken,
+        'firebase_token': fcmToken,
+      };
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}login/index.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

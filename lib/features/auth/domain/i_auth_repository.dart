@@ -27,6 +27,8 @@ abstract class IAuthRepository {
   Future<Either<ApiException, Unit>> registerUserImage(File userImage);
   Future<Either<ApiException, Unit>> registerUserSkills(
       List<String> userSkills);
+  Future<Either<ApiException, bool>> checkPhoneNumber(String phoneNumber);
+  Future<Either<ApiException, Unit>> userLogin();
   Option<UserEntity> getSignedInUser();
   Future<void> signOut();
 }

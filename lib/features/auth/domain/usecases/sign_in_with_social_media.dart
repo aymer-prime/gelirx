@@ -25,11 +25,22 @@ class SignInUseCase {
     }
   }
 
-  Future<Either<ApiException, String>> signInWithPhoneNumber(String phoneNumber) async {
+  Future<Either<ApiException, String>> signInWithPhoneNumber(
+      String phoneNumber) async {
     return await repository.signInWithPhoneNumber(phoneNumber);
   }
 
-  Future<Either<ApiException, UserEntity>> otpVerification(String verificationId,String otp) async {
-    return await repository.verifyPhoneNumber(verificationId,otp);
+  Future<Either<ApiException, UserEntity>> otpVerification(
+      String verificationId, String otp) async {
+    return await repository.verifyPhoneNumber(verificationId, otp);
+  }
+
+  Future<Either<ApiException, bool>> checkPhoneNumber(
+      String phoneNumber) async {
+    return await repository.checkPhoneNumber(phoneNumber);
+  }
+
+  Future<Either<ApiException, Unit>> userLogin() async {
+    return await repository.userLogin();
   }
 }

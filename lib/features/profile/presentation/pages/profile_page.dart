@@ -18,7 +18,15 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<AuthStatusBloc, AuthStatusState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.maybeMap(
+            unAuthenticated: (_) {
+              print('unauthenticated');
+              context.router.replace(const AuthRoute());
+            },
+            orElse: () {},
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.all(
             AppPadding.p16,
@@ -133,6 +141,15 @@ class ProfilePage extends StatelessWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
+                              context.read<AuthStatusBloc>().state.maybeMap(
+                                    orElse: () {},
+                                    authenticated: (value) {
+                                      print('Authenticated');
+                                    },
+                                    unAuthenticated: (value) {
+                                      print('Unauthenticated');
+                                    },
+                                  );
                               context.read<AuthStatusBloc>().add(
                                     const AuthStatusEvent.signedOut(),
                                   );

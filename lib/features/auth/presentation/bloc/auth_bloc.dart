@@ -45,17 +45,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<_PhoneLoginRequested>((event, emit) async {
       emit(state.copyWith(isLoading: true));
-      final result =
-          await _signInUseCase.signInWithPhoneNumber(event.phoneNumber);
-      result.fold(
-        (failure) => emit(state.copyWith(
+      var isLogin = await _signInUseCase.checkPhoneNumber(event.phoneNumber);
+      await isLogin.fold(
+        (failure) async => emit(state.copyWith(
           isLoading: false,
           authFailureOrSuccessOption: some(left(failure)),
         )),
-        (verificationId) => emit(state.copyWith(
-          isLoading: false,
-          verificationId: some(verificationId),
-        )),
+        (numExist) async {
+          final result =
+              await _signInUseCase.signInWithPhoneNumber(event.phoneNumber);
+          result.fold(
+            (failure) => emit(state.copyWith(
+              isLoading: false,
+              isRegister: numExist,
+              authFailureOrSuccessOption: some(left(failure)),
+            )),
+            (verificationId) => emit(state.copyWith(
+              isLoading: false,
+              isRegister: numExist,
+              verificationId: some(verificationId),
+            )),
+          );
+        },
       );
     });
 
@@ -65,18 +76,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       final result = await _signInUseCase.otpVerification(
           event.verificationId, event.smsCode); // Assuming you pass both.
-      result.fold(
-        (failure) => emit(state.copyWith(
+      await result.fold(
+        (failure) async => emit(state.copyWith(
           isLoading: false,
           authFailureOrSuccessOption: some(left(failure)),
         )),
-        (user) {
+        (user) async {
           print("user {$user}");
-          emit(state.copyWith(
-            isLoading: false,
-            user: some(user),
-            authFailureOrSuccessOption: some(right(unit)),
-          ));
+          final response = await _signInUseCase.userLogin();
+          response.fold(
+            (failure) => emit(state.copyWith(
+              isLoading: false,
+              authFailureOrSuccessOption: some(left(failure)),
+            )),
+            (_) {
+              emit(state.copyWith(
+                isLoading: false,
+                user: some(user),
+                authFailureOrSuccessOption: some(right(unit)),
+              ));
+            },
+          );
         },
       );
     });

@@ -725,6 +725,7 @@ abstract class _VerifyPhoneNumber implements AuthEvent {
 mixin _$AuthState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isMaster => throw _privateConstructorUsedError;
+  bool get isRegister => throw _privateConstructorUsedError;
   Option<UserEntity> get user =>
       throw _privateConstructorUsedError; // UserEntity from your domain
   Option<Either<ApiException, Unit>> get authFailureOrSuccessOption =>
@@ -748,6 +749,7 @@ abstract class $AuthStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isMaster,
+      bool isRegister,
       Option<UserEntity> user,
       Option<Either<ApiException, Unit>> authFailureOrSuccessOption,
       Option<String> verificationId,
@@ -771,6 +773,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? isLoading = null,
     Object? isMaster = null,
+    Object? isRegister = null,
     Object? user = null,
     Object? authFailureOrSuccessOption = null,
     Object? verificationId = null,
@@ -784,6 +787,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       isMaster: null == isMaster
           ? _value.isMaster
           : isMaster // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRegister: null == isRegister
+          ? _value.isRegister
+          : isRegister // ignore: cast_nullable_to_non_nullable
               as bool,
       user: null == user
           ? _value.user
@@ -816,6 +823,7 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isMaster,
+      bool isRegister,
       Option<UserEntity> user,
       Option<Either<ApiException, Unit>> authFailureOrSuccessOption,
       Option<String> verificationId,
@@ -837,6 +845,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isMaster = null,
+    Object? isRegister = null,
     Object? user = null,
     Object? authFailureOrSuccessOption = null,
     Object? verificationId = null,
@@ -850,6 +859,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
       isMaster: null == isMaster
           ? _value.isMaster
           : isMaster // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRegister: null == isRegister
+          ? _value.isRegister
+          : isRegister // ignore: cast_nullable_to_non_nullable
               as bool,
       user: null == user
           ? _value.user
@@ -877,6 +890,7 @@ class _$LoginStateImpl implements _LoginState {
   const _$LoginStateImpl(
       {required this.isLoading,
       required this.isMaster,
+      required this.isRegister,
       required this.user,
       required this.authFailureOrSuccessOption,
       required this.verificationId,
@@ -886,6 +900,8 @@ class _$LoginStateImpl implements _LoginState {
   final bool isLoading;
   @override
   final bool isMaster;
+  @override
+  final bool isRegister;
   @override
   final Option<UserEntity> user;
 // UserEntity from your domain
@@ -900,7 +916,7 @@ class _$LoginStateImpl implements _LoginState {
 
   @override
   String toString() {
-    return 'AuthState(isLoading: $isLoading, isMaster: $isMaster, user: $user, authFailureOrSuccessOption: $authFailureOrSuccessOption, verificationId: $verificationId, otp: $otp)';
+    return 'AuthState(isLoading: $isLoading, isMaster: $isMaster, isRegister: $isRegister, user: $user, authFailureOrSuccessOption: $authFailureOrSuccessOption, verificationId: $verificationId, otp: $otp)';
   }
 
   @override
@@ -912,6 +928,8 @@ class _$LoginStateImpl implements _LoginState {
                 other.isLoading == isLoading) &&
             (identical(other.isMaster, isMaster) ||
                 other.isMaster == isMaster) &&
+            (identical(other.isRegister, isRegister) ||
+                other.isRegister == isRegister) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.authFailureOrSuccessOption,
                     authFailureOrSuccessOption) ||
@@ -923,8 +941,8 @@ class _$LoginStateImpl implements _LoginState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isMaster, user,
-      authFailureOrSuccessOption, verificationId, otp);
+  int get hashCode => Object.hash(runtimeType, isLoading, isMaster, isRegister,
+      user, authFailureOrSuccessOption, verificationId, otp);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -939,6 +957,7 @@ abstract class _LoginState implements AuthState {
   const factory _LoginState(
       {required final bool isLoading,
       required final bool isMaster,
+      required final bool isRegister,
       required final Option<UserEntity> user,
       required final Option<Either<ApiException, Unit>>
           authFailureOrSuccessOption,
@@ -949,6 +968,8 @@ abstract class _LoginState implements AuthState {
   bool get isLoading;
   @override
   bool get isMaster;
+  @override
+  bool get isRegister;
   @override
   Option<UserEntity> get user; // UserEntity from your domain
   @override
