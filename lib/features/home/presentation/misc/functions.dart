@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
-import 'package:geolocator/geolocator.dart';
 
 Color getCategoryColor() {
   var colors = [

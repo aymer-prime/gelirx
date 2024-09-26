@@ -6,11 +6,9 @@ import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
-import 'package:gelirx/app/utils/resources/enums.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:gelirx/features/auth/presentation/widgets/social_login_button.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../../../app/utils/resources/font_manager.dart';
@@ -158,67 +156,67 @@ class LoginPage extends StatelessWidget {
                           ),
                         const SizedBox(height: AppSize.s16),
 
-                        // if (!isMaster)
-                        //   Column(
-                        // children: [
-                        // Center(
-                        //   child: Text(
-                        //     AppStrings.signInWithTitle,
-                        //     style: context.textTheme.headlineSmall,
-                        //   ),
-                        // ),
-                        // const SizedBox(height: AppSize.s20),
-                        // Row(
-                        //   mainAxisAlignment:
-                        //       MainAxisAlignment.spaceEvenly,
-                        //   children: [
-                        //     socialLoginButton(
-                        //         image: ImageAssets.googleLogo,
-                        //         onTap: () {
-                        //           context.read<AuthBloc>().add(
-                        //               const AuthEvent.socialMediaLogin(
-                        //                   SocialMediaType.Google));
-                        //         }),
-                        //     socialLoginButton(
-                        //         image: ImageAssets.facebookLogo,
-                        //         onTap: () {
-                        //           context.read<AuthBloc>().add(
-                        //               const AuthEvent.socialMediaLogin(
-                        //                   SocialMediaType.Facebook));
-                        //         }),
-                        //     socialLoginButton(
-                        //         image: ImageAssets.appleLogo,
-                        //         onTap: () {
-                        //           context.read<AuthBloc>().add(
-                        //               const AuthEvent.socialMediaLogin(
-                        //                   SocialMediaType.Apple));
-                        //         })
-                        //   ],
-                        // ),
-                        //const SizedBox(height: AppSize.s32),
-                        // SizedBox(
-                        //   width: double.infinity,
-                        //   child: OutlinedButton(
-                        //     onPressed: () {
-                        //       context.router
-                        //           .replace(const AlternateMainRoute());
-                        //     },
-                        //     style: OutlinedButton.styleFrom(
-                        //       backgroundColor:
-                        //           ColorManager.textfieldFillColor,
-                        //       side: BorderSide(
-                        //         color: ColorManager.textfieldBorderColor,
-                        //         width: 1.5,
-                        //       ),
-                        //     ),
-                        //     child: Text(
-                        //       AppStrings.continueAsGuest,
-                        //       style: context.textTheme.headlineSmall,
-                        //     ),
-                        //   ),
-                        // ),
-                        //   ],
-                        // )
+                        if (!isMaster)
+                          Column(
+                            children: [
+                              // Center(
+                              //   child: Text(
+                              //     AppStrings.signInWithTitle,
+                              //     style: context.textTheme.headlineSmall,
+                              //   ),
+                              // ),
+                              // const SizedBox(height: AppSize.s20),
+                              // Row(
+                              //   mainAxisAlignment:
+                              //       MainAxisAlignment.spaceEvenly,
+                              //   children: [
+                              //     socialLoginButton(
+                              //         image: ImageAssets.googleLogo,
+                              //         onTap: () {
+                              //           context.read<AuthBloc>().add(
+                              //               const AuthEvent.socialMediaLogin(
+                              //                   SocialMediaType.Google));
+                              //         }),
+                              //     socialLoginButton(
+                              //         image: ImageAssets.facebookLogo,
+                              //         onTap: () {
+                              //           context.read<AuthBloc>().add(
+                              //               const AuthEvent.socialMediaLogin(
+                              //                   SocialMediaType.Facebook));
+                              //         }),
+                              //     socialLoginButton(
+                              //         image: ImageAssets.appleLogo,
+                              //         onTap: () {
+                              //           context.read<AuthBloc>().add(
+                              //               const AuthEvent.socialMediaLogin(
+                              //                   SocialMediaType.Apple));
+                              //         })
+                              //   ],
+                              // ),
+                              const SizedBox(height: AppSize.s32),
+                              SizedBox(
+                                width: double.infinity,
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    context.router
+                                        .replace(const AlternateMainRoute());
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    backgroundColor:
+                                        ColorManager.textfieldFillColor,
+                                    side: BorderSide(
+                                      color: ColorManager.textfieldBorderColor,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    AppStrings.continueAsGuest,
+                                    style: context.textTheme.headlineSmall,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
                       ],
                     ),
                   ),

@@ -25,73 +25,74 @@ class TopCategoriesWidgets extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const CardLabelWidget(label: AppStrings.topCat),
-            OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(
-                  color: ColorManager.textfieldBorderColor,
-                  width: 1.5,
-                ),
-                shape: const StadiumBorder(),
-              ),
-              onPressed: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) => Container(
-                    padding: const EdgeInsets.all(
-                      AppPadding.p16,
-                    ),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                    ),
-                    child: Column(
-                      children: [
-                        const CardLabelWidget(
-                          label: AppStrings.allCat,
-                        ),
-                        const SizedBox(height: AppSize.s16),
-                        Expanded(
-                          child: CategoriesGridWidget(
-                            categories: categories,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.p16,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      AppStrings.seeAll,
-                      style: context.textTheme.labelMedium,
-                    ),
-                    const SizedBox(width: AppSize.s2),
-                    const Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: AppSize.s12,
-                    )
-                  ],
-                ),
-              ),
-            )
+            // OutlinedButton(
+            //   style: OutlinedButton.styleFrom(
+            //     side: BorderSide(
+            //       color: ColorManager.textfieldBorderColor,
+            //       width: 1.5,
+            //     ),
+            //     shape: const StadiumBorder(),
+            //   ),
+            //   onPressed: () {
+            //     showModalBottomSheet(
+            //       context: context,
+            //       builder: (context) => Container(
+            //         padding: const EdgeInsets.all(
+            //           AppPadding.p16,
+            //         ),
+            //         width: double.infinity,
+            //         decoration: BoxDecoration(
+            //           color: ColorManager.white,
+            //         ),
+            //         child: Column(
+            //           children: [
+            //             const CardLabelWidget(
+            //               label: AppStrings.allCat,
+            //             ),
+            //             const SizedBox(height: AppSize.s16),
+            //             Expanded(
+            //               child: CategoriesGridWidget(
+            //                 categories: categories,
+            //               ),
+            //             )
+            //           ],
+            //         ),
+            //       ),
+            //     );
+            //   },
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(
+            //       horizontal: AppPadding.p16,
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //       children: [
+            //         Text(
+            //           AppStrings.seeAll,
+            //           style: context.textTheme.labelMedium,
+            //         ),
+            //         const SizedBox(width: AppSize.s2),
+            //         const Icon(
+            //           Icons.arrow_forward_ios_rounded,
+            //           size: AppSize.s12,
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // )
           ],
         ),
         const SizedBox(height: AppSize.s16),
-        Row(
-          children: List.generate(
-            categories.length > 3 ? 3 : categories.length,
-            (index) => Flexible(
-              fit: FlexFit.tight,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.p8,
-                ),
+        SizedBox(
+          height: AppSize.s100,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+              child: SizedBox(
+                width: context.screenSize.width / 5,
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {
@@ -105,9 +106,6 @@ class TopCategoriesWidgets extends StatelessWidget {
             ),
           ),
         )
-        // CategoriesGridWidget(
-        //   categories: state.categories,
-        // ),
       ],
     );
   }

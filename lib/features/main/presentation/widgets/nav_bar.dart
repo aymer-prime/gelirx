@@ -26,12 +26,12 @@ class NavBar extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             color: ColorManager.white,
-            border: Border.symmetric(
-              horizontal: BorderSide(
-                color: ColorManager.darkPrimary,
-                width: AppSize.s0_5,
-              ),
-            ),
+            // border: Border.symmetric(
+            //   horizontal: BorderSide(
+            //     color: ColorManager.darkPrimary,
+            //     width: AppSize.s0_5,
+            //   ),
+            // ),
             // borderRadius: BorderRadius.circular(AppSize.s12),
           ),
           child: Row(
@@ -110,14 +110,14 @@ class NavItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   activeIcon,
-                  Text(
-                    label,
-                    maxLines: 1,
-                    style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.darkPrimary,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  // Text(
+                  //   label,
+                  //   maxLines: 1,
+                  //   style: context.textTheme.labelSmall!.copyWith(
+                  //     color: ColorManager.darkPrimary,
+                  //   ),
+                  //   overflow: TextOverflow.ellipsis,
+                  // ),
                 ],
               )
             : icon,

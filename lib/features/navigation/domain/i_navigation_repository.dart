@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'package:dartz/dartz.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/features/navigation/domain/entities/route_entity.dart';

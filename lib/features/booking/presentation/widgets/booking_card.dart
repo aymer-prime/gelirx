@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import '../../../../app/utils/resources/assets_manager.dart';
 import '../../../../app/utils/resources/color_manager.dart';
 import '../../../../app/utils/resources/strings_manager.dart';
 import '../../../../app/utils/resources/values_manager.dart';

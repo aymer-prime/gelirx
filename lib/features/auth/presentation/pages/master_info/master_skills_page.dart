@@ -165,7 +165,8 @@ class MasterSkillsPage extends StatelessWidget {
                         onPressed: () {
                           context.read<MasterVerificationBloc>().add(
                               MasterVerificationEvent.registerUserSkills(() {
-                            context.router.replace(const MasterPicRoute());
+                            //context.router.replace(const MasterPicRoute());
+                            context.router.replace(const AlternateMainRoute());
                           }));
                         },
                         child: const Text(

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
-import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
-import 'package:gelirx/features/home/presentation/widgets/range_slider_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/sevice_widget.dart';
 
 class HomeDraggableSheet extends StatefulWidget {
@@ -80,7 +81,7 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
         expand: true,
         snap: true,
         snapSizes: [
-          60 / constraints.maxHeight,
+          0.2,
           0.5,
         ],
         controller: _controller,
@@ -117,16 +118,26 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                   const SliverToBoxAdapter(
                     child: SizedBox(height: AppSize.s24),
                   ),
-                  const SliverToBoxAdapter(
-                    child: CardLabelWidget(label: 'Edit Range'),
-                  ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(height: AppSize.s16),
-                  ),
                   SliverToBoxAdapter(
-                    child: RangeSliderWidget(
-                      label: AppStrings.range,
-                      range: context.read<HomeBloc>().state.range,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: AppStrings.searchHint,
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(AppPadding.p8),
+                          child: SizedBox(
+                            height: AppSize.s32,
+                            width: AppSize.s32,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: SvgPicture.asset(
+                                ImageAssets.searchIcon,
+                                height: AppSize.s16,
+                                width: AppSize.s16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   SliverToBoxAdapter(
@@ -145,10 +156,18 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                     child: SizedBox(
                       child: Column(
                         children: [
+                          widget.categories.isEmpty
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : TopCategoriesWidgets(
+                                  categories: widget.categories,
+                                ),
+                          const SizedBox(height: AppSize.s16),
                           Row(
                             children: [
                               const CardLabelWidget(
-                                label: '${AppStrings.subCats} - ',
+                                label: '${AppStrings.services} - ',
                               ),
                               Flexible(
                                 child: Text(

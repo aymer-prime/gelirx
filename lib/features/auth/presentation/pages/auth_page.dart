@@ -89,7 +89,7 @@ class AuthPage extends HookWidget {
                         },
                       );
                       context.router.replace(
-                        const MainRoute(),
+                        const AlternateMainRoute(),
                       );
                     }
                   },

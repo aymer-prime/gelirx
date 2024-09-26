@@ -162,25 +162,6 @@ class MasterFormRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MasterHomePage]
-class MasterHomeRoute extends PageRouteInfo<void> {
-  const MasterHomeRoute({List<PageRouteInfo>? children})
-      : super(
-          MasterHomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MasterHomeRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const MasterHomePage();
-    },
-  );
-}
-
-/// generated route for
 /// [MasterInfoWrapperPage]
 class MasterInfoWrapperRoute extends PageRouteInfo<void> {
   const MasterInfoWrapperRoute({List<PageRouteInfo>? children})

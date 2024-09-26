@@ -13,7 +13,7 @@ class AppStrings {
   static const searchHint = 'Search what you need . . .';
   static const location = 'Location';
   static const range = 'Range (Km)';
-  static const topCat = 'Top Categories';
+  static const topCat = 'Most Popular';
   static const allCat = 'All Categories';
   static const cats = 'Categories';
   static const subCats = 'Sub Categories';

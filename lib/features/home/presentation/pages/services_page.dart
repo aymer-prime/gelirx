@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
-import 'package:gelirx/features/home/presentation/widgets/home_dragable_sheet.dart';
+import 'package:gelirx/features/home/presentation/widgets/home_draggable_sheet.dart';
 import 'package:gelirx/features/home/presentation/widgets/home_map_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 

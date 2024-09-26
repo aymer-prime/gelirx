@@ -28,20 +28,20 @@ class HomeMap extends StatelessWidget {
       ),
       children: [
         openStreetMapTileLayer,
-        CircleLayer(
-          circles: [
-            CircleMarker(
-                useRadiusInMeter: true,
-                radius: range * 1000,
-                point: LatLng(
-                  userPosition.latitude,
-                  userPosition.longitude,
-                ),
-                color: Colors.blue.withOpacity(0.1),
-                borderColor: Colors.blue,
-                borderStrokeWidth: AppSize.s1)
-          ],
-        ),
+        // CircleLayer(
+        //   circles: [
+        //     CircleMarker(
+        //         useRadiusInMeter: true,
+        //         radius: range * 1000,
+        //         point: LatLng(
+        //           userPosition.latitude,
+        //           userPosition.longitude,
+        //         ),
+        //         color: Colors.blue.withOpacity(0.1),
+        //         borderColor: Colors.blue,
+        //         borderStrokeWidth: AppSize.s1)
+        //   ],
+        // ),
         MarkerLayer(
           markers: [
             Marker(
@@ -51,7 +51,7 @@ class HomeMap extends StatelessWidget {
               ),
               child: Icon(
                 Icons.location_on,
-                color: ColorManager.darkPrimary,
+                color: ColorManager.primary,
               ),
             ),
           ],
