@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:injectable/injectable.dart';
@@ -58,11 +59,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               isRegister: numExist,
               authFailureOrSuccessOption: some(left(failure)),
             )),
-            (verificationId) => emit(state.copyWith(
-              isLoading: false,
-              isRegister: numExist,
-              verificationId: some(verificationId),
-            )),
+            (verificationId) {
+              emit(state.copyWith(
+                isLoading: false,
+                isRegister: numExist,
+                verificationId: some(verificationId),
+              ));
+              event.onSuccess();
+            },
           );
         },
       );

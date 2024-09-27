@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/Material.dart';
+import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/otp_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_pic_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_skills_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_form_page.dart';
@@ -25,10 +26,7 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-          page: SplashRoute.page,
-          initial: true,
-        ),
+        AutoRoute(page: SplashRoute.page, initial: true),
         AutoRoute(
           page: OnboardingRoute.page,
         ),
@@ -73,6 +71,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: UserInfoRoute.page,
+        ),
+        AutoRoute(
+          page: OtpRoute.page,
         ),
       ];
 }

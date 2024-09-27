@@ -6,8 +6,10 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.setUserType(bool isMaster) = _SetUserType;
   const factory AuthEvent.socialMediaLogin(SocialMediaType type) =
       _SocialMediaLogin;
-  const factory AuthEvent.phoneLoginRequested({required String phoneNumber}) =
-      _PhoneLoginRequested;
+  const factory AuthEvent.phoneLoginRequested({
+    required String phoneNumber,
+    required VoidCallback onSuccess,
+  }) = _PhoneLoginRequested;
   const factory AuthEvent.verifyPhoneNumber({
     required String verificationId,
     required String smsCode,

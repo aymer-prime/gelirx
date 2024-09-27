@@ -292,6 +292,52 @@ class OnboardingRouteArgs {
 }
 
 /// generated route for
+/// [OtpPage]
+class OtpRoute extends PageRouteInfo<OtpRouteArgs> {
+  OtpRoute({
+    Key? key,
+    required VoidCallback toPreviousPage,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OtpRoute.name,
+          args: OtpRouteArgs(
+            key: key,
+            toPreviousPage: toPreviousPage,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OtpRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OtpRouteArgs>();
+      return OtpPage(
+        key: args.key,
+        toPreviousPage: args.toPreviousPage,
+      );
+    },
+  );
+}
+
+class OtpRouteArgs {
+  const OtpRouteArgs({
+    this.key,
+    required this.toPreviousPage,
+  });
+
+  final Key? key;
+
+  final VoidCallback toPreviousPage;
+
+  @override
+  String toString() {
+    return 'OtpRouteArgs{key: $key, toPreviousPage: $toPreviousPage}';
+  }
+}
+
+/// generated route for
 /// [ServicesPage]
 class ServicesRoute extends PageRouteInfo<void> {
   const ServicesRoute({List<PageRouteInfo>? children})

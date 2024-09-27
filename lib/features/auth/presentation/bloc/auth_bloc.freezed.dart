@@ -20,7 +20,8 @@ mixin _$AuthEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMaster) setUserType,
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
+    required TResult Function(String phoneNumber, VoidCallback onSuccess)
+        phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
   }) =>
@@ -29,7 +30,8 @@ mixin _$AuthEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMaster)? setUserType,
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
+    TResult? Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,7 +39,8 @@ mixin _$AuthEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMaster)? setUserType,
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
+    TResult Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
   }) =>
@@ -160,7 +163,8 @@ class _$SetUserTypeImpl implements _SetUserType {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMaster) setUserType,
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
+    required TResult Function(String phoneNumber, VoidCallback onSuccess)
+        phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
   }) {
@@ -172,7 +176,8 @@ class _$SetUserTypeImpl implements _SetUserType {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMaster)? setUserType,
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
+    TResult? Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
     return setUserType?.call(isMaster);
@@ -183,7 +188,8 @@ class _$SetUserTypeImpl implements _SetUserType {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMaster)? setUserType,
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
+    TResult Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
   }) {
@@ -314,7 +320,8 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMaster) setUserType,
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
+    required TResult Function(String phoneNumber, VoidCallback onSuccess)
+        phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
   }) {
@@ -326,7 +333,8 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMaster)? setUserType,
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
+    TResult? Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
     return socialMediaLogin?.call(type);
@@ -337,7 +345,8 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMaster)? setUserType,
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
+    TResult Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
   }) {
@@ -404,7 +413,7 @@ abstract class _$$PhoneLoginRequestedImplCopyWith<$Res> {
           $Res Function(_$PhoneLoginRequestedImpl) then) =
       __$$PhoneLoginRequestedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String phoneNumber});
+  $Res call({String phoneNumber, VoidCallback onSuccess});
 }
 
 /// @nodoc
@@ -421,12 +430,17 @@ class __$$PhoneLoginRequestedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneNumber = null,
+    Object? onSuccess = null,
   }) {
     return _then(_$PhoneLoginRequestedImpl(
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      onSuccess: null == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as VoidCallback,
     ));
   }
 }
@@ -434,14 +448,17 @@ class __$$PhoneLoginRequestedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
-  const _$PhoneLoginRequestedImpl({required this.phoneNumber});
+  const _$PhoneLoginRequestedImpl(
+      {required this.phoneNumber, required this.onSuccess});
 
   @override
   final String phoneNumber;
+  @override
+  final VoidCallback onSuccess;
 
   @override
   String toString() {
-    return 'AuthEvent.phoneLoginRequested(phoneNumber: $phoneNumber)';
+    return 'AuthEvent.phoneLoginRequested(phoneNumber: $phoneNumber, onSuccess: $onSuccess)';
   }
 
   @override
@@ -450,11 +467,13 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
         (other.runtimeType == runtimeType &&
             other is _$PhoneLoginRequestedImpl &&
             (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber);
+  int get hashCode => Object.hash(runtimeType, phoneNumber, onSuccess);
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -470,11 +489,12 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMaster) setUserType,
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
+    required TResult Function(String phoneNumber, VoidCallback onSuccess)
+        phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
   }) {
-    return phoneLoginRequested(phoneNumber);
+    return phoneLoginRequested(phoneNumber, onSuccess);
   }
 
   @override
@@ -482,10 +502,11 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMaster)? setUserType,
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
+    TResult? Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
-    return phoneLoginRequested?.call(phoneNumber);
+    return phoneLoginRequested?.call(phoneNumber, onSuccess);
   }
 
   @override
@@ -493,12 +514,13 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMaster)? setUserType,
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
+    TResult Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
   }) {
     if (phoneLoginRequested != null) {
-      return phoneLoginRequested(phoneNumber);
+      return phoneLoginRequested(phoneNumber, onSuccess);
     }
     return orElse();
   }
@@ -542,10 +564,12 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
 }
 
 abstract class _PhoneLoginRequested implements AuthEvent {
-  const factory _PhoneLoginRequested({required final String phoneNumber}) =
-      _$PhoneLoginRequestedImpl;
+  const factory _PhoneLoginRequested(
+      {required final String phoneNumber,
+      required final VoidCallback onSuccess}) = _$PhoneLoginRequestedImpl;
 
   String get phoneNumber;
+  VoidCallback get onSuccess;
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -635,7 +659,8 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMaster) setUserType,
     required TResult Function(SocialMediaType type) socialMediaLogin,
-    required TResult Function(String phoneNumber) phoneLoginRequested,
+    required TResult Function(String phoneNumber, VoidCallback onSuccess)
+        phoneLoginRequested,
     required TResult Function(String verificationId, String smsCode)
         verifyPhoneNumber,
   }) {
@@ -647,7 +672,8 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMaster)? setUserType,
     TResult? Function(SocialMediaType type)? socialMediaLogin,
-    TResult? Function(String phoneNumber)? phoneLoginRequested,
+    TResult? Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
   }) {
     return verifyPhoneNumber?.call(verificationId, smsCode);
@@ -658,7 +684,8 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMaster)? setUserType,
     TResult Function(SocialMediaType type)? socialMediaLogin,
-    TResult Function(String phoneNumber)? phoneLoginRequested,
+    TResult Function(String phoneNumber, VoidCallback onSuccess)?
+        phoneLoginRequested,
     TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
     required TResult orElse(),
   }) {

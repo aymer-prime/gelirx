@@ -169,13 +169,14 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                               const CardLabelWidget(
                                 label: '${AppStrings.services} - ',
                               ),
-                              Flexible(
-                                child: Text(
-                                  widget.categories[widget.catIndex].name,
-                                  style: context.textTheme.bodyMedium,
-                                  overflow: TextOverflow.ellipsis,
+                              if (widget.categories.isNotEmpty)
+                                Flexible(
+                                  child: Text(
+                                    widget.categories[widget.catIndex].name,
+                                    style: context.textTheme.bodyMedium,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
-                              ),
                             ],
                           ),
                           const SizedBox(height: AppSize.s16),
