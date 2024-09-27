@@ -7,6 +7,7 @@ TextStyle _getTextStyle(double fontSize, FontWeight fontWeight, Color color) {
     fontSize: fontSize,
     fontWeight: fontWeight,
     color: color,
+    letterSpacing: fontSize * -0.03,
   );
 }
 

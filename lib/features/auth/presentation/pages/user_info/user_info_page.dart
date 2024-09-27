@@ -3,15 +3,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/map_extensions.dart';
+import 'package:gelirx/app/extensions/string.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
+import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/user_verification/user_verification_bloc.dart';
-import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 @RoutePage()
@@ -81,24 +83,30 @@ class UserInfoPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: AppSize.s24),
+                        const SizedBox(height: AppSize.s90),
                         Center(
-                          child: Text(
-                            'Enter Your Info',
-                            style: context.textTheme.displayMedium,
-                          ),
+                          child: SvgPicture.asset(ImageAssets.logoPrimary),
                         ),
-                        const SizedBox(height: AppSize.s24),
+                        const SizedBox(height: AppSize.s60),
                         Padding(
                           padding: const EdgeInsets.all(AppPadding.p16),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const CardLabelWidget(label: 'Name'),
-                              const SizedBox(height: AppSize.s16),
+                              Text(
+                                'The Last Step',
+                                style: context.textTheme.displayMedium,
+                              ),
+                              const SizedBox(height: AppSize.s52),
+                              Text(
+                                'Name',
+                                style: context.textTheme.labelLarge,
+                              ),
                               TextFormField(
                                 keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   hintText: 'First Name . . .',
+                                  fillColor: ColorManager.textfieldNumFillColor,
                                 ),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
@@ -122,11 +130,16 @@ class UserInfoPage extends StatelessWidget {
                                   }
                                 },
                               ),
-                              const SizedBox(height: AppSize.s4),
+                              const SizedBox(height: AppSize.s20),
+                              Text(
+                                'Surname',
+                                style: context.textTheme.labelLarge,
+                              ),
                               TextFormField(
                                 keyboardType: TextInputType.name,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   hintText: 'SurName . . .',
+                                  fillColor: ColorManager.textfieldNumFillColor,
                                 ),
                                 onChanged: (value) => context
                                     .read<UserVerificationBloc>()
@@ -148,22 +161,44 @@ class UserInfoPage extends StatelessWidget {
                                   }
                                 },
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(AppPadding.p16),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      context.read<UserVerificationBloc>().add(
-                                            UserVerificationEvent
-                                                .registerUserInfo(
-                                              () {},
-                                            ),
-                                          );
-                                    },
-                                    child: const Text(
-                                      AppStrings.continueTxt,
-                                    ),
+                              const SizedBox(height: AppSize.s20),
+                              Text(
+                                'E-mail Address',
+                                style: context.textTheme.labelLarge,
+                              ),
+                              TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                decoration: InputDecoration(
+                                  hintText: 'SurName . . .',
+                                  fillColor: ColorManager.textfieldNumFillColor,
+                                ),
+                                validator: (_) {
+                                  bool? valid = _?.isValidEmail();
+                                  if (valid == null) {
+                                    return null;
+                                  }
+                                  if (!valid) {
+                                    return 'Invalid E-main Address';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                              const SizedBox(height: AppSize.s68),
+                              SizedBox(
+                                height: AppSize.s48,
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    context.read<UserVerificationBloc>().add(
+                                          UserVerificationEvent
+                                              .registerUserInfo(
+                                            () {},
+                                          ),
+                                        );
+                                  },
+                                  child: const Text(
+                                    AppStrings.continueTxt,
                                   ),
                                 ),
                               ),
