@@ -5,11 +5,15 @@ import 'package:dio/dio.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/remote_service.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
+import 'package:gelirx/features/home/data/dto/master_dto.dart';
+import 'package:gelirx/features/home/data/mappers/home_mappers.dart';
+import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/shared/domain/dtos/category/category_dto.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
 import 'package:gelirx/features/shared/domain/mappers/shared_mappers.dart';
 import 'package:injectable/injectable.dart';
+import 'package:latlong2/latlong.dart';
 
 @LazySingleton(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
@@ -82,4 +86,31 @@ class HomeRepository implements IHomeRepository {
       return left(e);
     }
   }
+
+  @override
+  Future<Either<ApiException, List<Master>>> getMasters(LatLng centerPosition) async {
+    try {
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}master/search.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: {
+          'lang': 'en',
+          'latitude': centerPosition.latitude,
+          'longitude': centerPosition.longitude,
+        },
+      );
+      final List<dynamic> responseData = response;
+      final List<Master> masterList = responseData
+          .map(
+            (e) => MasterDto.fromJson(e).toDomain(),
+      ).toList();
+      return right(masterList);
+    } on ApiException catch (e) {
+      return left(e);
+  }
+ }
 }

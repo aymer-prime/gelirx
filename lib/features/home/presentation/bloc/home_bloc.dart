@@ -2,10 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
+import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
 import 'package:gelirx/features/shared/misc/functions.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
+import 'package:latlong2/latlong.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -79,6 +81,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             subCategories: categories,
           ),
         ),
+      );
+    });
+
+    on<_GetMasters>((event, emit) async {
+      var masters = await _iHomeRepository.getMasters(event.centerPosition);
+
+      masters.fold(
+            (failure) => emit(state.copyWith(masters: [])),
+            (masters) => emit(state.copyWith(masters: masters)),
       );
     });
   }

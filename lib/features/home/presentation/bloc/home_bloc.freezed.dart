@@ -22,6 +22,7 @@ mixin _$HomeEvent {
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(int catIndex) getSubCategories,
+    required TResult Function(LatLng centerPosition) getMasters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$HomeEvent {
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function(LatLng centerPosition)? getMasters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$HomeEvent {
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(int catIndex)? getSubCategories,
+    TResult Function(LatLng centerPosition)? getMasters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$HomeEvent {
     required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetMasters value) getMasters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$HomeEvent {
     TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetMasters value)? getMasters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$HomeEvent {
     TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetMasters value)? getMasters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +139,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(int catIndex) getSubCategories,
+    required TResult Function(LatLng centerPosition) getMasters,
   }) {
     return getCurrentPosition();
   }
@@ -144,6 +151,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function(LatLng centerPosition)? getMasters,
   }) {
     return getCurrentPosition?.call();
   }
@@ -155,6 +163,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(int catIndex)? getSubCategories,
+    TResult Function(LatLng centerPosition)? getMasters,
     required TResult orElse(),
   }) {
     if (getCurrentPosition != null) {
@@ -170,6 +179,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetMasters value) getMasters,
   }) {
     return getCurrentPosition(this);
   }
@@ -181,6 +191,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetMasters value)? getMasters,
   }) {
     return getCurrentPosition?.call(this);
   }
@@ -192,6 +203,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetMasters value)? getMasters,
     required TResult orElse(),
   }) {
     if (getCurrentPosition != null) {
@@ -277,6 +289,7 @@ class _$GetRangeImpl implements _GetRange {
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(int catIndex) getSubCategories,
+    required TResult Function(LatLng centerPosition) getMasters,
   }) {
     return getRange(range);
   }
@@ -288,6 +301,7 @@ class _$GetRangeImpl implements _GetRange {
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function(LatLng centerPosition)? getMasters,
   }) {
     return getRange?.call(range);
   }
@@ -299,6 +313,7 @@ class _$GetRangeImpl implements _GetRange {
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(int catIndex)? getSubCategories,
+    TResult Function(LatLng centerPosition)? getMasters,
     required TResult orElse(),
   }) {
     if (getRange != null) {
@@ -314,6 +329,7 @@ class _$GetRangeImpl implements _GetRange {
     required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetMasters value) getMasters,
   }) {
     return getRange(this);
   }
@@ -325,6 +341,7 @@ class _$GetRangeImpl implements _GetRange {
     TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetMasters value)? getMasters,
   }) {
     return getRange?.call(this);
   }
@@ -336,6 +353,7 @@ class _$GetRangeImpl implements _GetRange {
     TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetMasters value)? getMasters,
     required TResult orElse(),
   }) {
     if (getRange != null) {
@@ -402,6 +420,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(int catIndex) getSubCategories,
+    required TResult Function(LatLng centerPosition) getMasters,
   }) {
     return getCategories();
   }
@@ -413,6 +432,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function(LatLng centerPosition)? getMasters,
   }) {
     return getCategories?.call();
   }
@@ -424,6 +444,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(int catIndex)? getSubCategories,
+    TResult Function(LatLng centerPosition)? getMasters,
     required TResult orElse(),
   }) {
     if (getCategories != null) {
@@ -439,6 +460,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetMasters value) getMasters,
   }) {
     return getCategories(this);
   }
@@ -450,6 +472,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetMasters value)? getMasters,
   }) {
     return getCategories?.call(this);
   }
@@ -461,6 +484,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetMasters value)? getMasters,
     required TResult orElse(),
   }) {
     if (getCategories != null) {
@@ -548,6 +572,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     required TResult Function(int range) getRange,
     required TResult Function() getCategories,
     required TResult Function(int catIndex) getSubCategories,
+    required TResult Function(LatLng centerPosition) getMasters,
   }) {
     return getSubCategories(catIndex);
   }
@@ -559,6 +584,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult? Function(int range)? getRange,
     TResult? Function()? getCategories,
     TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function(LatLng centerPosition)? getMasters,
   }) {
     return getSubCategories?.call(catIndex);
   }
@@ -570,6 +596,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult Function(int range)? getRange,
     TResult Function()? getCategories,
     TResult Function(int catIndex)? getSubCategories,
+    TResult Function(LatLng centerPosition)? getMasters,
     required TResult orElse(),
   }) {
     if (getSubCategories != null) {
@@ -585,6 +612,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     required TResult Function(_GetRange value) getRange,
     required TResult Function(_GetCategories value) getCategories,
     required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetMasters value) getMasters,
   }) {
     return getSubCategories(this);
   }
@@ -596,6 +624,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult? Function(_GetRange value)? getRange,
     TResult? Function(_GetCategories value)? getCategories,
     TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetMasters value)? getMasters,
   }) {
     return getSubCategories?.call(this);
   }
@@ -607,6 +636,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult Function(_GetRange value)? getRange,
     TResult Function(_GetCategories value)? getCategories,
     TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetMasters value)? getMasters,
     required TResult orElse(),
   }) {
     if (getSubCategories != null) {
@@ -630,6 +660,165 @@ abstract class _GetSubCategories implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$GetMastersImplCopyWith<$Res> {
+  factory _$$GetMastersImplCopyWith(
+          _$GetMastersImpl value, $Res Function(_$GetMastersImpl) then) =
+      __$$GetMastersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({LatLng centerPosition});
+}
+
+/// @nodoc
+class __$$GetMastersImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetMastersImpl>
+    implements _$$GetMastersImplCopyWith<$Res> {
+  __$$GetMastersImplCopyWithImpl(
+      _$GetMastersImpl _value, $Res Function(_$GetMastersImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? centerPosition = null,
+  }) {
+    return _then(_$GetMastersImpl(
+      null == centerPosition
+          ? _value.centerPosition
+          : centerPosition // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetMastersImpl implements _GetMasters {
+  const _$GetMastersImpl(this.centerPosition);
+
+  @override
+  final LatLng centerPosition;
+
+  @override
+  String toString() {
+    return 'HomeEvent.getMasters(centerPosition: $centerPosition)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetMastersImpl &&
+            (identical(other.centerPosition, centerPosition) ||
+                other.centerPosition == centerPosition));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, centerPosition);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetMastersImplCopyWith<_$GetMastersImpl> get copyWith =>
+      __$$GetMastersImplCopyWithImpl<_$GetMastersImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCurrentPosition,
+    required TResult Function(int range) getRange,
+    required TResult Function() getCategories,
+    required TResult Function(int catIndex) getSubCategories,
+    required TResult Function(LatLng centerPosition) getMasters,
+  }) {
+    return getMasters(centerPosition);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCurrentPosition,
+    TResult? Function(int range)? getRange,
+    TResult? Function()? getCategories,
+    TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function(LatLng centerPosition)? getMasters,
+  }) {
+    return getMasters?.call(centerPosition);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCurrentPosition,
+    TResult Function(int range)? getRange,
+    TResult Function()? getCategories,
+    TResult Function(int catIndex)? getSubCategories,
+    TResult Function(LatLng centerPosition)? getMasters,
+    required TResult orElse(),
+  }) {
+    if (getMasters != null) {
+      return getMasters(centerPosition);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetRange value) getRange,
+    required TResult Function(_GetCategories value) getCategories,
+    required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetMasters value) getMasters,
+  }) {
+    return getMasters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetRange value)? getRange,
+    TResult? Function(_GetCategories value)? getCategories,
+    TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetMasters value)? getMasters,
+  }) {
+    return getMasters?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetRange value)? getRange,
+    TResult Function(_GetCategories value)? getCategories,
+    TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetMasters value)? getMasters,
+    required TResult orElse(),
+  }) {
+    if (getMasters != null) {
+      return getMasters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetMasters implements HomeEvent {
+  const factory _GetMasters(final LatLng centerPosition) = _$GetMastersImpl;
+
+  LatLng get centerPosition;
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetMastersImplCopyWith<_$GetMastersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$HomeState {
   int get range => throw _privateConstructorUsedError;
   int get catIndex => throw _privateConstructorUsedError;
@@ -638,6 +827,7 @@ mixin _$HomeState {
   Option<Position> get userPosition => throw _privateConstructorUsedError;
   List<Category> get categories => throw _privateConstructorUsedError;
   List<Category> get subCategories => throw _privateConstructorUsedError;
+  List<Master> get masters => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -658,7 +848,8 @@ abstract class $HomeStateCopyWith<$Res> {
       bool isLoading,
       Option<Position> userPosition,
       List<Category> categories,
-      List<Category> subCategories});
+      List<Category> subCategories,
+      List<Master> masters});
 }
 
 /// @nodoc
@@ -683,6 +874,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? userPosition = null,
     Object? categories = null,
     Object? subCategories = null,
+    Object? masters = null,
   }) {
     return _then(_value.copyWith(
       range: null == range
@@ -713,6 +905,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.subCategories
           : subCategories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
+      masters: null == masters
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
     ) as $Val);
   }
 }
@@ -732,7 +928,8 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       bool isLoading,
       Option<Position> userPosition,
       List<Category> categories,
-      List<Category> subCategories});
+      List<Category> subCategories,
+      List<Master> masters});
 }
 
 /// @nodoc
@@ -755,6 +952,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? userPosition = null,
     Object? categories = null,
     Object? subCategories = null,
+    Object? masters = null,
   }) {
     return _then(_$HomeStateImpl(
       range: null == range
@@ -785,6 +983,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value._subCategories
           : subCategories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
+      masters: null == masters
+          ? _value._masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
     ));
   }
 }
@@ -799,9 +1001,11 @@ class _$HomeStateImpl implements _HomeState {
       required this.isLoading,
       required this.userPosition,
       required final List<Category> categories,
-      required final List<Category> subCategories})
+      required final List<Category> subCategories,
+      required final List<Master> masters})
       : _categories = categories,
-        _subCategories = subCategories;
+        _subCategories = subCategories,
+        _masters = masters;
 
   @override
   final int range;
@@ -829,9 +1033,17 @@ class _$HomeStateImpl implements _HomeState {
     return EqualUnmodifiableListView(_subCategories);
   }
 
+  final List<Master> _masters;
+  @override
+  List<Master> get masters {
+    if (_masters is EqualUnmodifiableListView) return _masters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_masters);
+  }
+
   @override
   String toString() {
-    return 'HomeState(range: $range, catIndex: $catIndex, subCatIndex: $subCatIndex, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories)';
+    return 'HomeState(range: $range, catIndex: $catIndex, subCatIndex: $subCatIndex, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories, masters: $masters)';
   }
 
   @override
@@ -851,7 +1063,8 @@ class _$HomeStateImpl implements _HomeState {
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
             const DeepCollectionEquality()
-                .equals(other._subCategories, _subCategories));
+                .equals(other._subCategories, _subCategories) &&
+            const DeepCollectionEquality().equals(other._masters, _masters));
   }
 
   @override
@@ -863,7 +1076,8 @@ class _$HomeStateImpl implements _HomeState {
       isLoading,
       userPosition,
       const DeepCollectionEquality().hash(_categories),
-      const DeepCollectionEquality().hash(_subCategories));
+      const DeepCollectionEquality().hash(_subCategories),
+      const DeepCollectionEquality().hash(_masters));
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -882,7 +1096,8 @@ abstract class _HomeState implements HomeState {
       required final bool isLoading,
       required final Option<Position> userPosition,
       required final List<Category> categories,
-      required final List<Category> subCategories}) = _$HomeStateImpl;
+      required final List<Category> subCategories,
+      required final List<Master> masters}) = _$HomeStateImpl;
 
   @override
   int get range;
@@ -898,6 +1113,8 @@ abstract class _HomeState implements HomeState {
   List<Category> get categories;
   @override
   List<Category> get subCategories;
+  @override
+  List<Master> get masters;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

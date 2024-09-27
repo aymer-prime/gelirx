@@ -10,6 +10,7 @@ class HomeState with _$HomeState {
     required Option<Position> userPosition,
     required List<Category> categories,
     required List<Category> subCategories,
+    required List<Master> masters
   }) = _HomeState;
 
   factory HomeState.initial() => HomeState(
@@ -20,5 +21,6 @@ class HomeState with _$HomeState {
         userPosition: none(),
         categories: [],
         subCategories: [],
+        masters: [],
       );
 }
