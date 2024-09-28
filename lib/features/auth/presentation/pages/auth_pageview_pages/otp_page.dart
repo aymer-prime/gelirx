@@ -71,21 +71,22 @@ class OtpPage extends HookWidget {
                   style: getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.blackTextColorWithOpacity),
                 ),
                 const SizedBox(height: AppSize.s24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(6, (index) {
-                    return _otpTextField(
-                      context,
-                      otpControllers[index],
-                      index == 0,
-                    );
-                  }),
-                ),
+               // const OtpInputFields(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(6, (index) {
+                      return OtpTextField(
+                        controller: otpControllers[index],
+                        autoFocus: index == 0,
+                      );
+                    }),
+                  ),
                 const SizedBox(height: AppSize.s40),
                 SizedBox(
                   width: double.infinity,
                   height: AppSize.s60,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: ColorManager.lightgreybuttonColor),
                     onPressed: () {
                       final otpCode = otpControllers.map((c) => c.text).join();
                       if (otpCode.length == 6) {
@@ -101,7 +102,7 @@ class OtpPage extends HookWidget {
                         );
                       }
                     },
-                    child: const Text(AppStrings.continueTxt),
+                    child:  Text(AppStrings.continueTxt,style: getTextStyle(AppSize.s15, FontWeight.w700, ColorManager.headerTextColor),),
                   ),
                 ),
                 Row(
@@ -110,7 +111,7 @@ class OtpPage extends HookWidget {
                     Text(
                       'Resend Code',
                       textAlign: TextAlign.center,
-                      style: context.textTheme.bodyLarge,
+                       style: getTextStyle(AppSize.s15, FontWeight.w500, ColorManager.headerTextColor)
                     ),
                     const SizedBox(width: AppSize.s16),
                     SizedBox(
@@ -153,32 +154,78 @@ class OtpPage extends HookWidget {
   }
 }
 
-Widget _otpTextField(
-    BuildContext context, TextEditingController controller, bool autoFocus) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: AppPadding.p4),
-    child: SizedBox(
-      height: AppSize.s52,
-      //width: AppSize.s56,
-      child: AspectRatio(
-        aspectRatio: 0.875,
-        child: TextField(
-          controller: controller,
-          textAlign: TextAlign.center,
-          autofocus: autoFocus,
-          keyboardType: TextInputType.number,
-          maxLines: null,
-          expands: true,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
-              FocusScope.of(context).nextFocus();
-            }
-          },
-          decoration: InputDecoration(
+class OtpTextField extends StatefulWidget {
+  final TextEditingController controller;
+  final bool autoFocus;
+
+  const OtpTextField({
+    Key? key,
+    required this.controller,
+    required this.autoFocus,
+  }) : super(key: key);
+
+  @override
+  _OtpTextFieldState createState() => _OtpTextFieldState();
+}
+
+class _OtpTextFieldState extends State<OtpTextField> {
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(() {
+      // Trigger a rebuild when the focus changes
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p4),
+      child: SizedBox(
+        height: AppSize.s52,
+        child: AspectRatio(
+          aspectRatio: 0.875,
+          child: TextField(
+            focusNode: _focusNode,
+            controller: widget.controller,
+            textAlign: TextAlign.center,
+            autofocus: widget.autoFocus,
+            keyboardType: TextInputType.number,
+            maxLines: null,
+            expands: true,
+            cursorColor: Colors.blue,
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                FocusScope.of(context).nextFocus();
+              }
+            },
+            decoration: InputDecoration(
               contentPadding: EdgeInsets.zero,
-              fillColor: ColorManager.textfieldNumFillColor),
+              fillColor: _focusNode.hasFocus ? Colors.white : ColorManager.lightgreybuttonColor,
+              filled: true,
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: ColorManager.outlineOtpBorderColor),
+                borderRadius: BorderRadius.circular(AppSize.s12),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.circular(AppSize.s12),
+              ),
+            ),
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
+

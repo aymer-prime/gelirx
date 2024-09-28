@@ -29,8 +29,11 @@ class ColorManager {
   //buttons
   static Color buttonTextColor = const Color(0xffffffff);
   static Color disabledButtonColor = const Color(0xff999999);
+  static Color lightgreybuttonColor = const Color(0xFFEFEFEF);
+  static Color buttonColor = const Color(0xFFEFEFEF);
   static Color disabledButtonTextColor = const Color(0xffe6e6e6);
   static Color outlineButtonBorderColor = const Color(0xff2E4460);
+  static Color outlineOtpBorderColor = const Color(0xff9A9FA5);
   //text_field
   static Color textfieldNumFillColor = const Color(0xffF5F5F5);
   static Color textfieldHintColor = const Color(0xff999999);
