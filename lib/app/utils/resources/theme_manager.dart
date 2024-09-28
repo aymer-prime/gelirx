@@ -58,7 +58,7 @@ ThemeData getApplicationTheme() {
         foregroundColor: ColorManager.white,
         backgroundColor: ColorManager.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
         ),
       ),
     ),
@@ -172,6 +172,7 @@ ThemeData getApplicationTheme() {
         fontSize: FontSizeManager.s12,
       ),
       errorStyle: getRegularStyle(
+        fontSize: FontSizeManager.s12,
         color: ColorManager.textErrorColor,
       ),
       enabledBorder: OutlineInputBorder(

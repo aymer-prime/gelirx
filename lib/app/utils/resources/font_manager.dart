@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FontConstants {
   static const String fontFamily = 'Poppins';
@@ -13,18 +14,18 @@ class FontWeightManager {
 }
 
 class FontSizeManager {
-  static const double s8 = 8.0;
-  static const double s10 = 10.0;
-  static const double s12 = 12.0;
-  static const double s14 = 14.0;
-  static const double s15 = 15.0;
-  static const double s16 = 16.0;
-  static const double s17 = 17.0;
-  static const double s18 = 18.0;
-  static const double s20 = 20.0;
-  static const double s22 = 22.0;
-  static const double s24 = 24.0;
-  static const double s26 = 26.0;
-  static const double s32 = 32.0;
-  static const double s48 = 48.0;
+  static double s8 = 8.0.sp;
+  static double s10 = 10.0.sp;
+  static double s12 = 12.0.sp;
+  static double s14 = 14.0.sp;
+  static double s15 = 15.0.sp;
+  static double s16 = 16.0.sp;
+  static double s17 = 17.0.sp;
+  static double s18 = 18.0.sp;
+  static double s20 = 20.0.sp;
+  static double s22 = 22.0.sp;
+  static double s24 = 24.0.sp;
+  static double s26 = 26.0.sp;
+  static double s32 = 32.0.sp;
+  static double s48 = 48.0.sp;
 }
