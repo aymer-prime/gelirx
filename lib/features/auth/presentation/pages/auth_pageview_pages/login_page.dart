@@ -174,106 +174,106 @@ class LoginPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              if (!isMaster)
-                                Column(
-                                  children: [
-                                    // Center(
-                                    //   child: Text(
-                                    //     AppStrings.signInWithTitle,
-                                    //     style: context.textTheme.headlineSmall,
-                                    //   ),
-                                    // ),
-                                    // const SizedBox(height: AppSize.s20),
-                                    // Row(
-                                    //   mainAxisAlignment:
-                                    //       MainAxisAlignment.spaceEvenly,
-                                    //   children: [
-                                    //     socialLoginButton(
-                                    //         image: ImageAssets.googleLogo,
-                                    //         onTap: () {
-                                    //           context.read<AuthBloc>().add(
-                                    //               const AuthEvent.socialMediaLogin(
-                                    //                   SocialMediaType.Google));
-                                    //         }),
-                                    //     socialLoginButton(
-                                    //         image: ImageAssets.facebookLogo,
-                                    //         onTap: () {
-                                    //           context.read<AuthBloc>().add(
-                                    //               const AuthEvent.socialMediaLogin(
-                                    //                   SocialMediaType.Facebook));
-                                    //         }),
-                                    //     socialLoginButton(
-                                    //         image: ImageAssets.appleLogo,
-                                    //         onTap: () {
-                                    //           context.read<AuthBloc>().add(
-                                    //               const AuthEvent.socialMediaLogin(
-                                    //                   SocialMediaType.Apple));
-                                    //         })
-                                    //   ],
-                                    // ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: AppPadding.p16),
-                                      child: SizedBox(
-                                        height: AppSize.s48,
-                                        width: double.infinity,
-                                        child: IntrinsicWidth(
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                child: Divider(
-                                                  color: ColorManager
-                                                      .textTitleColor,
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal:
-                                                            AppPadding.p8),
-                                                child: Text(
-                                                  'OR',
-                                                  style: context
-                                                      .textTheme.labelLarge,
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Divider(
-                                                  color: ColorManager
-                                                      .outlineButtonBorderColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: AppSize.s48,
-                                      child: OutlinedButton(
-                                        onPressed: () {
-                                          context.router.replace(
-                                              const AlternateMainRoute());
-                                        },
-                                        style: OutlinedButton.styleFrom(
-                                          backgroundColor:
-                                              ColorManager.textfieldFillColor,
-                                          side: BorderSide(
-                                            color: ColorManager
-                                                .textfieldBorderColor,
-                                            width: 1.5,
-                                          ),
-                                        ),
-                                        child: Text(
-                                          AppStrings.continueAsGuest,
-                                          style:
-                                              context.textTheme.headlineSmall,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              // if (!isMaster)
+                              //   Column(
+                              //     children: [
+                              //       // Center(
+                              //       //   child: Text(
+                              //       //     AppStrings.signInWithTitle,
+                              //       //     style: context.textTheme.headlineSmall,
+                              //       //   ),
+                              //       // ),
+                              //       // const SizedBox(height: AppSize.s20),
+                              //       // Row(
+                              //       //   mainAxisAlignment:
+                              //       //       MainAxisAlignment.spaceEvenly,
+                              //       //   children: [
+                              //       //     socialLoginButton(
+                              //       //         image: ImageAssets.googleLogo,
+                              //       //         onTap: () {
+                              //       //           context.read<AuthBloc>().add(
+                              //       //               const AuthEvent.socialMediaLogin(
+                              //       //                   SocialMediaType.Google));
+                              //       //         }),
+                              //       //     socialLoginButton(
+                              //       //         image: ImageAssets.facebookLogo,
+                              //       //         onTap: () {
+                              //       //           context.read<AuthBloc>().add(
+                              //       //               const AuthEvent.socialMediaLogin(
+                              //       //                   SocialMediaType.Facebook));
+                              //       //         }),
+                              //       //     socialLoginButton(
+                              //       //         image: ImageAssets.appleLogo,
+                              //       //         onTap: () {
+                              //       //           context.read<AuthBloc>().add(
+                              //       //               const AuthEvent.socialMediaLogin(
+                              //       //                   SocialMediaType.Apple));
+                              //       //         })
+                              //       //   ],
+                              //       // ),
+                              //       Padding(
+                              //         padding: const EdgeInsets.symmetric(
+                              //             horizontal: AppPadding.p16),
+                              //         child: SizedBox(
+                              //           height: AppSize.s48,
+                              //           width: double.infinity,
+                              //           child: IntrinsicWidth(
+                              //             child: Row(
+                              //               children: [
+                              //                 Expanded(
+                              //                   child: Divider(
+                              //                     color: ColorManager
+                              //                         .textTitleColor,
+                              //                   ),
+                              //                 ),
+                              //                 Padding(
+                              //                   padding:
+                              //                       const EdgeInsets.symmetric(
+                              //                           horizontal:
+                              //                               AppPadding.p8),
+                              //                   child: Text(
+                              //                     'OR',
+                              //                     style: context
+                              //                         .textTheme.labelLarge,
+                              //                   ),
+                              //                 ),
+                              //                 Expanded(
+                              //                   child: Divider(
+                              //                     color: ColorManager
+                              //                         .outlineButtonBorderColor,
+                              //                   ),
+                              //                 ),
+                              //               ],
+                              //             ),
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       SizedBox(
+                              //         width: double.infinity,
+                              //         height: AppSize.s48,
+                              //         child: OutlinedButton(
+                              //           onPressed: () {
+                              //             context.router.replace(
+                              //                 const AlternateMainRoute());
+                              //           },
+                              //           style: OutlinedButton.styleFrom(
+                              //             backgroundColor:
+                              //                 ColorManager.textfieldFillColor,
+                              //             side: BorderSide(
+                              //               color: ColorManager
+                              //                   .textfieldBorderColor,
+                              //               width: 1.5,
+                              //             ),
+                              //           ),
+                              //           child: Text(
+                              //             AppStrings.continueAsGuest,
+                              //             style:
+                              //                 context.textTheme.headlineSmall,
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
                             ],
                           ),
                         ),
