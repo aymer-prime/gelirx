@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/map_extensions.dart';
@@ -11,6 +12,7 @@ import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/user_verification/user_verification_bloc.dart';
@@ -83,13 +85,15 @@ class UserInfoPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: AppSize.s90),
+                        SizedBox(height: AppSize.s90.h),
                         Center(
                           child: SvgPicture.asset(ImageAssets.logoPrimary),
                         ),
-                        const SizedBox(height: AppSize.s60),
+                        SizedBox(height: AppSize.s86.h),
                         Padding(
-                          padding: const EdgeInsets.all(AppPadding.p16),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20.w,
+                          ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -97,11 +101,15 @@ class UserInfoPage extends StatelessWidget {
                                 'The Last Step',
                                 style: context.textTheme.displayMedium,
                               ),
-                              const SizedBox(height: AppSize.s52),
+                              SizedBox(height: AppSize.s54.h),
                               Text(
                                 'Name',
-                                style: context.textTheme.labelLarge,
+                                style: context.textTheme.labelLarge!.copyWith(
+                                  fontSize: FontSizeManager.s15,
+                                  letterSpacing: FontSizeManager.s15 * -0.01,
+                                ),
                               ),
+                              SizedBox(height: AppSize.s8.h),
                               TextFormField(
                                 keyboardType: TextInputType.name,
                                 decoration: InputDecoration(
@@ -130,11 +138,15 @@ class UserInfoPage extends StatelessWidget {
                                   }
                                 },
                               ),
-                              const SizedBox(height: AppSize.s20),
+                              SizedBox(height: AppSize.s20.h),
                               Text(
                                 'Surname',
-                                style: context.textTheme.labelLarge,
+                                style: context.textTheme.labelLarge!.copyWith(
+                                  fontSize: FontSizeManager.s15,
+                                  letterSpacing: FontSizeManager.s15 * -0.01,
+                                ),
                               ),
+                              SizedBox(height: AppSize.s8.h),
                               TextFormField(
                                 keyboardType: TextInputType.name,
                                 decoration: InputDecoration(
@@ -161,11 +173,15 @@ class UserInfoPage extends StatelessWidget {
                                   }
                                 },
                               ),
-                              const SizedBox(height: AppSize.s20),
+                              SizedBox(height: AppSize.s20.h),
                               Text(
                                 'E-mail Address',
-                                style: context.textTheme.labelLarge,
+                                style: context.textTheme.labelLarge!.copyWith(
+                                  fontSize: FontSizeManager.s15,
+                                  letterSpacing: FontSizeManager.s15 * -0.01,
+                                ),
                               ),
+                              SizedBox(height: AppSize.s8.h),
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
@@ -197,8 +213,17 @@ class UserInfoPage extends StatelessWidget {
                                           ),
                                         );
                                   },
-                                  child: const Text(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0.0,
+                                    backgroundColor:
+                                        ColorManager.textfieldColor,
+                                  ),
+                                  child: Text(
                                     AppStrings.continueTxt,
+                                    style:
+                                        context.textTheme.titleLarge!.copyWith(
+                                      fontSize: FontSizeManager.s15,
+                                    ),
                                   ),
                                 ),
                               ),
