@@ -9,6 +9,14 @@ abstract class Category with _$Category {
     required String name,
     required String description,
     required String link,
-    required String img,
+    required Img img,
   }) = _Category;
+}
+
+@freezed
+abstract class Img with _$Img {
+  const factory Img({
+    required String icon,
+    required String photo,
+  }) = _Img;
 }

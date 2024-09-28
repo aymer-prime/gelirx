@@ -11,6 +11,7 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/master_verification/master_verification_bloc.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
+import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 

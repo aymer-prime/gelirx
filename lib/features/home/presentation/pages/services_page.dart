@@ -49,7 +49,7 @@ class ServicesPage extends StatelessWidget {
               ),
               HomeDraggableSheet(
                 categories: state.categories,
-                subCategories: state.subCategories,
+                services: state.services,
                 catIndex: state.catIndex,
                 subCatIndex: state.subCatIndex,
               ),

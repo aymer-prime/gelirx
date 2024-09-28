@@ -20,7 +20,7 @@ mixin _$Category {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
-  String get img => throw _privateConstructorUsedError;
+  Img get img => throw _privateConstructorUsedError;
 
   /// Create a copy of Category
   /// with the given fields replaced by the non-null parameter values.
@@ -34,8 +34,9 @@ abstract class $CategoryCopyWith<$Res> {
   factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
       _$CategoryCopyWithImpl<$Res, Category>;
   @useResult
-  $Res call(
-      {String id, String name, String description, String link, String img});
+  $Res call({String id, String name, String description, String link, Img img});
+
+  $ImgCopyWith<$Res> get img;
 }
 
 /// @nodoc
@@ -79,8 +80,18 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
       img: null == img
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Img,
     ) as $Val);
+  }
+
+  /// Create a copy of Category
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImgCopyWith<$Res> get img {
+    return $ImgCopyWith<$Res>(_value.img, (value) {
+      return _then(_value.copyWith(img: value) as $Val);
+    });
   }
 }
 
@@ -92,8 +103,10 @@ abstract class _$$CategoryImplCopyWith<$Res>
       __$$CategoryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id, String name, String description, String link, String img});
+  $Res call({String id, String name, String description, String link, Img img});
+
+  @override
+  $ImgCopyWith<$Res> get img;
 }
 
 /// @nodoc
@@ -135,7 +148,7 @@ class __$$CategoryImplCopyWithImpl<$Res>
       img: null == img
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Img,
     ));
   }
 }
@@ -159,7 +172,7 @@ class _$CategoryImpl implements _Category {
   @override
   final String link;
   @override
-  final String img;
+  final Img img;
 
   @override
   String toString() {
@@ -198,7 +211,7 @@ abstract class _Category implements Category {
       required final String name,
       required final String description,
       required final String link,
-      required final String img}) = _$CategoryImpl;
+      required final Img img}) = _$CategoryImpl;
 
   @override
   String get id;
@@ -209,12 +222,150 @@ abstract class _Category implements Category {
   @override
   String get link;
   @override
-  String get img;
+  Img get img;
 
   /// Create a copy of Category
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$Img {
+  String get icon => throw _privateConstructorUsedError;
+  String get photo => throw _privateConstructorUsedError;
+
+  /// Create a copy of Img
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ImgCopyWith<Img> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ImgCopyWith<$Res> {
+  factory $ImgCopyWith(Img value, $Res Function(Img) then) =
+      _$ImgCopyWithImpl<$Res, Img>;
+  @useResult
+  $Res call({String icon, String photo});
+}
+
+/// @nodoc
+class _$ImgCopyWithImpl<$Res, $Val extends Img> implements $ImgCopyWith<$Res> {
+  _$ImgCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of Img
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? icon = null,
+    Object? photo = null,
+  }) {
+    return _then(_value.copyWith(
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ImgImplCopyWith<$Res> implements $ImgCopyWith<$Res> {
+  factory _$$ImgImplCopyWith(_$ImgImpl value, $Res Function(_$ImgImpl) then) =
+      __$$ImgImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String icon, String photo});
+}
+
+/// @nodoc
+class __$$ImgImplCopyWithImpl<$Res> extends _$ImgCopyWithImpl<$Res, _$ImgImpl>
+    implements _$$ImgImplCopyWith<$Res> {
+  __$$ImgImplCopyWithImpl(_$ImgImpl _value, $Res Function(_$ImgImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of Img
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? icon = null,
+    Object? photo = null,
+  }) {
+    return _then(_$ImgImpl(
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      photo: null == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ImgImpl implements _Img {
+  const _$ImgImpl({required this.icon, required this.photo});
+
+  @override
+  final String icon;
+  @override
+  final String photo;
+
+  @override
+  String toString() {
+    return 'Img(icon: $icon, photo: $photo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImgImpl &&
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.photo, photo) || other.photo == photo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, icon, photo);
+
+  /// Create a copy of Img
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ImgImplCopyWith<_$ImgImpl> get copyWith =>
+      __$$ImgImplCopyWithImpl<_$ImgImpl>(this, _$identity);
+}
+
+abstract class _Img implements Img {
+  const factory _Img(
+      {required final String icon, required final String photo}) = _$ImgImpl;
+
+  @override
+  String get icon;
+  @override
+  String get photo;
+
+  /// Create a copy of Img
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ImgImplCopyWith<_$ImgImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

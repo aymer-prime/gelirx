@@ -9,6 +9,7 @@ import 'package:gelirx/app/utils/validators.dart';
 import 'package:gelirx/features/auth/domain/i_auth_repository.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
+import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/shared/misc/functions.dart';
 import 'package:injectable/injectable.dart';
 

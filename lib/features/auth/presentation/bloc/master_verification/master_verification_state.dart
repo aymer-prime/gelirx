@@ -28,11 +28,3 @@ class MasterVerificationState with _$MasterVerificationState {
         authFailureOrSuccessOption: none(),
       );
 }
-
-@freezed
-abstract class UserSkills with _$UserSkills {
-  const factory UserSkills({
-    required Category skill,
-    required List<Category> subSkill,
-  }) = _UserSkills;
-}

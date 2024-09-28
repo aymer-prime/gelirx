@@ -12,9 +12,19 @@ abstract class CategoryDto with _$CategoryDto {
     required String name,
     required String description,
     required String link,
-    required String? img,
+    required ImgDto img,
   }) = _CategoryDto;
 
   factory CategoryDto.fromJson(Map<String, dynamic> json) =>
       _$CategoryDtoFromJson(json);
+}
+
+@freezed
+class ImgDto with _$ImgDto {
+  const factory ImgDto({
+    required String? icon,
+    required String? photo,
+  }) = _ImgDto;
+
+  factory ImgDto.fromJson(Map<String, dynamic> json) => _$ImgDtoFromJson(json);
 }

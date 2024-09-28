@@ -24,7 +24,7 @@ mixin _$CategoryDto {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
-  String? get img => throw _privateConstructorUsedError;
+  ImgDto get img => throw _privateConstructorUsedError;
 
   /// Serializes this CategoryDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,7 +43,9 @@ abstract class $CategoryDtoCopyWith<$Res> {
       _$CategoryDtoCopyWithImpl<$Res, CategoryDto>;
   @useResult
   $Res call(
-      {String id, String name, String description, String link, String? img});
+      {String id, String name, String description, String link, ImgDto img});
+
+  $ImgDtoCopyWith<$Res> get img;
 }
 
 /// @nodoc
@@ -65,7 +67,7 @@ class _$CategoryDtoCopyWithImpl<$Res, $Val extends CategoryDto>
     Object? name = null,
     Object? description = null,
     Object? link = null,
-    Object? img = freezed,
+    Object? img = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -84,11 +86,21 @@ class _$CategoryDtoCopyWithImpl<$Res, $Val extends CategoryDto>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      img: freezed == img
+      img: null == img
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ImgDto,
     ) as $Val);
+  }
+
+  /// Create a copy of CategoryDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImgDtoCopyWith<$Res> get img {
+    return $ImgDtoCopyWith<$Res>(_value.img, (value) {
+      return _then(_value.copyWith(img: value) as $Val);
+    });
   }
 }
 
@@ -101,7 +113,10 @@ abstract class _$$CategoryDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id, String name, String description, String link, String? img});
+      {String id, String name, String description, String link, ImgDto img});
+
+  @override
+  $ImgDtoCopyWith<$Res> get img;
 }
 
 /// @nodoc
@@ -121,7 +136,7 @@ class __$$CategoryDtoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? description = null,
     Object? link = null,
-    Object? img = freezed,
+    Object? img = null,
   }) {
     return _then(_$CategoryDtoImpl(
       id: null == id
@@ -140,10 +155,10 @@ class __$$CategoryDtoImplCopyWithImpl<$Res>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      img: freezed == img
+      img: null == img
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ImgDto,
     ));
   }
 }
@@ -171,7 +186,7 @@ class _$CategoryDtoImpl implements _CategoryDto {
   @override
   final String link;
   @override
-  final String? img;
+  final ImgDto img;
 
   @override
   String toString() {
@@ -218,7 +233,7 @@ abstract class _CategoryDto implements CategoryDto {
       required final String name,
       required final String description,
       required final String link,
-      required final String? img}) = _$CategoryDtoImpl;
+      required final ImgDto img}) = _$CategoryDtoImpl;
 
   factory _CategoryDto.fromJson(Map<String, dynamic> json) =
       _$CategoryDtoImpl.fromJson;
@@ -232,12 +247,175 @@ abstract class _CategoryDto implements CategoryDto {
   @override
   String get link;
   @override
-  String? get img;
+  ImgDto get img;
 
   /// Create a copy of CategoryDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CategoryDtoImplCopyWith<_$CategoryDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ImgDto _$ImgDtoFromJson(Map<String, dynamic> json) {
+  return _ImgDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ImgDto {
+  String? get icon => throw _privateConstructorUsedError;
+  String? get photo => throw _privateConstructorUsedError;
+
+  /// Serializes this ImgDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ImgDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ImgDtoCopyWith<ImgDto> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ImgDtoCopyWith<$Res> {
+  factory $ImgDtoCopyWith(ImgDto value, $Res Function(ImgDto) then) =
+      _$ImgDtoCopyWithImpl<$Res, ImgDto>;
+  @useResult
+  $Res call({String? icon, String? photo});
+}
+
+/// @nodoc
+class _$ImgDtoCopyWithImpl<$Res, $Val extends ImgDto>
+    implements $ImgDtoCopyWith<$Res> {
+  _$ImgDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ImgDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? icon = freezed,
+    Object? photo = freezed,
+  }) {
+    return _then(_value.copyWith(
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ImgDtoImplCopyWith<$Res> implements $ImgDtoCopyWith<$Res> {
+  factory _$$ImgDtoImplCopyWith(
+          _$ImgDtoImpl value, $Res Function(_$ImgDtoImpl) then) =
+      __$$ImgDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? icon, String? photo});
+}
+
+/// @nodoc
+class __$$ImgDtoImplCopyWithImpl<$Res>
+    extends _$ImgDtoCopyWithImpl<$Res, _$ImgDtoImpl>
+    implements _$$ImgDtoImplCopyWith<$Res> {
+  __$$ImgDtoImplCopyWithImpl(
+      _$ImgDtoImpl _value, $Res Function(_$ImgDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ImgDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? icon = freezed,
+    Object? photo = freezed,
+  }) {
+    return _then(_$ImgDtoImpl(
+      icon: freezed == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ImgDtoImpl implements _ImgDto {
+  const _$ImgDtoImpl({required this.icon, required this.photo});
+
+  factory _$ImgDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImgDtoImplFromJson(json);
+
+  @override
+  final String? icon;
+  @override
+  final String? photo;
+
+  @override
+  String toString() {
+    return 'ImgDto(icon: $icon, photo: $photo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImgDtoImpl &&
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.photo, photo) || other.photo == photo));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, icon, photo);
+
+  /// Create a copy of ImgDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ImgDtoImplCopyWith<_$ImgDtoImpl> get copyWith =>
+      __$$ImgDtoImplCopyWithImpl<_$ImgDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ImgDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ImgDto implements ImgDto {
+  const factory _ImgDto(
+      {required final String? icon,
+      required final String? photo}) = _$ImgDtoImpl;
+
+  factory _ImgDto.fromJson(Map<String, dynamic> json) = _$ImgDtoImpl.fromJson;
+
+  @override
+  String? get icon;
+  @override
+  String? get photo;
+
+  /// Create a copy of ImgDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ImgDtoImplCopyWith<_$ImgDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

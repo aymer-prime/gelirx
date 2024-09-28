@@ -40,7 +40,7 @@ class ServiceWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: ColorManager.lightPrimary.withOpacity(1),
                       ),
-                      child: CachedNetworkImage(imageUrl: service.img),
+                      child: CachedNetworkImage(imageUrl: service.img.photo),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
@@ -210,7 +210,7 @@ class ServiceWidget extends StatelessWidget {
                       horizontal: AppPadding.p16,
                     ),
                     child: CachedNetworkImage(
-                      imageUrl: service.img,
+                      imageUrl: service.img.photo,
                     ),
                   ),
                 ),

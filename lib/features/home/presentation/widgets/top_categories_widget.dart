@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
-import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
-import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
-import 'package:gelirx/features/home/presentation/widgets/categories_grid_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopCategoriesWidgets extends StatelessWidget {
   final List<Category> categories;
@@ -24,7 +20,10 @@ class TopCategoriesWidgets extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CardLabelWidget(label: AppStrings.topCat),
+            Text(
+              AppStrings.cats,
+              style: context.textTheme.displaySmall,
+            ),
             // OutlinedButton(
             //   style: OutlinedButton.styleFrom(
             //     side: BorderSide(
@@ -82,7 +81,7 @@ class TopCategoriesWidgets extends StatelessWidget {
             // )
           ],
         ),
-        const SizedBox(height: AppSize.s16),
+        SizedBox(height: AppSize.s8.h),
         SizedBox(
           height: AppSize.s100,
           child: ListView.builder(
@@ -96,9 +95,9 @@ class TopCategoriesWidgets extends StatelessWidget {
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {
-                    context.read<HomeBloc>().add(
-                          HomeEvent.getSubCategories(catIndex: index),
-                        );
+                    // context.read<HomeBloc>().add(
+                    //       HomeEvent.getSubCategories(catIndex: index),
+                    //     );
                     //context.router.push(const ServicesRoute());
                   },
                 ),

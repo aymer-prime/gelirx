@@ -11,7 +11,7 @@ _$CategoryDtoImpl _$$CategoryDtoImplFromJson(Map json) => _$CategoryDtoImpl(
       name: json['name'] as String,
       description: json['description'] as String,
       link: json['link'] as String,
-      img: json['img'] as String?,
+      img: ImgDto.fromJson(Map<String, dynamic>.from(json['img'] as Map)),
     );
 
 Map<String, dynamic> _$$CategoryDtoImplToJson(_$CategoryDtoImpl instance) =>
@@ -20,5 +20,16 @@ Map<String, dynamic> _$$CategoryDtoImplToJson(_$CategoryDtoImpl instance) =>
       'name': instance.name,
       'description': instance.description,
       'link': instance.link,
-      'img': instance.img,
+      'img': instance.img.toJson(),
+    };
+
+_$ImgDtoImpl _$$ImgDtoImplFromJson(Map json) => _$ImgDtoImpl(
+      icon: json['icon'] as String?,
+      photo: json['photo'] as String?,
+    );
+
+Map<String, dynamic> _$$ImgDtoImplToJson(_$ImgDtoImpl instance) =>
+    <String, dynamic>{
+      'icon': instance.icon,
+      'photo': instance.photo,
     };

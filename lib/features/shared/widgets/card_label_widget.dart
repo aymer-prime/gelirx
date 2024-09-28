@@ -27,6 +27,7 @@ class CardLabelWidget extends StatelessWidget {
         Text(
           label,
           style: context.textTheme.displaySmall,
+          overflow: TextOverflow.ellipsis,
         )
       ],
     );

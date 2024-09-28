@@ -32,16 +32,16 @@ class CategoryItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(AppPadding.p16),
+              padding: const EdgeInsets.all(AppPadding.p6),
               child: CachedNetworkImage(
-                imageUrl: category.img,
+                imageUrl: category.img.icon,
                 fit: BoxFit.cover,
-                height: AppSize.s24,
+                height: AppSize.s52,
               ),
             ),
             Text(
               category.name,
-              style: context.textTheme.labelSmall,
+              style: context.textTheme.labelMedium,
               overflow: TextOverflow.ellipsis,
             )
           ],

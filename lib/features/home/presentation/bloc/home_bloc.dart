@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
+import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/shared/misc/functions.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
@@ -53,9 +54,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ),
         );
         add(
-          const _GetSubCategories(
-            catIndex: 0,
-          ),
+          const _GetServices(),
         );
       });
     });
@@ -86,11 +85,41 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     });
 
+    on<_GetServices>((event, emit) async {
+      emit(
+        state.copyWith(
+          isLoading: true,
+          // selectedCategory: catId,
+        ),
+      );
+      List<UserSkills> services = [];
+      for (var i = 0; i < state.categories.length; i++) {
+        var subCategories =
+            await _iHomeRepository.getSubCategories(state.categories[i].id);
+        subCategories.fold(
+          (l) => null,
+          (categories) => services.add(
+            UserSkills(
+              skill: state.categories[i],
+              subSkill: categories,
+            ),
+          ),
+        );
+      }
+      emit(
+        state.copyWith(
+          isLoading: false,
+          services: services,
+        ),
+      );
+    });
+
     on<_GetMasters>((event, emit) async {
-      var masters = await _iHomeRepository.getMasters(event.centerPosition, state.selectedCategory);
+      var masters = await _iHomeRepository.getMasters(
+          event.centerPosition, state.selectedCategory);
       masters.fold(
-            (failure) => emit(state.copyWith(masters: [])),
-            (masters) => emit(state.copyWith(masters: masters)),
+        (failure) => emit(state.copyWith(masters: [])),
+        (masters) => emit(state.copyWith(masters: masters)),
       );
     });
   }

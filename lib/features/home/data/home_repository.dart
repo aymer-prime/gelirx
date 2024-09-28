@@ -44,7 +44,7 @@ class HomeRepository implements IHomeRepository {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         ),
-        data: {'lang': 'en'},
+        data: {'lang': 'tr'},
       );
       final List<dynamic> responseData =
           response; // Casting the dynamic type to List<dynamic>
@@ -71,7 +71,7 @@ class HomeRepository implements IHomeRepository {
           },
         ),
         data: {
-          'lang': 'en',
+          'lang': 'tr',
           'category_id': catId,
         },
       );
