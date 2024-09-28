@@ -60,13 +60,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       });
     });
     on<_GetSubCategories>((event, emit) async {
+      var catId = state.categories[event.catIndex].id;
       emit(
         state.copyWith(
           isLoading: true,
           catIndex: event.catIndex,
+          // selectedCategory: catId,
         ),
       );
-      var catId = state.categories[event.catIndex].id;
+
       var categories = await _iHomeRepository.getSubCategories(catId);
       categories.fold(
         (l) => emit(
@@ -85,8 +87,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<_GetMasters>((event, emit) async {
-      var masters = await _iHomeRepository.getMasters(event.centerPosition);
-
+      var masters = await _iHomeRepository.getMasters(event.centerPosition, state.selectedCategory);
       masters.fold(
             (failure) => emit(state.copyWith(masters: [])),
             (masters) => emit(state.copyWith(masters: masters)),

@@ -823,6 +823,7 @@ mixin _$HomeState {
   int get range => throw _privateConstructorUsedError;
   int get catIndex => throw _privateConstructorUsedError;
   int get subCatIndex => throw _privateConstructorUsedError;
+  int? get selectedCategory => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Option<Position> get userPosition => throw _privateConstructorUsedError;
   List<Category> get categories => throw _privateConstructorUsedError;
@@ -845,6 +846,7 @@ abstract class $HomeStateCopyWith<$Res> {
       {int range,
       int catIndex,
       int subCatIndex,
+      int? selectedCategory,
       bool isLoading,
       Option<Position> userPosition,
       List<Category> categories,
@@ -870,6 +872,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? range = null,
     Object? catIndex = null,
     Object? subCatIndex = null,
+    Object? selectedCategory = freezed,
     Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
@@ -889,6 +892,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.subCatIndex
           : subCatIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      selectedCategory: freezed == selectedCategory
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as int?,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -925,6 +932,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       {int range,
       int catIndex,
       int subCatIndex,
+      int? selectedCategory,
       bool isLoading,
       Option<Position> userPosition,
       List<Category> categories,
@@ -948,6 +956,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? range = null,
     Object? catIndex = null,
     Object? subCatIndex = null,
+    Object? selectedCategory = freezed,
     Object? isLoading = null,
     Object? userPosition = null,
     Object? categories = null,
@@ -967,6 +976,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.subCatIndex
           : subCatIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      selectedCategory: freezed == selectedCategory
+          ? _value.selectedCategory
+          : selectedCategory // ignore: cast_nullable_to_non_nullable
+              as int?,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -998,6 +1011,7 @@ class _$HomeStateImpl implements _HomeState {
       {required this.range,
       required this.catIndex,
       required this.subCatIndex,
+      this.selectedCategory,
       required this.isLoading,
       required this.userPosition,
       required final List<Category> categories,
@@ -1013,6 +1027,8 @@ class _$HomeStateImpl implements _HomeState {
   final int catIndex;
   @override
   final int subCatIndex;
+  @override
+  final int? selectedCategory;
   @override
   final bool isLoading;
   @override
@@ -1043,7 +1059,7 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(range: $range, catIndex: $catIndex, subCatIndex: $subCatIndex, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories, masters: $masters)';
+    return 'HomeState(range: $range, catIndex: $catIndex, subCatIndex: $subCatIndex, selectedCategory: $selectedCategory, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories, masters: $masters)';
   }
 
   @override
@@ -1056,6 +1072,8 @@ class _$HomeStateImpl implements _HomeState {
                 other.catIndex == catIndex) &&
             (identical(other.subCatIndex, subCatIndex) ||
                 other.subCatIndex == subCatIndex) &&
+            (identical(other.selectedCategory, selectedCategory) ||
+                other.selectedCategory == selectedCategory) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.userPosition, userPosition) ||
@@ -1073,6 +1091,7 @@ class _$HomeStateImpl implements _HomeState {
       range,
       catIndex,
       subCatIndex,
+      selectedCategory,
       isLoading,
       userPosition,
       const DeepCollectionEquality().hash(_categories),
@@ -1093,6 +1112,7 @@ abstract class _HomeState implements HomeState {
       {required final int range,
       required final int catIndex,
       required final int subCatIndex,
+      final int? selectedCategory,
       required final bool isLoading,
       required final Option<Position> userPosition,
       required final List<Category> categories,
@@ -1105,6 +1125,8 @@ abstract class _HomeState implements HomeState {
   int get catIndex;
   @override
   int get subCatIndex;
+  @override
+  int? get selectedCategory;
   @override
   bool get isLoading;
   @override

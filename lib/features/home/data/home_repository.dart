@@ -88,7 +88,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<Either<ApiException, List<Master>>> getMasters(LatLng centerPosition) async {
+  Future<Either<ApiException, List<Master>>> getMasters(LatLng centerPosition, int? selectedCategory) async {
     try {
       var response = await _remoteService.post(
         '${Constants.baseUrl}master/search.php',
@@ -101,6 +101,7 @@ class HomeRepository implements IHomeRepository {
           'lang': 'en',
           'latitude': centerPosition.latitude,
           'longitude': centerPosition.longitude,
+          'category_id': selectedCategory ?? 0,
         },
       );
       final List<dynamic> responseData = response;
