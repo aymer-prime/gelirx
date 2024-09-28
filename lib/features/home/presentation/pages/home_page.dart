@@ -22,60 +22,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Current Location',
-              style: context.textTheme.labelSmall!.copyWith(
-                fontSize: FontSizeManager.s10,
-              ),
-            ),
-            Row(
-              children: [
-                Text('Business Bay, Silver Tower',
-                    style: context.textTheme.labelMedium),
-                const Icon(Icons.arrow_drop_down)
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'BRONZE',
-                style: context.textTheme.labelLarge!.copyWith(
-                  color: ColorManager.bronzeTire,
-                  fontSize: FontSizeManager.s10,
-                ),
-              ),
-              Text(
-                '20 Tokens',
-                style: context.textTheme.labelSmall!.copyWith(
-                  fontSize: FontSizeManager.s8,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const SizedBox(width: AppSize.s4),
-              SvgPicture.asset(
-                ImageAssets.tierIcon,
-                fit: BoxFit.cover,
-                colorFilter:
-                    ColorFilter.mode(ColorManager.bronzeTire, BlendMode.srcIn),
-              ),
-              const SizedBox(width: AppSize.s4),
-            ],
-          ),
-        ],
-      ),
-      drawer: Drawer(),
       body: BlocConsumer<HomeBloc, HomeState>(
         listenWhen: (previous, current) =>
             previous.isLoading != current.isLoading,

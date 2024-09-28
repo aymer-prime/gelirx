@@ -300,7 +300,7 @@ class ServiceCard extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(height: AppSize.s24),
-                               Text(
+                              Text(
                                 'Service Provider',
                                 style: context.textTheme.headlineMedium,
                               ),
@@ -397,8 +397,11 @@ class ServiceCard extends StatelessWidget {
       },
       child: Stack(
         children: [
-          CachedNetworkImage(
-            imageUrl: category.img.photo,
+          Positioned.fill(
+            child: CachedNetworkImage(
+              imageUrl: category.img.photo,
+              fit: BoxFit.cover,
+            ),
           ),
           Positioned(
             bottom: 0.0,
