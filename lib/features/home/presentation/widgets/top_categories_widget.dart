@@ -91,8 +91,8 @@ class TopCategoriesWidgets extends StatelessWidget {
             itemCount: categories.length,
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
-              child: SizedBox(
-                width: context.screenSize.width / 5,
+              child: AspectRatio(
+                aspectRatio: 1,
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {

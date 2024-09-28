@@ -1,5 +1,9 @@
+import 'dart:ui';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
@@ -77,19 +81,19 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
         key: _sheet,
         initialChildSize: 0.5,
         maxChildSize: 1,
-        minChildSize: 0,
+        minChildSize: 0.5,
         expand: true,
         snap: true,
         snapSizes: [
-          0.2,
+          //0.2,
           0.5,
         ],
         controller: _controller,
         builder: (BuildContext context, ScrollController scrollController) {
           return DecoratedBox(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: ColorManager.background,
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(AppSize.s32),
                 topRight: Radius.circular(AppSize.s32),
               ),
@@ -115,47 +119,11 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                       ),
                     ),
                   ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(height: AppSize.s24),
-                  ),
-                  SliverToBoxAdapter(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: AppStrings.searchHint,
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.all(AppPadding.p8),
-                          child: SizedBox(
-                            height: AppSize.s32,
-                            width: AppSize.s32,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: SvgPicture.asset(
-                                ImageAssets.searchIcon,
-                                height: AppSize.s16,
-                                width: AppSize.s16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: AppPadding.p16,
-                        horizontal: AppPadding.p32,
-                      ),
-                      child: Divider(
-                        thickness: AppSize.s1,
-                        color: ColorManager.textfieldBorderColor,
-                      ),
-                    ),
-                  ),
                   SliverToBoxAdapter(
                     child: SizedBox(
                       child: Column(
                         children: [
+                          const SizedBox(height: AppSize.s16),
                           widget.categories.isEmpty
                               ? const Center(
                                   child: CircularProgressIndicator(),
@@ -166,16 +134,10 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                           const SizedBox(height: AppSize.s16),
                           Row(
                             children: [
-                              const CardLabelWidget(
-                                label: '${AppStrings.services} - ',
-                              ),
                               if (widget.categories.isNotEmpty)
-                                Flexible(
-                                  child: Text(
-                                    widget.categories[widget.catIndex].name,
-                                    style: context.textTheme.bodyMedium,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                CardLabelWidget(
+                                  label:
+                                      '${widget.categories[widget.catIndex].name} ${AppStrings.services}',
                                 ),
                             ],
                           ),
@@ -187,25 +149,96 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                                 )
                               : Column(
                                   children: [
-                                    ...List.generate(
-                                      widget.subCategories.length,
-                                      (index) => ServiceWidget(
-                                        service: widget.subCategories[index],
-                                      ),
-                                    )
-                                  ].separateWith(
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: AppPadding.p8,
-                                        horizontal: AppPadding.p32,
-                                      ),
-                                      child: Divider(
-                                        thickness: AppSize.s1,
-                                        color:
-                                            ColorManager.textfieldBorderColor,
+                                    SizedBox(
+                                      height: AppSize.s200,
+                                      child: ListView.separated(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: widget.subCategories.length,
+                                        itemBuilder: (context, index) =>
+                                            AspectRatio(
+                                          aspectRatio: 0.9,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                              AppSize.s8,
+                                            ),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: ColorManager.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  AppSize.s8,
+                                                ),
+                                              ),
+                                              child: Stack(
+                                                children: [
+                                                  CachedNetworkImage(
+                                                    imageUrl: widget
+                                                        .subCategories[index]
+                                                        .img,
+                                                  ),
+                                                  Positioned(
+                                                    bottom: 0.0,
+                                                    left: 0.0,
+                                                    right: 0.0,
+                                                    child: ClipRRect(
+                                                      child: Container(
+                                                        height: AppSize.s40,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.black
+                                                              .withOpacity(0.5),
+                                                        ),
+                                                        child: BackdropFilter(
+                                                          filter:
+                                                              ImageFilter.blur(
+                                                            sigmaX: 2.5,
+                                                            sigmaY: 2.5,
+                                                          ),
+                                                          child: Center(
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                horizontal:
+                                                                    AppPadding
+                                                                        .p4,
+                                                              ),
+                                                              child: Text(
+                                                                widget
+                                                                    .subCategories[
+                                                                        index]
+                                                                    .name,
+                                                                style: context
+                                                                    .textTheme
+                                                                    .bodyLarge!
+                                                                    .copyWith(
+                                                                  color:
+                                                                      ColorManager
+                                                                          .white,
+                                                                ),
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        separatorBuilder: (context, index) =>
+                                            SizedBox(
+                                          width: AppSize.s8.w,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                         ],
                       ),

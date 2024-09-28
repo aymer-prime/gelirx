@@ -192,7 +192,7 @@ class ServiceWidget extends StatelessWidget {
           );
         },
         child: SizedBox(
-          height: AppSize.s100,
+          height: AppSize.s120,
           child: Row(
             children: [
               Flexible(

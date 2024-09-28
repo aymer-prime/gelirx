@@ -20,14 +20,18 @@ class CategoryItem extends StatelessWidget {
       onTap: () {
         onTap();
       },
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: ColorManager.lightPrimary,
-            ),
-            child: Padding(
+      child: Container(
+        padding: const EdgeInsets.all(AppPadding.p8),
+        decoration: BoxDecoration(
+          color: ColorManager.white,
+          borderRadius: BorderRadius.circular(
+            AppSize.s8,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
               padding: const EdgeInsets.all(AppPadding.p16),
               child: CachedNetworkImage(
                 imageUrl: category.img,
@@ -35,13 +39,13 @@ class CategoryItem extends StatelessWidget {
                 height: AppSize.s24,
               ),
             ),
-          ),
-          Text(
-            category.name,
-            style: context.textTheme.labelSmall,
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
+            Text(
+              category.name,
+              style: context.textTheme.labelSmall,
+              overflow: TextOverflow.ellipsis,
+            )
+          ],
+        ),
       ),
     );
   }
