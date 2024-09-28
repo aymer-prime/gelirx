@@ -23,6 +23,9 @@ class ColorManager {
   static Color textErrorColor = const Color(0xffcd3131);
   static Color confirmedTextColor = const Color(0xff7FC09C);
   static Color pendingTextColor = const Color(0xFFEB833C);
+  static Color headerTextColor = const Color.fromRGBO(26, 29, 31, 1);
+  static Color blackTextColorWithOpacity = const Color.fromRGBO(83, 87, 99, 1);
+
   //buttons
   static Color buttonTextColor = const Color(0xffffffff);
   static Color disabledButtonColor = const Color(0xff999999);
