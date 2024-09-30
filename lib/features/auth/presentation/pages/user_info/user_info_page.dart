@@ -113,7 +113,7 @@ class UserInfoPage extends StatelessWidget {
                               TextFormField(
                                 keyboardType: TextInputType.name,
                                 decoration: InputDecoration(
-                                  hintText: 'First Name . . .',
+                                  hintText: 'First Name',
                                   fillColor: ColorManager.textfieldNumFillColor,
                                 ),
                                 inputFormatters: [
@@ -150,7 +150,7 @@ class UserInfoPage extends StatelessWidget {
                               TextFormField(
                                 keyboardType: TextInputType.name,
                                 decoration: InputDecoration(
-                                  hintText: 'SurName . . .',
+                                  hintText: 'SurName',
                                   fillColor: ColorManager.textfieldNumFillColor,
                                 ),
                                 onChanged: (value) => context
@@ -185,7 +185,7 @@ class UserInfoPage extends StatelessWidget {
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
-                                  hintText: 'SurName . . .',
+                                  hintText: 'E-mail',
                                   fillColor: ColorManager.textfieldNumFillColor,
                                 ),
                                 validator: (_) {
@@ -200,7 +200,7 @@ class UserInfoPage extends StatelessWidget {
                                   }
                                 },
                               ),
-                              const SizedBox(height: AppSize.s68),
+                              const SizedBox(height: AppSize.s60),
                               SizedBox(
                                 height: AppSize.s48,
                                 width: double.infinity,
