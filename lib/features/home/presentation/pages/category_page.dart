@@ -33,14 +33,18 @@ class CategoryPage extends StatelessWidget {
                 AppSize.s8,
               ),
               child: Container(
-                decoration: BoxDecoration(
-                  color: ColorManager.white,
-                  borderRadius: BorderRadius.circular(
-                    AppSize.s8,
+                padding: const EdgeInsets.all(AppPadding.p16),
+                decoration: BoxDecoration(color: ColorManager.white),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorManager.white,
+                    borderRadius: BorderRadius.circular(
+                      AppSize.s8,
+                    ),
                   ),
-                ),
-                child: ServiceCard(
-                  category: categoryDetails.subSkill[index],
+                  child: ServiceCard(
+                    category: categoryDetails.subSkill[index],
+                  ),
                 ),
               ),
             ),
