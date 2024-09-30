@@ -231,7 +231,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                   children: [
                     Flexible(
                       child: Container(
-                        height: AppSize.s48.h,
+                        height: AppSize.s32.h,
                         padding: const EdgeInsets.all(AppPadding.p4),
                         decoration: BoxDecoration(
                           color:
@@ -265,7 +265,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                     ),
                     Flexible(
                       child: Container(
-                        height: AppSize.s48.h,
+                        height: AppSize.s32.h,
                         padding: const EdgeInsets.all(AppPadding.p4),
                         decoration: BoxDecoration(
                           color: !false ? null : ColorManager.white,
