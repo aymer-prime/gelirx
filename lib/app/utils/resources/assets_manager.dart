@@ -14,6 +14,13 @@ class ImageAssets {
   static const String userIcon = '$imagePath/misc/user_icon.png';
   static const String tierIcon = '$imagePath/misc/tier_icon.svg';
   static const String masterMarker = '$imagePath/misc/master.png';
+  static const String calender = '$imagePath/drawer/calender.png';
+  static const String wallet = '$imagePath/drawer/wallet.png';
+  static const String notification = '$imagePath/drawer/notification.png';
+  static const String offer = '$imagePath/drawer/offer.png';
+  static const String refer = '$imagePath/drawer/refer.png';
+  static const String support = '$imagePath/drawer/support.png';
+  static const String question = '$imagePath/drawer/question.png';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
