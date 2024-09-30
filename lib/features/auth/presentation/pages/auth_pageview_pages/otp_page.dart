@@ -84,9 +84,9 @@ class OtpPage extends HookWidget {
                 const SizedBox(height: AppSize.s40),
                 SizedBox(
                   width: double.infinity,
-                  height: AppSize.s60,
+                  height: AppSize.s48,
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: ColorManager.lightgreybuttonColor),
+                    style: ElevatedButton.styleFrom(backgroundColor: ColorManager.lightgreybuttonColor,elevation: 0),
                     onPressed: () {
                       final otpCode = otpControllers.map((c) => c.text).join();
                       if (otpCode.length == 6) {

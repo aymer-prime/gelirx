@@ -26,6 +26,7 @@ class AlternateMainPage extends StatefulWidget {
 }
 
 class _AlternateMainPageState extends State<AlternateMainPage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final homeNavKey = GlobalKey<NavigatorState>();
   final searchNavKey = GlobalKey<NavigatorState>();
   final notificationNavKey = GlobalKey<NavigatorState>();
@@ -59,15 +60,16 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               'Current Location',
               style: context.textTheme.labelSmall!.copyWith(
-                fontSize: FontSizeManager.s10,
+                fontSize: FontSizeManager.s9,
               ),
             ),
             Row(
@@ -111,6 +113,13 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
             ],
           ),
         ],
+        leadingWidth: AppSize.s32,
+        leading: IconButton(
+          icon: Icon(Icons.menu,size: AppSize.s32),  // Customize the icon as needed
+           onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+         },
+       ),
       ),
       drawer: Drawer(
         backgroundColor: ColorManager.primary,
@@ -235,7 +244,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                         padding: const EdgeInsets.all(AppPadding.p4),
                         decoration: BoxDecoration(
                           color:
-                              !true ? ColorManager.primary : ColorManager.white,
+                          !true ? ColorManager.primary : ColorManager.white,
                           borderRadius: BorderRadius.circular(
                             AppSize.s40,
                           ),
