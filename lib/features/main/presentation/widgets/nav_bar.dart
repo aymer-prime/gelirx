@@ -44,7 +44,7 @@ class NavBar extends StatelessWidget {
               icon: SvgPicture.asset(ImageAssets.navbarHome),
               activeIcon: SvgPicture.asset(
                 ImageAssets.navbarHome,
-                color: ColorManager.darkPrimary,
+                color: ColorManager.primary,
               ),
               isSelected: pageIndex == 0,
               onTap: () => onTap(0),

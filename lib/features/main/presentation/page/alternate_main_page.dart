@@ -240,7 +240,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                   children: [
                     Flexible(
                       child: Container(
-                        height: AppSize.s48.h,
+                        height: AppSize.s32.h,
                         padding: const EdgeInsets.all(AppPadding.p4),
                         decoration: BoxDecoration(
                           color:
@@ -274,7 +274,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                     ),
                     Flexible(
                       child: Container(
-                        height: AppSize.s48.h,
+                        height: AppSize.s32.h,
                         padding: const EdgeInsets.all(AppPadding.p4),
                         decoration: BoxDecoration(
                           color: !false ? null : ColorManager.white,
@@ -365,18 +365,14 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
       floatingActionButton: Container(
         margin: const EdgeInsets.only(bottom: AppMargin.m12),
         child: FloatingActionButton(
-          backgroundColor: ColorManager.white,
+          backgroundColor: ColorManager.primary,
           elevation: 0,
           onPressed: () => debugPrint("Add Button pressed"),
-          shape: CircleBorder(
-            side: BorderSide(
-              width: AppSize.s2,
-              color: ColorManager.darkPrimary,
-            ),
-          ),
+          shape: CircleBorder(),
           child: Icon(
             Icons.add_rounded,
-            color: ColorManager.darkPrimary,
+            size: AppSize.s36,
+            color: ColorManager.white,
           ),
         ),
       ),

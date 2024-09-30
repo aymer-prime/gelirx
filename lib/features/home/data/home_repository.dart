@@ -71,7 +71,7 @@ class HomeRepository implements IHomeRepository {
           },
         ),
         data: {
-          'lang': 'tr',
+          'lang': 'en',
           'category_id': catId,
         },
       );
