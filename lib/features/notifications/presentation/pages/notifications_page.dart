@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
@@ -28,7 +29,7 @@ class NotificationsPage extends StatelessWidget {
                 Flexible(
                   child: FilterWidget(
                     title: 'Notifications',
-                    data: const ['All', 'Unread', 'Read'],
+                    data: const ['Recent', 'Unread', 'Read'],
                     currentFilterIndex: 0,
                     onSelect: (index) {},
                   ),
@@ -41,30 +42,39 @@ class NotificationsPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: ColorManager.white,
                 ),
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.p20,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          ImageAssets.noNotifications,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppPadding.p20.w,
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: AppSize.s180.h),
+                      SvgPicture.asset(
+                        ImageAssets.noNotifications,
+                      ),
+                      const SizedBox(height: AppSize.s32),
+                      Text(
+                        'No Notifications!',
+                        style: context.textTheme.displaySmall,
+                      ),
+                      const SizedBox(height: AppSize.s8),
+                      Text(
+                        'You do not have any notifications yet. please place an order.',
+                        style: context.textTheme.labelSmall,
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: AppSize.s40.h),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20.w,
+                            vertical: AppPadding.p12.w,
+                          ),
+                          child: const Text('View all Services'),
                         ),
-                        const SizedBox(height: AppSize.s32),
-                        Text(
-                          'No Notifications!',
-                          style: context.textTheme.displaySmall,
-                        ),
-                        const SizedBox(height: AppSize.s8),
-                        Text(
-                          'You do not have any notifications yet. please place an order.',
-                          style: context.textTheme.labelSmall,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
               ),

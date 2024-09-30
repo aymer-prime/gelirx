@@ -85,23 +85,23 @@ class FilterWidget extends StatelessWidget {
         ),
         height: AppSize.s40,
         decoration: BoxDecoration(
-            color: ColorManager.white,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: ColorManager.darkPrimary,
-            )),
+          color: ColorManager.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               data[currentFilterIndex].capitalizeFirst(),
-              style: context.textTheme.titleMedium,
+              style: context.textTheme.titleMedium!.copyWith(
+                color: ColorManager.primary,
+              ),
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
             ),
-            const Expanded(child: SizedBox()),
             Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: ColorManager.darkPrimary,
+              color: ColorManager.primary,
             )
           ],
         ),

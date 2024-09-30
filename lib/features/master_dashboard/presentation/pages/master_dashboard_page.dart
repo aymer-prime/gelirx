@@ -89,20 +89,17 @@ class MasterDashboardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(AppPadding.p16),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CardLabelWidget(label: 'Current Bookings'),
-            SizedBox(height: AppSize.s16),
-            MasterBookingWidget(),
-            SizedBox(height: AppSize.s16),
-            MasterBookingWidget(),
-            SizedBox(height: AppSize.s16),
-            MasterBookingWidget(),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          // CardLabelWidget(label: 'Current Bookings'),
+          // SizedBox(height: AppSize.s16),
+          MasterBookingWidget(),
+          SizedBox(height: AppSize.s16),
+          MasterBookingWidget(),
+          SizedBox(height: AppSize.s16),
+          MasterBookingWidget(),
+        ],
       ),
     );
   }
@@ -117,8 +114,9 @@ class MasterBookingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: ColorManager.white,
-          borderRadius: BorderRadius.circular(AppSize.s8)),
+        color: ColorManager.white,
+        borderRadius: BorderRadius.circular(AppSize.s8),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(AppPadding.p16),
         child: Column(
@@ -127,9 +125,10 @@ class MasterBookingWidget extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
+                  radius: AppSize.s25,
                   backgroundColor: ColorManager.lightPrimary,
                   child: Padding(
-                    padding: const EdgeInsets.all(AppPadding.p8),
+                    padding: const EdgeInsets.all(AppPadding.p12),
                     child: SvgPicture.asset(ImageAssets.acIcon),
                   ),
                 ),

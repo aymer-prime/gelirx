@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
@@ -11,6 +12,7 @@ import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
+import 'package:gelirx/features/main/presentation/widgets/drawer_tile.dart';
 import 'package:gelirx/features/main/presentation/widgets/nav_bar.dart';
 import 'package:gelirx/features/notifications/presentation/pages/notifications_page.dart';
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';
@@ -110,7 +112,111 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           ),
         ],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        backgroundColor: ColorManager.primary,
+        shape: const ContinuousRectangleBorder(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: AppPadding.p24.w,
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: AppSize.s24.h),
+              Row(
+                children: [
+                  Container(
+                    width: AppSize.s56,
+                    decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: ColorManager.black,
+                      ),
+                    ),
+                    child: Image.asset(
+                      ImageAssets.masterIcon,
+                    ),
+                  ),
+                  SizedBox(width: AppSize.s16.w),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Master Name',
+                        style: context.textTheme.titleLarge!.copyWith(
+                          color: ColorManager.white,
+                        ),
+                      ),
+                      const SizedBox(width: AppSize.s8),
+                      Row(
+                        children: [
+                          SvgPicture.asset(ImageAssets.star),
+                          const SizedBox(width: AppSize.s4),
+                          Text(
+                            '4.8',
+                            style: context.textTheme.labelMedium!.copyWith(
+                              color: ColorManager.white,
+                            ),
+                          ),
+                          const SizedBox(width: AppSize.s4),
+                          Text(
+                            '(87)',
+                            style: context.textTheme.labelSmall!.copyWith(
+                              color: ColorManager.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(height: AppSize.s32.h),
+              DrawerTile(
+                isSelected: true,
+                label: 'Calendar',
+                icon: Icons.calendar_month_rounded,
+              ),
+              SizedBox(height: AppSize.s8.h),
+              DrawerTile(
+                isSelected: false,
+                label: 'Payment Methodes',
+                icon: Icons.wallet_rounded,
+              ),
+              SizedBox(height: AppSize.s8.h),
+              DrawerTile(
+                isSelected: false,
+                label: 'Adress',
+                icon: Icons.location_on,
+              ),
+              SizedBox(height: AppSize.s8.h),
+              DrawerTile(
+                isSelected: false,
+                label: 'Notifications',
+                icon: Icons.notifications,
+              ),
+              SizedBox(height: AppSize.s8.h),
+              DrawerTile(
+                isSelected: false,
+                label: 'Offers',
+                icon: Icons.playlist_add_check_circle_outlined,
+              ),
+              SizedBox(height: AppSize.s8.h),
+              DrawerTile(
+                isSelected: false,
+                label: 'Reffer a Freind',
+                icon: Icons.person_add_alt,
+              ),
+              SizedBox(height: AppSize.s8.h),
+              DrawerTile(
+                isSelected: false,
+                label: 'Support',
+                icon: Icons.call,
+              ),
+            ],
+          ),
+        ),
+      ),
       body: BlocListener<AuthStatusBloc, AuthStatusState>(
         listener: (context, state) {
           state.maybeMap(

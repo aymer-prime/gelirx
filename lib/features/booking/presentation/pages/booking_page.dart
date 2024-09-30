@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/features/master_dashboard/presentation/pages/master_dashboard_page.dart';
@@ -26,79 +27,69 @@ class BookingPage extends HookWidget {
               const CardLabelWidget(label: AppStrings.bookingsTitle),
               const SizedBox(height: AppSize.s16),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(AppPadding.p4),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
+                child: Column(
+                  children: [
+                    Container(
+                      height: AppSize.s72.h,
+                      padding:
+                          const EdgeInsets.symmetric(vertical: AppPadding.p16),
+                      decoration: BoxDecoration(
                         color: Colors.white,
-                        child: TabBar(
-                          controller: tabController,
-                          dividerColor: Colors.transparent,
-                          indicatorColor: ColorManager.darkPrimary,
-                          labelColor: ColorManager.darkPrimary,
-                          tabs: [
-                            Tab(
-                              child: Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                decoration: tabController.index == 0
-                                    ? BoxDecoration(
-                                        color: ColorManager.lightPrimary
-                                            .withOpacity(0.5),
-                                        borderRadius:
-                                            BorderRadius.circular(AppSize.s8),
-                                      )
-                                    : null,
-                                child: const Center(
-                                  child: Text('User'),
-                                ),
+                        borderRadius: BorderRadius.circular(AppSize.s8),
+                      ),
+                      child: TabBar(
+                        controller: tabController,
+                        dividerColor: Colors.transparent,
+                        indicatorColor: Colors.transparent,
+                        labelColor: ColorManager.darkPrimary,
+                        tabs: [
+                          Tab(
+                            child: Container(
+                              decoration: tabController.index == 0
+                                  ? BoxDecoration(
+                                      color: ColorManager.lightPrimary
+                                          .withOpacity(0.5),
+                                      borderRadius:
+                                          BorderRadius.circular(AppSize.s8),
+                                    )
+                                  : null,
+                              child: const Center(
+                                child: Text('User'),
                               ),
                             ),
-                            Tab(
-                              child: Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                decoration: tabController.index == 1
-                                    ? BoxDecoration(
-                                        color: ColorManager.lightPrimary
-                                            .withOpacity(0.5),
-                                        borderRadius:
-                                            BorderRadius.circular(AppSize.s8),
-                                      )
-                                    : null,
-                                child: const Center(
-                                  child: Text('Master'),
-                                ),
+                          ),
+                          Tab(
+                            child: Container(
+                              decoration: tabController.index == 1
+                                  ? BoxDecoration(
+                                      color: ColorManager.lightPrimary
+                                          .withOpacity(0.5),
+                                      borderRadius:
+                                          BorderRadius.circular(AppSize.s8),
+                                    )
+                                  : null,
+                              child: const Center(
+                                child: Text('Master'),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppPadding.p8),
-                          decoration: BoxDecoration(
-                            color: ColorManager.background,
-                            borderRadius: BorderRadius.circular(AppSize.s8),
                           ),
-                          child: TabBarView(
-                            controller: tabController,
-                            children: const [
-                              UserBookingsWidget(),
-                              MasterDashboardBody(),
-                            ],
-                          ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: AppSize.s2.h),
+                    Expanded(
+                      child: TabBarView(
+                        controller: tabController,
+                        children: const [
+                          UserBookingsWidget(),
+                          MasterDashboardBody(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              )
+              ),
+              SizedBox(height: AppSize.s60.h),
             ],
           ),
         ),
@@ -116,7 +107,6 @@ class UserBookingsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: const [
-        SizedBox(height: AppSize.s16),
         BookingCard(
           handymanImage:
               'https://media.istockphoto.com/id/468476179/vector/painter-with-paintbrush.jpg?s=1024x1024&w=is&k=20&c=UuTbI6YCDf-sTlP3Ebf52fjnHCZM4Wg9Hif0dhEaYcE=',
