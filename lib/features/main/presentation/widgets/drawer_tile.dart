@@ -8,7 +8,7 @@ import 'package:gelirx/app/utils/resources/values_manager.dart';
 class DrawerTile extends StatelessWidget {
   final bool isSelected;
   final String label;
-  final IconData icon;
+  final Widget icon;
   const DrawerTile({
     super.key,
     required this.isSelected,
@@ -29,10 +29,7 @@ class DrawerTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: isSelected ? ColorManager.primary : ColorManager.white,
-          ),
+          icon,
           SizedBox(width: AppSize.s12.w),
           Text(
             label,
