@@ -354,7 +354,6 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(bottom: AppMargin.m12),
         child: FloatingActionButton(
           backgroundColor: ColorManager.primary,
           elevation: 0,

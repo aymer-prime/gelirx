@@ -103,11 +103,11 @@ class AuthPage extends HookWidget {
               controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: [
-                UserTypePage(
-                  onContinue: () {
-                    nextPage(pageController);
-                  },
-                ),
+                // UserTypePage(
+                //   onContinue: () {
+                //     nextPage(pageController);
+                //   },
+                // ),
                 LoginPage(
                   onContinue: () {
                     nextPage(pageController);

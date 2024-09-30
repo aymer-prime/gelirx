@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
+import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 
 class TopCategoriesWidgets extends StatelessWidget {
@@ -95,6 +99,13 @@ class TopCategoriesWidgets extends StatelessWidget {
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {
+                    var catDetails =
+                        context.read<HomeBloc>().state.services.firstWhere(
+                              (skill) => skill.skill.id == categories[index].id,
+                            );
+                    context.router.push(
+                      CategoryRoute(categoryDetails: catDetails),
+                    );
                     // context.read<HomeBloc>().add(
                     //       HomeEvent.getSubCategories(catIndex: index),
                     //     );
