@@ -213,6 +213,93 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                 label: 'Support',
                 icon: Icons.call,
               ),
+              Expanded(child: SizedBox()),
+              Divider(),
+              DrawerTile(
+                isSelected: false,
+                label: 'Color Scheme',
+                icon: Icons.question_mark_rounded,
+              ),
+              SizedBox(height: AppSize.s16.h),
+              Container(
+                padding: const EdgeInsets.all(AppSize.s4),
+                decoration: BoxDecoration(
+                  color: ColorManager.lightPrimary,
+                  borderRadius: BorderRadius.circular(AppSize.s40.r),
+                ),
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Container(
+                        height: AppSize.s48.h,
+                        padding: const EdgeInsets.all(AppPadding.p4),
+                        decoration: BoxDecoration(
+                          color:
+                              !true ? ColorManager.primary : ColorManager.white,
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s40,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.light_mode_rounded,
+                              color: true
+                                  ? ColorManager.primary
+                                  : ColorManager.white,
+                            ),
+                            SizedBox(width: AppSize.s12.w),
+                            Text(
+                              'Light',
+                              style: context.textTheme.labelLarge!.copyWith(
+                                fontSize: FontSizeManager.s15,
+                                color: true
+                                    ? ColorManager.primary
+                                    : ColorManager.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        height: AppSize.s48.h,
+                        padding: const EdgeInsets.all(AppPadding.p4),
+                        decoration: BoxDecoration(
+                          color: !false ? null : ColorManager.white,
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s40,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.dark_mode_rounded,
+                              color: false
+                                  ? ColorManager.primary
+                                  : ColorManager.white,
+                            ),
+                            SizedBox(width: AppSize.s12.w),
+                            Text(
+                              'Dark',
+                              style: context.textTheme.labelLarge!.copyWith(
+                                fontSize: FontSizeManager.s15,
+                                color: false
+                                    ? ColorManager.primary
+                                    : ColorManager.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: AppSize.s24.h),
             ],
           ),
         ),
