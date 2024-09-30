@@ -206,7 +206,7 @@ class ServiceWidget extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: AppSize.s20.h)
+        SizedBox(height: AppSize.s60.h)
       ],
     );
   }
