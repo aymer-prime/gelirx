@@ -115,11 +115,12 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         ],
         leadingWidth: AppSize.s32,
         leading: IconButton(
-          icon: Icon(Icons.menu,size: AppSize.s32),  // Customize the icon as needed
-           onPressed: () {
+          icon: Icon(Icons.menu,
+              size: AppSize.s32), // Customize the icon as needed
+          onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
-         },
-       ),
+          },
+        ),
       ),
       drawer: Drawer(
         backgroundColor: ColorManager.primary,
@@ -196,7 +197,8 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
               DrawerTile(
                 isSelected: false,
                 label: 'Address',
-                icon: Icon(Icons.location_on_outlined, color: Color(0xffD1D3D4)),
+                icon:
+                    Icon(Icons.location_on_outlined, color: Color(0xffD1D3D4)),
               ),
               SizedBox(height: AppSize.s8.h),
               DrawerTile(
@@ -244,7 +246,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                         padding: const EdgeInsets.all(AppPadding.p4),
                         decoration: BoxDecoration(
                           color:
-                          !true ? ColorManager.primary : ColorManager.white,
+                              !true ? ColorManager.primary : ColorManager.white,
                           borderRadius: BorderRadius.circular(
                             AppSize.s40,
                           ),
@@ -252,10 +254,10 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.light_mode_rounded,
+                            Image.asset(
+                              ImageAssets.light,
                               color: true
-                                  ? ColorManager.primary
+                                  ? ColorManager.black
                                   : ColorManager.white,
                             ),
                             SizedBox(width: AppSize.s12.w),
@@ -264,7 +266,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                               style: context.textTheme.labelLarge!.copyWith(
                                 fontSize: FontSizeManager.s15,
                                 color: true
-                                    ? ColorManager.primary
+                                    ? ColorManager.black
                                     : ColorManager.white,
                               ),
                             ),
@@ -285,8 +287,8 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.dark_mode_rounded,
+                            Image.asset(
+                              ImageAssets.dark,
                               color: false
                                   ? ColorManager.primary
                                   : ColorManager.white,

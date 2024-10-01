@@ -34,8 +34,8 @@ class HomeMap extends StatelessWidget {
               if (mapEvent is MapEventMoveEnd) {
                 final newCenter = mapEvent.camera.center;
                 context.read<HomeBloc>().add(
-                  HomeEvent.getMasters(newCenter),
-                );
+                      HomeEvent.getMasters(newCenter),
+                    );
               }
             },
             initialCenter: LatLng(
@@ -45,7 +45,6 @@ class HomeMap extends StatelessWidget {
             initialZoom: 12,
             minZoom: 12,
           ),
-
           children: [
             openStreetMapTileLayer,
             // CircleLayer(
@@ -80,28 +79,26 @@ class HomeMap extends StatelessWidget {
               ],
             ),
 
-
             MarkerLayer(
               markers: state.masters.map((master) {
                 return Marker(
                   point: LatLng(master.latitude, master.longitude),
                   width: 70,
                   height: 70,
-                  child: InkWell(onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      backgroundColor: ColorManager.white,
-                      isScrollControlled: true,
-                      builder: (BuildContext context) {
-                        return MasterInfoSheet(
-                          master: master,
-                        );
-                      },
-                    );
-                  },
-                    child: Image.asset(
-                      ImageAssets.masterMarker
-                    ),
+                  child: InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: ColorManager.white,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          return MasterInfoSheet(
+                            master: master,
+                          );
+                        },
+                      );
+                    },
+                    child: Image.asset(ImageAssets.masterMarker),
                   ),
                 );
               }).toList(),

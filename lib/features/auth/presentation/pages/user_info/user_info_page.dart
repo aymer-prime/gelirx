@@ -202,7 +202,7 @@ class UserInfoPage extends StatelessWidget {
                               ),
                               const SizedBox(height: AppSize.s60),
                               SizedBox(
-                                height: AppSize.s48,
+                                height: AppSize.s48.h,
                                 width: double.infinity,
                                 child: ElevatedButton(
                                   onPressed: () {

@@ -3,10 +3,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/map_extensions.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
+import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/app/utils/validators.dart';
@@ -78,20 +82,32 @@ class MasterFormPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: AppSize.s24),
+                      SizedBox(height: AppSize.s90.h),
+                      Center(
+                        child: SvgPicture.asset(ImageAssets.logoPrimary),
+                      ),
+                      SizedBox(height: AppSize.s86.h),
                       Center(
                         child: Text(
                           'Enter Your Info',
                           style: context.textTheme.displayMedium,
                         ),
                       ),
-                      const SizedBox(height: AppSize.s24),
+                      SizedBox(height: AppSize.s54.h),
                       Padding(
-                        padding: const EdgeInsets.all(AppPadding.p16),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const CardLabelWidget(label: 'Name'),
-                            const SizedBox(height: AppSize.s16),
+                            Text(
+                              'Name',
+                              style: context.textTheme.labelLarge!.copyWith(
+                                fontSize: FontSizeManager.s15,
+                                letterSpacing: FontSizeManager.s15 * -0.01,
+                              ),
+                            ),
+                            SizedBox(height: AppSize.s8.h),
                             Row(
                               children: [
                                 Flexible(
@@ -151,17 +167,15 @@ class MasterFormPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: AppPadding.p16,
-                              ),
-                              child: Divider(
-                                color: ColorManager.textfieldBorderColor,
-                                height: AppSize.s24,
+                            SizedBox(height: AppSize.s20.h),
+                            Text(
+                              'ID Number',
+                              style: context.textTheme.labelLarge!.copyWith(
+                                fontSize: FontSizeManager.s15,
+                                letterSpacing: FontSizeManager.s15 * -0.01,
                               ),
                             ),
-                            const CardLabelWidget(label: 'Id Number'),
-                            const SizedBox(height: AppSize.s16),
+                            SizedBox(height: AppSize.s8.h),
                             TextFormField(
                               keyboardType: TextInputType.number,
                               maxLength: 11,
@@ -186,17 +200,15 @@ class MasterFormPage extends StatelessWidget {
                                 }
                               },
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: AppPadding.p16,
-                              ),
-                              child: Divider(
-                                color: ColorManager.textfieldBorderColor,
-                                height: AppSize.s24,
+                            SizedBox(height: AppSize.s20.h),
+                            Text(
+                              'Year of Birth',
+                              style: context.textTheme.labelLarge!.copyWith(
+                                fontSize: FontSizeManager.s15,
+                                letterSpacing: FontSizeManager.s15 * -0.01,
                               ),
                             ),
-                            const CardLabelWidget(label: 'Year of Birth'),
-                            const SizedBox(height: AppSize.s16),
+                            SizedBox(height: AppSize.s8.h),
                             TextFormField(
                               keyboardType: TextInputType.number,
                               maxLength: 4,
@@ -226,6 +238,7 @@ class MasterFormPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(AppPadding.p16),
                         child: SizedBox(
+                          height: AppSize.s48.h,
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {

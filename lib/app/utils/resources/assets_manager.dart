@@ -21,6 +21,8 @@ class ImageAssets {
   static const String refer = '$imagePath/drawer/refer.png';
   static const String support = '$imagePath/drawer/support.png';
   static const String question = '$imagePath/drawer/question.png';
+  static const String light = '$imagePath/drawer/light.png';
+  static const String dark = '$imagePath/drawer/dark.png';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
@@ -30,15 +32,17 @@ class ImageAssets {
   //services
   static const String acIcon = '$imagePath/services/ac_icon.svg';
   //notifications
-  static const String noNotifications = '$imagePath/notifications/no_notifications_icon.svg';
+  static const String noNotifications =
+      '$imagePath/notifications/no_notifications_icon.svg';
   //login buttons
   static const String googleLogo = '$imagePath/login_buttons/google.png';
   static const String facebookLogo = '$imagePath/login_buttons/facebook.png';
   static const String appleLogo = '$imagePath/login_buttons/apple.png';
   //onboarding
-  static const String onboardingImage1 = '$imagePath/onboarding/onboarding_1.png';
-  static const String onboardingImage2 = '$imagePath/onboarding/onboarding_2.png';
-
+  static const String onboardingImage1 =
+      '$imagePath/onboarding/onboarding_1.png';
+  static const String onboardingImage2 =
+      '$imagePath/onboarding/onboarding_2.png';
 }
 
 class JsonAssets {

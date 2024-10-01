@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/map_extensions.dart';
@@ -161,6 +162,7 @@ class MasterSkillsPage extends StatelessWidget {
                             ),
                     ),
                     SizedBox(
+                      height: AppSize.s48.h,
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
