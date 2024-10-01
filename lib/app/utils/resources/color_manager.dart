@@ -6,7 +6,7 @@ class ColorManager {
   static Color lightPrimary = const Color(0xff878bc5);
   static Color darkPrimary = const Color(0xff292d56);
 
-  static Color background = const Color(0xffF9F9F9);
+  static Color background = const Color(0xffF2F3F5);
   static Color white = const Color(0xffffffff);
   static Color black = const Color(0xff000000);
   static Color grey = const Color(0xff737477);
@@ -52,4 +52,8 @@ class ColorManager {
   //status
   static Color confirmedColor = const Color(0xffECF8F1);
   static Color pendingColor = const Color(0xFFEB833C).withOpacity(10.0);
+
+  //onBoarding
+  static Color onBoardingContainerColor1 = const Color(0xFFFFCACA);
+  static Color onBoardingContainerColor2 = const Color(0xFFCAD2FF);
 }

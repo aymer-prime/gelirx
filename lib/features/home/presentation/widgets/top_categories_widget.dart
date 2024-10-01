@@ -4,15 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
-import 'package:gelirx/app/utils/resources/strings_manager.dart';
+import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 
-class TopCategoriesWidgets extends StatelessWidget {
+class AllCategoriesWidgets extends StatelessWidget {
   final List<Category> categories;
-  const TopCategoriesWidgets({
+  const AllCategoriesWidgets({
     super.key,
     required this.categories,
   });
@@ -21,73 +21,16 @@ class TopCategoriesWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              AppStrings.cats,
-              style: context.textTheme.displaySmall,
-            ),
-            // OutlinedButton(
-            //   style: OutlinedButton.styleFrom(
-            //     side: BorderSide(
-            //       color: ColorManager.textfieldBorderColor,
-            //       width: 1.5,
-            //     ),
-            //     shape: const StadiumBorder(),
-            //   ),
-            //   onPressed: () {
-            //     showModalBottomSheet(
-            //       context: context,
-            //       builder: (context) => Container(
-            //         padding: const EdgeInsets.all(
-            //           AppPadding.p16,
-            //         ),
-            //         width: double.infinity,
-            //         decoration: BoxDecoration(
-            //           color: ColorManager.white,
-            //         ),
-            //         child: Column(
-            //           children: [
-            //             const CardLabelWidget(
-            //               label: AppStrings.allCat,
-            //             ),
-            //             const SizedBox(height: AppSize.s16),
-            //             Expanded(
-            //               child: CategoriesGridWidget(
-            //                 categories: categories,
-            //               ),
-            //             )
-            //           ],
-            //         ),
-            //       ),
-            //     );
-            //   },
-            //   child: Padding(
-            //     padding: const EdgeInsets.symmetric(
-            //       horizontal: AppPadding.p16,
-            //     ),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //       children: [
-            //         Text(
-            //           AppStrings.seeAll,
-            //           style: context.textTheme.labelMedium,
-            //         ),
-            //         const SizedBox(width: AppSize.s2),
-            //         const Icon(
-            //           Icons.arrow_forward_ios_rounded,
-            //           size: AppSize.s12,
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // )
-          ],
-        ),
+        // const CardLabelWidget(label: AppStrings.cats),
         SizedBox(height: AppSize.s8.h),
-        SizedBox(
-          height: AppSize.s100,
+        Container(
+          height: AppSize.s120,
+          decoration: BoxDecoration(
+            color: ColorManager.white,
+            borderRadius: BorderRadius.circular(
+              AppSize.s20.r,
+            ),
+          ),
           child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -95,7 +38,7 @@ class TopCategoriesWidgets extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
               child: AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: 0.65,
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {

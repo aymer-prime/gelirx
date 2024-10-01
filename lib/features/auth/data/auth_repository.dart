@@ -347,6 +347,8 @@ class AuthRepository implements IAuthRepository {
   Future<List<void>> signOut() async {
     await _localService.delete(Constants.tokenKey);
     await _localService.delete(Constants.userIdKey);
+    await _localService.delete(Constants.isMasterKey);
+    await _localService.delete(Constants.showOnboarding);
     return Future.wait([
       //firebaseAuth.signOut(),
       //googleSignIn.signOut(),

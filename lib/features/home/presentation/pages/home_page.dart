@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(
-                        AppSize.s8,
+                        AppSize.s20,
                       ),
                     ),
                     child: TextField(

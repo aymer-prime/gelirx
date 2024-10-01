@@ -84,8 +84,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
     gh.lazySingleton<_i92.IBookingRepository>(() => _i678.BookingRepository());
-    gh.lazySingleton<_i317.IHomeRepository>(
-        () => _i65.HomeRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i782.INavigationRepository>(
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
@@ -94,8 +92,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i603.NavigationUsecase(gh<_i782.INavigationRepository>()));
     gh.factory<_i162.NavigationBloc>(
         () => _i162.NavigationBloc(gh<_i603.NavigationUsecase>()));
-    gh.factory<_i202.HomeBloc>(
-        () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
+    gh.lazySingleton<_i317.IHomeRepository>(() => _i65.HomeRepository(
+          gh<_i464.RemoteService>(),
+          gh<_i902.LocalService>(),
+        ));
     gh.lazySingleton<_i216.BookingUsecase>(
         () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));
     gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
@@ -109,6 +109,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i309.SignInUseCase>(
         () => _i309.SignInUseCase(gh<_i1026.IAuthRepository>()));
+    gh.factory<_i202.HomeBloc>(
+        () => _i202.HomeBloc(gh<_i317.IHomeRepository>()));
     gh.factory<_i908.MasterVerificationBloc>(() => _i908.MasterVerificationBloc(
           gh<_i317.IHomeRepository>(),
           gh<_i1026.IAuthRepository>(),

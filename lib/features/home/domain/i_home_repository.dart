@@ -13,5 +13,6 @@ abstract class IHomeRepository {
     LatLng centerPosition,
     String address,
     String description,
+    String categoryId,
   );
 }

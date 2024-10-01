@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/remote_service.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
@@ -18,9 +19,11 @@ import 'package:latlong2/latlong.dart';
 @LazySingleton(as: IHomeRepository)
 class HomeRepository implements IHomeRepository {
   final RemoteService _remoteService;
+  final LocalService _localService;
 
   HomeRepository(
     this._remoteService,
+    this._localService,
   );
 
   @override
@@ -119,8 +122,42 @@ class HomeRepository implements IHomeRepository {
 
   @override
   Future<Either<ApiException, Unit>> bookService(
-      LatLng centerPosition, String address, String description) {
-    // TODO: implement bookService
-    throw UnimplementedError();
+    LatLng userPosition,
+    String address,
+    String description,
+    String categoryId,
+  ) async {
+    try {
+      var token = _localService.get(Constants.tokenKey);
+      var userId = _localService.get(Constants.userIdKey);
+      var longitude = userPosition.longitude;
+      var latitude = userPosition.latitude;
+      var data = {
+        'lang': 'tr',
+        'user_id': userId,
+        'token': token,
+        'category_id': categoryId,
+        'latitude': latitude,
+        'longitude': longitude,
+        'address': address,
+        'description': description,
+      };
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}booking/new.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
   }
 }

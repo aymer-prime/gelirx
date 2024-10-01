@@ -11,6 +11,7 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/constants_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
+import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
@@ -72,7 +73,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'Current Location',
+              AppStrings.welcomeSubtitle,
               style: context.textTheme.labelSmall!.copyWith(
                 fontSize: FontSizeManager.s9,
               ),

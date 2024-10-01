@@ -13,6 +13,7 @@ import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.dart';
 import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
+import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 
 class HomeDraggableSheet extends StatefulWidget {
   final List<Category> categories;
@@ -120,12 +121,12 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                     child: SizedBox(
                       child: Column(
                         children: [
-                          SizedBox(height: AppSize.s16.h),
+                          SizedBox(height: AppSize.s8.h),
                           widget.categories.isEmpty
                               ? const Center(
                                   child: CircularProgressIndicator(),
                                 )
-                              : TopCategoriesWidgets(
+                              : AllCategoriesWidgets(
                                   categories: widget.categories,
                                 ),
                           SizedBox(height: AppSize.s16.h),
@@ -139,8 +140,19 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                                     ...widget.services.map(
                                       (service) => service.subSkill.isEmpty
                                           ? const SizedBox()
-                                          : ServiceWidget(
-                                              service: service,
+                                          : Container(
+                                              padding: const EdgeInsets.all(
+                                                  AppPadding.p16),
+                                              decoration: BoxDecoration(
+                                                color: ColorManager.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  AppSize.s20.r,
+                                                ),
+                                              ),
+                                              child: ServiceWidget(
+                                                service: service,
+                                              ),
                                             ),
                                     ),
                                   ],
@@ -171,10 +183,7 @@ class ServiceWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          service.skill.name,
-          style: context.textTheme.displaySmall,
-        ),
+        CardLabelWidget(label: service.skill.name),
         SizedBox(height: AppSize.s8.h),
         SizedBox(
           height: AppSize.s200,

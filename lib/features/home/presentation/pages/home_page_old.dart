@@ -95,7 +95,7 @@ class HomePageOld extends StatelessWidget {
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
-                        : TopCategoriesWidgets(
+                        : AllCategoriesWidgets(
                             categories: state.categories,
                           ),
                   ),

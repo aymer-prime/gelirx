@@ -24,8 +24,7 @@ class ProfilePage extends StatelessWidget {
         listener: (context, state) {
           state.maybeMap(
             unAuthenticated: (_) {
-              print('unauthenticated');
-              context.router.replace(const SplashRoute());
+              context.router.replace(OnboardingRoute());
             },
             orElse: () {},
           );

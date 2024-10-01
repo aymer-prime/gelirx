@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
@@ -20,32 +21,32 @@ class CategoryItem extends StatelessWidget {
       onTap: () {
         onTap();
       },
-      child: Container(
-        padding: const EdgeInsets.all(AppPadding.p8),
-        decoration: BoxDecoration(
-          color: ColorManager.white,
-          borderRadius: BorderRadius.circular(
-            AppSize.s8,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(AppPadding.p6),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: AppSize.s58,
+            width: AppSize.s58,
+            decoration: BoxDecoration(
+              color: ColorManager.primary,
+              shape: BoxShape.circle,
+            ),
+            padding: const EdgeInsets.all(AppPadding.p12),
+            child: SizedBox(
               child: CachedNetworkImage(
                 imageUrl: category.img.icon,
                 fit: BoxFit.cover,
-                height: AppSize.s52,
+                color: ColorManager.white,
               ),
             ),
-            Text(
-              category.name,
-              style: context.textTheme.labelMedium,
-              overflow: TextOverflow.ellipsis,
-            )
-          ],
-        ),
+          ),
+          SizedBox(height: AppSize.s12.h),
+          Text(
+            category.name,
+            style: context.textTheme.labelMedium,
+            overflow: TextOverflow.ellipsis,
+          )
+        ],
       ),
     );
   }
