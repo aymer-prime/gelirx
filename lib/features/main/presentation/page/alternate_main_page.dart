@@ -140,6 +140,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           );
         },
         child: Stack(
+          fit: StackFit.expand,
           children: [
             IndexedStack(
               index: selectedTab,
@@ -154,10 +155,14 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                       ))
                   .toList(),
             ),
-            Column(
-              children: [
-                const Expanded(child: SizedBox()),
-                NavBar(
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: MediaQuery.removePadding(
+                context: context,
+                removeBottom: true,
+                child: NavBar(
                   pageIndex: selectedTab,
                   onTap: (index) {
                     if (index == selectedTab) {
@@ -172,7 +177,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                     }
                   },
                 ),
-              ],
+              ),
             ),
           ],
         ),
