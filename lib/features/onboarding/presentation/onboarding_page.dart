@@ -30,16 +30,30 @@ class OnboardingPage extends HookWidget {
     final controller = usePageController();
     final currentPage = useValueNotifier<int>(0);
     return Scaffold(
+      backgroundColor: ColorManager.white,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          IconButton(
-            onPressed: () {
-              context.router.replace(const AuthRoute());
-            },
-            icon: Icon(
-              Icons.next_plan,
-              color: ColorManager.darkPrimary,
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p16),
+            child: SizedBox(
+              height: AppSize.s32,
+              child: ElevatedButton(
+                onPressed: () {
+                  context.router.replace(const AlternateMainRoute());
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorManager.textfieldNumFillColor,
+                  shape: const StadiumBorder(),
+                  elevation: 0.0,
+                ),
+                child: Text(
+                  'skip',
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    color: ColorManager.textTitleColor,
+                  ),
+                ),
+              ),
             ),
           ),
           Expanded(
@@ -114,7 +128,8 @@ class OnboardingPage extends HookWidget {
                             height: AppSize.s60,
                             child: ElevatedButton(
                               onPressed: () {
-                                context.router.replace(const AuthRoute());
+                                context.router
+                                    .replace(const AlternateMainRoute());
                               },
                               child: const Text(
                                 AppStrings.getStarted,

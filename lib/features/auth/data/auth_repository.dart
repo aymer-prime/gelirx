@@ -245,6 +245,8 @@ class AuthRepository implements IAuthRepository {
       if (response != null) {
         String token = response['token'];
         String userId = response['user_id'];
+        int isMaster = response['master'];
+        await _localService.save(Constants.isMasterKey, isMaster.toString());
         await _localService.save(Constants.tokenKey, token);
         await _localService.save(Constants.userIdKey, userId);
       }
@@ -273,7 +275,7 @@ class AuthRepository implements IAuthRepository {
         'img': base64Image,
         //'img': await MultipartFile.fromFile(userImage.path),
       });
-      //var response = 
+      //var response =
       await _remoteService.post(
         '${Constants.baseUrl}master/picture.php',
         options: Options(
@@ -305,7 +307,7 @@ class AuthRepository implements IAuthRepository {
         'token': token,
         'category_id': userSkills.join(','),
       };
-      //var response = 
+      //var response =
       await _remoteService.post(
         '${Constants.baseUrl}master/choose_skills.php',
         options: Options(
@@ -378,6 +380,8 @@ class AuthRepository implements IAuthRepository {
       if (response != null) {
         String token = response['token'];
         String userId = response['user_id'];
+        int isMaster = response['master'];
+        await _localService.save(Constants.isMasterKey, isMaster.toString());
         await _localService.save(Constants.tokenKey, token);
         await _localService.save(Constants.userIdKey, userId);
       }
@@ -441,6 +445,8 @@ class AuthRepository implements IAuthRepository {
       if (response != null) {
         String token = response['token'];
         String userId = response['user_id'];
+        int isMaster = response['master'];
+        await _localService.save(Constants.isMasterKey, isMaster.toString());
         await _localService.save(Constants.tokenKey, token);
         await _localService.save(Constants.userIdKey, userId);
       }

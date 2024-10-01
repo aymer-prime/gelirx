@@ -20,11 +20,12 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<AuthStatusBloc, AuthStatusState>(
+        listenWhen: (previous, current) => previous != current,
         listener: (context, state) {
           state.maybeMap(
             unAuthenticated: (_) {
               print('unauthenticated');
-              context.router.replace(const AuthRoute());
+              context.router.replace(const SplashRoute());
             },
             orElse: () {},
           );
@@ -161,34 +162,30 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: AppSize.s16),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context.read<AuthStatusBloc>().state.maybeMap(
-                                orElse: () {},
-                                authenticated: (value) {
-                                  print('Authenticated');
-                                },
-                                unAuthenticated: (value) {
-                                  print('Unauthenticated');
-                                },
-                              );
-                          context.read<AuthStatusBloc>().add(
-                                const AuthStatusEvent.signedOut(),
-                              );
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppPadding.p20.w,
-                            vertical: AppPadding.p12.h,
-                          ),
-                          child: const Text(
-                            AppStrings.logOut,
+                    context.read<AuthStatusBloc>().state.maybeMap(
+                          orElse: () {
+                            return SizedBox();
+                          },
+                          authenticated: (value) => SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context.read<AuthStatusBloc>().add(
+                                      const AuthStatusEvent.signedOut(),
+                                    );
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p20.w,
+                                  vertical: AppPadding.p12.h,
+                                ),
+                                child: const Text(
+                                  AppStrings.logOut,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
                   ],
                 ),
               ),

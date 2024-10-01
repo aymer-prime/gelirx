@@ -7,5 +7,11 @@ import 'package:latlong2/latlong.dart';
 abstract class IHomeRepository {
   Future<Either<ApiException, List<Category>>> getCategories();
   Future<Either<ApiException, List<Category>>> getSubCategories(String catId);
-  Future<Either<ApiException, List<Master>>> getMasters(LatLng centerPosition, int? selectedCategory);
+  Future<Either<ApiException, List<Master>>> getMasters(
+      LatLng centerPosition, int? selectedCategory);
+  Future<Either<ApiException, Unit>> bookService(
+    LatLng centerPosition,
+    String address,
+    String description,
+  );
 }

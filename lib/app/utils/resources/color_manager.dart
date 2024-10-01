@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ColorManager {
   //general
-  static Color primary = const Color(0xffF25F31);
-  static Color lightPrimary = const Color(0xfff7a287);
-  static Color darkPrimary = const Color(0xffa8300b);
+  static Color primary = const Color(0xff44498D);
+  static Color lightPrimary = const Color(0xff878bc5);
+  static Color darkPrimary = const Color(0xff292d56);
 
   static Color background = const Color(0xffF9F9F9);
   static Color white = const Color(0xffffffff);
@@ -29,6 +29,7 @@ class ColorManager {
   static Color disabledButtonTextColor = const Color(0xffe6e6e6);
   static Color outlineButtonBorderColor = const Color(0xff2E4460);
   static Color outlineOtpBorderColor = const Color(0xff9A9FA5);
+  static Color skipButtonColor = const Color(0xffF8F13D);
   //text_field
   static Color textfieldNumFillColor = const Color(0xffF5F5F5);
   static Color textfieldHintColor = const Color(0xff999999);

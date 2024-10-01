@@ -88,7 +88,8 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<Either<ApiException, List<Master>>> getMasters(LatLng centerPosition, int? selectedCategory) async {
+  Future<Either<ApiException, List<Master>>> getMasters(
+      LatLng centerPosition, int? selectedCategory) async {
     try {
       var response = await _remoteService.post(
         '${Constants.baseUrl}master/search.php',
@@ -108,10 +109,18 @@ class HomeRepository implements IHomeRepository {
       final List<Master> masterList = responseData
           .map(
             (e) => MasterDto.fromJson(e).toDomain(),
-      ).toList();
+          )
+          .toList();
       return right(masterList);
     } on ApiException catch (e) {
       return left(e);
+    }
   }
- }
+
+  @override
+  Future<Either<ApiException, Unit>> bookService(
+      LatLng centerPosition, String address, String description) {
+    // TODO: implement bookService
+    throw UnimplementedError();
+  }
 }

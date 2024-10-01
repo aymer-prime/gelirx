@@ -45,7 +45,9 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: AppSize.s48.h,
                       child: IconButton(
-                        onPressed: toPreviousPage,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }, //toPreviousPage,
                         icon: const Icon(
                           Icons.arrow_back_rounded,
                         ),

@@ -10,7 +10,6 @@ import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/login_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/otp_page.dart';
-import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/user_type_page.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 @RoutePage()
