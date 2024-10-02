@@ -4,6 +4,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/map_extensions.dart';
 import 'package:gelirx/app/injector/injection.dart';
@@ -63,90 +64,100 @@ class MasterPicPage extends StatelessWidget {
         },
         builder: (context, state) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: AppSize.s24),
               Center(
                 child: Text(
                   'Take a Selfie',
                   style: context.textTheme.displayMedium,
                 ),
               ),
-              const SizedBox(height: AppSize.s60),
-              GestureDetector(
-                onTap: () {
-                  _showPicker(context, (String path) {
-                    context
-                        .read<MasterVerificationBloc>()
-                        .add(MasterVerificationEvent.imageChanged(File(path)));
-                  });
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: AppSize.s220,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: ColorManager.textfieldFillColor,
-                    border: Border.all(
-                      color: ColorManager.primary,
-                      width: AppSize.s2,
-                    ),
-                  ),
-                  child: context
-                      .read<MasterVerificationBloc>()
-                      .state
-                      .userImage
-                      .fold(
-                        () => const Icon(
-                          Icons.person,
-                          size: AppSize.s160,
+              SizedBox(height: AppSize.s24.h),
+              Container(
+                padding: const EdgeInsets.all(AppPadding.p16),
+                margin: EdgeInsets.symmetric(horizontal: AppMargin.m20.w),
+                decoration: BoxDecoration(
+                  color: ColorManager.white,
+                  borderRadius: BorderRadius.circular(AppSize.s20.r),
+                ),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        _showPicker(context, (String path) {
+                          context.read<MasterVerificationBloc>().add(
+                              MasterVerificationEvent.imageChanged(File(path)));
+                        });
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: AppSize.s150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorManager.background,
                         ),
-                        (userImage) => CircleAvatar(
-                          backgroundImage: FileImage(
-                            userImage,
-                          ),
+                        child: context
+                            .read<MasterVerificationBloc>()
+                            .state
+                            .userImage
+                            .fold(
+                              () => Icon(
+                                Icons.camera_alt_rounded,
+                                size: AppSize.s64,
+                                color: ColorManager.textSubtitleColor,
+                              ),
+                              (userImage) => CircleAvatar(
+                                backgroundImage: FileImage(
+                                  userImage,
+                                ),
+                              ),
+                            ),
+                      ),
+                    ),
+                    SizedBox(height: AppSize.s8.h),
+                    Text(
+                      'Please Upload a Profile Picture.\nThis Step is Not Optional',
+                      style: context.textTheme.bodyMedium,
+                      textAlign: TextAlign.center,
+                    ),
+                    if (context
+                            .read<MasterVerificationBloc>()
+                            .state
+                            .showErrorMessages &&
+                        context
+                            .read<MasterVerificationBloc>()
+                            .state
+                            .userImage
+                            .isNone())
+                      Text(
+                        'Invalid User Image',
+                        style: context.textTheme.labelSmall!.copyWith(
+                          color: ColorManager.textErrorColor,
                         ),
                       ),
-                ),
-              ),
-              if (context
-                      .read<MasterVerificationBloc>()
-                      .state
-                      .showErrorMessages &&
-                  context
-                      .read<MasterVerificationBloc>()
-                      .state
-                      .userImage
-                      .isNone())
-                Text(
-                  'Invalid User Image',
-                  style: context.textTheme.labelSmall!.copyWith(
-                    color: ColorManager.textErrorColor,
-                  ),
-                ),
-              Padding(
-                padding: const EdgeInsets.all(AppPadding.p16),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<MasterVerificationBloc>().add(
-                        MasterVerificationEvent.registerUserImage(() {
+                    SizedBox(height: AppSize.s16.h),
+                    SizedBox(
+                      width: double.infinity,
+                      height: AppSize.s48.h,
+                      child: ElevatedButton(
+                        onPressed: () {
                           context.read<MasterVerificationBloc>().add(
-                                        const MasterVerificationEvent
-                                            .getSkills(),
-                                      );
-                                  context.router
-                                      .replace(const MasterSkillsRoute());
-                          //context.router.replace(const AlternateMainRoute());
-                        }),
-                      );
-                    },
-                    child: const Text(
-                      AppStrings.continueTxt,
+                            MasterVerificationEvent.registerUserImage(() {
+                              context.read<MasterVerificationBloc>().add(
+                                    const MasterVerificationEvent.getSkills(),
+                                  );
+                              context.router.replace(const MasterSkillsRoute());
+                              //context.router.replace(const AlternateMainRoute());
+                            }),
+                          );
+                        },
+                        child: const Text(
+                          AppStrings.continueTxt,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],

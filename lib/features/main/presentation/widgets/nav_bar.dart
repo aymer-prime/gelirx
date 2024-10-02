@@ -23,7 +23,7 @@ class NavBar extends StatelessWidget {
     return BottomAppBar(
       height: AppSize.s60.h + MediaQueryData.fromWindow(ui.window).padding.bottom/2,
       shape: CircularNotchedRectangle(),
-      notchMargin: 2,
+      notchMargin: 4,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       padding: EdgeInsets.zero,
       color: Colors.transparent,

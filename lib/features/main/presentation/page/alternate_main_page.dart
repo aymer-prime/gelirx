@@ -195,7 +195,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
               context.read<AuthBloc>().add(const AuthEvent.setUserType(
                     true,
                   ));
-              context.router.push(const AuthRoute());
+              context.router.push(const MasterPicRoute());
             }
           },
           shape: const CircleBorder(),
