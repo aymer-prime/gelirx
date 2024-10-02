@@ -19,7 +19,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+ // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   _initLoggy();
   //_initGoogleFonts();
   final sharedPreferences = await SharedPreferences.getInstance();

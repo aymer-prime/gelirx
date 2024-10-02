@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter/services.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,106 +41,112 @@ class OtpPage extends HookWidget {
     }, const []);
     return Scaffold(
       backgroundColor: ColorManager.white,
-      body: Padding(
-        padding: const EdgeInsets.all(AppPadding.p16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            IconButton(
-              onPressed: toPreviousPage,
-              icon: Icon(
-                Icons.arrow_back,
-                color: ColorManager.black,
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: (){
+          FocusScope.of(context).unfocus();
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(AppPadding.p16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: toPreviousPage,
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: ColorManager.black,
+                ),
               ),
-            ),
-            const SizedBox(height: AppSize.s113),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                Text(
-                  'Verification Code',
-                  textAlign: TextAlign.center,
-                  style: getTextStyle(AppSize.s32, FontWeight.w700, ColorManager.headerTextColor),
-                ),
-                  const SizedBox(height: AppSize.s8),
-                Text(
-                  'Please enter the 6-digit confirmation code we sent via message.',
-                  style: getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.blackTextColorWithOpacity),
-                ),
-                const SizedBox(height: AppSize.s24),
-               // const OtpInputFields(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(6, (index) {
-                      return OtpTextField(
-                        controller: otpControllers[index],
-                        autoFocus: index == 0,
-                      );
-                    }),
-                  ),
-                const SizedBox(height: AppSize.s40),
-                SizedBox(
-                  width: double.infinity,
-                  height: AppSize.s48,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: ColorManager.lightgreybuttonColor,elevation: 0),
-                    onPressed: () {
-                      final otpCode = otpControllers.map((c) => c.text).join();
-                      if (otpCode.length == 6) {
-                        context.read<AuthBloc>().add(
-                          AuthEvent.verifyPhoneNumber(
-                            verificationId: context
-                                .read<AuthBloc>()
-                                .state
-                                .verificationId
-                                .getOrElse(() => ''),
-                            smsCode: otpCode,
-                          ),
-                        );
-                      }
-                    },
-                    child:  Text(AppStrings.continueTxt,style: getTextStyle(AppSize.s15, FontWeight.w700, ColorManager.headerTextColor),),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              const SizedBox(height: AppSize.s113),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Resend Code',
-                      textAlign: TextAlign.center,
-                       style: getTextStyle(AppSize.s15, FontWeight.w500, ColorManager.headerTextColor)
+                  Text(
+                    'Verification Code',
+                    textAlign: TextAlign.center,
+                    style: getTextStyle(AppSize.s32, FontWeight.w700, ColorManager.headerTextColor),
+                  ),
+                    const SizedBox(height: AppSize.s8),
+                  Text(
+                    'Please enter the 6-digit confirmation code we sent via message.',
+                    style: getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.blackTextColorWithOpacity),
+                  ),
+                  const SizedBox(height: AppSize.s24),
+                 // const OtpInputFields(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: List.generate(6, (index) {
+                        return OtpTextField(
+                          controller: otpControllers[index],
+                          autoFocus: index == 0,
+                        );
+                      }),
                     ),
-                    const SizedBox(width: AppSize.s16),
-                    SizedBox(
-                      height: 50,
-                      //width: 100,
-                      child: isDone
-                          ? TextButton(
-                        onPressed: () {
-                          isDone = false;
-                          _numberNotifier.value = 60;
-                        },
-                        child: const Text('Resend'),
-                      )
-                          : Center(
-                        child: Text(
-                          _printDuration(
-                              Duration(seconds: _numberNotifier.value)),
-                          textAlign: TextAlign.center,
-                          style: context.textTheme.bodyLarge!.copyWith(
-                            color: ColorManager.primary,
+                  const SizedBox(height: AppSize.s40),
+                  SizedBox(
+                    width: double.infinity,
+                    height: AppSize.s48,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: ColorManager.lightgreybuttonColor,elevation: 0),
+                      onPressed: () {
+                        final otpCode = otpControllers.map((c) => c.text).join();
+                        if (otpCode.length == 6) {
+                          context.read<AuthBloc>().add(
+                            AuthEvent.verifyPhoneNumber(
+                              verificationId: context
+                                  .read<AuthBloc>()
+                                  .state
+                                  .verificationId
+                                  .getOrElse(() => ''),
+                              smsCode: otpCode,
+                            ),
+                          );
+                        }
+                      },
+                      child:  Text(AppStrings.continueTxt,style: getTextStyle(AppSize.s15, FontWeight.w700, ColorManager.headerTextColor),),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Resend Code',
+                        textAlign: TextAlign.center,
+                         style: getTextStyle(AppSize.s15, FontWeight.w500, ColorManager.headerTextColor)
+                      ),
+                      const SizedBox(width: AppSize.s16),
+                      SizedBox(
+                        height: 50,
+                        //width: 100,
+                        child: isDone
+                            ? TextButton(
+                          onPressed: () {
+                            isDone = false;
+                            _numberNotifier.value = 60;
+                          },
+                          child: const Text('Resend'),
+                        )
+                            : Center(
+                          child: Text(
+                            _printDuration(
+                                Duration(seconds: _numberNotifier.value)),
+                            textAlign: TextAlign.center,
+                            style: context.textTheme.bodyLarge!.copyWith(
+                              color: ColorManager.primary,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],),
-            ),
-          ],
+                    ],
+                  ),
+                ],),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -176,7 +182,6 @@ class _OtpTextFieldState extends State<OtpTextField> {
     super.initState();
     _focusNode = FocusNode();
     _focusNode.addListener(() {
-      // Trigger a rebuild when the focus changes
       setState(() {});
     });
   }
@@ -201,15 +206,21 @@ class _OtpTextFieldState extends State<OtpTextField> {
             textAlign: TextAlign.center,
             autofocus: widget.autoFocus,
             keyboardType: TextInputType.number,
+            maxLength: 1,
             maxLines: null,
             expands: true,
             cursorColor: Colors.blue,
             onChanged: (value) {
               if (value.isNotEmpty) {
+                // Move to the next field if a character is entered
                 FocusScope.of(context).nextFocus();
+              } else {
+                // Move to the previous field if the current field is empty (deletion)
+                FocusScope.of(context).previousFocus();
               }
             },
             decoration: InputDecoration(
+              counterText: "",
               contentPadding: EdgeInsets.zero,
               fillColor: _focusNode.hasFocus ? Colors.white : ColorManager.lightgreybuttonColor,
               filled: true,
