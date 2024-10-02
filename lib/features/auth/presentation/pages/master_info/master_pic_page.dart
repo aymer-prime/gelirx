@@ -105,7 +105,7 @@ class MasterPicPage extends StatelessWidget {
                               () => Icon(
                                 Icons.camera_alt_rounded,
                                 size: AppSize.s64,
-                                color: ColorManager.textSubtitleColor,
+                                color: ColorManager.textTitleLightColor,
                               ),
                               (userImage) => CircleAvatar(
                                 backgroundImage: FileImage(
@@ -114,12 +114,6 @@ class MasterPicPage extends StatelessWidget {
                               ),
                             ),
                       ),
-                    ),
-                    SizedBox(height: AppSize.s8.h),
-                    Text(
-                      'Please Upload a Profile Picture.\nThis Step is Not Optional',
-                      style: context.textTheme.bodyMedium,
-                      textAlign: TextAlign.center,
                     ),
                     if (context
                             .read<MasterVerificationBloc>()
@@ -136,6 +130,12 @@ class MasterPicPage extends StatelessWidget {
                           color: ColorManager.textErrorColor,
                         ),
                       ),
+                    SizedBox(height: AppSize.s8.h),
+                    Text(
+                      'Please Upload a Profile Picture.\nThis Step is Not Optional',
+                      style: context.textTheme.bodyMedium,
+                      textAlign: TextAlign.center,
+                    ),
                     SizedBox(height: AppSize.s16.h),
                     SizedBox(
                       width: double.infinity,
