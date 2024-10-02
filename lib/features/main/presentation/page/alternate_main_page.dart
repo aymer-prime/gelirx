@@ -201,7 +201,6 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           shape: const CircleBorder(),
           child: Icon(
             Icons.add_rounded,
-            size: AppSize.s36,
             color: ColorManager.white,
           ),
         ),

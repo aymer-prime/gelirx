@@ -6,6 +6,7 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'dart:ui' as ui;
 
 class NavBar extends StatelessWidget {
   final int pageIndex;
@@ -20,9 +21,9 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      height: AppSize.s60.h,
+      height: AppSize.s60.h + MediaQueryData.fromWindow(ui.window).padding.bottom/2,
       shape: CircularNotchedRectangle(),
-      notchMargin: 4,
+      notchMargin: 2,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       padding: EdgeInsets.zero,
       color: Colors.transparent,
@@ -37,50 +38,53 @@ class NavBar extends StatelessWidget {
           // ),
           // borderRadius: BorderRadius.circular(AppSize.s12),
         ),
-        child: Row(
-          children: [
-            NavItem(
-              label: AppStrings.home,
-              icon: SvgPicture.asset(ImageAssets.navbarHome),
-              activeIcon: SvgPicture.asset(
-                ImageAssets.navbarHome,
-                color: ColorManager.primary,
+        child: Padding(
+          padding:  EdgeInsets.only(bottom: MediaQueryData.fromWindow(ui.window).padding.bottom),
+          child: Row(
+            children: [
+              NavItem(
+                label: AppStrings.home,
+                icon: SvgPicture.asset(ImageAssets.navbarHome),
+                activeIcon: SvgPicture.asset(
+                  ImageAssets.navbarHome,
+                  color: ColorManager.primary,
+                ),
+                isSelected: pageIndex == 0,
+                onTap: () => onTap(0),
               ),
-              isSelected: pageIndex == 0,
-              onTap: () => onTap(0),
-            ),
-            NavItem(
-              label: AppStrings.booking,
-              icon: SvgPicture.asset(ImageAssets.navbarBooking),
-              activeIcon: SvgPicture.asset(
-                ImageAssets.navbarBooking,
-                color: ColorManager.darkPrimary,
+              NavItem(
+                label: AppStrings.booking,
+                icon: SvgPicture.asset(ImageAssets.navbarBooking),
+                activeIcon: SvgPicture.asset(
+                  ImageAssets.navbarBooking,
+                  color: ColorManager.darkPrimary,
+                ),
+                isSelected: pageIndex == 1,
+                onTap: () => onTap(1),
               ),
-              isSelected: pageIndex == 1,
-              onTap: () => onTap(1),
-            ),
-            const SizedBox(width: 80),
-            NavItem(
-              label: AppStrings.notification,
-              icon: SvgPicture.asset(ImageAssets.navbarNotification),
-              activeIcon: SvgPicture.asset(
-                ImageAssets.navbarNotification,
-                color: ColorManager.darkPrimary,
+              const SizedBox(width: 80),
+              NavItem(
+                label: AppStrings.notification,
+                icon: SvgPicture.asset(ImageAssets.navbarNotification),
+                activeIcon: SvgPicture.asset(
+                  ImageAssets.navbarNotification,
+                  color: ColorManager.darkPrimary,
+                ),
+                isSelected: pageIndex == 2,
+                onTap: () => onTap(2),
               ),
-              isSelected: pageIndex == 2,
-              onTap: () => onTap(2),
-            ),
-            NavItem(
-              label: AppStrings.profile,
-              icon: SvgPicture.asset(ImageAssets.navbarProfile),
-              activeIcon: SvgPicture.asset(
-                ImageAssets.navbarProfile,
-                color: ColorManager.darkPrimary,
+              NavItem(
+                label: AppStrings.profile,
+                icon: SvgPicture.asset(ImageAssets.navbarProfile),
+                activeIcon: SvgPicture.asset(
+                  ImageAssets.navbarProfile,
+                  color: ColorManager.darkPrimary,
+                ),
+                isSelected: pageIndex == 3,
+                onTap: () => onTap(3),
               ),
-              isSelected: pageIndex == 3,
-              onTap: () => onTap(3),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

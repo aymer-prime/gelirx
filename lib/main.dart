@@ -21,6 +21,7 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+ // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   _initLoggy();
   //_initGoogleFonts();
   final sharedPreferences = await SharedPreferences.getInstance();
