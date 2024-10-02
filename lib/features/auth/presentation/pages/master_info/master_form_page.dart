@@ -83,6 +83,7 @@ class MasterFormPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
                         Center(
                           child: SvgPicture.asset(ImageAssets.logoPrimary),
                         ),
