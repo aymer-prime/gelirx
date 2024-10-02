@@ -26,49 +26,49 @@ class MasterFormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: BlocConsumer<MasterVerificationBloc, MasterVerificationState>(
-          listener: (context, state) {
-            if (state.isLoading) {
-              LoadingScreen.instance().showLoadingScreen(
-                context: context,
-                text: 'Loading . . .',
-              );
-            }
-            if (!state.isLoading) {
-              LoadingScreen.instance().hide();
-            }
-            state.authFailureOrSuccessOption.fold(
-              () {},
-              (either) {
-                either.fold(
-                  (failure) {
-                    Flushbar(
-                      message: failure.map(
-                        notModified: (_) => 'Error: 304, Not Modified',
-                        unauthorized: (_) => 'Error: 401, Unauthorized',
-                        badRequest: (badRequest) => badRequest.keys.stringify(),
-                        unknown: (_) => 'Unknown Error',
-                        noConnection: (_) => 'Error: No Connection',
-                        defaultException: (defaultException) =>
-                            'Error: ${defaultException.code}, ${defaultException.message}',
-                      ),
-                      margin: const EdgeInsets.all(6.0),
-                      flushbarStyle: FlushbarStyle.FLOATING,
-                      flushbarPosition: FlushbarPosition.BOTTOM,
-                      borderRadius: BorderRadius.circular(12),
-                      duration: const Duration(seconds: 2),
-                      leftBarIndicatorColor: ColorManager.primary,
-                    ).show(context);
-                  },
-                  (_) {},
-                );
-              },
+    return Scaffold(
+      body: BlocConsumer<MasterVerificationBloc, MasterVerificationState>(
+        listener: (context, state) {
+          if (state.isLoading) {
+            LoadingScreen.instance().showLoadingScreen(
+              context: context,
+              text: 'Loading . . .',
             );
-          },
-          builder: (context, state) {
-            return SingleChildScrollView(
+          }
+          if (!state.isLoading) {
+            LoadingScreen.instance().hide();
+          }
+          state.authFailureOrSuccessOption.fold(
+            () {},
+            (either) {
+              either.fold(
+                (failure) {
+                  Flushbar(
+                    message: failure.map(
+                      notModified: (_) => 'Error: 304, Not Modified',
+                      unauthorized: (_) => 'Error: 401, Unauthorized',
+                      badRequest: (badRequest) => badRequest.keys.stringify(),
+                      unknown: (_) => 'Unknown Error',
+                      noConnection: (_) => 'Error: No Connection',
+                      defaultException: (defaultException) =>
+                          'Error: ${defaultException.code}, ${defaultException.message}',
+                    ),
+                    margin: const EdgeInsets.all(6.0),
+                    flushbarStyle: FlushbarStyle.FLOATING,
+                    flushbarPosition: FlushbarPosition.BOTTOM,
+                    borderRadius: BorderRadius.circular(12),
+                    duration: const Duration(seconds: 2),
+                    leftBarIndicatorColor: ColorManager.primary,
+                  ).show(context);
+                },
+                (_) {},
+              );
+            },
+          );
+        },
+        builder: (context, state) {
+          return SafeArea(
+            child: SingleChildScrollView(
               child: SizedBox(
                 height: context.screenSize.height,
                 child: Form(
@@ -297,9 +297,9 @@ class MasterFormPage extends StatelessWidget {
                   ),
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

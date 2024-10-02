@@ -51,6 +51,7 @@ ThemeData getApplicationTheme() {
     //elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         padding: EdgeInsets.zero,
         textStyle: getBoldStyle(
           color: ColorManager.white,
