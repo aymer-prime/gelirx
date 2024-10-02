@@ -21,7 +21,8 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      height: AppSize.s60.h + MediaQueryData.fromWindow(ui.window).padding.bottom/2,
+      height: AppSize.s60.h +
+          MediaQueryData.fromWindow(ui.window).padding.bottom / 2,
       shape: CircularNotchedRectangle(),
       notchMargin: 4,
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -39,7 +40,8 @@ class NavBar extends StatelessWidget {
           // borderRadius: BorderRadius.circular(AppSize.s12),
         ),
         child: Padding(
-          padding:  EdgeInsets.only(bottom: MediaQueryData.fromWindow(ui.window).padding.bottom),
+          padding: EdgeInsets.only(
+              bottom: MediaQueryData.fromWindow(ui.window).padding.bottom),
           child: Row(
             children: [
               NavItem(
@@ -53,31 +55,31 @@ class NavBar extends StatelessWidget {
                 onTap: () => onTap(0),
               ),
               NavItem(
+                label: AppStrings.favorite,
+                icon: const Icon(Icons.favorite_border),
+                activeIcon: Icon(
+                  Icons.favorite_border,
+                  color: ColorManager.darkPrimary,
+                ),
+                isSelected: pageIndex == 1,
+                onTap: () => onTap(1),
+              ),
+              SizedBox(width: AppSize.s80.w),
+              NavItem(
                 label: AppStrings.booking,
                 icon: SvgPicture.asset(ImageAssets.navbarBooking),
                 activeIcon: SvgPicture.asset(
                   ImageAssets.navbarBooking,
                   color: ColorManager.darkPrimary,
                 ),
-                isSelected: pageIndex == 1,
-                onTap: () => onTap(1),
+                isSelected: pageIndex == 2,
+                onTap: () => onTap(2),
               ),
-              const SizedBox(width: 80),
               NavItem(
                 label: AppStrings.notification,
                 icon: SvgPicture.asset(ImageAssets.navbarNotification),
                 activeIcon: SvgPicture.asset(
                   ImageAssets.navbarNotification,
-                  color: ColorManager.darkPrimary,
-                ),
-                isSelected: pageIndex == 2,
-                onTap: () => onTap(2),
-              ),
-              NavItem(
-                label: AppStrings.profile,
-                icon: SvgPicture.asset(ImageAssets.navbarProfile),
-                activeIcon: SvgPicture.asset(
-                  ImageAssets.navbarProfile,
                   color: ColorManager.darkPrimary,
                 ),
                 isSelected: pageIndex == 3,

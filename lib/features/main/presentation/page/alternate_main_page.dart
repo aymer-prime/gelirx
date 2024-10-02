@@ -49,16 +49,16 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         navKey: homeNavKey,
       ),
       NavModel(
+        page: const ProfilePage(),
+        navKey: profileNavKey,
+      ),
+      NavModel(
         page: const BookingPage(),
         navKey: searchNavKey,
       ),
       NavModel(
         page: const NotificationsPage(),
         navKey: notificationNavKey,
-      ),
-      NavModel(
-        page: const ProfilePage(),
-        navKey: profileNavKey,
       ),
     ];
   }

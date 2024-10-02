@@ -4,6 +4,7 @@ class AppStrings {
   static const booking = 'Booking';
   static const notification = 'Notification';
   static const profile = 'Profile';
+  static const favorite = 'Favorite';
   //Splash
   static const splashTitle1 = 'GelirX';
   //home
