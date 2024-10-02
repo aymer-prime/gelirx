@@ -11,6 +11,7 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/master_verification/master_verification_bloc.dart';
+import 'package:gelirx/features/auth/presentation/widgets/step_indicator.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
@@ -78,20 +79,25 @@ class MasterSkillsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: AppSize.s24),
-              Center(
-                child: Text(
-                  'Choose Your Skills',
-                  style: context.textTheme.displayMedium,
-                ),
-              ),
-              const SizedBox(height: AppSize.s24),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppPadding.p16,
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppPadding.p20.w,
                 ),
                 child: Column(
                   children: [
+                    SizedBox(height: AppSize.s48.h),
+                    const StepIndicator(
+                      totalSteps: 4,
+                      currentStep: 3,
+                    ),
+                    SizedBox(height: AppSize.s24.h),
+                    Center(
+                      child: Text(
+                        'Choose Your Skills',
+                        style: context.textTheme.displayMedium,
+                      ),
+                    ),
+                    const SizedBox(height: AppSize.s24),
                     const CardLabelWidget(label: 'Your Skills'),
                     Container(
                       margin: const EdgeInsets.symmetric(

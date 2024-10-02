@@ -56,7 +56,10 @@ class NavBar extends StatelessWidget {
               ),
               NavItem(
                 label: AppStrings.favorite,
-                icon: const Icon(Icons.favorite_border),
+                icon: Icon(
+                  Icons.favorite_border,
+                  color: ColorManager.grey,
+                ),
                 activeIcon: Icon(
                   Icons.favorite_border,
                   color: ColorManager.darkPrimary,
@@ -128,7 +131,20 @@ class NavItem extends StatelessWidget {
                   ),
                 ],
               )
-            : icon,
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  icon,
+                  Text(
+                    label,
+                    maxLines: 1,
+                    style: context.textTheme.labelSmall!.copyWith(
+                      color: ColorManager.textSubtitleColor,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
       ),
     );
   }

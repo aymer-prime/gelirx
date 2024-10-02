@@ -4,12 +4,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 
 import '../../widgets/step_indicator.dart';
 
@@ -45,7 +47,7 @@ class OtpPage extends HookWidget {
       backgroundColor: ColorManager.white,
       body: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTap: (){
+        onTap: () {
           FocusScope.of(context).unfocus();
         },
         child: Padding(
@@ -61,28 +63,34 @@ class OtpPage extends HookWidget {
                   color: ColorManager.black,
                 ),
               ),
+              SizedBox(height: AppSize.s12.h),
               StepIndicator(
-                totalSteps: 3,
+                totalSteps: context.read<AuthBloc>().state.isMaster &&
+                        (context.read<AuthBloc>().state.isMaster)
+                    ? 4
+                    : 2,
                 currentStep: 0,
               ),
-              const SizedBox(height: AppSize.s113),
+              const SizedBox(height: AppSize.s100),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  Text(
-                    'Verification Code',
-                    textAlign: TextAlign.center,
-                    style: getTextStyle(AppSize.s32, FontWeight.w700, ColorManager.headerTextColor),
-                  ),
+                    Text(
+                      'Verification Code',
+                      textAlign: TextAlign.center,
+                      style: getTextStyle(AppSize.s32, FontWeight.w700,
+                          ColorManager.headerTextColor),
+                    ),
                     const SizedBox(height: AppSize.s8),
-                  Text(
-                    'Please enter the 6-digit confirmation code we sent via message.',
-                    style: getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.blackTextColorWithOpacity),
-                  ),
-                  const SizedBox(height: AppSize.s24),
-                 // const OtpInputFields(),
+                    Text(
+                      'Please enter the 6-digit confirmation code we sent via message.',
+                      style: getTextStyle(AppSize.s14, FontWeight.w500,
+                          ColorManager.blackTextColorWithOpacity),
+                    ),
+                    const SizedBox(height: AppSize.s24),
+                    // const OtpInputFields(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(6, (index) {
@@ -92,64 +100,72 @@ class OtpPage extends HookWidget {
                         );
                       }),
                     ),
-                  const SizedBox(height: AppSize.s40),
-                  SizedBox(
-                    width: double.infinity,
-                    height: AppSize.s48,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: ColorManager.lightgreybuttonColor,elevation: 0),
-                      onPressed: () {
-                        final otpCode = otpControllers.map((c) => c.text).join();
-                        if (otpCode.length == 6) {
-                          context.read<AuthBloc>().add(
-                            AuthEvent.verifyPhoneNumber(
-                              verificationId: context
-                                  .read<AuthBloc>()
-                                  .state
-                                  .verificationId
-                                  .getOrElse(() => ''),
-                              smsCode: otpCode,
-                            ),
-                          );
-                        }
-                      },
-                      child:  Text(AppStrings.continueTxt,style: getTextStyle(AppSize.s15, FontWeight.w700, ColorManager.headerTextColor),),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Resend Code',
-                        textAlign: TextAlign.center,
-                         style: getTextStyle(AppSize.s15, FontWeight.w500, ColorManager.headerTextColor)
-                      ),
-                      const SizedBox(width: AppSize.s16),
-                      SizedBox(
-                        height: 50,
-                        //width: 100,
-                        child: isDone
-                            ? TextButton(
-                          onPressed: () {
-                            isDone = false;
-                            _numberNotifier.value = 60;
-                          },
-                          child: const Text('Resend'),
-                        )
-                            : Center(
-                          child: Text(
-                            _printDuration(
-                                Duration(seconds: _numberNotifier.value)),
-                            textAlign: TextAlign.center,
-                            style: context.textTheme.bodyLarge!.copyWith(
-                              color: ColorManager.primary,
-                            ),
-                          ),
+                    const SizedBox(height: AppSize.s40),
+                    SizedBox(
+                      width: double.infinity,
+                      height: AppSize.s48,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorManager.lightgreybuttonColor,
+                            elevation: 0),
+                        onPressed: () {
+                          final otpCode =
+                              otpControllers.map((c) => c.text).join();
+                          if (otpCode.length == 6) {
+                            context.read<AuthBloc>().add(
+                                  AuthEvent.verifyPhoneNumber(
+                                    verificationId: context
+                                        .read<AuthBloc>()
+                                        .state
+                                        .verificationId
+                                        .getOrElse(() => ''),
+                                    smsCode: otpCode,
+                                  ),
+                                );
+                          }
+                        },
+                        child: Text(
+                          AppStrings.continueTxt,
+                          style: getTextStyle(AppSize.s15, FontWeight.w700,
+                              ColorManager.headerTextColor),
                         ),
                       ),
-                    ],
-                  ),
-                ],),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Resend Code',
+                            textAlign: TextAlign.center,
+                            style: getTextStyle(AppSize.s15, FontWeight.w500,
+                                ColorManager.headerTextColor)),
+                        const SizedBox(width: AppSize.s16),
+                        SizedBox(
+                          height: 50,
+                          //width: 100,
+                          child: isDone
+                              ? TextButton(
+                                  onPressed: () {
+                                    isDone = false;
+                                    _numberNotifier.value = 60;
+                                  },
+                                  child: const Text('Resend'),
+                                )
+                              : Center(
+                                  child: Text(
+                                    _printDuration(Duration(
+                                        seconds: _numberNotifier.value)),
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        context.textTheme.bodyLarge!.copyWith(
+                                      color: ColorManager.primary,
+                                    ),
+                                  ),
+                                ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -228,10 +244,13 @@ class _OtpTextFieldState extends State<OtpTextField> {
             decoration: InputDecoration(
               counterText: "",
               contentPadding: EdgeInsets.zero,
-              fillColor: _focusNode.hasFocus ? Colors.white : ColorManager.lightgreybuttonColor,
+              fillColor: _focusNode.hasFocus
+                  ? Colors.white
+                  : ColorManager.lightgreybuttonColor,
               filled: true,
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorManager.outlineOtpBorderColor),
+                borderSide:
+                    BorderSide(color: ColorManager.outlineOtpBorderColor),
                 borderRadius: BorderRadius.circular(AppSize.s12),
               ),
               enabledBorder: OutlineInputBorder(
@@ -245,8 +264,3 @@ class _OtpTextFieldState extends State<OtpTextField> {
     );
   }
 }
-
-
-
-
-

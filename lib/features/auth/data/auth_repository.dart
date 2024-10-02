@@ -245,8 +245,7 @@ class AuthRepository implements IAuthRepository {
       if (response != null) {
         String token = response['token'];
         String userId = response['user_id'];
-        int isMaster = response['master'];
-        await _localService.save(Constants.isMasterKey, isMaster.toString());
+        await _localService.save(Constants.isMasterKey, '1');
         await _localService.save(Constants.tokenKey, token);
         await _localService.save(Constants.userIdKey, userId);
       }
