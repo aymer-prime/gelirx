@@ -14,17 +14,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app/local_services/notifiaction_handler.dart';
 import 'app/navigation/app_router.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   _initLoggy();
   //_initGoogleFonts();
   final sharedPreferences = await SharedPreferences.getInstance();
   configureDependencies(sharedPreferences);
-
 
 // Check for stored navigation key in case of app cold start
   _checkForStoredNavigation(sharedPreferences);
@@ -36,6 +36,7 @@ void main() async {
     const App(),
   );
 }
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
@@ -47,11 +48,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     textAccept: "take",
     textDecline: "decline",
     android: AndroidParams(
-      isCustomNotification: true, // Enables custom notification layout for Android
+      isCustomNotification:
+          true, // Enables custom notification layout for Android
       isShowLogo: true, // Show app logo in notification
       ringtonePath: "ringtone_default", // Custom ringtone for Android
       backgroundColor: "#E30A17", // Background color for the notification
-      backgroundUrl: "https://example.com/background.jpg", // URL for background image
+      backgroundUrl:
+          "https://example.com/background.jpg", // URL for background image
       actionColor: "#4CAF50", // Color for action buttons
     ),
   );
@@ -70,13 +73,15 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
         String? navigateTo = message.data[Constants.navigateToKey];
         if (navigateTo != null) {
           final sharedPreferences = await SharedPreferences.getInstance();
-          await sharedPreferences.setString(Constants.navigateToKey, navigateTo);
+          await sharedPreferences.setString(
+              Constants.navigateToKey, navigateTo);
         }
         getIt<AppRouter>().push(MasterDashboardRoute());
       }
     }
   });
 }
+
 void _checkForStoredNavigation(SharedPreferences sharedPreferences) async {
   String? navigateTo = sharedPreferences.getString(Constants.navigateToKey);
 
@@ -89,6 +94,7 @@ void _checkForStoredNavigation(SharedPreferences sharedPreferences) async {
     }
   }
 }
+
 void _initLoggy() {
   Loggy.initLoggy(
     logOptions: const LogOptions(

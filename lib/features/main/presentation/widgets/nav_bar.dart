@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
@@ -111,14 +112,14 @@ class NavItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   activeIcon,
-                  // Text(
-                  //   label,
-                  //   maxLines: 1,
-                  //   style: context.textTheme.labelSmall!.copyWith(
-                  //     color: ColorManager.darkPrimary,
-                  //   ),
-                  //   overflow: TextOverflow.ellipsis,
-                  // ),
+                  Text(
+                    label,
+                    maxLines: 1,
+                    style: context.textTheme.labelSmall!.copyWith(
+                      color: ColorManager.darkPrimary,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
               )
             : icon,

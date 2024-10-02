@@ -15,7 +15,6 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/app/utils/validators.dart';
 import 'package:gelirx/features/auth/presentation/bloc/master_verification/master_verification_bloc.dart';
-import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 @RoutePage()
@@ -78,26 +77,24 @@ class MasterFormPage extends StatelessWidget {
                           .showErrorMessages
                       ? AutovalidateMode.always
                       : AutovalidateMode.disabled,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: AppSize.s90.h),
-                      Center(
-                        child: SvgPicture.asset(ImageAssets.logoPrimary),
-                      ),
-                      SizedBox(height: AppSize.s86.h),
-                      Center(
-                        child: Text(
-                          'Enter Your Info',
-                          style: context.textTheme.displayMedium,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: SvgPicture.asset(ImageAssets.logoPrimary),
                         ),
-                      ),
-                      SizedBox(height: AppSize.s54.h),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
-                        child: Column(
+                        SizedBox(height: AppSize.s24.h),
+                        Center(
+                          child: Text(
+                            'Enter Your Info',
+                            style: context.textTheme.displayMedium,
+                          ),
+                        ),
+                        SizedBox(height: AppSize.s24.h),
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -109,6 +106,7 @@ class MasterFormPage extends StatelessWidget {
                             ),
                             SizedBox(height: AppSize.s8.h),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Flexible(
                                   child: TextFormField(
@@ -120,6 +118,9 @@ class MasterFormPage extends StatelessWidget {
                                       FilteringTextInputFormatter.allow(
                                           RegExp("[a-z]")),
                                     ],
+                                    onTapOutside: (_) => FocusManager
+                                        .instance.primaryFocus
+                                        ?.unfocus(),
                                     onChanged: (value) => context
                                         .read<MasterVerificationBloc>()
                                         .add(MasterVerificationEvent
@@ -144,6 +145,9 @@ class MasterFormPage extends StatelessWidget {
                                     decoration: const InputDecoration(
                                       hintText: 'Sur Name . . .',
                                     ),
+                                    onTapOutside: (_) => FocusManager
+                                        .instance.primaryFocus
+                                        ?.unfocus(),
                                     onChanged: (value) => context
                                         .read<MasterVerificationBloc>()
                                         .add(MasterVerificationEvent
@@ -183,7 +187,10 @@ class MasterFormPage extends StatelessWidget {
                                   MaxLengthEnforcement.enforced,
                               decoration: const InputDecoration(
                                 hintText: 'ID Number . . .',
+                                counterText: '',
                               ),
+                              onTapOutside: (_) =>
+                                  FocusManager.instance.primaryFocus?.unfocus(),
                               onChanged: (value) => context
                                   .read<MasterVerificationBloc>()
                                   .add(
@@ -216,7 +223,10 @@ class MasterFormPage extends StatelessWidget {
                                   MaxLengthEnforcement.enforced,
                               decoration: const InputDecoration(
                                 hintText: 'Year of Birth . . .',
+                                counterText: '',
                               ),
+                              onTapOutside: (_) =>
+                                  FocusManager.instance.primaryFocus?.unfocus(),
                               onChanged: (value) => context
                                   .read<MasterVerificationBloc>()
                                   .add(
@@ -233,11 +243,10 @@ class MasterFormPage extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ),
-                      //const Expanded(child: SizedBox()),
-                      Padding(
-                        padding: const EdgeInsets.all(AppPadding.p16),
-                        child: SizedBox(
+                        SizedBox(
+                          height: AppSize.s16.h,
+                        ),
+                        SizedBox(
                           height: AppSize.s48.h,
                           width: double.infinity,
                           child: ElevatedButton(
@@ -260,8 +269,8 @@ class MasterFormPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
