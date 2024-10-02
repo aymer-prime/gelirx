@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -91,10 +92,10 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
           return DecoratedBox(
             decoration: BoxDecoration(
               color: ColorManager.background,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(AppSize.s32),
-                topRight: Radius.circular(AppSize.s32),
-              ),
+              // borderRadius: const BorderRadius.only(
+              //   topLeft: Radius.circular(AppSize.s32),
+              //   topRight: Radius.circular(AppSize.s32),
+              // ),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -155,7 +156,11 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                                               ),
                                             ),
                                     ),
-                                  ],
+                                  ].separateWith(
+                                    SizedBox(
+                                      height: AppSize.s16.w,
+                                    ),
+                                  ),
                                 ),
                         ],
                       ),
@@ -184,38 +189,71 @@ class ServiceWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CardLabelWidget(label: service.skill.name),
-        SizedBox(height: AppSize.s8.h),
+        SizedBox(height: AppSize.s16.h),
         SizedBox(
-          height: AppSize.s200,
+          height: AppSize.s190.h,
           child: ListView.separated(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemCount: service.subSkill.length,
-            itemBuilder: (context, index) => AspectRatio(
-              aspectRatio: 0.85,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  AppSize.s8,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ColorManager.white,
-                    borderRadius: BorderRadius.circular(
-                      AppSize.s8,
+            itemBuilder: (context, index) => GestureDetector(
+              onTap: () {
+                bookServiceBottomSheet(
+                  context,
+                  service.subSkill[index],
+                );
+              },
+              child: AspectRatio(
+                aspectRatio: 0.65,
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(AppSize.s20.r),
+                      child: Container(
+                        height: AppSize.s154.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(AppSize.s20.r),
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: service.subSkill[index].img.photo,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                  child: ServiceCard(
-                    category: service.subSkill[index],
-                  ),
+                    SizedBox(height: AppSize.s12.h),
+                    Text(
+                      service.subSkill[index].name,
+                      style: context.textTheme.labelLarge,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
               ),
             ),
-            separatorBuilder: (context, index) => SizedBox(
-              width: AppSize.s8.w,
+            // AspectRatio(
+            //   aspectRatio: 0.85,
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(
+            //       AppSize.s20,
+            //     ),
+            //     child: Container(
+            //       decoration: BoxDecoration(
+            //         color: ColorManager.white,
+            //         borderRadius: BorderRadius.circular(
+            //           AppSize.s20,
+            //         ),
+            //       ),
+            //       child: ServiceCard(
+            //         category: service.subSkill[index],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            separatorBuilder: (context, index) => const SizedBox(
+              width: AppSize.s16,
             ),
           ),
         ),
-        SizedBox(height: AppSize.s60.h)
       ],
     );
   }
@@ -232,177 +270,7 @@ class ServiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          builder: (context) => SizedBox(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: ColorManager.background,
-              ),
-              child: Stack(
-                children: [
-                  Container(
-                    height: context.screenSize.height * 0.3,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: ColorManager.background,
-                    ),
-                    child: CachedNetworkImage(
-                      imageUrl: category.img.photo,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: AppPadding.p16, vertical: AppPadding.p8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: context.screenSize.height * 0.25,
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: ColorManager.white,
-                                child: IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_back_ios_new_rounded,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.all(
-                            AppPadding.p16,
-                          ),
-                          decoration: BoxDecoration(
-                            color: ColorManager.white,
-                            borderRadius: BorderRadius.circular(AppSize.s12),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Container(
-                                  height: AppSize.s4,
-                                  width: AppSize.s64,
-                                  decoration: BoxDecoration(
-                                      color: ColorManager.lightPrimary,
-                                      borderRadius: BorderRadius.circular(
-                                        AppSize.s4,
-                                      )),
-                                ),
-                              ),
-                              const SizedBox(height: AppSize.s8),
-                              Center(
-                                child: Text(
-                                  category.name,
-                                  style: context.textTheme.displaySmall,
-                                ),
-                              ),
-                              const SizedBox(height: AppSize.s24),
-                              Text(
-                                'Service Provider',
-                                style: context.textTheme.headlineMedium,
-                              ),
-                              const SizedBox(height: AppSize.s16),
-                              Row(
-                                children: [
-                                  Container(
-                                    width: AppSize.s40,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: ColorManager.darkPrimary,
-                                      ),
-                                    ),
-                                    child: Image.asset(
-                                      ImageAssets.masterIcon,
-                                    ),
-                                  ),
-                                  const SizedBox(width: AppSize.s8),
-                                  Text(
-                                    'Master Name',
-                                    style: context.textTheme.titleLarge,
-                                  ),
-                                  const SizedBox(width: AppSize.s8),
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(ImageAssets.star),
-                                      const SizedBox(width: AppSize.s4),
-                                      Text(
-                                        '4.8',
-                                        style: context.textTheme.labelMedium,
-                                      ),
-                                      const SizedBox(width: AppSize.s4),
-                                      Text(
-                                        '(87)',
-                                        style: context.textTheme.labelSmall,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: AppSize.s24),
-                              const Text('Book Service'),
-                              const SizedBox(height: AppSize.s16),
-                              const TextField(
-                                maxLength: 1000,
-                                maxLengthEnforcement:
-                                    MaxLengthEnforcement.enforced,
-                                maxLines: null,
-                                minLines: 5,
-                                decoration: InputDecoration(
-                                  hintText: 'Problem Description . . .',
-                                ),
-                              ),
-                              const SizedBox(height: AppSize.s16),
-                              Row(
-                                children: [
-                                  Flexible(
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: const SizedBox(
-                                        child: Center(
-                                          child: Text('Book service'),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: AppSize.s8),
-                                  Flexible(
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: const SizedBox(
-                                        child: Center(
-                                          child: Text('Cancel'),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        bookServiceBottomSheet(context, category);
       },
       child: Stack(
         children: [
@@ -449,6 +317,179 @@ class ServiceCard extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<dynamic> bookServiceBottomSheet(
+    BuildContext context, Category category) {
+  return showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (context) => SizedBox(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: ColorManager.background,
+        ),
+        child: Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: ColorManager.background,
+              ),
+              child: CachedNetworkImage(
+                imageUrl: category.img.photo,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.p16, vertical: AppPadding.p8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: context.screenSize.height * 0.25,
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: ColorManager.white,
+                          child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(
+                      AppPadding.p16,
+                    ),
+                    decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.circular(AppSize.s12),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Container(
+                            height: AppSize.s4,
+                            width: AppSize.s64,
+                            decoration: BoxDecoration(
+                                color: ColorManager.lightPrimary,
+                                borderRadius: BorderRadius.circular(
+                                  AppSize.s4,
+                                )),
+                          ),
+                        ),
+                        const SizedBox(height: AppSize.s8),
+                        Center(
+                          child: Text(
+                            category.name,
+                            style: context.textTheme.displaySmall,
+                          ),
+                        ),
+                        const SizedBox(height: AppSize.s24),
+                        Text(
+                          'Service Provider',
+                          style: context.textTheme.headlineMedium,
+                        ),
+                        const SizedBox(height: AppSize.s16),
+                        Row(
+                          children: [
+                            Container(
+                              width: AppSize.s40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: ColorManager.darkPrimary,
+                                ),
+                              ),
+                              child: Image.asset(
+                                ImageAssets.masterIcon,
+                              ),
+                            ),
+                            const SizedBox(width: AppSize.s8),
+                            Text(
+                              'Master Name',
+                              style: context.textTheme.titleLarge,
+                            ),
+                            const SizedBox(width: AppSize.s8),
+                            Row(
+                              children: [
+                                SvgPicture.asset(ImageAssets.star),
+                                const SizedBox(width: AppSize.s4),
+                                Text(
+                                  '4.8',
+                                  style: context.textTheme.labelMedium,
+                                ),
+                                const SizedBox(width: AppSize.s4),
+                                Text(
+                                  '(87)',
+                                  style: context.textTheme.labelSmall,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: AppSize.s24),
+                        const Text('Book Service'),
+                        const SizedBox(height: AppSize.s16),
+                        const TextField(
+                          maxLength: 1000,
+                          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                          maxLines: null,
+                          minLines: 5,
+                          decoration: InputDecoration(
+                            hintText: 'Problem Description . . .',
+                          ),
+                        ),
+                        const SizedBox(height: AppSize.s16),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: const SizedBox(
+                                  child: Center(
+                                    child: Text('Book service'),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: AppSize.s8),
+                            Flexible(
+                              child: OutlinedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const SizedBox(
+                                  child: Center(
+                                    child: Text('Cancel'),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class CategoriesWidget extends StatelessWidget {

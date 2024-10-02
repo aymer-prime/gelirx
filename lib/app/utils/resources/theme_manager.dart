@@ -25,6 +25,7 @@ ThemeData getApplicationTheme() {
       centerTitle: true,
       color: ColorManager.white,
       elevation: AppSize.s0,
+      scrolledUnderElevation: AppSize.s0,
       shadowColor: ColorManager.lightPrimary,
       titleTextStyle: getSemiBoldStyle(
         color: ColorManager.black,

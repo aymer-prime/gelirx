@@ -43,7 +43,7 @@ class CategoryItem extends StatelessWidget {
           SizedBox(height: AppSize.s12.h),
           Text(
             category.name,
-            style: context.textTheme.labelMedium,
+            style: context.textTheme.labelSmall,
             overflow: TextOverflow.ellipsis,
           )
         ],
