@@ -11,6 +11,8 @@ import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 
+import '../../widgets/step_indicator.dart';
+
 @RoutePage()
 class OtpPage extends HookWidget {
   final VoidCallback toPreviousPage;
@@ -58,6 +60,10 @@ class OtpPage extends HookWidget {
                   Icons.arrow_back,
                   color: ColorManager.black,
                 ),
+              ),
+              StepIndicator(
+                totalSteps: 3,
+                currentStep: 0,
               ),
               const SizedBox(height: AppSize.s113),
               Padding(
@@ -239,4 +245,8 @@ class _OtpTextFieldState extends State<OtpTextField> {
     );
   }
 }
+
+
+
+
 
