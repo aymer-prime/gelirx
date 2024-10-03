@@ -234,7 +234,7 @@ class AuthRepository implements IAuthRepository {
         'birthdate': birthYear,
       };
       var response = await _remoteService.post(
-        '${Constants.baseUrl}master/register.php',
+        '${Constants.baseUrl}user/master/register.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -276,7 +276,7 @@ class AuthRepository implements IAuthRepository {
       });
       //var response =
       await _remoteService.post(
-        '${Constants.baseUrl}master/picture.php',
+        '${Constants.baseUrl}user/handyman/picture.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -370,7 +370,7 @@ class AuthRepository implements IAuthRepository {
         'surname': surName,
       };
       var response = await _remoteService.post(
-        '${Constants.baseUrl}login/register.php',
+        '${Constants.baseUrl}user/register.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -406,7 +406,7 @@ class AuthRepository implements IAuthRepository {
         'phone': phoneNumber,
       };
       bool response = await _remoteService.post(
-        '${Constants.baseUrl}login/phone_control.php',
+        '${Constants.baseUrl}user/phone-control.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -435,7 +435,7 @@ class AuthRepository implements IAuthRepository {
         'firebase_token': fcmToken,
       };
       var response = await _remoteService.post(
-        '${Constants.baseUrl}login/index.php',
+        '${Constants.baseUrl}user/login.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
