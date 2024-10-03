@@ -35,11 +35,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     });
     on<_GetCategories>((event, emit) async {
-      emit(
-        state.copyWith(
-          isLoading: true,
-        ),
-      );
+      // emit(
+      //   state.copyWith(
+      //     isLoading: true,
+      //   ),
+      // );
       var categories = await _iHomeRepository.getCategories();
       categories.fold(
           (l) => emit(
@@ -61,13 +61,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     on<_GetSubCategories>((event, emit) async {
       var catId = state.categories[event.catIndex].id;
-      emit(
-        state.copyWith(
-          isLoading: true,
-          catIndex: event.catIndex,
-          // selectedCategory: catId,
-        ),
-      );
+      // emit(
+      //   state.copyWith(
+      //     isLoading: true,
+      //     catIndex: event.catIndex,
+      //     // selectedCategory: catId,
+      //   ),
+      // );
 
       var categories = await _iHomeRepository.getSubCategories(catId);
       categories.fold(
@@ -87,12 +87,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<_GetServices>((event, emit) async {
-      emit(
-        state.copyWith(
-          isLoading: true,
-          // selectedCategory: catId,
-        ),
-      );
+      // emit(
+      //   state.copyWith(
+      //     isLoading: true,
+      //     // selectedCategory: catId,
+      //   ),
+      // );
       List<UserSkills> services = [];
       for (var i = 0; i < state.categories.length; i++) {
         var subCategories =
