@@ -49,13 +49,17 @@
 	<string>Gelrix</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app will access your camera to take photo </string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>masters</key>
+		<string>The example App requires temporary access to the device's precise location.</string>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access to location when open to get your current location</string>
-    <key>NSLocationTemporaryUsageDescriptionDictionary</key>
-    <dict>
-      <key>masters</key>
-      <string>The example App requires temporary access to the device&apos;s precise location.</string>
-    </dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app will access your gallery to choose your profile photo</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
