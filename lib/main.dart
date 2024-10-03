@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_callkit_incoming/entities/android_params.dart';
 import 'package:flutter_callkit_incoming/entities/call_event.dart';
 import 'package:flutter_callkit_incoming/entities/call_kit_params.dart';
+import 'package:flutter_callkit_incoming/entities/entities.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
@@ -58,6 +59,20 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
           "https://example.com/background.jpg", // URL for background image
       actionColor: "#4CAF50", // Color for action buttons
     ),
+    ios: IOSParams(iconName: 'CallKitLogo',
+      handleType: 'generic',
+      supportsVideo: true,
+      maximumCallGroups: 2,
+      maximumCallsPerCallGroup: 1,
+      audioSessionMode: 'default',
+      audioSessionActive: true,
+      audioSessionPreferredSampleRate: 44100.0,
+      audioSessionPreferredIOBufferDuration: 0.005,
+      supportsDTMF: true,
+      supportsHolding: true,
+      supportsGrouping: false,
+      supportsUngrouping: false,
+      ringtonePath: 'system_ringtone_default')
   );
 
   FlutterCallkitIncoming.showCallkitIncoming(params);

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/remote_service.dart';
@@ -13,6 +14,7 @@ import 'package:gelirx/features/shared/domain/dtos/category/category_dto.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
 import 'package:gelirx/features/shared/domain/mappers/shared_mappers.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -144,6 +146,43 @@ class HomeRepository implements IHomeRepository {
       };
       var response = await _remoteService.post(
         '${Constants.baseUrl}booking/new.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: data,
+      );
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
+
+
+  @override
+  Future<Either<ApiException, Unit>> updateUserLocationAndToken(
+      Position userPosition) async {
+    try {
+      var token = _localService.get(Constants.tokenKey);
+      var userId = _localService.get(Constants.userIdKey);
+      var longitude = userPosition.longitude;
+      var latitude = userPosition.latitude;
+      var fcmToken = await FirebaseMessaging.instance.getToken();
+      var data = {
+        'lang': 'tr',
+        'user_id': userId,
+        'token': token,
+        'latitude': latitude,
+        'longitude': longitude,
+        'firebase_token': fcmToken
+      };
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}master/update_lat_long.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
