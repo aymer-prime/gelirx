@@ -23,6 +23,7 @@ class ImageAssets {
   static const String question = '$imagePath/drawer/question.png';
   static const String light = '$imagePath/drawer/light.png';
   static const String dark = '$imagePath/drawer/dark.png';
+  static const String confirm = '$imagePath/misc/confirm.png';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
