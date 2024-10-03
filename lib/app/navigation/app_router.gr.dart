@@ -338,6 +338,25 @@ class OnboardingRouteArgs {
 }
 
 /// generated route for
+/// [OrderDetailsPage]
+class OrderDetailsRoute extends PageRouteInfo<void> {
+  const OrderDetailsRoute({List<PageRouteInfo>? children})
+      : super(
+          OrderDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OrderDetailsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [OtpPage]
 class OtpRoute extends PageRouteInfo<OtpRouteArgs> {
   OtpRoute({

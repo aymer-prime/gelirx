@@ -16,6 +16,7 @@ import 'package:gelirx/features/main/presentation/page/alternate_main_page.dart'
 import 'package:gelirx/features/main/presentation/page/main_page.dart';
 import 'package:gelirx/features/main/presentation/page/master_main_page.dart';
 import 'package:gelirx/features/onboarding/presentation/onboarding_page.dart';
+import 'package:gelirx/features/order_details/presentation/pages/order_details_page.dart';
 import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
 
@@ -37,7 +38,6 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: MainRoute.page,
-
         ),
         AutoRoute(
           page: HomeRoute.page,
@@ -84,6 +84,9 @@ class AppRouter extends RootStackRouter {
         CustomRoute(
           page: CategoryRoute.page,
           transitionsBuilder: TransitionsBuilders.slideLeft,
+        ),
+        AutoRoute(
+          page: OrderDetailsRoute.page,
         )
       ];
 }
