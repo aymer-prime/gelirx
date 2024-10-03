@@ -20,6 +20,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this._iHomeRepository) : super(HomeState.initial()) {
     on<_GetCurrentPosition>((event, emit) async {
       var position = await determinePosition();
+      await _iHomeRepository.updateUserLocationAndToken(position);
       emit(
         state.copyWith(
           userPosition: some(position),
