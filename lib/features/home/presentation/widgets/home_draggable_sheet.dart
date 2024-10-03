@@ -17,6 +17,7 @@ import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.
 import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeDraggableSheet extends StatefulWidget {
   final List<Category> categories;
@@ -126,44 +127,20 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                         children: [
                           SizedBox(height: AppSize.s8.h),
                           widget.categories.isEmpty
-                              ? const Center(
-                                  child: CircularProgressIndicator(),
-                                )
+                              ? const AllCategoriesLoadingPlaceholder()
                               : AllCategoriesWidgets(
                                   categories: widget.categories,
                                 ),
                           SizedBox(height: AppSize.s16.h),
                           (widget.categories.isEmpty || widget.services.isEmpty)
-                              ? const Center(
-                                  child: CircularProgressIndicator(),
-                                )
-                              : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                              ? Column(
                                   children: [
-                                    ...widget.services.map(
-                                      (service) => service.subSkill.isEmpty
-                                          ? const SizedBox()
-                                          : Container(
-                                              padding: const EdgeInsets.all(
-                                                  AppPadding.p16),
-                                              decoration: BoxDecoration(
-                                                color: ColorManager.white,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                  AppSize.s20.r,
-                                                ),
-                                              ),
-                                              child: ServiceWidget(
-                                                service: service,
-                                              ),
-                                            ),
-                                    ),
-                                  ].separateWith(
-                                    SizedBox(
-                                      height: AppSize.s16.w,
-                                    ),
-                                  ),
-                                ),
+                                    const AllServicesLoadingPlaceholder(),
+                                    SizedBox(height: AppSize.s16.h),
+                                    const AllServicesLoadingPlaceholder(),
+                                  ],
+                                )
+                              : AllServicesWidget(allSkills: widget.services),
                         ],
                       ),
                     ),
@@ -175,6 +152,196 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
         },
       );
     });
+  }
+}
+
+class AllServicesLoadingPlaceholder extends StatelessWidget {
+  const AllServicesLoadingPlaceholder({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: AppSize.s267,
+      decoration: BoxDecoration(
+        color: ColorManager.white,
+        borderRadius: BorderRadius.circular(
+          AppSize.s20.r,
+        ),
+      ),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        enabled: true,
+        child: Padding(
+          padding: const EdgeInsets.all(
+            AppPadding.p16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: 1,
+                child: Container(
+                  //width: AppSize.s150.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      AppSize.s20.r,
+                    ),
+                    color: ColorManager.grey,
+                  ),
+                ),
+              ),
+              SizedBox(height: AppSize.s16.h),
+              Flexible(
+                  flex: 11,
+                  child: Row(
+                    children: [
+                      ...List.generate(
+                        3,
+                        (index) => Flexible(
+                          child: Column(
+                            children: [
+                              Flexible(
+                                flex: 9,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppSize.s20.r,
+                                    ),
+                                    color: ColorManager.grey,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: AppSize.s12.h),
+                              Flexible(
+                                flex: 1,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                      AppSize.s20.r,
+                                    ),
+                                    color: ColorManager.grey,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ).separateWith(
+                        SizedBox(
+                          width: AppSize.s8.w,
+                        ),
+                      ),
+                    ],
+                  )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AllServicesWidget extends StatelessWidget {
+  final List<UserSkills> allSkills;
+  const AllServicesWidget({
+    super.key,
+    required this.allSkills,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ...allSkills.map(
+          (service) => service.subSkill.isEmpty
+              ? const SizedBox()
+              : Container(
+                  padding: const EdgeInsets.all(AppPadding.p16),
+                  decoration: BoxDecoration(
+                    color: ColorManager.white,
+                    borderRadius: BorderRadius.circular(
+                      AppSize.s20.r,
+                    ),
+                  ),
+                  child: ServiceWidget(
+                    service: service,
+                  ),
+                ),
+        ),
+      ].separateWith(
+        SizedBox(
+          height: AppSize.s16.w,
+        ),
+      ),
+    );
+  }
+}
+
+class AllCategoriesLoadingPlaceholder extends StatelessWidget {
+  const AllCategoriesLoadingPlaceholder({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: AppSize.s120,
+      decoration: BoxDecoration(
+        color: ColorManager.white,
+        borderRadius: BorderRadius.circular(
+          AppSize.s20.r,
+        ),
+      ),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        enabled: true,
+        child: Padding(
+          padding: const EdgeInsets.all(
+            AppPadding.p16,
+          ),
+          child: Row(
+            children: [
+              ...List.generate(4, (index) {
+                return Flexible(
+                  child: Column(
+                    children: [
+                      Flexible(
+                        flex: 7,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: ColorManager.grey,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: AppSize.s8.h),
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s20.r,
+                            ),
+                            color: ColorManager.grey,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).separateWith(
+                SizedBox(width: AppSize.s8.w),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

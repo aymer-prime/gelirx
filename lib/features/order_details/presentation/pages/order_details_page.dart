@@ -16,8 +16,8 @@ class OrderDetailsPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(AppPadding.p20),
-          margin: EdgeInsets.all(AppMargin.m20),
+          padding: const EdgeInsets.all(AppPadding.p20),
+          margin: const EdgeInsets.all(AppMargin.m20),
           decoration: BoxDecoration(
             color: ColorManager.white,
             borderRadius: BorderRadius.circular(AppSize.s20.r),
@@ -32,7 +32,7 @@ class OrderDetailsPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.close_rounded),
+                    icon: const Icon(Icons.close_rounded),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppPadding.p8.w),
@@ -129,6 +129,15 @@ class OrderDetailsPage extends StatelessWidget {
                     ),
                     Text(
                       'Business Bay, Silver Tower 9 floor 904, Silver Tower - marasi Dr - Business Bay - Dubai, Dubai',
+                      style: context.textTheme.labelLarge,
+                    ),
+                    SizedBox(height: AppSize.s16.h),
+                    Text(
+                      'Problem Description:',
+                      style: context.textTheme.titleSmall,
+                    ),
+                    Text(
+                      'Lorem ipsum odor amet, consectetuer adipiscing elit. Per maximus odio felis lacinia magna, fermentum placerat. In leo mollis posuere consectetur donec nostra.',
                       style: context.textTheme.labelLarge,
                     )
                   ],
