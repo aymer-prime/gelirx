@@ -54,10 +54,10 @@ class MasterFormPage extends StatelessWidget {
             LoadingScreen.instance().hide();
           }
           state.authFailureOrSuccessOption.fold(
-                () {},
-                (either) {
+            () {},
+            (either) {
               either.fold(
-                    (failure) {
+                (failure) {
                   Flushbar(
                     message: failure.map(
                       notModified: (_) => 'Error: 304, Not Modified',
@@ -66,7 +66,7 @@ class MasterFormPage extends StatelessWidget {
                       unknown: (_) => 'Unknown Error',
                       noConnection: (_) => 'Error: No Connection',
                       defaultException: (defaultException) =>
-                      'Error: ${defaultException.code}, ${defaultException.message}',
+                          'Error: ${defaultException.code}, ${defaultException.message}',
                     ),
                     margin: const EdgeInsets.all(6.0),
                     flushbarStyle: FlushbarStyle.FLOATING,
@@ -76,7 +76,7 @@ class MasterFormPage extends StatelessWidget {
                     leftBarIndicatorColor: ColorManager.primary,
                   ).show(context);
                 },
-                    (_) {},
+                (_) {},
               );
             },
           );
@@ -94,9 +94,9 @@ class MasterFormPage extends StatelessWidget {
                     height: context.screenSize.height,
                     child: Form(
                       autovalidateMode: context
-                          .read<MasterVerificationBloc>()
-                          .state
-                          .showErrorMessages
+                              .read<MasterVerificationBloc>()
+                              .state
+                              .showErrorMessages
                           ? AutovalidateMode.always
                           : AutovalidateMode.disabled,
                       child: Column(
@@ -112,7 +112,8 @@ class MasterFormPage extends StatelessWidget {
                           ),
                           SizedBox(height: AppSize.s12.h),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: AppPadding.p20.w),
                             child: Column(
                               children: [
                                 const StepIndicator(
@@ -121,7 +122,8 @@ class MasterFormPage extends StatelessWidget {
                                 ),
                                 SizedBox(height: AppSize.s100.h),
                                 Center(
-                                  child: SvgPicture.asset(ImageAssets.logoPrimary),
+                                  child:
+                                      SvgPicture.asset(ImageAssets.logoPrimary),
                                 ),
                                 SizedBox(height: AppSize.s24.h),
                                 Center(
@@ -136,14 +138,17 @@ class MasterFormPage extends StatelessWidget {
                                   children: [
                                     Text(
                                       'Name',
-                                      style: context.textTheme.labelLarge!.copyWith(
+                                      style: context.textTheme.labelLarge!
+                                          .copyWith(
                                         fontSize: FontSizeManager.s15,
-                                        letterSpacing: FontSizeManager.s15 * -0.01,
+                                        letterSpacing:
+                                            FontSizeManager.s15 * -0.01,
                                       ),
                                     ),
                                     SizedBox(height: AppSize.s8.h),
                                     Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Flexible(
                                           child: TextFormField(
@@ -152,16 +157,20 @@ class MasterFormPage extends StatelessWidget {
                                               hintText: 'First Name . . .',
                                             ),
                                             inputFormatters: [
-                                              FilteringTextInputFormatter.allow(RegExp("[a-z]")),
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp("[a-z]")),
                                             ],
-                                            onTapOutside: (_) =>
-                                                FocusManager.instance.primaryFocus?.unfocus(),
+                                            onTapOutside: (_) => FocusManager
+                                                .instance.primaryFocus
+                                                ?.unfocus(),
                                             onChanged: (value) => context
                                                 .read<MasterVerificationBloc>()
-                                                .add(MasterVerificationEvent.firstNameChanged(value)),
+                                                .add(MasterVerificationEvent
+                                                    .firstNameChanged(value)),
                                             validator: (_) {
                                               var firstName = context
-                                                  .read<MasterVerificationBloc>()
+                                                  .read<
+                                                      MasterVerificationBloc>()
                                                   .state
                                                   .firstName;
                                               if (firstName.isEmpty) {
@@ -179,17 +188,21 @@ class MasterFormPage extends StatelessWidget {
                                             decoration: const InputDecoration(
                                               hintText: 'Sur Name . . .',
                                             ),
-                                            onTapOutside: (_) =>
-                                                FocusManager.instance.primaryFocus?.unfocus(),
+                                            onTapOutside: (_) => FocusManager
+                                                .instance.primaryFocus
+                                                ?.unfocus(),
                                             onChanged: (value) => context
                                                 .read<MasterVerificationBloc>()
-                                                .add(MasterVerificationEvent.surNameChanged(value)),
+                                                .add(MasterVerificationEvent
+                                                    .surNameChanged(value)),
                                             inputFormatters: [
-                                              FilteringTextInputFormatter.allow(RegExp("[a-z]")),
+                                              FilteringTextInputFormatter.allow(
+                                                  RegExp("[a-z]")),
                                             ],
                                             validator: (_) {
                                               var surname = context
-                                                  .read<MasterVerificationBloc>()
+                                                  .read<
+                                                      MasterVerificationBloc>()
                                                   .state
                                                   .surName;
                                               if (surname.isEmpty) {
@@ -205,65 +218,79 @@ class MasterFormPage extends StatelessWidget {
                                     SizedBox(height: AppSize.s20.h),
                                     Text(
                                       'ID Number',
-                                      style: context.textTheme.labelLarge!.copyWith(
+                                      style: context.textTheme.labelLarge!
+                                          .copyWith(
                                         fontSize: FontSizeManager.s15,
-                                        letterSpacing: FontSizeManager.s15 * -0.01,
+                                        letterSpacing:
+                                            FontSizeManager.s15 * -0.01,
                                       ),
                                     ),
                                     SizedBox(height: AppSize.s8.h),
                                     TextFormField(
                                       keyboardType: TextInputType.number,
                                       maxLength: 11,
-                                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                      maxLengthEnforcement:
+                                          MaxLengthEnforcement.enforced,
                                       decoration: const InputDecoration(
                                         hintText: 'ID Number . . .',
                                         counterText: '',
                                       ),
-                                      onTapOutside: (_) =>
-                                          FocusManager.instance.primaryFocus?.unfocus(),
+                                      onTapOutside: (_) => FocusManager
+                                          .instance.primaryFocus
+                                          ?.unfocus(),
                                       onChanged: (value) => context
                                           .read<MasterVerificationBloc>()
-                                          .add(MasterVerificationEvent.idChanged(value)),
+                                          .add(
+                                              MasterVerificationEvent.idChanged(
+                                                  value)),
                                       validator: (_) {
                                         var idNum = context
                                             .read<MasterVerificationBloc>()
                                             .state
                                             .idNumber;
-                                        if (idNum.isEmpty || idNum.length > 11) {
+                                        if (idNum.isEmpty ||
+                                            idNum.length > 11) {
                                           return 'ID number too short';
                                         } else {
-                                          return Validators.positiveInteger(idNum);
+                                          return Validators.positiveInteger(
+                                              idNum);
                                         }
                                       },
                                     ),
                                     SizedBox(height: AppSize.s20.h),
                                     Text(
                                       'Year of Birth',
-                                      style: context.textTheme.labelLarge!.copyWith(
+                                      style: context.textTheme.labelLarge!
+                                          .copyWith(
                                         fontSize: FontSizeManager.s15,
-                                        letterSpacing: FontSizeManager.s15 * -0.01,
+                                        letterSpacing:
+                                            FontSizeManager.s15 * -0.01,
                                       ),
                                     ),
                                     SizedBox(height: AppSize.s8.h),
                                     TextFormField(
                                       keyboardType: TextInputType.number,
                                       maxLength: 4,
-                                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                      maxLengthEnforcement:
+                                          MaxLengthEnforcement.enforced,
                                       decoration: const InputDecoration(
                                         hintText: 'Year of Birth . . .',
                                         counterText: '',
                                       ),
-                                      onTapOutside: (_) =>
-                                          FocusManager.instance.primaryFocus?.unfocus(),
+                                      onTapOutside: (_) => FocusManager
+                                          .instance.primaryFocus
+                                          ?.unfocus(),
                                       onChanged: (value) => context
                                           .read<MasterVerificationBloc>()
-                                          .add(MasterVerificationEvent.birthYearChanged(value)),
+                                          .add(MasterVerificationEvent
+                                              .birthYearChanged(value)),
                                       validator: (_) {
                                         var birthYear = context
                                             .read<MasterVerificationBloc>()
                                             .state
                                             .birthYear;
-                                        return Validators.validateBirthYear(birthYear);
+                                        return Validators.validateBirthYear(
+                                            birthYear);
                                       },
                                     ),
                                   ],
@@ -274,9 +301,20 @@ class MasterFormPage extends StatelessWidget {
                                   width: double.infinity,
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      context.read<MasterVerificationBloc>().add(
-                                        MasterVerificationEvent.registerUserInfo(() {
-                                          context.router.replace(const MasterPicRoute());
+                                      context
+                                          .read<MasterVerificationBloc>()
+                                          .add(
+                                        MasterVerificationEvent
+                                            .registerUserInfo(() {
+                                          context
+                                              .read<MasterVerificationBloc>()
+                                              .add(
+                                                const MasterVerificationEvent
+                                                    .getSkills(),
+                                              );
+                                          context.router.replace(
+                                              const MasterSkillsRoute());
+                                          //context.router.replace(const MasterPicRoute());
                                         }),
                                       );
                                     },
@@ -301,4 +339,3 @@ class MasterFormPage extends StatelessWidget {
     );
   }
 }
-

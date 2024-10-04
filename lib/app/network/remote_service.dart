@@ -151,7 +151,17 @@ class RemoteService {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return result.data?['result'];
+      var resultData = result.data;
+      bool success = false;
+      if (resultData != null) {
+        success = resultData['success'];
+      }
+      if (!success) {
+        throw ApiException.defaultException(
+            '-200', result.data?['message'] ?? 'Unknown Exception');
+      } else {
+        return result.data?['result'];
+      }
     } on DioException catch (e) {
       throw ApiExceptionHandler.handleException(e);
     }

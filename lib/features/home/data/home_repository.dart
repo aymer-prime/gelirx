@@ -43,7 +43,7 @@ class HomeRepository implements IHomeRepository {
       //     .toList();
       // return right(resultList);
       var response = await _remoteService.post(
-        '${Constants.baseUrl}categories/categories.php',
+        '${Constants.baseUrl}services/index.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -69,7 +69,7 @@ class HomeRepository implements IHomeRepository {
       String catId) async {
     try {
       var response = await _remoteService.post(
-        '${Constants.baseUrl}categories/categories.php',
+        '${Constants.baseUrl}services/index.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -77,7 +77,7 @@ class HomeRepository implements IHomeRepository {
         ),
         data: {
           'lang': 'en',
-          'category_id': catId,
+          'service_id': catId,
         },
       );
       final List<dynamic> responseData = response;

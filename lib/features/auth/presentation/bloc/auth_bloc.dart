@@ -85,20 +85,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         )),
         (user) async {
           print("user {$user}");
-          final response = await _signInUseCase.userLogin();
-          response.fold(
-            (failure) => emit(state.copyWith(
+          if (state.isRegister) {
+            emit(state.copyWith(
               isLoading: false,
-              authFailureOrSuccessOption: some(left(failure)),
-            )),
-            (_) {
-              emit(state.copyWith(
+              user: some(user),
+              authFailureOrSuccessOption: some(right(unit)),
+            ));
+          } else {
+            final response = await _signInUseCase.userLogin();
+            response.fold(
+              (failure) => emit(state.copyWith(
                 isLoading: false,
-                user: some(user),
-                authFailureOrSuccessOption: some(right(unit)),
-              ));
-            },
-          );
+                authFailureOrSuccessOption: some(left(failure)),
+              )),
+              (_) {
+                emit(state.copyWith(
+                  isLoading: false,
+                  user: some(user),
+                  authFailureOrSuccessOption: some(right(unit)),
+                ));
+              },
+            );
+          }
         },
       );
     });

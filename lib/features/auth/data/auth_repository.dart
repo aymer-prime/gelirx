@@ -265,18 +265,19 @@ class AuthRepository implements IAuthRepository {
     try {
       var token = _localService.get(Constants.tokenKey);
       var userId = _localService.get(Constants.userIdKey);
-      List<int> imageBytes = await userImage.readAsBytes();
-      String base64Image = base64Encode(imageBytes);
+      //List<int> imageBytes = await userImage.readAsBytes();
+      //String base64Image = base64Encode(imageBytes);
       var data = FormData.fromMap({
         'lang': 'tr',
         'user_id': userId,
         'token': token,
-        'img': base64Image,
-        //'img': await MultipartFile.fromFile(userImage.path),
+        //'img': base64Image,
+        'img': await MultipartFile.fromFile(userImage.path,
+            filename: 'user_selfie'),
       });
       //var response =
       await _remoteService.post(
-        '${Constants.baseUrl}user/handyman/picture.php',
+        '${Constants.baseUrl}user/change-picture.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -304,11 +305,11 @@ class AuthRepository implements IAuthRepository {
         'lang': 'tr',
         'user_id': userId,
         'token': token,
-        'category_id': userSkills.join(','),
+        'service_id': userSkills.join(','),
       };
       //var response =
       await _remoteService.post(
-        '${Constants.baseUrl}master/choose_skills.php',
+        '${Constants.baseUrl}user/master/choose-service.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
