@@ -12,6 +12,8 @@ import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/domain/entities/user_entity.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/auth/presentation/bloc/master_verification/master_verification_bloc.dart';
 import 'package:gelirx/features/auth/presentation/widgets/step_indicator.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
@@ -147,26 +149,55 @@ class MasterPicPage extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: AppSize.s16.h),
-                        SizedBox(
-                          width: double.infinity,
-                          height: AppSize.s48.h,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              context.read<MasterVerificationBloc>().add(
-                                MasterVerificationEvent.registerUserImage(() {
-                                  context.read<MasterVerificationBloc>().add(
-                                        const MasterVerificationEvent.getSkills(),
-                                      );
-                                  context.router
-                                      .replace(const MasterSkillsRoute());
-                                  //context.router.replace(const AlternateMainRoute());
-                                }),
-                              );
-                            },
-                            child: const Text(
-                              AppStrings.continueTxt,
+                        Row(
+                          children: [
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: SizedBox(
+                                height: AppSize.s48.h,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    context.read<MasterVerificationBloc>().add(
+                                      MasterVerificationEvent.registerUserImage(
+                                          () {
+                                        context.read<AuthStatusBloc>().add(
+                                              AuthStatusEvent.signedIn(
+                                                UserEntity(id: ''),
+                                              ),
+                                            );
+                                        context.router.replace(
+                                            const AlternateMainRoute());
+                                      }),
+                                    );
+                                  },
+                                  child: const Text(
+                                    AppStrings.continueTxt,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(width: AppSize.s8.w),
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: SizedBox(
+                                height: AppSize.s48.h,
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    context.read<AuthStatusBloc>().add(
+                                          AuthStatusEvent.signedIn(
+                                            UserEntity(id: ''),
+                                          ),
+                                        );
+                                    context.router
+                                        .replace(const AlternateMainRoute());
+                                  },
+                                  child: const Text(
+                                    'Later',
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
