@@ -43,7 +43,7 @@ class DioClient {
       },
     );
     _dio.interceptors.addAll([
-      prettyDioLogger,
+     // prettyDioLogger,
       interceptorWrapper,
     ]);
   }

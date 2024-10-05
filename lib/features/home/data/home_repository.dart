@@ -177,12 +177,12 @@ class HomeRepository implements IHomeRepository {
         'lang': 'tr',
         'user_id': userId,
         'token': token,
-        'latitude': latitude,
-        'longitude': longitude,
+        // 'latitude': latitude,
+        // 'longitude': longitude,
         'firebase_token': fcmToken
       };
       var response = await _remoteService.post(
-        '${Constants.baseUrl}master/update_lat_long.php',
+        '${Constants.baseUrl}user/update-firebase-token',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

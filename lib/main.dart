@@ -12,6 +12,7 @@ import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:gelirx/app/view/app.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/v4.dart';
 import 'app/local_services/notifiaction_handler.dart';
 import 'app/navigation/app_router.dart';
 
@@ -41,9 +42,9 @@ void main() async {
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-
-  const params = CallKitParams(
-    id: "1111",
+  var id = UuidV4().generate();
+  var params = CallKitParams(
+    id: id,
     appName: "Gelirx",
     duration: 30000,
     nameCaller: "service name",
