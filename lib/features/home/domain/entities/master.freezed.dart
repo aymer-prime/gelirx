@@ -16,14 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Master {
-  String get id => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get surname => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError; // required String phone,
+// required String name,
+// required String surname,
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
   String get point => throw _privateConstructorUsedError;
-  List<Category> get categories => throw _privateConstructorUsedError;
+  List<Img> get categories => throw _privateConstructorUsedError;
 
   /// Create a copy of Master
   /// with the given fields replaced by the non-null parameter values.
@@ -38,13 +37,10 @@ abstract class $MasterCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String phone,
-      String name,
-      String surname,
       double latitude,
       double longitude,
       String point,
-      List<Category> categories});
+      List<Img> categories});
 }
 
 /// @nodoc
@@ -63,9 +59,6 @@ class _$MasterCopyWithImpl<$Res, $Val extends Master>
   @override
   $Res call({
     Object? id = null,
-    Object? phone = null,
-    Object? name = null,
-    Object? surname = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? point = null,
@@ -75,18 +68,6 @@ class _$MasterCopyWithImpl<$Res, $Val extends Master>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      surname: null == surname
-          ? _value.surname
-          : surname // ignore: cast_nullable_to_non_nullable
               as String,
       latitude: null == latitude
           ? _value.latitude
@@ -103,7 +84,7 @@ class _$MasterCopyWithImpl<$Res, $Val extends Master>
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<Category>,
+              as List<Img>,
     ) as $Val);
   }
 }
@@ -117,13 +98,10 @@ abstract class _$$MasterImplCopyWith<$Res> implements $MasterCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String phone,
-      String name,
-      String surname,
       double latitude,
       double longitude,
       String point,
-      List<Category> categories});
+      List<Img> categories});
 }
 
 /// @nodoc
@@ -140,9 +118,6 @@ class __$$MasterImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? phone = null,
-    Object? name = null,
-    Object? surname = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? point = null,
@@ -152,18 +127,6 @@ class __$$MasterImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      surname: null == surname
-          ? _value.surname
-          : surname // ignore: cast_nullable_to_non_nullable
               as String,
       latitude: null == latitude
           ? _value.latitude
@@ -180,7 +143,7 @@ class __$$MasterImplCopyWithImpl<$Res>
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<Category>,
+              as List<Img>,
     ));
   }
 }
@@ -190,32 +153,26 @@ class __$$MasterImplCopyWithImpl<$Res>
 class _$MasterImpl implements _Master {
   const _$MasterImpl(
       {required this.id,
-      required this.phone,
-      required this.name,
-      required this.surname,
       required this.latitude,
       required this.longitude,
       required this.point,
-      required final List<Category> categories})
+      required final List<Img> categories})
       : _categories = categories;
 
   @override
   final String id;
-  @override
-  final String phone;
-  @override
-  final String name;
-  @override
-  final String surname;
+// required String phone,
+// required String name,
+// required String surname,
   @override
   final double latitude;
   @override
   final double longitude;
   @override
   final String point;
-  final List<Category> _categories;
+  final List<Img> _categories;
   @override
-  List<Category> get categories {
+  List<Img> get categories {
     if (_categories is EqualUnmodifiableListView) return _categories;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categories);
@@ -223,7 +180,7 @@ class _$MasterImpl implements _Master {
 
   @override
   String toString() {
-    return 'Master(id: $id, phone: $phone, name: $name, surname: $surname, latitude: $latitude, longitude: $longitude, point: $point, categories: $categories)';
+    return 'Master(id: $id, latitude: $latitude, longitude: $longitude, point: $point, categories: $categories)';
   }
 
   @override
@@ -232,9 +189,6 @@ class _$MasterImpl implements _Master {
         (other.runtimeType == runtimeType &&
             other is _$MasterImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -245,15 +199,7 @@ class _$MasterImpl implements _Master {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      phone,
-      name,
-      surname,
-      latitude,
-      longitude,
-      point,
+  int get hashCode => Object.hash(runtimeType, id, latitude, longitude, point,
       const DeepCollectionEquality().hash(_categories));
 
   /// Create a copy of Master
@@ -268,22 +214,15 @@ class _$MasterImpl implements _Master {
 abstract class _Master implements Master {
   const factory _Master(
       {required final String id,
-      required final String phone,
-      required final String name,
-      required final String surname,
       required final double latitude,
       required final double longitude,
       required final String point,
-      required final List<Category> categories}) = _$MasterImpl;
+      required final List<Img> categories}) = _$MasterImpl;
 
   @override
-  String get id;
-  @override
-  String get phone;
-  @override
-  String get name;
-  @override
-  String get surname;
+  String get id; // required String phone,
+// required String name,
+// required String surname,
   @override
   double get latitude;
   @override
@@ -291,7 +230,7 @@ abstract class _Master implements Master {
   @override
   String get point;
   @override
-  List<Category> get categories;
+  List<Img> get categories;
 
   /// Create a copy of Master
   /// with the given fields replaced by the non-null parameter values.

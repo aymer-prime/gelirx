@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:path/path.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -23,7 +23,7 @@ class AuthRepository implements IAuthRepository {
   final FirebaseAuth firebaseAuth;
   final GoogleSignIn googleSignIn;
   final FacebookAuth facebookAuth;
-  final FirebaseAuth phoneAuth;
+  //final FirebaseAuth phoneAuth;
   final FirebaseUserMapper firebaseUserMapper;
   final LocalService _localService;
   final RemoteService _remoteService;
@@ -32,7 +32,7 @@ class AuthRepository implements IAuthRepository {
     this.firebaseAuth,
     this.googleSignIn,
     this.facebookAuth,
-    this.phoneAuth,
+    //this.phoneAuth,
     this.firebaseUserMapper,
     this._localService,
     this._remoteService,
@@ -144,7 +144,8 @@ class AuthRepository implements IAuthRepository {
     try {
       final verificationIdCompleter = Completer<String>();
 
-      await firebaseAuth.verifyPhoneNumber(
+      await firebaseAuth
+          .verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           try {
@@ -170,12 +171,18 @@ class AuthRepository implements IAuthRepository {
           // Optionally, handle the timeout case.
           print('Auto-retrieval timeout for verification ID: $verificationId');
         },
-      );
+      )
+          .timeout(const Duration(seconds: 10), onTimeout: () {
+        throw const ApiException.defaultException(
+            '-2', 'Timed out waiting for SMS');
+      });
 
       final verificationId = await verificationIdCompleter.future;
       return right(verificationId);
     } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
+    } on ApiException catch (apiE) {
+      return left(apiE);
     }
   }
 
@@ -186,8 +193,13 @@ class AuthRepository implements IAuthRepository {
     try {
       final PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: smsCode);
-      final UserCredential userCredential =
-          await firebaseAuth.signInWithCredential(credential);
+      final UserCredential userCredential = await firebaseAuth
+          .signInWithCredential(credential)
+          .timeout(const Duration(seconds: 10), onTimeout: () {
+        throw const ApiException.defaultException(
+            '-2', 'Timed out waiting for SMS');
+      });
+
       final User user = userCredential.user!;
       User? user1 = FirebaseAuth.instance.currentUser;
 
@@ -206,6 +218,8 @@ class AuthRepository implements IAuthRepository {
       ));
     } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
+    } on ApiException catch (apiE) {
+      return left(apiE);
     }
   }
 
@@ -265,15 +279,23 @@ class AuthRepository implements IAuthRepository {
     try {
       var token = _localService.get(Constants.tokenKey);
       var userId = _localService.get(Constants.userIdKey);
+      String fileName = basename(userImage.path);
+      print('file Name: $fileName');
+      print('file extention: ${fileName.split('.').last}');
       //List<int> imageBytes = await userImage.readAsBytes();
       //String base64Image = base64Encode(imageBytes);
       var data = FormData.fromMap({
         'lang': 'tr',
         'user_id': userId,
         'token': token,
-        //'img': base64Image,
-        'img': await MultipartFile.fromFile(userImage.path,
-            filename: 'user_selfie'),
+        'img': await MultipartFile.fromFile(
+          userImage.path,
+          filename: fileName,
+          contentType: DioMediaType(
+            'image',
+            fileName.split('.').last,
+          ),
+        ),
       });
       //var response =
       await _remoteService.post(
@@ -353,7 +375,7 @@ class AuthRepository implements IAuthRepository {
       //firebaseAuth.signOut(),
       //googleSignIn.signOut(),
       //facebookAuth.logOut(),
-      phoneAuth.signOut(),
+      firebaseAuth.signOut(),
     ]);
   }
 

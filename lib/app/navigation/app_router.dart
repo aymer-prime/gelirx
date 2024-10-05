@@ -8,7 +8,6 @@ import 'package:gelirx/features/auth/presentation/pages/master_info/master_info_
 import 'package:gelirx/features/auth/presentation/pages/user_info/user_info_page.dart';
 import 'package:gelirx/features/home/presentation/pages/category_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page_old.dart';
-import 'package:gelirx/features/home/presentation/pages/services_page.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/auth_page.dart';
@@ -41,9 +40,6 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: HomeRoute.page,
-        ),
-        AutoRoute(
-          page: ServicesRoute.page,
         ),
         AutoRoute(
           page: BookingRoute.page,

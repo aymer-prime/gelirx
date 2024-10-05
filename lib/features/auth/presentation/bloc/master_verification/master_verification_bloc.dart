@@ -258,7 +258,7 @@ class MasterVerificationBloc
     var isSurNameValid = state.surName.isNotEmpty;
     var isIdValid = (!(state.idNumber.isEmpty || state.idNumber.length < 11) &&
         Validators.positiveInteger(state.idNumber) == null);
-    var isYearValid = Validators.positiveInteger(state.birthYear) == null;
+    var isYearValid = Validators.validateBirthYear(state.birthYear) == null;
     return (isNameValid && isSurNameValid && isIdValid && isYearValid);
   }
 

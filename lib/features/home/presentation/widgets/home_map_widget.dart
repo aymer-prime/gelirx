@@ -16,12 +16,10 @@ import 'master_marker.dart';
 
 class HomeMap extends StatelessWidget {
   final Position userPosition;
-  final int range;
 
   const HomeMap({
     super.key,
     required this.userPosition,
-    required this.range,
   });
 
   @override
@@ -181,10 +179,10 @@ class MasterInfoSheet extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              master.name,
-                              style: context.textTheme.titleLarge,
-                            ),
+                            // Text(
+                            //   master.name,
+                            //   style: context.textTheme.titleLarge,
+                            // ),
                             const SizedBox(width: AppSize.s8),
                             Row(
                               children: [
@@ -210,19 +208,19 @@ class MasterInfoSheet extends StatelessWidget {
                       'Phone Number',
                       style: context.textTheme.labelLarge,
                     ),
-                    Container(
-                      //height: AppSize.s60,
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(AppPadding.p16),
-                      decoration: BoxDecoration(
-                        color: ColorManager.textfieldFillColor,
-                        borderRadius: BorderRadius.circular(AppSize.s12),
-                        border: Border.all(
-                          color: ColorManager.textfieldBorderColor,
-                        ),
-                      ),
-                      child: Text(master.phone),
-                    ),
+                    // Container(
+                    //   //height: AppSize.s60,
+                    //   width: double.infinity,
+                    //   padding: const EdgeInsets.all(AppPadding.p16),
+                    //   decoration: BoxDecoration(
+                    //     color: ColorManager.textfieldFillColor,
+                    //     borderRadius: BorderRadius.circular(AppSize.s12),
+                    //     border: Border.all(
+                    //       color: ColorManager.textfieldBorderColor,
+                    //     ),
+                    //   ),
+                    //   child: Text(master.phone),
+                    // ),
                     const SizedBox(height: AppSize.s16),
                     Text(
                       'Year of Birth',
@@ -295,11 +293,11 @@ class MasterInfoSheet extends StatelessWidget {
                                       ),
                                       child: Wrap(
                                         children: [
-                                          Text(
-                                            e.name,
-                                            style:
-                                                context.textTheme.labelMedium,
-                                          ),
+                                          // Text(
+                                          //   e.name,
+                                          //   style:
+                                          //       context.textTheme.labelMedium,
+                                          // ),
                                         ],
                                       ),
                                     ),

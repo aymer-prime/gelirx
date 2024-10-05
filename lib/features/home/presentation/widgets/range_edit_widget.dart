@@ -33,9 +33,9 @@ class RangeEditWidget extends StatelessWidget {
                   onPressed: () {
                     var newRange = range - 1;
                     if (newRange > 0) {
-                      context.read<HomeBloc>().add(
-                            HomeEvent.getRange(newRange),
-                          );
+                      // context.read<HomeBloc>().add(
+                      //       HomeEvent.getRange(newRange),
+                      //     );
                     } else {}
                   },
                   child: Icon(
@@ -56,9 +56,9 @@ class RangeEditWidget extends StatelessWidget {
                   onPressed: () {
                     var newRange = range + 1;
                     if (newRange <= 5) {
-                      context.read<HomeBloc>().add(
-                            HomeEvent.getRange(newRange),
-                          );
+                      // context.read<HomeBloc>().add(
+                      //       HomeEvent.getRange(newRange),
+                      //     );
                     } else {}
                   },
                   child: Icon(

@@ -22,14 +22,10 @@ import 'package:shimmer/shimmer.dart';
 class HomeDraggableSheet extends StatefulWidget {
   final List<Category> categories;
   final List<UserSkills> services;
-  final int catIndex;
-  final int subCatIndex;
   const HomeDraggableSheet({
     super.key,
     required this.categories,
     required this.services,
-    required this.catIndex,
-    required this.subCatIndex,
   });
 
   @override

@@ -24,9 +24,9 @@ class RangeSliderWidget extends StatelessWidget {
             max: 5,
             value: range.toDouble(),
             onChanged: (value) {
-              context.read<HomeBloc>().add(
-                    HomeEvent.getRange(value.toInt()),
-                  );
+              // context.read<HomeBloc>().add(
+              //       HomeEvent.getRange(value.toInt()),
+              //     );
             },
           ),
           //const SizedBox(height: AppSize.s8),

@@ -76,7 +76,7 @@ class HomeRepository implements IHomeRepository {
           },
         ),
         data: {
-          'lang': 'en',
+          'lang': 'tr',
           'service_id': catId,
         },
       );
@@ -97,14 +97,14 @@ class HomeRepository implements IHomeRepository {
       LatLng centerPosition, int? selectedCategory) async {
     try {
       var response = await _remoteService.post(
-        '${Constants.baseUrl}master/search.php',
+        '${Constants.baseUrl}services/search.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         ),
         data: {
-          'lang': 'en',
+          'lang': 'tr',
           'latitude': centerPosition.latitude,
           'longitude': centerPosition.longitude,
           'category_id': selectedCategory ?? 0,

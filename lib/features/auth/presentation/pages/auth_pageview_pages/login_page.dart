@@ -124,6 +124,7 @@ class LoginPage extends StatelessWidget {
                             height: AppSize.s48,
                             child: ElevatedButton(
                               onPressed: () {
+                                FocusManager.instance.primaryFocus?.unfocus();
                                 context.read<AuthBloc>().add(
                                       AuthEvent.phoneLoginRequested(
                                         phoneNumber: phoneController.text,

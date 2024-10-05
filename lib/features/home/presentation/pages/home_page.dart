@@ -6,7 +6,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
-import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
@@ -55,6 +54,8 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     child: TextField(
+                      onTapOutside: (_) =>
+                          FocusManager.instance.primaryFocus?.unfocus(),
                       decoration: InputDecoration(
                         hintText: AppStrings.searchHint,
                         suffixIcon: Padding(
@@ -83,7 +84,6 @@ class HomePage extends StatelessWidget {
                       ),
                       (userPosition) => HomeMap(
                         userPosition: userPosition,
-                        range: state.range,
                       ),
                     ),
                   ),
@@ -93,8 +93,6 @@ class HomePage extends StatelessWidget {
               HomeDraggableSheet(
                 categories: state.categories,
                 services: state.services,
-                catIndex: state.catIndex,
-                subCatIndex: state.subCatIndex,
               ),
             ],
           );
