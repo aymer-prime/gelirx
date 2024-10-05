@@ -90,6 +90,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i603.NavigationUsecase>(
         () => _i603.NavigationUsecase(gh<_i782.INavigationRepository>()));
+    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
+          gh<_i59.FirebaseAuth>(),
+          gh<_i116.GoogleSignIn>(),
+          gh<_i806.FacebookAuth>(),
+          gh<_i905.FirebaseUserMapper>(),
+          gh<_i902.LocalService>(),
+          gh<_i464.RemoteService>(),
+        ));
     gh.factory<_i162.NavigationBloc>(
         () => _i162.NavigationBloc(gh<_i603.NavigationUsecase>()));
     gh.lazySingleton<_i317.IHomeRepository>(() => _i65.HomeRepository(
@@ -98,15 +106,10 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i216.BookingUsecase>(
         () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));
-    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
-          gh<_i59.FirebaseAuth>(),
-          gh<_i116.GoogleSignIn>(),
-          gh<_i806.FacebookAuth>(),
-          gh<_i59.FirebaseAuth>(),
-          gh<_i905.FirebaseUserMapper>(),
-          gh<_i902.LocalService>(),
-          gh<_i464.RemoteService>(),
-        ));
+    gh.factory<_i663.AuthStatusBloc>(
+        () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
+    gh.factory<_i446.UserVerificationBloc>(
+        () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
     gh.lazySingleton<_i309.SignInUseCase>(
         () => _i309.SignInUseCase(gh<_i1026.IAuthRepository>()));
     gh.factory<_i202.HomeBloc>(
@@ -117,10 +120,6 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i797.AuthBloc>(
         () => _i797.AuthBloc(gh<_i309.SignInUseCase>()));
-    gh.factory<_i663.AuthStatusBloc>(
-        () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
-    gh.factory<_i446.UserVerificationBloc>(
-        () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
     return this;
   }
 }

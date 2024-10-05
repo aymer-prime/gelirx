@@ -144,7 +144,7 @@ class MasterPicPage extends StatelessWidget {
                           ),
                         SizedBox(height: AppSize.s8.h),
                         Text(
-                          'Please Upload a Profile Picture.\nThis Step is Not Optional',
+                          'Please Upload a Profile Picture.\nYou Can Do This Step Later.',
                           style: context.textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),

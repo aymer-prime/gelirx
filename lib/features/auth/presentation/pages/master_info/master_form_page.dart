@@ -103,14 +103,7 @@ class MasterFormPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.arrow_back,
-                              color: ColorManager.black,
-                            ),
-                          ),
-                          SizedBox(height: AppSize.s12.h),
+                          SizedBox(height: AppSize.s48.h),
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: AppPadding.p20.w),
@@ -120,7 +113,7 @@ class MasterFormPage extends StatelessWidget {
                                   totalSteps: 4,
                                   currentStep: 1,
                                 ),
-                                SizedBox(height: AppSize.s100.h),
+                                SizedBox(height: AppSize.s24.h),
                                 Center(
                                   child:
                                       SvgPicture.asset(ImageAssets.logoPrimary),

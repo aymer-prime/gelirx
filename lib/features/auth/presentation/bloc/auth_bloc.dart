@@ -26,7 +26,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
 
     on<_SocialMediaLogin>((event, emit) async {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(
+        isLoading: true,
+        authFailureOrSuccessOption: none(),
+      ));
       print(event.type);
       final result = await _signInUseCase.call(event.type);
       result.fold(
@@ -43,7 +46,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<_PhoneLoginRequested>((event, emit) async {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(
+        isLoading: true,
+        authFailureOrSuccessOption: none(),
+      ));
       var isLogin = await _signInUseCase.checkPhoneNumber(event.phoneNumber);
       await isLogin.fold(
         (failure) async => emit(state.copyWith(
@@ -73,7 +79,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
 
     on<_VerifyPhoneNumber>((event, emit) async {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(
+        isLoading: true,
+        verificationId: none(),
+        authFailureOrSuccessOption: none(),
+      ));
       print(event.verificationId); // You may want to log this instead.
 
       final result = await _signInUseCase.otpVerification(

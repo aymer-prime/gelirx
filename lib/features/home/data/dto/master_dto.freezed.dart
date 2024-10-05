@@ -20,14 +20,14 @@ MasterDto _$MasterDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MasterDto {
-  String get id => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get surname => throw _privateConstructorUsedError;
+  String get id =>
+      throw _privateConstructorUsedError; // required String? phone,
+// required String? name,
+// required String? surname,
   String get latitude => throw _privateConstructorUsedError;
   String get longitude => throw _privateConstructorUsedError;
   String get point => throw _privateConstructorUsedError;
-  List<CategoryDto> get categories => throw _privateConstructorUsedError;
+  List<ImgDto> get services => throw _privateConstructorUsedError;
 
   /// Serializes this MasterDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,13 +46,10 @@ abstract class $MasterDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String phone,
-      String name,
-      String surname,
       String latitude,
       String longitude,
       String point,
-      List<CategoryDto> categories});
+      List<ImgDto> services});
 }
 
 /// @nodoc
@@ -71,30 +68,15 @@ class _$MasterDtoCopyWithImpl<$Res, $Val extends MasterDto>
   @override
   $Res call({
     Object? id = null,
-    Object? phone = null,
-    Object? name = null,
-    Object? surname = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? point = null,
-    Object? categories = null,
+    Object? services = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      surname: null == surname
-          ? _value.surname
-          : surname // ignore: cast_nullable_to_non_nullable
               as String,
       latitude: null == latitude
           ? _value.latitude
@@ -108,10 +90,10 @@ class _$MasterDtoCopyWithImpl<$Res, $Val extends MasterDto>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as String,
-      categories: null == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<CategoryDto>,
+      services: null == services
+          ? _value.services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ImgDto>,
     ) as $Val);
   }
 }
@@ -126,13 +108,10 @@ abstract class _$$MasterDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String phone,
-      String name,
-      String surname,
       String latitude,
       String longitude,
       String point,
-      List<CategoryDto> categories});
+      List<ImgDto> services});
 }
 
 /// @nodoc
@@ -149,30 +128,15 @@ class __$$MasterDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? phone = null,
-    Object? name = null,
-    Object? surname = null,
     Object? latitude = null,
     Object? longitude = null,
     Object? point = null,
-    Object? categories = null,
+    Object? services = null,
   }) {
     return _then(_$MasterDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      surname: null == surname
-          ? _value.surname
-          : surname // ignore: cast_nullable_to_non_nullable
               as String,
       latitude: null == latitude
           ? _value.latitude
@@ -186,10 +150,10 @@ class __$$MasterDtoImplCopyWithImpl<$Res>
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
               as String,
-      categories: null == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<CategoryDto>,
+      services: null == services
+          ? _value._services
+          : services // ignore: cast_nullable_to_non_nullable
+              as List<ImgDto>,
     ));
   }
 }
@@ -199,43 +163,37 @@ class __$$MasterDtoImplCopyWithImpl<$Res>
 class _$MasterDtoImpl implements _MasterDto {
   const _$MasterDtoImpl(
       {required this.id,
-      required this.phone,
-      required this.name,
-      required this.surname,
       required this.latitude,
       required this.longitude,
       required this.point,
-      required final List<CategoryDto> categories})
-      : _categories = categories;
+      required final List<ImgDto> services})
+      : _services = services;
 
   factory _$MasterDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$MasterDtoImplFromJson(json);
 
   @override
   final String id;
-  @override
-  final String phone;
-  @override
-  final String name;
-  @override
-  final String surname;
+// required String? phone,
+// required String? name,
+// required String? surname,
   @override
   final String latitude;
   @override
   final String longitude;
   @override
   final String point;
-  final List<CategoryDto> _categories;
+  final List<ImgDto> _services;
   @override
-  List<CategoryDto> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
+  List<ImgDto> get services {
+    if (_services is EqualUnmodifiableListView) return _services;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
+    return EqualUnmodifiableListView(_services);
   }
 
   @override
   String toString() {
-    return 'MasterDto(id: $id, phone: $phone, name: $name, surname: $surname, latitude: $latitude, longitude: $longitude, point: $point, categories: $categories)';
+    return 'MasterDto(id: $id, latitude: $latitude, longitude: $longitude, point: $point, services: $services)';
   }
 
   @override
@@ -244,30 +202,18 @@ class _$MasterDtoImpl implements _MasterDto {
         (other.runtimeType == runtimeType &&
             other is _$MasterDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.point, point) || other.point == point) &&
-            const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+            const DeepCollectionEquality().equals(other._services, _services));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      phone,
-      name,
-      surname,
-      latitude,
-      longitude,
-      point,
-      const DeepCollectionEquality().hash(_categories));
+  int get hashCode => Object.hash(runtimeType, id, latitude, longitude, point,
+      const DeepCollectionEquality().hash(_services));
 
   /// Create a copy of MasterDto
   /// with the given fields replaced by the non-null parameter values.
@@ -288,25 +234,18 @@ class _$MasterDtoImpl implements _MasterDto {
 abstract class _MasterDto implements MasterDto {
   const factory _MasterDto(
       {required final String id,
-      required final String phone,
-      required final String name,
-      required final String surname,
       required final String latitude,
       required final String longitude,
       required final String point,
-      required final List<CategoryDto> categories}) = _$MasterDtoImpl;
+      required final List<ImgDto> services}) = _$MasterDtoImpl;
 
   factory _MasterDto.fromJson(Map<String, dynamic> json) =
       _$MasterDtoImpl.fromJson;
 
   @override
-  String get id;
-  @override
-  String get phone;
-  @override
-  String get name;
-  @override
-  String get surname;
+  String get id; // required String? phone,
+// required String? name,
+// required String? surname,
   @override
   String get latitude;
   @override
@@ -314,7 +253,7 @@ abstract class _MasterDto implements MasterDto {
   @override
   String get point;
   @override
-  List<CategoryDto> get categories;
+  List<ImgDto> get services;
 
   /// Create a copy of MasterDto
   /// with the given fields replaced by the non-null parameter values.
