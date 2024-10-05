@@ -1,21 +1,20 @@
-import 'package:auto_route/auto_route.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
-import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../../../app/utils/resources/font_manager.dart';
 import '../../../../../../app/utils/resources/values_manager.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends HookWidget {
   final VoidCallback toPreviousPage;
   final VoidCallback onContinue;
   final TextEditingController phoneController = TextEditingController();
@@ -28,6 +27,21 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _numberNotifier =
+        useState<int>(context.read<AuthBloc>().state.requestAgainTime);
+    useEffect(() {
+      final timer = Timer.periodic(const Duration(seconds: 1), (time) {
+        if (_numberNotifier.value > 1) {
+          _numberNotifier.value = _numberNotifier.value - 1;
+        } else {
+          _numberNotifier.value = 0;
+        }
+        context
+            .read<AuthBloc>()
+            .add(AuthEvent.setRequestTimer(_numberNotifier.value));
+      });
+      return timer.cancel;
+    }, const []);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -123,33 +137,49 @@ class LoginPage extends StatelessWidget {
                             width: double.infinity,
                             height: AppSize.s48,
                             child: ElevatedButton(
-                              onPressed: () {
-                                FocusManager.instance.primaryFocus?.unfocus();
-                                context.read<AuthBloc>().add(
-                                      AuthEvent.phoneLoginRequested(
-                                        phoneNumber: phoneController.text,
-                                        onSuccess: () {
-                                          if (context
-                                              .read<AuthBloc>()
-                                              .state
-                                              .verificationId
-                                              .isSome()) {
-                                            onContinue();
-                                          }
-                                        },
-                                      ),
-                                    );
-                              },
+                              onPressed: state.requestAgainTime != 0
+                                  ? null
+                                  : () {
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                      context.read<AuthBloc>().add(
+                                            AuthEvent.phoneLoginRequested(
+                                              phoneNumber: phoneController.text,
+                                              onSuccess: () {
+                                                if (context
+                                                    .read<AuthBloc>()
+                                                    .state
+                                                    .verificationId
+                                                    .isSome()) {
+                                                  onContinue();
+                                                }
+                                              },
+                                            ),
+                                          );
+                                    },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: ColorManager.textfieldColor,
+                                disabledBackgroundColor:
+                                    ColorManager.background.withOpacity(0.3),
                                 elevation: 0.0,
                               ),
                               child: Text(
                                 AppStrings.loginTitle,
-                                style: context.textTheme.headlineSmall,
+                                style:
+                                    context.textTheme.headlineSmall!.copyWith(
+                                  color: state.requestAgainTime != 0
+                                      ? ColorManager.disabledButtonTextColor
+                                      : ColorManager.textTitleColor,
+                                ),
                               ),
                             ),
                           ),
+                          SizedBox(height: AppSize.s8.h),
+                          if (state.requestAgainTime != 0)
+                            Text(
+                              'You must wait ${_numberNotifier.value} Seconds to be able to request an OTP code again.',
+                              textAlign: TextAlign.center,
+                            ),
                           SizedBox(height: AppSize.s194.h),
                           Padding(
                             padding: EdgeInsets.symmetric(

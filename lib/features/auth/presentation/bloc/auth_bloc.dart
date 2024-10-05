@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ part 'auth_bloc.freezed.dart';
 @LazySingleton()
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignInUseCase _signInUseCase;
+  StreamSubscription<int>? _tickerSubscription;
   AuthBloc(this._signInUseCase) : super(AuthState.initial()) {
     on<_SetUserType>(
       (event, emit) => emit(
@@ -48,6 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_PhoneLoginRequested>((event, emit) async {
       emit(state.copyWith(
         isLoading: true,
+        verificationId: none(),
         authFailureOrSuccessOption: none(),
       ));
       var isLogin = await _signInUseCase.checkPhoneNumber(event.phoneNumber);
@@ -67,21 +71,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             )),
             (verificationId) {
               emit(state.copyWith(
-                isLoading: false,
-                isRegister: numExist,
-                verificationId: some(verificationId),
-              ));
+                  isLoading: false,
+                  isRegister: numExist,
+                  verificationId: some(verificationId),
+                  requestAgainTime: 30));
               event.onSuccess();
             },
           );
         },
       );
     });
-
     on<_VerifyPhoneNumber>((event, emit) async {
       emit(state.copyWith(
         isLoading: true,
-        verificationId: none(),
         authFailureOrSuccessOption: none(),
       ));
       print(event.verificationId); // You may want to log this instead.
@@ -119,6 +121,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           }
         },
       );
+    });
+    on<_SetRequestTimer>((event, emit) {
+      emit(state.copyWith(requestAgainTime: event.requestTime));
     });
   }
 }

@@ -29,7 +29,6 @@ class OtpPage extends HookWidget {
   Widget build(BuildContext context) {
     final otpControllers = List.generate(6, (_) => useTextEditingController());
     final _numberNotifier = useState<int>(60);
-
     useEffect(() {
       final timer = Timer.periodic(Duration(seconds: 1), (time) {
         if (_numberNotifier.value > 1) {

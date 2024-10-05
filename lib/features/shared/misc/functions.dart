@@ -19,6 +19,7 @@ Future<Position> determinePosition() async {
 
   permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied ||
+      permission == LocationPermission.deniedForever ||
       permission == LocationPermission.unableToDetermine) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {

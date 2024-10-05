@@ -171,6 +171,7 @@ class AuthRepository implements IAuthRepository {
           // Optionally, handle the timeout case.
           print('Auto-retrieval timeout for verification ID: $verificationId');
         },
+        timeout: const Duration(seconds: 30),
       )
           .timeout(const Duration(seconds: 10), onTimeout: () {
         throw const ApiException.defaultException(
@@ -183,6 +184,8 @@ class AuthRepository implements IAuthRepository {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
     } on ApiException catch (apiE) {
       return left(apiE);
+    } catch (e) {
+      return left(ApiException.defaultException('-1', e.toString()));
     }
   }
 
