@@ -3,7 +3,6 @@ part of 'home_bloc.dart';
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState({
-    required List<int> catFilterIndexes,
     int? selectedCategory,
     required bool isLoading,
     required Option<Position> userPosition,
@@ -11,6 +10,7 @@ class HomeState with _$HomeState {
     required List<Category> subCategories,
     required List<UserSkills> services,
     required List<Master> masters,
+    required List<Category> catFilterIndexes,
   }) = _HomeState;
 
   factory HomeState.initial() => HomeState(

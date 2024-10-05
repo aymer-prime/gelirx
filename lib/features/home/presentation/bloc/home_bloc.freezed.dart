@@ -23,7 +23,8 @@ mixin _$HomeEvent {
     required TResult Function(int catIndex) getSubCategories,
     required TResult Function() getServices,
     required TResult Function(LatLng centerPosition) getMasters,
-    required TResult Function(int catId) setFilters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -33,7 +34,8 @@ mixin _$HomeEvent {
     TResult? Function(int catIndex)? getSubCategories,
     TResult? Function()? getServices,
     TResult? Function(LatLng centerPosition)? getMasters,
-    TResult? Function(int catId)? setFilters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,7 +45,8 @@ mixin _$HomeEvent {
     TResult Function(int catIndex)? getSubCategories,
     TResult Function()? getServices,
     TResult Function(LatLng centerPosition)? getMasters,
-    TResult Function(int catId)? setFilters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$HomeEvent {
     required TResult Function(_GetServices value) getServices,
     required TResult Function(_GetMasters value) getMasters,
     required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$HomeEvent {
     TResult? Function(_GetServices value)? getServices,
     TResult? Function(_GetMasters value)? getMasters,
     TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$HomeEvent {
     TResult Function(_GetServices value)? getServices,
     TResult Function(_GetMasters value)? getMasters,
     TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,7 +152,8 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     required TResult Function(int catIndex) getSubCategories,
     required TResult Function() getServices,
     required TResult Function(LatLng centerPosition) getMasters,
-    required TResult Function(int catId) setFilters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
   }) {
     return getCurrentPosition();
   }
@@ -159,7 +166,8 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult? Function(int catIndex)? getSubCategories,
     TResult? Function()? getServices,
     TResult? Function(LatLng centerPosition)? getMasters,
-    TResult? Function(int catId)? setFilters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
   }) {
     return getCurrentPosition?.call();
   }
@@ -172,7 +180,8 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult Function(int catIndex)? getSubCategories,
     TResult Function()? getServices,
     TResult Function(LatLng centerPosition)? getMasters,
-    TResult Function(int catId)? setFilters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
     required TResult orElse(),
   }) {
     if (getCurrentPosition != null) {
@@ -190,6 +199,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     required TResult Function(_GetServices value) getServices,
     required TResult Function(_GetMasters value) getMasters,
     required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
   }) {
     return getCurrentPosition(this);
   }
@@ -203,6 +213,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult? Function(_GetServices value)? getServices,
     TResult? Function(_GetMasters value)? getMasters,
     TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
   }) {
     return getCurrentPosition?.call(this);
   }
@@ -216,6 +227,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult Function(_GetServices value)? getServices,
     TResult Function(_GetMasters value)? getMasters,
     TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
     required TResult orElse(),
   }) {
     if (getCurrentPosition != null) {
@@ -275,7 +287,8 @@ class _$GetCategoriesImpl implements _GetCategories {
     required TResult Function(int catIndex) getSubCategories,
     required TResult Function() getServices,
     required TResult Function(LatLng centerPosition) getMasters,
-    required TResult Function(int catId) setFilters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
   }) {
     return getCategories();
   }
@@ -288,7 +301,8 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult? Function(int catIndex)? getSubCategories,
     TResult? Function()? getServices,
     TResult? Function(LatLng centerPosition)? getMasters,
-    TResult? Function(int catId)? setFilters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
   }) {
     return getCategories?.call();
   }
@@ -301,7 +315,8 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult Function(int catIndex)? getSubCategories,
     TResult Function()? getServices,
     TResult Function(LatLng centerPosition)? getMasters,
-    TResult Function(int catId)? setFilters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
     required TResult orElse(),
   }) {
     if (getCategories != null) {
@@ -319,6 +334,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     required TResult Function(_GetServices value) getServices,
     required TResult Function(_GetMasters value) getMasters,
     required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
   }) {
     return getCategories(this);
   }
@@ -332,6 +348,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult? Function(_GetServices value)? getServices,
     TResult? Function(_GetMasters value)? getMasters,
     TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
   }) {
     return getCategories?.call(this);
   }
@@ -345,6 +362,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult Function(_GetServices value)? getServices,
     TResult Function(_GetMasters value)? getMasters,
     TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
     required TResult orElse(),
   }) {
     if (getCategories != null) {
@@ -433,7 +451,8 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     required TResult Function(int catIndex) getSubCategories,
     required TResult Function() getServices,
     required TResult Function(LatLng centerPosition) getMasters,
-    required TResult Function(int catId) setFilters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
   }) {
     return getSubCategories(catIndex);
   }
@@ -446,7 +465,8 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult? Function(int catIndex)? getSubCategories,
     TResult? Function()? getServices,
     TResult? Function(LatLng centerPosition)? getMasters,
-    TResult? Function(int catId)? setFilters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
   }) {
     return getSubCategories?.call(catIndex);
   }
@@ -459,7 +479,8 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult Function(int catIndex)? getSubCategories,
     TResult Function()? getServices,
     TResult Function(LatLng centerPosition)? getMasters,
-    TResult Function(int catId)? setFilters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
     required TResult orElse(),
   }) {
     if (getSubCategories != null) {
@@ -477,6 +498,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     required TResult Function(_GetServices value) getServices,
     required TResult Function(_GetMasters value) getMasters,
     required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
   }) {
     return getSubCategories(this);
   }
@@ -490,6 +512,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult? Function(_GetServices value)? getServices,
     TResult? Function(_GetMasters value)? getMasters,
     TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
   }) {
     return getSubCategories?.call(this);
   }
@@ -503,6 +526,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult Function(_GetServices value)? getServices,
     TResult Function(_GetMasters value)? getMasters,
     TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
     required TResult orElse(),
   }) {
     if (getSubCategories != null) {
@@ -571,7 +595,8 @@ class _$GetServicesImpl implements _GetServices {
     required TResult Function(int catIndex) getSubCategories,
     required TResult Function() getServices,
     required TResult Function(LatLng centerPosition) getMasters,
-    required TResult Function(int catId) setFilters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
   }) {
     return getServices();
   }
@@ -584,7 +609,8 @@ class _$GetServicesImpl implements _GetServices {
     TResult? Function(int catIndex)? getSubCategories,
     TResult? Function()? getServices,
     TResult? Function(LatLng centerPosition)? getMasters,
-    TResult? Function(int catId)? setFilters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
   }) {
     return getServices?.call();
   }
@@ -597,7 +623,8 @@ class _$GetServicesImpl implements _GetServices {
     TResult Function(int catIndex)? getSubCategories,
     TResult Function()? getServices,
     TResult Function(LatLng centerPosition)? getMasters,
-    TResult Function(int catId)? setFilters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
     required TResult orElse(),
   }) {
     if (getServices != null) {
@@ -615,6 +642,7 @@ class _$GetServicesImpl implements _GetServices {
     required TResult Function(_GetServices value) getServices,
     required TResult Function(_GetMasters value) getMasters,
     required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
   }) {
     return getServices(this);
   }
@@ -628,6 +656,7 @@ class _$GetServicesImpl implements _GetServices {
     TResult? Function(_GetServices value)? getServices,
     TResult? Function(_GetMasters value)? getMasters,
     TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
   }) {
     return getServices?.call(this);
   }
@@ -641,6 +670,7 @@ class _$GetServicesImpl implements _GetServices {
     TResult Function(_GetServices value)? getServices,
     TResult Function(_GetMasters value)? getMasters,
     TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
     required TResult orElse(),
   }) {
     if (getServices != null) {
@@ -728,7 +758,8 @@ class _$GetMastersImpl implements _GetMasters {
     required TResult Function(int catIndex) getSubCategories,
     required TResult Function() getServices,
     required TResult Function(LatLng centerPosition) getMasters,
-    required TResult Function(int catId) setFilters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
   }) {
     return getMasters(centerPosition);
   }
@@ -741,7 +772,8 @@ class _$GetMastersImpl implements _GetMasters {
     TResult? Function(int catIndex)? getSubCategories,
     TResult? Function()? getServices,
     TResult? Function(LatLng centerPosition)? getMasters,
-    TResult? Function(int catId)? setFilters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
   }) {
     return getMasters?.call(centerPosition);
   }
@@ -754,7 +786,8 @@ class _$GetMastersImpl implements _GetMasters {
     TResult Function(int catIndex)? getSubCategories,
     TResult Function()? getServices,
     TResult Function(LatLng centerPosition)? getMasters,
-    TResult Function(int catId)? setFilters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
     required TResult orElse(),
   }) {
     if (getMasters != null) {
@@ -772,6 +805,7 @@ class _$GetMastersImpl implements _GetMasters {
     required TResult Function(_GetServices value) getServices,
     required TResult Function(_GetMasters value) getMasters,
     required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
   }) {
     return getMasters(this);
   }
@@ -785,6 +819,7 @@ class _$GetMastersImpl implements _GetMasters {
     TResult? Function(_GetServices value)? getServices,
     TResult? Function(_GetMasters value)? getMasters,
     TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
   }) {
     return getMasters?.call(this);
   }
@@ -798,6 +833,7 @@ class _$GetMastersImpl implements _GetMasters {
     TResult Function(_GetServices value)? getServices,
     TResult Function(_GetMasters value)? getMasters,
     TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
     required TResult orElse(),
   }) {
     if (getMasters != null) {
@@ -825,7 +861,9 @@ abstract class _$$SetFiltersImplCopyWith<$Res> {
           _$SetFiltersImpl value, $Res Function(_$SetFiltersImpl) then) =
       __$$SetFiltersImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int catId});
+  $Res call({Category cat});
+
+  $CategoryCopyWith<$Res> get cat;
 }
 
 /// @nodoc
@@ -841,28 +879,38 @@ class __$$SetFiltersImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catId = null,
+    Object? cat = null,
   }) {
     return _then(_$SetFiltersImpl(
-      null == catId
-          ? _value.catId
-          : catId // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == cat
+          ? _value.cat
+          : cat // ignore: cast_nullable_to_non_nullable
+              as Category,
     ));
+  }
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res> get cat {
+    return $CategoryCopyWith<$Res>(_value.cat, (value) {
+      return _then(_value.copyWith(cat: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$SetFiltersImpl implements _SetFilters {
-  const _$SetFiltersImpl(this.catId);
+  const _$SetFiltersImpl(this.cat);
 
   @override
-  final int catId;
+  final Category cat;
 
   @override
   String toString() {
-    return 'HomeEvent.setFilters(catId: $catId)';
+    return 'HomeEvent.setFilters(cat: $cat)';
   }
 
   @override
@@ -870,11 +918,11 @@ class _$SetFiltersImpl implements _SetFilters {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SetFiltersImpl &&
-            (identical(other.catId, catId) || other.catId == catId));
+            (identical(other.cat, cat) || other.cat == cat));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, catId);
+  int get hashCode => Object.hash(runtimeType, cat);
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -892,9 +940,10 @@ class _$SetFiltersImpl implements _SetFilters {
     required TResult Function(int catIndex) getSubCategories,
     required TResult Function() getServices,
     required TResult Function(LatLng centerPosition) getMasters,
-    required TResult Function(int catId) setFilters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
   }) {
-    return setFilters(catId);
+    return setFilters(cat);
   }
 
   @override
@@ -905,9 +954,10 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult? Function(int catIndex)? getSubCategories,
     TResult? Function()? getServices,
     TResult? Function(LatLng centerPosition)? getMasters,
-    TResult? Function(int catId)? setFilters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
   }) {
-    return setFilters?.call(catId);
+    return setFilters?.call(cat);
   }
 
   @override
@@ -918,11 +968,12 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult Function(int catIndex)? getSubCategories,
     TResult Function()? getServices,
     TResult Function(LatLng centerPosition)? getMasters,
-    TResult Function(int catId)? setFilters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
     required TResult orElse(),
   }) {
     if (setFilters != null) {
-      return setFilters(catId);
+      return setFilters(cat);
     }
     return orElse();
   }
@@ -936,6 +987,7 @@ class _$SetFiltersImpl implements _SetFilters {
     required TResult Function(_GetServices value) getServices,
     required TResult Function(_GetMasters value) getMasters,
     required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
   }) {
     return setFilters(this);
   }
@@ -949,6 +1001,7 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult? Function(_GetServices value)? getServices,
     TResult? Function(_GetMasters value)? getMasters,
     TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
   }) {
     return setFilters?.call(this);
   }
@@ -962,6 +1015,7 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult Function(_GetServices value)? getServices,
     TResult Function(_GetMasters value)? getMasters,
     TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
     required TResult orElse(),
   }) {
     if (setFilters != null) {
@@ -972,9 +1026,9 @@ class _$SetFiltersImpl implements _SetFilters {
 }
 
 abstract class _SetFilters implements HomeEvent {
-  const factory _SetFilters(final int catId) = _$SetFiltersImpl;
+  const factory _SetFilters(final Category cat) = _$SetFiltersImpl;
 
-  int get catId;
+  Category get cat;
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -984,8 +1038,142 @@ abstract class _SetFilters implements HomeEvent {
 }
 
 /// @nodoc
+abstract class _$$ClearFiltersImplCopyWith<$Res> {
+  factory _$$ClearFiltersImplCopyWith(
+          _$ClearFiltersImpl value, $Res Function(_$ClearFiltersImpl) then) =
+      __$$ClearFiltersImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClearFiltersImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$ClearFiltersImpl>
+    implements _$$ClearFiltersImplCopyWith<$Res> {
+  __$$ClearFiltersImplCopyWithImpl(
+      _$ClearFiltersImpl _value, $Res Function(_$ClearFiltersImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClearFiltersImpl implements _ClearFilters {
+  const _$ClearFiltersImpl();
+
+  @override
+  String toString() {
+    return 'HomeEvent.clearFilters()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClearFiltersImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCurrentPosition,
+    required TResult Function() getCategories,
+    required TResult Function(int catIndex) getSubCategories,
+    required TResult Function() getServices,
+    required TResult Function(LatLng centerPosition) getMasters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
+  }) {
+    return clearFilters();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCurrentPosition,
+    TResult? Function()? getCategories,
+    TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function()? getServices,
+    TResult? Function(LatLng centerPosition)? getMasters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
+  }) {
+    return clearFilters?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCurrentPosition,
+    TResult Function()? getCategories,
+    TResult Function(int catIndex)? getSubCategories,
+    TResult Function()? getServices,
+    TResult Function(LatLng centerPosition)? getMasters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
+    required TResult orElse(),
+  }) {
+    if (clearFilters != null) {
+      return clearFilters();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetCategories value) getCategories,
+    required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetServices value) getServices,
+    required TResult Function(_GetMasters value) getMasters,
+    required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+  }) {
+    return clearFilters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetCategories value)? getCategories,
+    TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetServices value)? getServices,
+    TResult? Function(_GetMasters value)? getMasters,
+    TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+  }) {
+    return clearFilters?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetCategories value)? getCategories,
+    TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetServices value)? getServices,
+    TResult Function(_GetMasters value)? getMasters,
+    TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    required TResult orElse(),
+  }) {
+    if (clearFilters != null) {
+      return clearFilters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearFilters implements HomeEvent {
+  const factory _ClearFilters() = _$ClearFiltersImpl;
+}
+
+/// @nodoc
 mixin _$HomeState {
-  List<int> get catFilterIndexes => throw _privateConstructorUsedError;
   int? get selectedCategory => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Option<Position> get userPosition => throw _privateConstructorUsedError;
@@ -993,6 +1181,7 @@ mixin _$HomeState {
   List<Category> get subCategories => throw _privateConstructorUsedError;
   List<UserSkills> get services => throw _privateConstructorUsedError;
   List<Master> get masters => throw _privateConstructorUsedError;
+  List<Category> get catFilterIndexes => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -1007,14 +1196,14 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call(
-      {List<int> catFilterIndexes,
-      int? selectedCategory,
+      {int? selectedCategory,
       bool isLoading,
       Option<Position> userPosition,
       List<Category> categories,
       List<Category> subCategories,
       List<UserSkills> services,
-      List<Master> masters});
+      List<Master> masters,
+      List<Category> catFilterIndexes});
 }
 
 /// @nodoc
@@ -1032,7 +1221,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catFilterIndexes = null,
     Object? selectedCategory = freezed,
     Object? isLoading = null,
     Object? userPosition = null,
@@ -1040,12 +1228,9 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? subCategories = null,
     Object? services = null,
     Object? masters = null,
+    Object? catFilterIndexes = null,
   }) {
     return _then(_value.copyWith(
-      catFilterIndexes: null == catFilterIndexes
-          ? _value.catFilterIndexes
-          : catFilterIndexes // ignore: cast_nullable_to_non_nullable
-              as List<int>,
       selectedCategory: freezed == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
@@ -1074,6 +1259,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.masters
           : masters // ignore: cast_nullable_to_non_nullable
               as List<Master>,
+      catFilterIndexes: null == catFilterIndexes
+          ? _value.catFilterIndexes
+          : catFilterIndexes // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
     ) as $Val);
   }
 }
@@ -1087,14 +1276,14 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<int> catFilterIndexes,
-      int? selectedCategory,
+      {int? selectedCategory,
       bool isLoading,
       Option<Position> userPosition,
       List<Category> categories,
       List<Category> subCategories,
       List<UserSkills> services,
-      List<Master> masters});
+      List<Master> masters,
+      List<Category> catFilterIndexes});
 }
 
 /// @nodoc
@@ -1110,7 +1299,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? catFilterIndexes = null,
     Object? selectedCategory = freezed,
     Object? isLoading = null,
     Object? userPosition = null,
@@ -1118,12 +1306,9 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? subCategories = null,
     Object? services = null,
     Object? masters = null,
+    Object? catFilterIndexes = null,
   }) {
     return _then(_$HomeStateImpl(
-      catFilterIndexes: null == catFilterIndexes
-          ? _value._catFilterIndexes
-          : catFilterIndexes // ignore: cast_nullable_to_non_nullable
-              as List<int>,
       selectedCategory: freezed == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
@@ -1152,6 +1337,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value._masters
           : masters // ignore: cast_nullable_to_non_nullable
               as List<Master>,
+      catFilterIndexes: null == catFilterIndexes
+          ? _value._catFilterIndexes
+          : catFilterIndexes // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
     ));
   }
 }
@@ -1160,28 +1349,19 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
-      {required final List<int> catFilterIndexes,
-      this.selectedCategory,
+      {this.selectedCategory,
       required this.isLoading,
       required this.userPosition,
       required final List<Category> categories,
       required final List<Category> subCategories,
       required final List<UserSkills> services,
-      required final List<Master> masters})
-      : _catFilterIndexes = catFilterIndexes,
-        _categories = categories,
+      required final List<Master> masters,
+      required final List<Category> catFilterIndexes})
+      : _categories = categories,
         _subCategories = subCategories,
         _services = services,
-        _masters = masters;
-
-  final List<int> _catFilterIndexes;
-  @override
-  List<int> get catFilterIndexes {
-    if (_catFilterIndexes is EqualUnmodifiableListView)
-      return _catFilterIndexes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_catFilterIndexes);
-  }
+        _masters = masters,
+        _catFilterIndexes = catFilterIndexes;
 
   @override
   final int? selectedCategory;
@@ -1221,9 +1401,18 @@ class _$HomeStateImpl implements _HomeState {
     return EqualUnmodifiableListView(_masters);
   }
 
+  final List<Category> _catFilterIndexes;
+  @override
+  List<Category> get catFilterIndexes {
+    if (_catFilterIndexes is EqualUnmodifiableListView)
+      return _catFilterIndexes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_catFilterIndexes);
+  }
+
   @override
   String toString() {
-    return 'HomeState(catFilterIndexes: $catFilterIndexes, selectedCategory: $selectedCategory, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories, services: $services, masters: $masters)';
+    return 'HomeState(selectedCategory: $selectedCategory, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories, services: $services, masters: $masters, catFilterIndexes: $catFilterIndexes)';
   }
 
   @override
@@ -1231,8 +1420,6 @@ class _$HomeStateImpl implements _HomeState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HomeStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._catFilterIndexes, _catFilterIndexes) &&
             (identical(other.selectedCategory, selectedCategory) ||
                 other.selectedCategory == selectedCategory) &&
             (identical(other.isLoading, isLoading) ||
@@ -1244,20 +1431,22 @@ class _$HomeStateImpl implements _HomeState {
             const DeepCollectionEquality()
                 .equals(other._subCategories, _subCategories) &&
             const DeepCollectionEquality().equals(other._services, _services) &&
-            const DeepCollectionEquality().equals(other._masters, _masters));
+            const DeepCollectionEquality().equals(other._masters, _masters) &&
+            const DeepCollectionEquality()
+                .equals(other._catFilterIndexes, _catFilterIndexes));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_catFilterIndexes),
       selectedCategory,
       isLoading,
       userPosition,
       const DeepCollectionEquality().hash(_categories),
       const DeepCollectionEquality().hash(_subCategories),
       const DeepCollectionEquality().hash(_services),
-      const DeepCollectionEquality().hash(_masters));
+      const DeepCollectionEquality().hash(_masters),
+      const DeepCollectionEquality().hash(_catFilterIndexes));
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -1270,17 +1459,15 @@ class _$HomeStateImpl implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {required final List<int> catFilterIndexes,
-      final int? selectedCategory,
+      {final int? selectedCategory,
       required final bool isLoading,
       required final Option<Position> userPosition,
       required final List<Category> categories,
       required final List<Category> subCategories,
       required final List<UserSkills> services,
-      required final List<Master> masters}) = _$HomeStateImpl;
+      required final List<Master> masters,
+      required final List<Category> catFilterIndexes}) = _$HomeStateImpl;
 
-  @override
-  List<int> get catFilterIndexes;
   @override
   int? get selectedCategory;
   @override
@@ -1295,6 +1482,8 @@ abstract class _HomeState implements HomeState {
   List<UserSkills> get services;
   @override
   List<Master> get masters;
+  @override
+  List<Category> get catFilterIndexes;
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.

@@ -8,5 +8,6 @@ class HomeEvent with _$HomeEvent {
       _GetSubCategories;
   const factory HomeEvent.getServices() = _GetServices;
   const factory HomeEvent.getMasters(LatLng centerPosition) = _GetMasters;
-  const factory HomeEvent.setFilters(int catId) = _SetFilters;
+  const factory HomeEvent.setFilters(Category cat) = _SetFilters;
+  const factory HomeEvent.clearFilters() = _ClearFilters;
 }

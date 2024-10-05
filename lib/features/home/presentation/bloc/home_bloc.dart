@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
@@ -115,6 +116,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         (failure) => emit(state.copyWith(masters: [])),
         (masters) => emit(state.copyWith(masters: masters)),
       );
+    });
+    on<_SetFilters>((event, emit) async {
+      var filters = [...state.catFilterIndexes];
+      if (filters.firstWhereOrNull((p0) => p0.id == event.cat.id) == null) {
+        filters.add(event.cat);
+      } else {
+        filters.remove(event.cat);
+      }
+      emit(state.copyWith(catFilterIndexes: filters));
+    });
+    on<_ClearFilters>((event, emit) async {
+      emit(state.copyWith(catFilterIndexes: []));
     });
   }
 }

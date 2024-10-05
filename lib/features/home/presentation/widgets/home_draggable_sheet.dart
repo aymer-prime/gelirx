@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/List.dart';
@@ -13,6 +14,7 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
+import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.dart';
 import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
@@ -21,11 +23,13 @@ import 'package:shimmer/shimmer.dart';
 
 class HomeDraggableSheet extends StatefulWidget {
   final List<Category> categories;
+  final List<Category> filters;
   final List<UserSkills> services;
   const HomeDraggableSheet({
     super.key,
     required this.categories,
     required this.services,
+    required this.filters,
   });
 
   @override
@@ -74,6 +78,7 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.filters);
     return LayoutBuilder(builder: (context, constraints) {
       return DraggableScrollableSheet(
         key: _sheet,
@@ -98,36 +103,80 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: AppPadding.p8,
                 horizontal: AppPadding.p16,
               ),
               child: CustomScrollView(
                 controller: scrollController,
                 slivers: [
                   SliverToBoxAdapter(
-                    child: Center(
-                      child: Container(
-                        height: AppSize.s4,
-                        width: AppSize.s64,
-                        decoration: BoxDecoration(
-                            color: ColorManager.textSubtitleColor,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s4,
-                            )),
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
                     child: SizedBox(
                       child: Column(
                         children: [
+                          SizedBox(height: AppSize.s8.h),
+                          Center(
+                            child: Container(
+                              height: AppSize.s4,
+                              width: AppSize.s64,
+                              decoration: BoxDecoration(
+                                  color: ColorManager.textSubtitleColor,
+                                  borderRadius: BorderRadius.circular(
+                                    AppSize.s4,
+                                  )),
+                            ),
+                          ),
                           SizedBox(height: AppSize.s8.h),
                           widget.categories.isEmpty
                               ? const AllCategoriesLoadingPlaceholder()
                               : AllCategoriesWidgets(
                                   categories: widget.categories,
                                 ),
-                          SizedBox(height: AppSize.s16.h),
+                          widget.filters.isNotEmpty
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: AppPadding.p8),
+                                  child: Wrap(
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            context.read<HomeBloc>().add(
+                                                  const HomeEvent
+                                                      .clearFilters(),
+                                                );
+                                          },
+                                          style: IconButton.styleFrom(
+                                              backgroundColor:
+                                                  ColorManager.white),
+                                          icon: const Icon(Icons.close_rounded),
+                                        ),
+                                        ...widget.filters.map(
+                                          (filter) => Container(
+                                            padding: const EdgeInsets.all(
+                                                AppPadding.p6),
+                                            margin: const EdgeInsets.all(
+                                                AppMargin.m4),
+                                            decoration: BoxDecoration(
+                                              color: ColorManager.white,
+                                              border: Border.all(
+                                                color: ColorManager
+                                                    .textfieldBorderColor,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                AppSize.s12,
+                                              ),
+                                            ),
+                                            child: Text(
+                                              filter.name,
+                                              style:
+                                                  context.textTheme.labelMedium,
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                )
+                              : SizedBox(height: AppSize.s16.h),
                           (widget.categories.isEmpty || widget.services.isEmpty)
                               ? Column(
                                   children: [
@@ -136,7 +185,12 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                                     const AllServicesLoadingPlaceholder(),
                                   ],
                                 )
-                              : AllServicesWidget(allSkills: widget.services),
+                              : AllServicesWidget(
+                                  allSkills: widget.services,
+                                  filterIDs:
+                                      widget.filters.map((e) => e.id).toList(),
+                                ),
+                          SizedBox(height: AppSize.s60.h),
                         ],
                       ),
                     ),
@@ -242,38 +296,35 @@ class AllServicesLoadingPlaceholder extends StatelessWidget {
 
 class AllServicesWidget extends StatelessWidget {
   final List<UserSkills> allSkills;
+  final List<String> filterIDs;
   const AllServicesWidget({
     super.key,
     required this.allSkills,
+    required this.filterIDs,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ...allSkills.map(
-          (service) => service.subSkill.isEmpty
-              ? const SizedBox()
-              : Container(
-                  padding: const EdgeInsets.all(AppPadding.p16),
-                  decoration: BoxDecoration(
-                    color: ColorManager.white,
-                    borderRadius: BorderRadius.circular(
-                      AppSize.s20.r,
-                    ),
-                  ),
-                  child: ServiceWidget(
-                    service: service,
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      ...allSkills.map(
+        (service) => (service.subSkill.isEmpty ||
+                (!filterIDs.contains(service.skill.id) && filterIDs.isNotEmpty))
+            ? const SizedBox()
+            : Container(
+                padding: const EdgeInsets.all(AppPadding.p16),
+                margin: const EdgeInsets.symmetric(vertical: AppMargin.m8),
+                decoration: BoxDecoration(
+                  color: ColorManager.white,
+                  borderRadius: BorderRadius.circular(
+                    AppSize.s20.r,
                   ),
                 ),
-        ),
-      ].separateWith(
-        SizedBox(
-          height: AppSize.s16.w,
-        ),
+                child: ServiceWidget(
+                  service: service,
+                ),
+              ),
       ),
-    );
+    ]);
   }
 }
 
@@ -677,34 +728,4 @@ Future<dynamic> bookServiceBottomSheet(
       ),
     ),
   );
-}
-
-class CategoriesWidget extends StatelessWidget {
-  final List<Category> categories;
-  final int selectedIndex;
-  const CategoriesWidget({
-    super.key,
-    required this.categories,
-    required this.selectedIndex,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.spaceBetween,
-      direction: Axis.horizontal,
-      runSpacing: AppSize.s8,
-      children: categories
-          .map(
-            (e) => SizedBox(
-              width: AppSize.s80,
-              child: CategoryItem(
-                category: e,
-                onTap: () {},
-              ),
-            ),
-          )
-          .toList(),
-    );
-  }
 }

@@ -42,17 +42,17 @@ class AllCategoriesWidgets extends StatelessWidget {
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {
-                    var catDetails =
-                        context.read<HomeBloc>().state.services.firstWhere(
-                              (skill) => skill.skill.id == categories[index].id,
-                            );
-                    context.router.push(
-                      CategoryRoute(categoryDetails: catDetails),
-                    );
-                    // context.read<HomeBloc>().add(
-                    //       HomeEvent.getSubCategories(catIndex: index),
-                    //     );
-                    //context.router.push(const ServicesRoute());
+                    print('tapped cat');
+                    context.read<HomeBloc>().add(
+                          HomeEvent.setFilters(categories[index]),
+                        );
+                    // var catDetails =
+                    //     context.read<HomeBloc>().state.services.firstWhere(
+                    //           (skill) => skill.skill.id == categories[index].id,
+                    //         );
+                    // context.router.push(
+                    //   CategoryRoute(categoryDetails: catDetails),
+                    // );
                   },
                 ),
               ),

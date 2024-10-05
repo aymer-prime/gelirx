@@ -93,6 +93,7 @@ class HomePage extends StatelessWidget {
               HomeDraggableSheet(
                 categories: state.categories,
                 services: state.services,
+                filters: state.catFilterIndexes,
               ),
             ],
           );
