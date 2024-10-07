@@ -53,13 +53,17 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app will access your camera to take photo </string>
-	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
-	<dict>
-		<key>masters</key>
-		<string>The example App requires temporary access to the device&apos;s precise location.</string>
-	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open to get your current location</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to provide the best experience</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location even when the app is in the background</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We need your location both while using the app and in the background</string>
+    <key>NSLocationTemporaryUsageDescriptionDictionary</key>
+    <dict>
+        <key>Purpose</key>
+        <string>We need your location temporarily for this feature</string>
+    </dict>
 	<key>Privacy</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
