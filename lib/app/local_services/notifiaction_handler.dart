@@ -75,9 +75,10 @@ class NotificationHandler {
 
     // Listen for the call accept event
     FlutterCallkitIncoming.onEvent.listen((event) async {
-      if (event!.event == Event.actionCallAccept) {
+      _navigateToDashboard(message);
+      if (event!.event == Event.actionCallEnded) {
         // Navigate to the dashboard if needed
-        _navigateToDashboard(message);
+
       }
     });
   }

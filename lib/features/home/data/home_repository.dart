@@ -182,7 +182,7 @@ class HomeRepository implements IHomeRepository {
         'firebase_token': fcmToken
       };
       var response = await _remoteService.post(
-        '${Constants.baseUrl}user/update-firebase-token',
+        '${Constants.baseUrl}user/update-firebase-token.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

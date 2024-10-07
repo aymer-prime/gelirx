@@ -1,11 +1,28 @@
 import Flutter
+import AVFAudio
 import UIKit
 import PushKit
 import CallKit
 import flutter_callkit_incoming
 
 @main
-@objc class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate {
+@objc class AppDelegate: FlutterAppDelegate, PKPushRegistryDelegate, CallkitIncomingAppDelegate{
+    func onEnd(_ call: flutter_callkit_incoming.Call, _ action: CXEndCallAction) {
+        print("end")
+    }
+
+    func onTimeOut(_ call: flutter_callkit_incoming.Call) {
+        
+    }
+
+    func didActivateAudioSession(_ audioSession: AVAudioSession) {
+    
+    }
+
+    func didDeactivateAudioSession(_ audioSession: AVAudioSession) {
+        
+    }
+
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -28,7 +45,7 @@ import flutter_callkit_incoming
         }
         
         guard let isVideo = userActivity.isVideo else {
-            return false
+            return true
         }
         let objData = handleObj.getDecryptHandle()
         let nameCaller = objData["nameCaller"] as? String ?? ""
@@ -64,7 +81,7 @@ import flutter_callkit_incoming
         let id = dic["id"] as? String ?? ""
         let nameCaller = payload.dictionaryPayload["nameCaller"] as? String ?? ""
         let handle = payload.dictionaryPayload["handle"] as? String ?? ""
-        let isVideo = payload.dictionaryPayload["isVideo"] as? Bool ?? false
+        let isVideo = payload.dictionaryPayload["isVideo"] as? Bool ?? true
         
         let data = flutter_callkit_incoming.Data(id: id, nameCaller: nameCaller, handle: handle, type: isVideo ? 1 : 0)
         //set more data
@@ -74,10 +91,45 @@ import flutter_callkit_incoming
         SwiftFlutterCallkitIncomingPlugin.sharedInstance?.showCallkitIncoming(data, fromPushKit: true)
 //        
 //        //Make sure call completion()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            completion()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            completion()
+        }
     }
+    
+    // Func Call api for Accept
+        func onAccept(_ call: Call, _ action: CXAnswerCallAction) {
+            SwiftFlutterCallkitIncomingPlugin.sharedInstance?.sendEventCustom("com.hiennv.flutter_callkit_incomin.ACTION_CALL_ACCEPT", body: call.data.toJSON() as NSDictionary)
+            let json = ["action": "ACCEPT", "data": call.data.toJSON()] as [String: Any]
+                    print("LOG: onAccept")
+                    self.performRequest(parameters: json) { result in
+                        switch result {
+                        case .success(let data):
+                            print("Received data: \(data)")
+                            //Make sure call action.fulfill() when you are done(connected WebRTC - Start counting seconds)
+                            action.fulfill()
+
+                        case .failure(let error):
+                            print("Error: \(error.localizedDescription)")
+                        }
+            }
+        }
+        
+        // Func Call API for Decline
+        func onDecline(_ call: Call, _ action: CXEndCallAction) {
+            let json = ["action": "DECLINE", "data": call.data.toJSON()] as [String: Any]
+                 print("LOG: onDecline")
+                 self.performRequest(parameters: json) { result in
+                     switch result {
+                     case .success(let data):
+                         print("Received data: \(data)")
+                         //Make sure call action.fulfill() when you are done
+                         action.fulfill()
+
+                     case .failure(let error):
+                         print("Error: \(error.localizedDescription)")
+                     }
+                 }
+        }
     
     
     // Func Call api for Accept
@@ -145,5 +197,43 @@ import flutter_callkit_incoming
 //            }
 //        }
 //    }
+    
+    func performRequest(parameters: [String: Any], completion: @escaping (Result<Any, Error>) -> Void) {
+            if let url = URL(string: "https://webhook.site/e32a591f-0d17-469d-a70d-33e9f9d60727") {
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                //Add header
+                
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                    request.httpBody = jsonData
+                } catch {
+                    completion(.failure(error))
+                    return
+                }
+                
+                let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+                    
+                    guard let data = data else {
+                        completion(.failure(NSError(domain: "mobile.app", code: 0, userInfo: [NSLocalizedDescriptionKey: "Empty data"])))
+                        return
+                    }
 
+                    do {
+                        let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
+                        completion(.success(jsonObject))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
+                task.resume()
+            } else {
+                completion(.failure(NSError(domain: "mobile.app", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            }
+        }
 }
