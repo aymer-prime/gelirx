@@ -111,7 +111,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     on<_GetMasters>((event, emit) async {
       var masters = await _iHomeRepository.getMasters(
-          event.centerPosition, state.selectedCategory);
+          event.centerPosition, state.selectedCategory?.toString());
       masters.fold(
         (failure) => emit(state.copyWith(masters: [])),
         (masters) => emit(state.copyWith(masters: masters)),
@@ -128,6 +128,56 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
     on<_ClearFilters>((event, emit) async {
       emit(state.copyWith(catFilterIndexes: []));
+    });
+    on<_SelectSub>((event, emit) async {
+      emit(state.copyWith(
+        isLoading: true,
+      ));
+      await state.userPosition.fold(
+        () async {
+          print('no user position');
+          emit(state.copyWith(
+            isLoading: false,
+          ));
+        },
+        (userPosition) async {
+          LatLng position =
+              LatLng(userPosition.latitude, userPosition.longitude);
+          var result = await _iHomeRepository.getMasters(position, event.subId);
+          result.fold(
+            (l) => emit(state.copyWith(
+              isLoading: false,
+            )),
+            (selectedMasters) {
+              var selectedIndex = state.services
+                  .indexWhere((skill) => skill.skill.id == event.id);
+              var selectedSkill = state.services[selectedIndex].copyWith(
+                masters: selectedMasters,
+                selectedSubSkill: event.subId,
+              );
+              var newServices = [...state.services];
+              newServices[selectedIndex] = selectedSkill;
+              emit(state.copyWith(
+                isLoading: false,
+                masters: selectedMasters,
+                services: newServices,
+              ));
+            },
+          );
+        },
+      );
+    });
+    on<_UnselectSub>((event, emit) async {
+      var selectedIndex =
+          state.services.indexWhere((skill) => skill.skill.id == event.id);
+
+      var newServices = [...state.services];
+      newServices[selectedIndex] = newServices[selectedIndex].copyWith(
+        selectedSubSkill: null,
+      );
+      emit(
+        state.copyWith(services: newServices),
+      );
     });
   }
 }

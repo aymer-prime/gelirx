@@ -67,52 +67,6 @@ class BookingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [CategoryPage]
-class CategoryRoute extends PageRouteInfo<CategoryRouteArgs> {
-  CategoryRoute({
-    Key? key,
-    required UserSkills categoryDetails,
-    List<PageRouteInfo>? children,
-  }) : super(
-          CategoryRoute.name,
-          args: CategoryRouteArgs(
-            key: key,
-            categoryDetails: categoryDetails,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'CategoryRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      final args = data.argsAs<CategoryRouteArgs>();
-      return CategoryPage(
-        key: args.key,
-        categoryDetails: args.categoryDetails,
-      );
-    },
-  );
-}
-
-class CategoryRouteArgs {
-  const CategoryRouteArgs({
-    this.key,
-    required this.categoryDetails,
-  });
-
-  final Key? key;
-
-  final UserSkills categoryDetails;
-
-  @override
-  String toString() {
-    return 'CategoryRouteArgs{key: $key, categoryDetails: $categoryDetails}';
-  }
-}
-
-/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

@@ -10,4 +10,6 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.getMasters(LatLng centerPosition) = _GetMasters;
   const factory HomeEvent.setFilters(Category cat) = _SetFilters;
   const factory HomeEvent.clearFilters() = _ClearFilters;
+  const factory HomeEvent.selectSub(String id, String subId) = _SelectSub;
+  const factory HomeEvent.unselectSub(String id) = _UnselectSub;
 }

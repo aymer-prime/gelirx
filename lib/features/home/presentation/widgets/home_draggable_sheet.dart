@@ -14,10 +14,10 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
+import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.dart';
 import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
-import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -111,6 +111,7 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                   SliverToBoxAdapter(
                     child: SizedBox(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: AppSize.s8.h),
                           Center(
@@ -132,8 +133,9 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                                 ),
                           widget.filters.isNotEmpty
                               ? Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: AppPadding.p8),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: AppPadding.p8.h,
+                                  ),
                                   child: Wrap(
                                       crossAxisAlignment:
                                           WrapCrossAlignment.center,
@@ -146,25 +148,25 @@ class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
                                                 );
                                           },
                                           style: IconButton.styleFrom(
-                                              backgroundColor:
-                                                  ColorManager.white),
-                                          icon: const Icon(Icons.close_rounded),
+                                            backgroundColor: ColorManager.white,
+                                          ),
+                                          icon: Icon(
+                                            Icons.close_rounded,
+                                            size: AppSize.s24,
+                                            color: ColorManager.textTitleColor,
+                                          ),
                                         ),
                                         ...widget.filters.map(
                                           (filter) => Container(
                                             padding: const EdgeInsets.all(
-                                                AppPadding.p6),
+                                                AppPadding.p12),
                                             margin: const EdgeInsets.all(
                                                 AppMargin.m4),
                                             decoration: BoxDecoration(
                                               color: ColorManager.white,
-                                              border: Border.all(
-                                                color: ColorManager
-                                                    .textfieldBorderColor,
-                                              ),
                                               borderRadius:
                                                   BorderRadius.circular(
-                                                AppSize.s12,
+                                                AppSize.s20,
                                               ),
                                             ),
                                             child: Text(
@@ -319,9 +321,124 @@ class AllServicesWidget extends StatelessWidget {
                     AppSize.s20.r,
                   ),
                 ),
-                child: ServiceWidget(
-                  service: service,
-                ),
+                child: service.selectedSubSkill == null
+                    ? ServiceWidget(
+                        service: service,
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  context.read<HomeBloc>().add(
+                                        HomeEvent.unselectSub(service.skill.id),
+                                      );
+                                },
+                                child: const Icon(
+                                  Icons.arrow_back_rounded,
+                                  size: AppSize.s24,
+                                ),
+                              ),
+                              SizedBox(width: AppSize.s8.w),
+                              Text(
+                                service.subSkill
+                                    .firstWhereOrNull(
+                                      (sub) =>
+                                          sub.id == service.selectedSubSkill,
+                                    )!
+                                    .name,
+                                style: context.textTheme.displaySmall,
+                              )
+                            ],
+                          ),
+                          SizedBox(height: AppSize.s16.h),
+                          SizedBox(
+                            height: AppSize.s190.h,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              itemCount: service.masters.length,
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  bookServiceBottomSheet(
+                                    context,
+                                    service.subSkill.firstWhere(
+                                      (sub) =>
+                                          sub.id == service.selectedSubSkill,
+                                    ),
+                                    service.masters[index],
+                                  );
+                                },
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      flex: 2,
+                                      child: Container(
+                                        padding: EdgeInsets.all(AppPadding.p4),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: ColorManager.darkPrimary,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                              AppSize.s20.r),
+                                        ),
+                                        child: Image.asset(
+                                          ImageAssets.masterIcon,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: AppSize.s8),
+                                    Flexible(
+                                      flex: 8,
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Master Name',
+                                                style: context
+                                                    .textTheme.titleLarge,
+                                              ),
+                                              const SizedBox(width: AppSize.s8),
+                                              Text(
+                                                'ID: ${service.masters[index].id}',
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(width: AppSize.s8),
+                                          Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                  ImageAssets.star),
+                                              const SizedBox(width: AppSize.s4),
+                                              Text(
+                                                service.masters[index].point,
+                                                style: context
+                                                    .textTheme.labelMedium,
+                                              ),
+                                              const SizedBox(width: AppSize.s4),
+                                              Text(
+                                                '(87)',
+                                                style: context
+                                                    .textTheme.labelSmall,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              separatorBuilder: (context, index) =>
+                                  const Divider(),
+                            ),
+                          ),
+                        ],
+                      ),
               ),
       ),
     ]);
@@ -414,10 +531,14 @@ class ServiceWidget extends StatelessWidget {
             itemCount: service.subSkill.length,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {
-                bookServiceBottomSheet(
-                  context,
-                  service.subSkill[index],
-                );
+                context.read<HomeBloc>().add(HomeEvent.selectSub(
+                      service.skill.id,
+                      service.subSkill[index].id,
+                    ));
+                // bookServiceBottomSheet(
+                //   context,
+                //   service.subSkill[index],
+                // );
               },
               child: AspectRatio(
                 aspectRatio: 0.65,
@@ -446,25 +567,6 @@ class ServiceWidget extends StatelessWidget {
                 ),
               ),
             ),
-            // AspectRatio(
-            //   aspectRatio: 0.85,
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(
-            //       AppSize.s20,
-            //     ),
-            //     child: Container(
-            //       decoration: BoxDecoration(
-            //         color: ColorManager.white,
-            //         borderRadius: BorderRadius.circular(
-            //           AppSize.s20,
-            //         ),
-            //       ),
-            //       child: ServiceCard(
-            //         category: service.subSkill[index],
-            //       ),
-            //     ),
-            //   ),
-            // ),
             separatorBuilder: (context, index) => const SizedBox(
               width: AppSize.s16,
             ),
@@ -475,68 +577,8 @@ class ServiceWidget extends StatelessWidget {
   }
 }
 
-class ServiceCard extends StatelessWidget {
-  final Category category;
-  const ServiceCard({
-    super.key,
-    required this.category,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        bookServiceBottomSheet(context, category);
-      },
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: CachedNetworkImage(
-              imageUrl: category.img.photo,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            bottom: 0.0,
-            left: 0.0,
-            right: 0.0,
-            child: ClipRRect(
-              child: Container(
-                height: AppSize.s40,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.5),
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 2.5,
-                    sigmaY: 2.5,
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppPadding.p4,
-                      ),
-                      child: Text(
-                        category.name,
-                        style: context.textTheme.bodyLarge!.copyWith(
-                          color: ColorManager.white,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
 Future<dynamic> bookServiceBottomSheet(
-    BuildContext context, Category category) {
+    BuildContext context, Category category, Master master) {
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -629,7 +671,7 @@ Future<dynamic> bookServiceBottomSheet(
                                   SvgPicture.asset(ImageAssets.star),
                                   const SizedBox(width: AppSize.s4),
                                   Text(
-                                    '4.8',
+                                    master.point,
                                     style: context.textTheme.labelMedium,
                                   ),
                                   const SizedBox(width: AppSize.s4),

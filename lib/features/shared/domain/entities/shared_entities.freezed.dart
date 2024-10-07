@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserSkills {
   Category get skill => throw _privateConstructorUsedError;
+  String? get selectedSubSkill => throw _privateConstructorUsedError;
+  List<Master> get masters => throw _privateConstructorUsedError;
   List<Category> get subSkill => throw _privateConstructorUsedError;
 
   /// Create a copy of UserSkills
@@ -32,7 +34,11 @@ abstract class $UserSkillsCopyWith<$Res> {
           UserSkills value, $Res Function(UserSkills) then) =
       _$UserSkillsCopyWithImpl<$Res, UserSkills>;
   @useResult
-  $Res call({Category skill, List<Category> subSkill});
+  $Res call(
+      {Category skill,
+      String? selectedSubSkill,
+      List<Master> masters,
+      List<Category> subSkill});
 
   $CategoryCopyWith<$Res> get skill;
 }
@@ -53,6 +59,8 @@ class _$UserSkillsCopyWithImpl<$Res, $Val extends UserSkills>
   @override
   $Res call({
     Object? skill = null,
+    Object? selectedSubSkill = freezed,
+    Object? masters = null,
     Object? subSkill = null,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +68,14 @@ class _$UserSkillsCopyWithImpl<$Res, $Val extends UserSkills>
           ? _value.skill
           : skill // ignore: cast_nullable_to_non_nullable
               as Category,
+      selectedSubSkill: freezed == selectedSubSkill
+          ? _value.selectedSubSkill
+          : selectedSubSkill // ignore: cast_nullable_to_non_nullable
+              as String?,
+      masters: null == masters
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
       subSkill: null == subSkill
           ? _value.subSkill
           : subSkill // ignore: cast_nullable_to_non_nullable
@@ -86,7 +102,11 @@ abstract class _$$UserSkillsImplCopyWith<$Res>
       __$$UserSkillsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Category skill, List<Category> subSkill});
+  $Res call(
+      {Category skill,
+      String? selectedSubSkill,
+      List<Master> masters,
+      List<Category> subSkill});
 
   @override
   $CategoryCopyWith<$Res> get skill;
@@ -106,6 +126,8 @@ class __$$UserSkillsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? skill = null,
+    Object? selectedSubSkill = freezed,
+    Object? masters = null,
     Object? subSkill = null,
   }) {
     return _then(_$UserSkillsImpl(
@@ -113,6 +135,14 @@ class __$$UserSkillsImplCopyWithImpl<$Res>
           ? _value.skill
           : skill // ignore: cast_nullable_to_non_nullable
               as Category,
+      selectedSubSkill: freezed == selectedSubSkill
+          ? _value.selectedSubSkill
+          : selectedSubSkill // ignore: cast_nullable_to_non_nullable
+              as String?,
+      masters: null == masters
+          ? _value._masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
       subSkill: null == subSkill
           ? _value._subSkill
           : subSkill // ignore: cast_nullable_to_non_nullable
@@ -125,11 +155,26 @@ class __$$UserSkillsImplCopyWithImpl<$Res>
 
 class _$UserSkillsImpl implements _UserSkills {
   const _$UserSkillsImpl(
-      {required this.skill, required final List<Category> subSkill})
-      : _subSkill = subSkill;
+      {required this.skill,
+      this.selectedSubSkill,
+      final List<Master> masters = const [],
+      required final List<Category> subSkill})
+      : _masters = masters,
+        _subSkill = subSkill;
 
   @override
   final Category skill;
+  @override
+  final String? selectedSubSkill;
+  final List<Master> _masters;
+  @override
+  @JsonKey()
+  List<Master> get masters {
+    if (_masters is EqualUnmodifiableListView) return _masters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_masters);
+  }
+
   final List<Category> _subSkill;
   @override
   List<Category> get subSkill {
@@ -140,7 +185,7 @@ class _$UserSkillsImpl implements _UserSkills {
 
   @override
   String toString() {
-    return 'UserSkills(skill: $skill, subSkill: $subSkill)';
+    return 'UserSkills(skill: $skill, selectedSubSkill: $selectedSubSkill, masters: $masters, subSkill: $subSkill)';
   }
 
   @override
@@ -149,12 +194,19 @@ class _$UserSkillsImpl implements _UserSkills {
         (other.runtimeType == runtimeType &&
             other is _$UserSkillsImpl &&
             (identical(other.skill, skill) || other.skill == skill) &&
+            (identical(other.selectedSubSkill, selectedSubSkill) ||
+                other.selectedSubSkill == selectedSubSkill) &&
+            const DeepCollectionEquality().equals(other._masters, _masters) &&
             const DeepCollectionEquality().equals(other._subSkill, _subSkill));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, skill, const DeepCollectionEquality().hash(_subSkill));
+      runtimeType,
+      skill,
+      selectedSubSkill,
+      const DeepCollectionEquality().hash(_masters),
+      const DeepCollectionEquality().hash(_subSkill));
 
   /// Create a copy of UserSkills
   /// with the given fields replaced by the non-null parameter values.
@@ -168,10 +220,16 @@ class _$UserSkillsImpl implements _UserSkills {
 abstract class _UserSkills implements UserSkills {
   const factory _UserSkills(
       {required final Category skill,
+      final String? selectedSubSkill,
+      final List<Master> masters,
       required final List<Category> subSkill}) = _$UserSkillsImpl;
 
   @override
   Category get skill;
+  @override
+  String? get selectedSubSkill;
+  @override
+  List<Master> get masters;
   @override
   List<Category> get subSkill;
 

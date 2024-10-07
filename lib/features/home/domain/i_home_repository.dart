@@ -9,7 +9,7 @@ abstract class IHomeRepository {
   Future<Either<ApiException, List<Category>>> getCategories();
   Future<Either<ApiException, List<Category>>> getSubCategories(String catId);
   Future<Either<ApiException, List<Master>>> getMasters(
-      LatLng centerPosition, int? selectedCategory);
+      LatLng centerPosition, String? selectedCategory);
   Future<Either<ApiException, Unit>> bookService(
     LatLng centerPosition,
     String address,

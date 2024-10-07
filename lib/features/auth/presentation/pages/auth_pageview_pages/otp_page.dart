@@ -233,7 +233,7 @@ class _OtpTextFieldState extends State<OtpTextField> {
             maxLength: 1,
             maxLines: null,
             expands: true,
-            cursorColor: Colors.blue,
+            cursorColor: ColorManager.primary,
             onChanged: (value) {
               if (value.isNotEmpty) {
                 // Move to the next field if a character is entered
