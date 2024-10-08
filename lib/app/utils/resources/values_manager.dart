@@ -13,6 +13,7 @@ class AppPadding {
   static const double p1 = 1.0;
   static const double p1_5 = 1.5;
   static const double p2 = 2.0;
+  static const double p3 = 3.0;
   static const double p4 = 4.0;
   static const double p6 = 6.0;
   static const double p8 = 8.0;

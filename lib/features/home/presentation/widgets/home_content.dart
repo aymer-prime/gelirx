@@ -19,11 +19,11 @@ import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeDraggableSheet extends StatefulWidget {
+class HomeContent extends StatefulWidget {
   final List<Category> categories;
   final List<Category> filters;
   final List<UserSkills> services;
-  const HomeDraggableSheet({
+  const HomeContent({
     super.key,
     required this.categories,
     required this.services,
@@ -31,177 +31,102 @@ class HomeDraggableSheet extends StatefulWidget {
   });
 
   @override
-  State<HomeDraggableSheet> createState() => _HomeDraggableSheetState();
+  State<HomeContent> createState() => _HomeContentState();
 }
 
-class _HomeDraggableSheetState extends State<HomeDraggableSheet> {
-  final _sheet = GlobalKey();
-  final _controller = DraggableScrollableController();
-
+class _HomeContentState extends State<HomeContent> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(_onChanged);
-  }
-
-  void _onChanged() {
-    final currentSize = _controller.size;
-    if (currentSize <= 0.05) _collapse();
-  }
-
-  void _collapse() => _animateSheet(sheet.snapSizes!.first);
-
-  void _anchor() => _animateSheet(sheet.snapSizes!.last);
-
-  void _expand() => _animateSheet(sheet.maxChildSize);
-
-  void _hide() => _animateSheet(sheet.minChildSize);
-
-  void _animateSheet(double size) {
-    _controller.animateTo(
-      size,
-      duration: const Duration(milliseconds: 50),
-      curve: Curves.easeInOut,
-    );
   }
 
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
   }
-
-  DraggableScrollableSheet get sheet =>
-      (_sheet.currentWidget as DraggableScrollableSheet);
 
   @override
   Widget build(BuildContext context) {
-    print(widget.filters);
-    return LayoutBuilder(builder: (context, constraints) {
-      return DraggableScrollableSheet(
-        key: _sheet,
-        initialChildSize: 0.5,
-        maxChildSize: 1,
-        minChildSize: 0.5,
-        expand: true,
-        snap: true,
-        snapSizes: [
-          //0.2,
-          0.5,
-        ],
-        controller: _controller,
-        builder: (BuildContext context, ScrollController scrollController) {
-          return DecoratedBox(
-            decoration: BoxDecoration(
-              color: ColorManager.background,
-              // borderRadius: const BorderRadius.only(
-              //   topLeft: Radius.circular(AppSize.s32),
-              //   topRight: Radius.circular(AppSize.s32),
-              // ),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: AppSize.s8.h),
+          Center(
+            child: Container(
+              height: AppSize.s4,
+              width: AppSize.s64,
+              decoration: BoxDecoration(
+                  color: ColorManager.textSubtitleColor,
+                  borderRadius: BorderRadius.circular(
+                    AppSize.s4,
+                  )),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppPadding.p16,
-              ),
-              child: CustomScrollView(
-                controller: scrollController,
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: AppSize.s8.h),
-                          Center(
-                            child: Container(
-                              height: AppSize.s4,
-                              width: AppSize.s64,
-                              decoration: BoxDecoration(
-                                  color: ColorManager.textSubtitleColor,
-                                  borderRadius: BorderRadius.circular(
-                                    AppSize.s4,
-                                  )),
+          ),
+          SizedBox(height: AppSize.s8.h),
+          widget.categories.isEmpty
+              ? const AllCategoriesLoadingPlaceholder()
+              : AllCategoriesWidgets(
+                  categories: widget.categories,
+                ),
+          widget.filters.isNotEmpty
+              ? Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: AppPadding.p8.h,
+                  ),
+                  child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            context.read<HomeBloc>().add(
+                                  const HomeEvent.clearFilters(),
+                                );
+                          },
+                          style: IconButton.styleFrom(
+                            backgroundColor: ColorManager.white,
+                          ),
+                          icon: Icon(
+                            Icons.close_rounded,
+                            size: AppSize.s24,
+                            color: ColorManager.textTitleColor,
+                          ),
+                        ),
+                        ...widget.filters.map(
+                          (filter) => Container(
+                            padding: const EdgeInsets.all(AppPadding.p12),
+                            margin: const EdgeInsets.all(AppMargin.m4),
+                            decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius: BorderRadius.circular(
+                                AppSize.s20,
+                              ),
+                            ),
+                            child: Text(
+                              filter.name,
+                              style: context.textTheme.labelMedium,
                             ),
                           ),
-                          SizedBox(height: AppSize.s8.h),
-                          widget.categories.isEmpty
-                              ? const AllCategoriesLoadingPlaceholder()
-                              : AllCategoriesWidgets(
-                                  categories: widget.categories,
-                                ),
-                          widget.filters.isNotEmpty
-                              ? Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: AppPadding.p8.h,
-                                  ),
-                                  child: Wrap(
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.center,
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            context.read<HomeBloc>().add(
-                                                  const HomeEvent
-                                                      .clearFilters(),
-                                                );
-                                          },
-                                          style: IconButton.styleFrom(
-                                            backgroundColor: ColorManager.white,
-                                          ),
-                                          icon: Icon(
-                                            Icons.close_rounded,
-                                            size: AppSize.s24,
-                                            color: ColorManager.textTitleColor,
-                                          ),
-                                        ),
-                                        ...widget.filters.map(
-                                          (filter) => Container(
-                                            padding: const EdgeInsets.all(
-                                                AppPadding.p12),
-                                            margin: const EdgeInsets.all(
-                                                AppMargin.m4),
-                                            decoration: BoxDecoration(
-                                              color: ColorManager.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                AppSize.s20,
-                                              ),
-                                            ),
-                                            child: Text(
-                                              filter.name,
-                                              style:
-                                                  context.textTheme.labelMedium,
-                                            ),
-                                          ),
-                                        ),
-                                      ]),
-                                )
-                              : SizedBox(height: AppSize.s16.h),
-                          (widget.categories.isEmpty || widget.services.isEmpty)
-                              ? Column(
-                                  children: [
-                                    const AllServicesLoadingPlaceholder(),
-                                    SizedBox(height: AppSize.s16.h),
-                                    const AllServicesLoadingPlaceholder(),
-                                  ],
-                                )
-                              : AllServicesWidget(
-                                  allSkills: widget.services,
-                                  filterIDs:
-                                      widget.filters.map((e) => e.id).toList(),
-                                ),
-                          SizedBox(height: AppSize.s60.h),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      );
-    });
+                        ),
+                      ]),
+                )
+              : SizedBox(height: AppSize.s16.h),
+          (widget.categories.isEmpty || widget.services.isEmpty)
+              ? Column(
+                  children: [
+                    const AllServicesLoadingPlaceholder(),
+                    SizedBox(height: AppSize.s16.h),
+                    const AllServicesLoadingPlaceholder(),
+                  ],
+                )
+              : AllServicesWidget(
+                  allSkills: widget.services,
+                  filterIDs: widget.filters.map((e) => e.id).toList(),
+                ),
+          SizedBox(height: AppSize.s60.h),
+        ],
+      ),
+    );
   }
 }
 

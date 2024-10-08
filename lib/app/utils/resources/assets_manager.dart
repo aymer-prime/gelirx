@@ -1,5 +1,5 @@
 const String imagePath = 'assets/images';
-const String jsonPath = 'assets/jsons';
+const String jsonPath = 'assets/json';
 
 class ImageAssets {
   //misc
@@ -24,6 +24,7 @@ class ImageAssets {
   static const String light = '$imagePath/drawer/light.png';
   static const String dark = '$imagePath/drawer/dark.png';
   static const String confirm = '$imagePath/misc/confirm.png';
+  static const String caretDown = '$imagePath/misc/caret_down.svg';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
@@ -48,5 +49,5 @@ class ImageAssets {
 
 class JsonAssets {
   //json assets
-  //static const String loading = '$jsonPath/loading.json';
+  static const String mapPointer = '$jsonPath/map_pointer.json';
 }

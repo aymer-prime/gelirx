@@ -27,7 +27,7 @@ mixin _$MasterDto {
   String get latitude => throw _privateConstructorUsedError;
   String get longitude => throw _privateConstructorUsedError;
   String get point => throw _privateConstructorUsedError;
-  List<ImgDto> get services => throw _privateConstructorUsedError;
+  List<ServiceDto> get services => throw _privateConstructorUsedError;
 
   /// Serializes this MasterDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $MasterDtoCopyWith<$Res> {
       String latitude,
       String longitude,
       String point,
-      List<ImgDto> services});
+      List<ServiceDto> services});
 }
 
 /// @nodoc
@@ -93,7 +93,7 @@ class _$MasterDtoCopyWithImpl<$Res, $Val extends MasterDto>
       services: null == services
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<ImgDto>,
+              as List<ServiceDto>,
     ) as $Val);
   }
 }
@@ -111,7 +111,7 @@ abstract class _$$MasterDtoImplCopyWith<$Res>
       String latitude,
       String longitude,
       String point,
-      List<ImgDto> services});
+      List<ServiceDto> services});
 }
 
 /// @nodoc
@@ -153,7 +153,7 @@ class __$$MasterDtoImplCopyWithImpl<$Res>
       services: null == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<ImgDto>,
+              as List<ServiceDto>,
     ));
   }
 }
@@ -166,7 +166,7 @@ class _$MasterDtoImpl implements _MasterDto {
       required this.latitude,
       required this.longitude,
       required this.point,
-      required final List<ImgDto> services})
+      required final List<ServiceDto> services})
       : _services = services;
 
   factory _$MasterDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -183,9 +183,9 @@ class _$MasterDtoImpl implements _MasterDto {
   final String longitude;
   @override
   final String point;
-  final List<ImgDto> _services;
+  final List<ServiceDto> _services;
   @override
-  List<ImgDto> get services {
+  List<ServiceDto> get services {
     if (_services is EqualUnmodifiableListView) return _services;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_services);
@@ -237,7 +237,7 @@ abstract class _MasterDto implements MasterDto {
       required final String latitude,
       required final String longitude,
       required final String point,
-      required final List<ImgDto> services}) = _$MasterDtoImpl;
+      required final List<ServiceDto> services}) = _$MasterDtoImpl;
 
   factory _MasterDto.fromJson(Map<String, dynamic> json) =
       _$MasterDtoImpl.fromJson;
@@ -253,12 +253,176 @@ abstract class _MasterDto implements MasterDto {
   @override
   String get point;
   @override
-  List<ImgDto> get services;
+  List<ServiceDto> get services;
 
   /// Create a copy of MasterDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MasterDtoImplCopyWith<_$MasterDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ServiceDto _$ServiceDtoFromJson(Map<String, dynamic> json) {
+  return _ServiceDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ServiceDto {
+  ImgDto get img => throw _privateConstructorUsedError;
+
+  /// Serializes this ServiceDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ServiceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ServiceDtoCopyWith<ServiceDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ServiceDtoCopyWith<$Res> {
+  factory $ServiceDtoCopyWith(
+          ServiceDto value, $Res Function(ServiceDto) then) =
+      _$ServiceDtoCopyWithImpl<$Res, ServiceDto>;
+  @useResult
+  $Res call({ImgDto img});
+
+  $ImgDtoCopyWith<$Res> get img;
+}
+
+/// @nodoc
+class _$ServiceDtoCopyWithImpl<$Res, $Val extends ServiceDto>
+    implements $ServiceDtoCopyWith<$Res> {
+  _$ServiceDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ServiceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? img = null,
+  }) {
+    return _then(_value.copyWith(
+      img: null == img
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as ImgDto,
+    ) as $Val);
+  }
+
+  /// Create a copy of ServiceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ImgDtoCopyWith<$Res> get img {
+    return $ImgDtoCopyWith<$Res>(_value.img, (value) {
+      return _then(_value.copyWith(img: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ServiceDtoImplCopyWith<$Res>
+    implements $ServiceDtoCopyWith<$Res> {
+  factory _$$ServiceDtoImplCopyWith(
+          _$ServiceDtoImpl value, $Res Function(_$ServiceDtoImpl) then) =
+      __$$ServiceDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ImgDto img});
+
+  @override
+  $ImgDtoCopyWith<$Res> get img;
+}
+
+/// @nodoc
+class __$$ServiceDtoImplCopyWithImpl<$Res>
+    extends _$ServiceDtoCopyWithImpl<$Res, _$ServiceDtoImpl>
+    implements _$$ServiceDtoImplCopyWith<$Res> {
+  __$$ServiceDtoImplCopyWithImpl(
+      _$ServiceDtoImpl _value, $Res Function(_$ServiceDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ServiceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? img = null,
+  }) {
+    return _then(_$ServiceDtoImpl(
+      img: null == img
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as ImgDto,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ServiceDtoImpl implements _ServiceDto {
+  const _$ServiceDtoImpl({required this.img});
+
+  factory _$ServiceDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ServiceDtoImplFromJson(json);
+
+  @override
+  final ImgDto img;
+
+  @override
+  String toString() {
+    return 'ServiceDto(img: $img)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ServiceDtoImpl &&
+            (identical(other.img, img) || other.img == img));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, img);
+
+  /// Create a copy of ServiceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ServiceDtoImplCopyWith<_$ServiceDtoImpl> get copyWith =>
+      __$$ServiceDtoImplCopyWithImpl<_$ServiceDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ServiceDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ServiceDto implements ServiceDto {
+  const factory _ServiceDto({required final ImgDto img}) = _$ServiceDtoImpl;
+
+  factory _ServiceDto.fromJson(Map<String, dynamic> json) =
+      _$ServiceDtoImpl.fromJson;
+
+  @override
+  ImgDto get img;
+
+  /// Create a copy of ServiceDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ServiceDtoImplCopyWith<_$ServiceDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

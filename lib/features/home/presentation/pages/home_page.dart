@@ -10,7 +10,7 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/functions.dart';
-import 'package:gelirx/features/home/presentation/widgets/home_draggable_sheet.dart';
+import 'package:gelirx/features/home/presentation/widgets/home_content.dart';
 import 'package:gelirx/features/home/presentation/widgets/home_map_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
@@ -35,67 +35,84 @@ class HomePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return Stack(
-            children: [
-              Column(
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.p16,
+              ),
+              child: Column(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(
-                      AppPadding.p16,
-                    ),
-                    margin: const EdgeInsets.all(
-                      AppMargin.m16,
-                    ),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        AppSize.s20,
-                      ),
-                    ),
-                    child: TextField(
-                      onTapOutside: (_) =>
-                          FocusManager.instance.primaryFocus?.unfocus(),
-                      decoration: InputDecoration(
-                        hintText: AppStrings.searchHint,
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.all(AppPadding.p8),
-                          child: SizedBox(
-                            height: AppSize.s32,
-                            width: AppSize.s32,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: SvgPicture.asset(
-                                ImageAssets.searchIcon,
-                                height: AppSize.s16,
-                                width: AppSize.s16,
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(
+                          AppPadding.p16,
+                        ),
+                        margin: const EdgeInsets.all(
+                          AppMargin.m16,
+                        ),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s20,
+                          ),
+                        ),
+                        child: TextField(
+                          onTapOutside: (_) =>
+                              FocusManager.instance.primaryFocus?.unfocus(),
+                          decoration: InputDecoration(
+                            hintText: AppStrings.searchHint,
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(AppPadding.p8),
+                              child: SizedBox(
+                                height: AppSize.s32,
+                                width: AppSize.s32,
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  child: SvgPicture.asset(
+                                    ImageAssets.searchIcon,
+                                    height: AppSize.s16,
+                                    width: AppSize.s16,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: context.screenSize.height * 0.4,
-                    child: state.userPosition.fold(
-                      () => const Center(
-                        child: CircularProgressIndicator(),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s20,
+                          ),
+                        ),
+                        height: AppSize.s220.h,
+                        child: state.userPosition.fold(
+                          () => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          (userPosition) => ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s20,
+                            ),
+                            child: HomeMap(
+                              userPosition: userPosition,
+                            ),
+                          ),
+                        ),
                       ),
-                      (userPosition) => HomeMap(
-                        userPosition: userPosition,
-                      ),
-                    ),
+                      SizedBox(height: AppSize.s16.h),
+                    ],
                   ),
-                  SizedBox(height: AppSize.s16.h),
+                  HomeContent(
+                    categories: state.categories,
+                    services: state.services,
+                    filters: state.catFilterIndexes,
+                  ),
                 ],
               ),
-              HomeDraggableSheet(
-                categories: state.categories,
-                services: state.services,
-                filters: state.catFilterIndexes,
-              ),
-            ],
+            ),
           );
         },
       ),

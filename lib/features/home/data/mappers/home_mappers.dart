@@ -5,13 +5,14 @@ import 'package:gelirx/features/shared/domain/mappers/shared_mappers.dart';
 extension MasterDtoX on MasterDto {
   Master toDomain() {
     return Master(
-        id: id,
-        // phone: phone ,
-        // name: name,
-        // surname: surname,
-        latitude: double.parse(latitude),
-        longitude: double.parse(longitude),
-        point: point,
-        categories: services.map((e) => e.toDomain()).toList());
+      id: id,
+      // phone: phone ,
+      // name: name,
+      // surname: surname,
+      latitude: double.parse(latitude),
+      longitude: double.parse(longitude),
+      point: point,
+      categories: services.map((e) => e.img.toDomain()).toList(),
+    );
   }
 }

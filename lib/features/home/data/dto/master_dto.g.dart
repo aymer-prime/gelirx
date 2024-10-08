@@ -12,7 +12,7 @@ _$MasterDtoImpl _$$MasterDtoImplFromJson(Map json) => _$MasterDtoImpl(
       longitude: json['longitude'] as String,
       point: json['point'] as String,
       services: (json['services'] as List<dynamic>)
-          .map((e) => ImgDto.fromJson(Map<String, dynamic>.from(e as Map)))
+          .map((e) => ServiceDto.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
     );
 
@@ -23,4 +23,13 @@ Map<String, dynamic> _$$MasterDtoImplToJson(_$MasterDtoImpl instance) =>
       'longitude': instance.longitude,
       'point': instance.point,
       'services': instance.services.map((e) => e.toJson()).toList(),
+    };
+
+_$ServiceDtoImpl _$$ServiceDtoImplFromJson(Map json) => _$ServiceDtoImpl(
+      img: ImgDto.fromJson(Map<String, dynamic>.from(json['img'] as Map)),
+    );
+
+Map<String, dynamic> _$$ServiceDtoImplToJson(_$ServiceDtoImpl instance) =>
+    <String, dynamic>{
+      'img': instance.img.toJson(),
     };
