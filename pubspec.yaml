@@ -79,6 +79,7 @@ dependencies:
   permission_handler: ^11.3.1
   location: ^6.0.2
   lottie: ^3.1.2
+  font_awesome_flutter: ^10.7.0
 
 
 

@@ -194,23 +194,27 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                 );
               }).toList(),
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                mini: true,
-                onPressed: () {
-                  _animatedMapMove(
-                    LatLng(
-                      widget.userPosition.latitude,
-                      widget.userPosition.longitude,
-                    ),
-                    15,
-                  );
-                },
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.my_location_rounded,
-                  color: ColorManager.textTitleColor,
+            Padding(
+              padding: const EdgeInsets.all(AppPadding.p10),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton(
+                  mini: true,
+                  onPressed: () {
+                    _animatedMapMove(
+                      LatLng(
+                        widget.userPosition.latitude,
+                        widget.userPosition.longitude,
+                      ),
+                      14,
+                    );
+                  },
+                  backgroundColor: Colors.white,
+                  child: Icon(
+                    Icons.my_location_rounded,
+                    color: ColorManager.textTitleColor,
+                    size: AppSize.s15,
+                  ),
                 ),
               ),
             ),

@@ -182,21 +182,21 @@ ThemeData getApplicationTheme() {
           color: ColorManager.textfieldBorderColor,
           width: AppSize.s1,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s12)),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.primary,
           width: AppSize.s1,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s10)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s12)),
       ),
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.textErrorColor,
           width: AppSize.s1_5,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s10)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s12)),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(
