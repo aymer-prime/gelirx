@@ -15,6 +15,7 @@ class ColorManager {
   static Color joyColor = const Color(0xffE52957);
   //text
   static Color textTitleColor = const Color(0xff172B4D);
+  static Color welcomeTextColor = const Color(0xff25283C);
   static Color textTitleLightColor = const Color(0xff666C89);
   static Color textSubtitleColor = const Color(0xff9A9FA5);
   static Color textErrorColor = const Color(0xffcd3131);
