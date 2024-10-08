@@ -83,7 +83,7 @@ class MainPage extends HookWidget {
                       ImageAssets.navbarProfile,
                       color: ColorManager.darkPrimary,
                     ),
-                  ),
+                  )
                 ],
               ),
             );

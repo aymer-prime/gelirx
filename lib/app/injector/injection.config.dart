@@ -11,15 +11,12 @@
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart' as _i806;
 import 'package:get_it/get_it.dart' as _i174;
-import 'package:google_sign_in/google_sign_in.dart' as _i116;
 import 'package:image_picker/image_picker.dart' as _i183;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:internet_connection_checker/internet_connection_checker.dart'
     as _i973;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
-import 'package:sign_in_with_apple/sign_in_with_apple.dart' as _i264;
 
 import '../../features/auth/data/auth_repository.dart' as _i726;
 import '../../features/auth/data/mappers/firebase_user_maper.dart' as _i905;
@@ -68,10 +65,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i183.ImagePicker>(() => injectableModules.imagePicker);
     gh.lazySingleton<_i973.InternetConnectionChecker>(
         () => injectableModules.internetConnectionChecker);
-    gh.lazySingleton<_i116.GoogleSignIn>(() => injectableModules.googleSignIn);
-    gh.lazySingleton<_i806.FacebookAuth>(() => injectableModules.facebookAuth);
-    gh.lazySingleton<_i264.SignInWithApple>(
-        () => injectableModules.signInWithApple);
     gh.lazySingleton<_i59.FirebaseAuth>(() => injectableModules.firebaseAuth);
     gh.lazySingleton<_i892.FirebaseMessaging>(
         () => injectableModules.firebaseMessaging);
@@ -90,19 +83,17 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i603.NavigationUsecase>(
         () => _i603.NavigationUsecase(gh<_i782.INavigationRepository>()));
-    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
-          gh<_i59.FirebaseAuth>(),
-          gh<_i116.GoogleSignIn>(),
-          gh<_i806.FacebookAuth>(),
-          gh<_i905.FirebaseUserMapper>(),
-          gh<_i902.LocalService>(),
-          gh<_i464.RemoteService>(),
-        ));
     gh.factory<_i162.NavigationBloc>(
         () => _i162.NavigationBloc(gh<_i603.NavigationUsecase>()));
     gh.lazySingleton<_i317.IHomeRepository>(() => _i65.HomeRepository(
           gh<_i464.RemoteService>(),
           gh<_i902.LocalService>(),
+        ));
+    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
+          gh<_i59.FirebaseAuth>(),
+          gh<_i905.FirebaseUserMapper>(),
+          gh<_i902.LocalService>(),
+          gh<_i464.RemoteService>(),
         ));
     gh.lazySingleton<_i216.BookingUsecase>(
         () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));

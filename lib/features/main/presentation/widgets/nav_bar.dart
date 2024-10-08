@@ -23,8 +23,8 @@ class NavBar extends StatelessWidget {
     return BottomAppBar(
       height: AppSize.s60.h +
           MediaQueryData.fromWindow(ui.window).padding.bottom / 2,
-      shape: CircularNotchedRectangle(),
-      notchMargin: 4,
+    //  shape: CircularNotchedRectangle(),
+    //  notchMargin: 4,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       padding: EdgeInsets.zero,
       color: Colors.transparent,
@@ -49,25 +49,11 @@ class NavBar extends StatelessWidget {
                 icon: SvgPicture.asset(ImageAssets.navbarHome),
                 activeIcon: SvgPicture.asset(
                   ImageAssets.navbarHome,
-                  color: ColorManager.primary,
+                  color: ColorManager.darkPrimary,
                 ),
                 isSelected: pageIndex == 0,
                 onTap: () => onTap(0),
               ),
-              NavItem(
-                label: AppStrings.favorite,
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: ColorManager.grey,
-                ),
-                activeIcon: Icon(
-                  Icons.favorite_border,
-                  color: ColorManager.darkPrimary,
-                ),
-                isSelected: pageIndex == 1,
-                onTap: () => onTap(1),
-              ),
-              SizedBox(width: AppSize.s80.w),
               NavItem(
                 label: AppStrings.booking,
                 icon: SvgPicture.asset(ImageAssets.navbarBooking),
@@ -75,6 +61,14 @@ class NavBar extends StatelessWidget {
                   ImageAssets.navbarBooking,
                   color: ColorManager.darkPrimary,
                 ),
+                isSelected: pageIndex == 1,
+                onTap: () => onTap(1),
+              ),
+              NavItem(
+                label: AppStrings.add,
+                icon:  SvgPicture.asset(ImageAssets.navbarAdd),
+                activeIcon:  SvgPicture.asset(ImageAssets.navbarAdd,
+                    color: ColorManager.darkPrimary),
                 isSelected: pageIndex == 2,
                 onTap: () => onTap(2),
               ),
@@ -88,6 +82,16 @@ class NavBar extends StatelessWidget {
                 isSelected: pageIndex == 3,
                 onTap: () => onTap(3),
               ),
+              NavItem(
+                label: AppStrings.profile,
+                icon: SvgPicture.asset(ImageAssets.navbarProfile),
+                activeIcon: SvgPicture.asset(ImageAssets.navbarProfile,
+                  color: ColorManager.darkPrimary,
+                ),
+                isSelected: pageIndex == 4,
+                onTap: () => onTap(4),
+              ),
+              // SizedBox(width: AppSize.s80.w),
             ],
           ),
         ),
@@ -125,7 +129,7 @@ class NavItem extends StatelessWidget {
                     label,
                     maxLines: 1,
                     style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.darkPrimary,
+                      color: ColorManager.black,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -139,7 +143,7 @@ class NavItem extends StatelessWidget {
                     label,
                     maxLines: 1,
                     style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.textSubtitleColor,
+                      color: ColorManager.black,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),

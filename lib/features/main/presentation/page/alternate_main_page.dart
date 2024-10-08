@@ -4,16 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
-import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
-import 'package:gelirx/app/utils/resources/constants_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
@@ -35,6 +31,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final homeNavKey = GlobalKey<NavigatorState>();
   final searchNavKey = GlobalKey<NavigatorState>();
+  final addnNavKey = GlobalKey<NavigatorState>();
   final notificationNavKey = GlobalKey<NavigatorState>();
   final profileNavKey = GlobalKey<NavigatorState>();
   int selectedTab = 0;
@@ -48,17 +45,23 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         page: const HomePage(),
         navKey: homeNavKey,
       ),
-      NavModel(
-        page: const ProfilePage(),
-        navKey: profileNavKey,
-      ),
+
       NavModel(
         page: const BookingPage(),
         navKey: searchNavKey,
       ),
       NavModel(
+        page: const HomePage(),
+        navKey: addnNavKey,
+      ),
+
+      NavModel(
         page: const NotificationsPage(),
         navKey: notificationNavKey,
+      ),
+      NavModel(
+        page: const ProfilePage(),
+        navKey: profileNavKey,
       ),
     ];
   }
@@ -165,6 +168,17 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                 child: NavBar(
                   pageIndex: selectedTab,
                   onTap: (index) {
+                    //todo uncomment this to add button
+                    // onPressed: () {
+                    //   final localServices = getIt<SharedPreferences>();
+                    //   String? isMaster = localServices.getString(Constants.isMasterKey);
+                    //   if (isMaster == null || isMaster == '0') {
+                    //     context.read<AuthBloc>().add(const AuthEvent.setUserType(
+                    //       true,
+                    //     ));
+                    //     context.router.push(const AuthRoute());
+                    //   }
+                    // },
                     if (index == selectedTab) {
                       items[index]
                           .navKey
@@ -182,29 +196,29 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        child: FloatingActionButton(
-          backgroundColor: ColorManager.primary,
-          elevation: 0,
-          onPressed: () {
-            //todo: move this logic to state management
-            final localServices = getIt<SharedPreferences>();
-            String? isMaster = localServices.getString(Constants.isMasterKey);
-            if (isMaster == null || isMaster == '0') {
-              context.read<AuthBloc>().add(const AuthEvent.setUserType(
-                    true,
-                  ));
-              context.router.push(const AuthRoute());
-            }
-          },
-          shape: const CircleBorder(),
-          child: Icon(
-            Icons.add_rounded,
-            color: ColorManager.white,
-          ),
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Container(
+      //   child: FloatingActionButton(
+      //     backgroundColor: ColorManager.primary,
+      //     elevation: 0,
+      //     onPressed: () {
+      //       //todo: move this logic to state management
+      //       final localServices = getIt<SharedPreferences>();
+      //       String? isMaster = localServices.getString(Constants.isMasterKey);
+      //       if (isMaster == null || isMaster == '0') {
+      //         context.read<AuthBloc>().add(const AuthEvent.setUserType(
+      //               true,
+      //             ));
+      //         context.router.push(const AuthRoute());
+      //       }
+      //     },
+      //     shape: const CircleBorder(),
+      //     child: Icon(
+      //       Icons.add_rounded,
+      //       color: ColorManager.white,
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
