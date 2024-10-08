@@ -51,19 +51,6 @@ class _HomeContentState extends State<HomeContent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: AppSize.s8.h),
-          Center(
-            child: Container(
-              height: AppSize.s4,
-              width: AppSize.s64,
-              decoration: BoxDecoration(
-                  color: ColorManager.textSubtitleColor,
-                  borderRadius: BorderRadius.circular(
-                    AppSize.s4,
-                  )),
-            ),
-          ),
-          SizedBox(height: AppSize.s8.h),
           widget.categories.isEmpty
               ? const AllCategoriesLoadingPlaceholder()
               : AllCategoriesWidgets(

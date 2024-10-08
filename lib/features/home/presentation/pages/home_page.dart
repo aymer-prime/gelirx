@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -21,6 +22,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       body: BlocConsumer<HomeBloc, HomeState>(
         listenWhen: (previous, current) =>
             previous.isLoading != current.isLoading,
@@ -42,69 +44,90 @@ class HomePage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(
-                          AppPadding.p16,
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        AppSize.s30,
+                      ),
+                    ),
+                    height: AppSize.s220.h,
+                    child: state.userPosition.fold(
+                      () => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      (userPosition) => ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          AppSize.s30,
                         ),
-                        margin: const EdgeInsets.all(
-                          AppMargin.m16,
+                        child: HomeMap(
+                          userPosition: userPosition,
                         ),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(
-                            AppSize.s20,
-                          ),
-                        ),
-                        child: TextField(
-                          onTapOutside: (_) =>
-                              FocusManager.instance.primaryFocus?.unfocus(),
-                          decoration: InputDecoration(
-                            hintText: AppStrings.searchHint,
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.all(AppPadding.p8),
-                              child: SizedBox(
-                                height: AppSize.s32,
-                                width: AppSize.s32,
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: SvgPicture.asset(
-                                    ImageAssets.searchIcon,
-                                    height: AppSize.s16,
-                                    width: AppSize.s16,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: AppSize.s20.h),
+                  SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Flexible(
+                          flex: 6,
+                          child: TextField(
+                            onTapOutside: (_) =>
+                                FocusManager.instance.primaryFocus?.unfocus(),
+                            decoration: InputDecoration(
+                              fillColor: ColorManager.lightGrey,
+                              hintText: AppStrings.searchHint,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: AppPadding.p12,
+                                ),
+                                child: SvgPicture.asset(
+                                  ImageAssets.searchIcon,
+                                  fit: BoxFit.fitHeight,
+                                  colorFilter: ColorFilter.mode(
+                                    ColorManager.textTitleColor,
+                                    BlendMode.srcIn,
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            AppSize.s20,
-                          ),
-                        ),
-                        height: AppSize.s220.h,
-                        child: state.userPosition.fold(
-                          () => const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                          (userPosition) => ClipRRect(
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s20,
+                        const SizedBox(width: AppSize.s8),
+                        Flexible(
+                          flex: 1,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: ColorManager.lightGrey,
                             ),
-                            child: HomeMap(
-                              userPosition: userPosition,
+                            onPressed: () {},
+                            child: Icon(
+                              FontAwesomeIcons.sliders,
+                              size: AppSize.s16,
+                              color: ColorManager.textTitleColor,
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: AppSize.s16.h),
-                    ],
+                        const SizedBox(width: AppSize.s8),
+                        Flexible(
+                          flex: 1,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: ColorManager.lightGrey,
+                            ),
+                            onPressed: () {},
+                            child: Icon(
+                              FontAwesomeIcons.sort,
+                              size: AppSize.s16,
+                              color: ColorManager.textTitleColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
+                  SizedBox(height: AppSize.s20.h),
                   HomeContent(
                     categories: state.categories,
                     services: state.services,
