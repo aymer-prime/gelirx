@@ -78,13 +78,18 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
             Text(
               AppStrings.welcomeSubtitle,
               style: context.textTheme.labelSmall!.copyWith(
-                fontSize: FontSizeManager.s9,
+                fontWeight: FontWeight.w300,
+                color: ColorManager.welcomeTextColor,
+                fontSize: FontSizeManager.s10,
               ),
             ),
             Row(
               children: [
                 Text('Business Bay, Silver Tower',
-                    style: context.textTheme.labelMedium),
+                    style: context.textTheme.labelMedium?.copyWith(
+                      fontSize: FontSizeManager.s12,
+                      fontWeight: FontWeight.normal
+                    ),),
                 const Icon(Icons.arrow_drop_down)
               ],
             ),
@@ -124,11 +129,10 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         ],
         // leadingWidth: AppSize.s32,
         leading: Padding(
-          padding:  EdgeInsets.only(left: AppSize.s16),
+          padding:  EdgeInsets.only(bottom: AppSize.s8,left: AppSize.s16,top: AppSize.s8),
           child: Container(
-
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppSize.s12),
+                borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
               color: ColorManager.lightGrey
             ),
             child: IconButton(
