@@ -23,8 +23,8 @@ class NavBar extends StatelessWidget {
     return BottomAppBar(
       height: AppSize.s60.h +
           MediaQueryData.fromWindow(ui.window).padding.bottom / 2,
-      shape: CircularNotchedRectangle(),
-      notchMargin: 4,
+    //  shape: CircularNotchedRectangle(),
+    //  notchMargin: 4,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       padding: EdgeInsets.zero,
       color: Colors.transparent,
@@ -55,26 +55,20 @@ class NavBar extends StatelessWidget {
                 onTap: () => onTap(0),
               ),
               NavItem(
-                label: AppStrings.favorite,
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: ColorManager.grey,
-                ),
-                activeIcon: Icon(
-                  Icons.favorite_border,
-                  color: ColorManager.darkPrimary,
-                ),
-                isSelected: pageIndex == 1,
-                onTap: () => onTap(1),
-              ),
-              SizedBox(width: AppSize.s80.w),
-              NavItem(
                 label: AppStrings.booking,
                 icon: SvgPicture.asset(ImageAssets.navbarBooking),
                 activeIcon: SvgPicture.asset(
                   ImageAssets.navbarBooking,
-                  color: ColorManager.darkPrimary,
+                  color: ColorManager.primary,
                 ),
+                isSelected: pageIndex == 3,
+                onTap: () => onTap(3),
+              ),
+              NavItem(
+                label: AppStrings.add,
+                icon:  SvgPicture.asset(ImageAssets.navbarAdd),
+                activeIcon:  SvgPicture.asset(ImageAssets.navbarAdd,
+                    color: ColorManager.darkPrimary),
                 isSelected: pageIndex == 2,
                 onTap: () => onTap(2),
               ),
@@ -85,9 +79,21 @@ class NavBar extends StatelessWidget {
                   ImageAssets.navbarNotification,
                   color: ColorManager.darkPrimary,
                 ),
-                isSelected: pageIndex == 3,
-                onTap: () => onTap(3),
+                isSelected: pageIndex == 4,
+                onTap: () => onTap(4),
               ),
+              NavItem(
+                label: AppStrings.profile,
+                icon: SvgPicture.asset(ImageAssets.navbarProfile),
+                activeIcon: SvgPicture.asset(ImageAssets.navbarProfile,
+                  color: ColorManager.darkPrimary,
+                ),
+                isSelected: pageIndex == 1,
+                onTap: () => onTap(1),
+              ),
+              // SizedBox(width: AppSize.s80.w),
+
+
             ],
           ),
         ),

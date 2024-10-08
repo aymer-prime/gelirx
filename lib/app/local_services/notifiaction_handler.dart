@@ -21,6 +21,7 @@ class NotificationHandler {
   Future<void> listenToNotification() async {
     var push =  await FlutterCallkitIncoming.getDevicePushTokenVoIP();
     print(" push = ${push}");
+    //await FlutterCallkitIncoming.requestFullIntentPermission();
     NotificationSettings settings = await messaging.requestPermission(
       alert: true,
       announcement: false,

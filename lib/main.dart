@@ -16,6 +16,68 @@ import 'package:uuid/v4.dart';
 import 'app/local_services/notifiaction_handler.dart';
 import 'app/navigation/app_router.dart';
 
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  var id = UuidV4().generate();
+  var params = CallKitParams(
+      id: id,
+      appName: "Gelirx",
+      duration: 30000,
+      nameCaller: "service name",
+      textAccept: "take",
+      textDecline: "decline",
+      android: AndroidParams(
+        isCustomNotification:
+        true, // Enables custom notification layout for Android
+        isShowLogo: true, // Show app logo in notification
+        ringtonePath: "ringtone_default", // Custom ringtone for Android
+        backgroundColor: "#44498D", // Background color for the notification
+        backgroundUrl:
+        "https://example.com/background.jpg", // URL for background image
+        actionColor: "#4CAF50", // Color for action buttons
+        incomingCallNotificationChannelName: "Incoming Call",
+      ),
+      ios: IOSParams(iconName: 'CallKitLogo',
+          handleType: 'generic',
+          supportsVideo: true,
+          maximumCallGroups: 2,
+          maximumCallsPerCallGroup: 1,
+          audioSessionMode: 'default',
+          audioSessionActive: true,
+          audioSessionPreferredSampleRate: 44100.0,
+          audioSessionPreferredIOBufferDuration: 0.005,
+          supportsDTMF: true,
+          supportsHolding: true,
+          supportsGrouping: false,
+          supportsUngrouping: false,
+          ringtonePath: 'system_ringtone_default')
+  );
+//  await FlutterCallkitIncoming.requestFullIntentPermission();
+  FlutterCallkitIncoming.showCallkitIncoming(params);
+
+  String? navigateTo = message.data[Constants.navigateToKey];
+  if (navigateTo != null) {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString(Constants.navigateToKey, navigateTo);
+  }
+  FlutterCallkitIncoming.onEvent.listen((event) async {
+    if (event!.event == Event.actionCallAccept) {
+      String? navigateTo = message.data[Constants.navigateToKey];
+      if (navigateTo != null && navigateTo == MasterDashboardRoute.name) {
+        String? navigateTo = message.data[Constants.navigateToKey];
+        if (navigateTo != null) {
+          final sharedPreferences = await SharedPreferences.getInstance();
+          await sharedPreferences.setString(
+              Constants.navigateToKey, navigateTo);
+        }
+        getIt<AppRouter>().push(MasterDashboardRoute());
+        Future.delayed(Duration(seconds: 5),() =>  FlutterCallkitIncoming.endAllCalls());
+
+      }
+    }
+  });
+}
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -40,64 +102,7 @@ void main() async {
   );
 }
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  var id = UuidV4().generate();
-  var params = CallKitParams(
-    id: id,
-    appName: "Gelirx",
-    duration: 30000,
-    nameCaller: "service name",
-    textAccept: "take",
-    textDecline: "decline",
-    android: AndroidParams(
-      isCustomNotification:
-          true, // Enables custom notification layout for Android
-      isShowLogo: true, // Show app logo in notification
-      ringtonePath: "ringtone_default", // Custom ringtone for Android
-      backgroundColor: "#E30A17", // Background color for the notification
-      backgroundUrl:
-          "https://example.com/background.jpg", // URL for background image
-      actionColor: "#4CAF50", // Color for action buttons
-    ),
-    ios: IOSParams(iconName: 'CallKitLogo',
-      handleType: 'generic',
-      supportsVideo: true,
-      maximumCallGroups: 2,
-      maximumCallsPerCallGroup: 1,
-      audioSessionMode: 'default',
-      audioSessionActive: true,
-      audioSessionPreferredSampleRate: 44100.0,
-      audioSessionPreferredIOBufferDuration: 0.005,
-      supportsDTMF: true,
-      supportsHolding: true,
-      supportsGrouping: false,
-      supportsUngrouping: false,
-      ringtonePath: 'system_ringtone_default')
-  );
 
-  FlutterCallkitIncoming.showCallkitIncoming(params);
-
-  String? navigateTo = message.data[Constants.navigateToKey];
-  if (navigateTo != null) {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString(Constants.navigateToKey, navigateTo);
-  }
-  FlutterCallkitIncoming.onEvent.listen((event) async {
-    if (event!.event == Event.actionCallAccept) {
-      String? navigateTo = message.data[Constants.navigateToKey];
-      if (navigateTo != null && navigateTo == MasterDashboardRoute.name) {
-        String? navigateTo = message.data[Constants.navigateToKey];
-        if (navigateTo != null) {
-          final sharedPreferences = await SharedPreferences.getInstance();
-          await sharedPreferences.setString(
-              Constants.navigateToKey, navigateTo);
-        }
-        getIt<AppRouter>().push(MasterDashboardRoute());
-      }
-    }
-  });
-}
 
 void _checkForStoredNavigation(SharedPreferences sharedPreferences) async {
   String? navigateTo = sharedPreferences.getString(Constants.navigateToKey);

@@ -2,7 +2,8 @@ class AppStrings {
   //navbar
   static const home = 'Home';
   static const booking = 'Booking';
-  static const notification = 'Notification';
+  static const add = 'Add';
+  static const notification = 'Notifications';
   static const profile = 'Profile';
   static const favorite = 'Favorite';
   //Splash

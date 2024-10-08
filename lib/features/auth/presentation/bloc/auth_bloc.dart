@@ -28,25 +28,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
 
-    on<_SocialMediaLogin>((event, emit) async {
-      emit(state.copyWith(
-        isLoading: true,
-        authFailureOrSuccessOption: none(),
-      ));
-      print(event.type);
-      final result = await _signInUseCase.call(event.type);
-      result.fold(
-        (failure) => emit(state.copyWith(
-          isLoading: false,
-          authFailureOrSuccessOption: some(left(failure)),
-        )),
-        (user) => emit(state.copyWith(
-          isLoading: false,
-          user: some(user),
-          authFailureOrSuccessOption: some(right(unit)),
-        )),
-      );
-    });
+    // on<_SocialMediaLogin>((event, emit) async {
+    //   emit(state.copyWith(
+    //     isLoading: true,
+    //     authFailureOrSuccessOption: none(),
+    //   ));
+    //   print(event.type);
+    //   final result = await _signInUseCase.call(event.type);
+    //   result.fold(
+    //     (failure) => emit(state.copyWith(
+    //       isLoading: false,
+    //       authFailureOrSuccessOption: some(left(failure)),
+    //     )),
+    //     (user) => emit(state.copyWith(
+    //       isLoading: false,
+    //       user: some(user),
+    //       authFailureOrSuccessOption: some(right(unit)),
+    //     )),
+    //   );
+    // });
 
     on<_PhoneLoginRequested>((event, emit) async {
       emit(state.copyWith(
