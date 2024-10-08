@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
@@ -44,6 +45,28 @@ class HomePage extends StatelessWidget {
               ),
               child: Column(
                 children: [
+                  SizedBox(height: AppSize.s20.h),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Discover ',
+                          style: context.textTheme.displaySmall!.copyWith(
+                            color: ColorManager.joyColor,
+                            fontSize: FontSizeManager.s26,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'The best, hight quality services near you',
+                          style: context.textTheme.titleSmall!.copyWith(
+                            color: ColorManager.textTitleColor,
+                            fontSize: FontSizeManager.s26,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: AppSize.s20.h),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(

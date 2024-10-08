@@ -12,6 +12,7 @@ class ColorManager {
   static Color black = const Color(0xff000000);
   static Color grey = const Color(0xff737477);
   static Color priceLabel = const Color(0xffB5E4CA);
+  static Color joyColor = const Color(0xffE52957);
   //text
   static Color textTitleColor = const Color(0xff172B4D);
   static Color textTitleLightColor = const Color(0xff666C89);
