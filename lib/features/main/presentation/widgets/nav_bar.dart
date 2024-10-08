@@ -49,7 +49,7 @@ class NavBar extends StatelessWidget {
                 icon: SvgPicture.asset(ImageAssets.navbarHome),
                 activeIcon: SvgPicture.asset(
                   ImageAssets.navbarHome,
-                  color: ColorManager.primary,
+                  color: ColorManager.darkPrimary,
                 ),
                 isSelected: pageIndex == 0,
                 onTap: () => onTap(0),
@@ -59,10 +59,10 @@ class NavBar extends StatelessWidget {
                 icon: SvgPicture.asset(ImageAssets.navbarBooking),
                 activeIcon: SvgPicture.asset(
                   ImageAssets.navbarBooking,
-                  color: ColorManager.primary,
+                  color: ColorManager.darkPrimary,
                 ),
-                isSelected: pageIndex == 3,
-                onTap: () => onTap(3),
+                isSelected: pageIndex == 1,
+                onTap: () => onTap(1),
               ),
               NavItem(
                 label: AppStrings.add,
@@ -79,8 +79,8 @@ class NavBar extends StatelessWidget {
                   ImageAssets.navbarNotification,
                   color: ColorManager.darkPrimary,
                 ),
-                isSelected: pageIndex == 4,
-                onTap: () => onTap(4),
+                isSelected: pageIndex == 3,
+                onTap: () => onTap(3),
               ),
               NavItem(
                 label: AppStrings.profile,
@@ -88,12 +88,10 @@ class NavBar extends StatelessWidget {
                 activeIcon: SvgPicture.asset(ImageAssets.navbarProfile,
                   color: ColorManager.darkPrimary,
                 ),
-                isSelected: pageIndex == 1,
-                onTap: () => onTap(1),
+                isSelected: pageIndex == 4,
+                onTap: () => onTap(4),
               ),
               // SizedBox(width: AppSize.s80.w),
-
-
             ],
           ),
         ),
@@ -131,7 +129,7 @@ class NavItem extends StatelessWidget {
                     label,
                     maxLines: 1,
                     style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.darkPrimary,
+                      color: ColorManager.black,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -145,7 +143,7 @@ class NavItem extends StatelessWidget {
                     label,
                     maxLines: 1,
                     style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.textSubtitleColor,
+                      color: ColorManager.black,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
