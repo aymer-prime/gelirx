@@ -118,17 +118,26 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                 colorFilter:
                     ColorFilter.mode(ColorManager.bronzeTire, BlendMode.srcIn),
               ),
-              const SizedBox(width: AppSize.s4),
+              const SizedBox(width: AppSize.s16),
             ],
           ),
         ],
-        leadingWidth: AppSize.s32,
-        leading: IconButton(
-          icon: Icon(Icons.menu,
-              size: AppSize.s32), // Customize the icon as needed
-          onPressed: () {
-            _scaffoldKey.currentState?.openDrawer();
-          },
+        // leadingWidth: AppSize.s32,
+        leading: Padding(
+          padding:  EdgeInsets.only(left: AppSize.s16),
+          child: Container(
+
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSize.s12),
+              color: ColorManager.lightGrey
+            ),
+            child: IconButton(
+              icon: Icon(Icons.menu), // Customize the icon as needed
+              onPressed: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+            ),
+          ),
         ),
       ),
       drawer: const AppDrawer(),
