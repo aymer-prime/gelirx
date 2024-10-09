@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -55,23 +56,33 @@ class NavBar extends StatelessWidget {
                 onTap: () => onTap(0),
               ),
               NavItem(
-                label: AppStrings.booking,
-                icon: SvgPicture.asset(ImageAssets.navbarBooking),
-                activeIcon: SvgPicture.asset(
-                  ImageAssets.navbarBooking,
-                  color: ColorManager.darkPrimary,
-                ),
-                isSelected: pageIndex == 1,
-                onTap: () => onTap(1),
-              ),
-              NavItem(
-                label: AppStrings.add,
-                icon:  SvgPicture.asset(ImageAssets.navbarAdd),
-                activeIcon:  SvgPicture.asset(ImageAssets.navbarAdd,
+                label: AppStrings.discover,
+                icon:  SvgPicture.asset(ImageAssets.navbarDiscover, height: AppSize.s20,),
+                activeIcon:  SvgPicture.asset(ImageAssets.navbarDiscover,
+                    height: AppSize.s20,
                     color: ColorManager.darkPrimary),
                 isSelected: pageIndex == 2,
                 onTap: () => onTap(2),
               ),
+              NavItem(
+                label: AppStrings.provideService,
+                icon:  SvgPicture.asset(ImageAssets.navbarDiscover, height: AppSize.s20,color: ColorManager.white),
+                activeIcon:  SvgPicture.asset(ImageAssets.navbarDiscover,
+                    height: AppSize.s20,
+                    color: ColorManager.white),
+                isSelected: pageIndex == 2,
+                onTap: () => onTap(2),
+              ),
+            //  SizedBox(width: AppSize.s80.w),
+              NavItem(
+                label: AppStrings.messages,
+                icon: Icon(FontAwesomeIcons.message),
+                activeIcon: Icon(FontAwesomeIcons.message),
+                isSelected: pageIndex == 1,
+                onTap: () => onTap(1),
+              ),
+
+
               // NavItem(
               //   label: AppStrings.notification,
               //   icon: SvgPicture.asset(ImageAssets.navbarNotification),
@@ -88,8 +99,8 @@ class NavBar extends StatelessWidget {
                 activeIcon: SvgPicture.asset(ImageAssets.navbarProfile,
                   color: ColorManager.darkPrimary,
                 ),
-                isSelected: pageIndex == 4,
-                onTap: () => onTap(4),
+                isSelected: pageIndex == 3,
+                onTap: () => onTap(3),
               ),
               // SizedBox(width: AppSize.s80.w),
             ],

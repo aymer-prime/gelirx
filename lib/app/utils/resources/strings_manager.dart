@@ -2,10 +2,14 @@ class AppStrings {
   //navbar
   static const home = 'Home';
   static const booking = 'Booking';
+  static const messages = 'Messages';
   static const add = 'Add';
+  static const discover = 'Discover';
   static const notification = 'Notifications';
   static const profile = 'Profile';
   static const favorite = 'Favorite';
+  static const provideService = 'Provide\nService';
+
   //Splash
   static const splashTitle1 = 'GelirX';
   //home

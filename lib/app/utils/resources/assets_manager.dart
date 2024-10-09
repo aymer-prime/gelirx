@@ -27,12 +27,14 @@ class ImageAssets {
   static const String caretDown = '$imagePath/misc/caret_down.svg';
   static const String filterIcon = '$imagePath/misc/filter.svg';
   static const String sortIcon = '$imagePath/misc/sort.svg';
+  static const String menuIcon = '$imagePath/drawer/menu.svg';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
   static const String navbarAdd = '$imagePath/navbar/navbar_add.svg';
   static const String navbarNotification =
       '$imagePath/navbar/navbar_notification.svg';
+  static const String navbarDiscover = '$imagePath/navbar/navbar_discover.svg';
   static const String navbarProfile = '$imagePath/navbar/navbar_profile.svg';
   //services
   static const String acIcon = '$imagePath/services/ac_icon.svg';
