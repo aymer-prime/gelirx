@@ -45,7 +45,6 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         page: const HomePage(),
         navKey: homeNavKey,
       ),
-
       NavModel(
         page: const BookingPage(),
         navKey: searchNavKey,
@@ -54,7 +53,6 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         page: const HomePage(),
         navKey: addnNavKey,
       ),
-
       NavModel(
         page: const NotificationsPage(),
         navKey: notificationNavKey,
@@ -71,9 +69,10 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
+        centerTitle: true,
         title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               AppStrings.welcomeSubtitle,
@@ -84,12 +83,14 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Business Bay, Silver Tower',
-                    style: context.textTheme.labelMedium?.copyWith(
+                Text(
+                  'Business Bay, Silver Tower',
+                  style: context.textTheme.labelMedium?.copyWith(
                       fontSize: FontSizeManager.s12,
-                      fontWeight: FontWeight.normal
-                    ),),
+                      fontWeight: FontWeight.normal),
+                ),
                 const Icon(Icons.arrow_drop_down)
               ],
             ),
@@ -129,12 +130,12 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         ],
         // leadingWidth: AppSize.s32,
         leading: Padding(
-          padding:  EdgeInsets.only(bottom: AppSize.s8,left: AppSize.s16,top: AppSize.s8),
+          padding: EdgeInsets.only(
+              bottom: AppSize.s8, left: AppSize.s16, top: AppSize.s8),
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
-              color: ColorManager.lightGrey
-            ),
+                color: ColorManager.lightGrey),
             child: IconButton(
               icon: Icon(Icons.menu), // Customize the icon as needed
               onPressed: () {
@@ -306,7 +307,10 @@ class AppDrawer extends StatelessWidget {
               DrawerTile(
                 isSelected: true,
                 label: 'Calendar',
-                icon: Image.asset(ImageAssets.calender, color: ColorManager.primary,),
+                icon: Image.asset(
+                  ImageAssets.calender,
+                  color: ColorManager.primary,
+                ),
               ),
               SizedBox(height: AppSize.s8.h),
               DrawerTile(
@@ -318,7 +322,8 @@ class AppDrawer extends StatelessWidget {
               DrawerTile(
                 isSelected: false,
                 label: 'Address',
-                icon: Icon(Icons.location_on_outlined, color: Color(0xffD1D3D4)),
+                icon:
+                    Icon(Icons.location_on_outlined, color: Color(0xffD1D3D4)),
               ),
               SizedBox(height: AppSize.s8.h),
               DrawerTile(
@@ -376,8 +381,9 @@ class AppDrawer extends StatelessWidget {
                           children: [
                             Image.asset(
                               ImageAssets.light,
-                              color:
-                                  true ? ColorManager.black : ColorManager.white,
+                              color: true
+                                  ? ColorManager.black
+                                  : ColorManager.white,
                             ),
                             SizedBox(width: AppSize.s12.w),
                             Text(

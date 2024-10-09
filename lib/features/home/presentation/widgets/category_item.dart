@@ -25,22 +25,18 @@ class CategoryItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: AppSize.s58,
-            width: AppSize.s58,
-            decoration: BoxDecoration(
-              color: ColorManager.primary,
-              shape: BoxShape.circle,
-            ),
             padding: const EdgeInsets.all(AppPadding.p12),
-            child: SizedBox(
-              child: CachedNetworkImage(
-                imageUrl: category.img.icon,
-                fit: BoxFit.cover,
-                color: ColorManager.white,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: ColorManager.lightGrey, //Color(0xffe0e2ea),
               ),
             ),
+            child: CachedNetworkImage(
+              imageUrl: category.img.icon,
+              color: ColorManager.textTitleColor,
+            ),
           ),
-          SizedBox(height: AppSize.s12.h),
           Text(
             category.name,
             style: context.textTheme.labelSmall,

@@ -19,7 +19,7 @@ import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/shared/widgets/card_label_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeContent extends StatefulWidget {
+class HomeContent extends StatelessWidget {
   final List<Category> categories;
   final List<Category> filters;
   final List<UserSkills> services;
@@ -31,88 +31,71 @@ class HomeContent extends StatefulWidget {
   });
 
   @override
-  State<HomeContent> createState() => _HomeContentState();
-}
-
-class _HomeContentState extends State<HomeContent> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          widget.categories.isEmpty
-              ? const AllCategoriesLoadingPlaceholder()
-              : AllCategoriesWidgets(
-                  categories: widget.categories,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        categories.isEmpty
+            ? const AllCategoriesLoadingPlaceholder()
+            : AllCategoriesWidgets(
+                categories: categories,
+              ),
+        filters.isNotEmpty
+            ? Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: AppPadding.p8.h,
                 ),
-          widget.filters.isNotEmpty
-              ? Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: AppPadding.p8.h,
-                  ),
-                  child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            context.read<HomeBloc>().add(
-                                  const HomeEvent.clearFilters(),
-                                );
-                          },
-                          style: IconButton.styleFrom(
-                            backgroundColor: ColorManager.white,
-                          ),
-                          icon: Icon(
-                            Icons.close_rounded,
-                            size: AppSize.s24,
-                            color: ColorManager.textTitleColor,
-                          ),
+                child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          context.read<HomeBloc>().add(
+                                const HomeEvent.clearFilters(),
+                              );
+                        },
+                        style: IconButton.styleFrom(
+                          backgroundColor: ColorManager.white,
                         ),
-                        ...widget.filters.map(
-                          (filter) => Container(
-                            padding: const EdgeInsets.all(AppPadding.p12),
-                            margin: const EdgeInsets.all(AppMargin.m4),
-                            decoration: BoxDecoration(
-                              color: ColorManager.white,
-                              borderRadius: BorderRadius.circular(
-                                AppSize.s20,
-                              ),
-                            ),
-                            child: Text(
-                              filter.name,
-                              style: context.textTheme.labelMedium,
+                        icon: Icon(
+                          Icons.close_rounded,
+                          size: AppSize.s24,
+                          color: ColorManager.textTitleColor,
+                        ),
+                      ),
+                      ...filters.map(
+                        (filter) => Container(
+                          padding: const EdgeInsets.all(AppPadding.p12),
+                          margin: const EdgeInsets.all(AppMargin.m4),
+                          decoration: BoxDecoration(
+                            color: ColorManager.white,
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s20,
                             ),
                           ),
+                          child: Text(
+                            filter.name,
+                            style: context.textTheme.labelMedium,
+                          ),
                         ),
-                      ]),
-                )
-              : SizedBox(height: AppSize.s16.h),
-          (widget.categories.isEmpty || widget.services.isEmpty)
-              ? Column(
-                  children: [
-                    const AllServicesLoadingPlaceholder(),
-                    SizedBox(height: AppSize.s16.h),
-                    const AllServicesLoadingPlaceholder(),
-                  ],
-                )
-              : AllServicesWidget(
-                  allSkills: widget.services,
-                  filterIDs: widget.filters.map((e) => e.id).toList(),
-                ),
-          SizedBox(height: AppSize.s60.h),
-        ],
-      ),
+                      ),
+                    ]),
+              )
+            : const SizedBox(),
+        (categories.isEmpty || services.isEmpty)
+            ? Column(
+                children: [
+                  const AllServicesLoadingPlaceholder(),
+                  SizedBox(height: AppSize.s16.h),
+                  const AllServicesLoadingPlaceholder(),
+                ],
+              )
+            : AllServicesWidget(
+                allSkills: services,
+                filterIDs: filters.map((e) => e.id).toList(),
+              ),
+        SizedBox(height: AppSize.s60.h),
+      ],
     );
   }
 }

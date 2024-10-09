@@ -146,12 +146,11 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                       child: Column(
                         children: [
                           Flexible(
-                            flex: 6,
                             child: Container(
-                              padding: EdgeInsets.all(AppPadding.p3),
+                              //padding: const EdgeInsets.all(AppPadding.p3),
                               decoration: ShapeDecoration(
                                 color: ColorManager.white,
-                                shape: StadiumBorder(),
+                                shape: const StadiumBorder(),
                               ),
                               child: Row(
                                 mainAxisAlignment:
@@ -159,12 +158,13 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                                 children: [
                                   Flexible(
                                     child: Container(
-                                      child: CircleAvatar(
-                                        backgroundImage:
-                                            CachedNetworkImageProvider(
-                                          master.categories.first.photo,
-                                        ),
-                                      ),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: CachedNetworkImageProvider(
+                                              master.categories.first.photo,
+                                            ),
+                                          )),
                                     ),
                                   ),
                                   Flexible(
@@ -177,14 +177,12 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          Flexible(
-                            flex: 1,
-                            child: SvgPicture.asset(
-                              ImageAssets.caretDown,
-                              colorFilter: ColorFilter.mode(
-                                ColorManager.white,
-                                BlendMode.srcIn,
-                              ),
+                          SvgPicture.asset(
+                            ImageAssets.caretDown,
+                            height: 5,
+                            colorFilter: ColorFilter.mode(
+                              ColorManager.white,
+                              BlendMode.srcIn,
                             ),
                           ),
                         ],

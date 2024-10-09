@@ -21,10 +21,8 @@ class AllCategoriesWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // const CardLabelWidget(label: AppStrings.cats),
-        SizedBox(height: AppSize.s8.h),
         Container(
-          height: AppSize.s120,
+          height: AppSize.s90,
           decoration: BoxDecoration(
             color: ColorManager.white,
             borderRadius: BorderRadius.circular(
@@ -42,17 +40,9 @@ class AllCategoriesWidgets extends StatelessWidget {
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {
-                    print('tapped cat');
                     context.read<HomeBloc>().add(
                           HomeEvent.setFilters(categories[index]),
                         );
-                    // var catDetails =
-                    //     context.read<HomeBloc>().state.services.firstWhere(
-                    //           (skill) => skill.skill.id == categories[index].id,
-                    //         );
-                    // context.router.push(
-                    //   CategoryRoute(categoryDetails: catDetails),
-                    // );
                   },
                 ),
               ),

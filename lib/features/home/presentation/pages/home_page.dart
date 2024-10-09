@@ -44,26 +44,30 @@ class HomePage extends StatelessWidget {
                 horizontal: AppPadding.p16,
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: AppSize.s20.h),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Discover ',
-                          style: context.textTheme.displaySmall!.copyWith(
-                            color: ColorManager.joyColor,
-                            fontSize: FontSizeManager.s26,
+                  //SizedBox(height: AppSize.s20.h),
+                  SizedBox(
+                    width: 300.w,
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Discover ',
+                            style: context.textTheme.displaySmall!.copyWith(
+                              color: ColorManager.joyColor,
+                              fontSize: FontSizeManager.s26,
+                            ),
                           ),
-                        ),
-                        TextSpan(
-                          text: 'The best, hight quality services near you',
-                          style: context.textTheme.titleSmall!.copyWith(
-                            color: ColorManager.textTitleColor,
-                            fontSize: FontSizeManager.s26,
+                          TextSpan(
+                            text: 'the best, highest quality services near you',
+                            style: context.textTheme.titleSmall!.copyWith(
+                              color: ColorManager.textTitleColor,
+                              fontSize: FontSizeManager.s26,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: AppSize.s20.h),
@@ -98,6 +102,7 @@ class HomePage extends StatelessWidget {
                           child: TextField(
                             onTapOutside: (_) =>
                                 FocusManager.instance.primaryFocus?.unfocus(),
+                            textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               fillColor: ColorManager.lightGrey,
                               hintText: AppStrings.searchHint,
