@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -128,16 +127,15 @@ class HomePage extends StatelessWidget {
                         Flexible(
                           flex: 1,
                           child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: ColorManager.lightGrey,
-                            ),
-                            onPressed: () {},
-                            child:  SvgPicture.asset(
-                              ImageAssets.filterIcon,
-                              height: AppSize.s16,
-                              color: ColorManager.textTitleColor,
-                            )
-                          ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: ColorManager.lightGrey,
+                              ),
+                              onPressed: () {},
+                              child: SvgPicture.asset(
+                                ImageAssets.filterIcon,
+                                height: AppSize.s16,
+                                color: ColorManager.textTitleColor,
+                              )),
                         ),
                         const SizedBox(width: AppSize.s8),
                         Flexible(
@@ -151,7 +149,7 @@ class HomePage extends StatelessWidget {
                               ImageAssets.sortIcon,
                               height: AppSize.s16,
                               color: ColorManager.black,
-                          ),
+                            ),
                           ),
                         ),
                       ],
