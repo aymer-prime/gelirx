@@ -106,8 +106,8 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
               widget.userPosition.latitude,
               widget.userPosition.longitude,
             ),
-            initialZoom: 14,
-            minZoom: 13,
+            initialZoom: 12,
+            minZoom: 12,
           ),
           children: [
             openStreetMapTileLayer,
