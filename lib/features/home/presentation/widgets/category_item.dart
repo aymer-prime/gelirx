@@ -34,7 +34,7 @@ class CategoryItem extends StatelessWidget {
             ),
             child: CachedNetworkImage(
               imageUrl: category.img.icon,
-              color: ColorManager.textTitleColor,
+              color: ColorManager.joyColor,
             ),
           ),
           Text(

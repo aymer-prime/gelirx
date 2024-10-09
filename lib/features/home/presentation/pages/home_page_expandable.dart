@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,20 +21,26 @@ class HomePageExpandable extends StatefulWidget {
 }
 
 class _ResizableColumnState extends State<HomePageExpandable> {
-  double _bottomHeight = 200;
-  final double _minHeight = 100;
+  final double _minHeight = 150;
+  late double _bottomHeight;
   late double _maxHeight;
   late double _halfHeight;
-  ScrollPhysics? scrollPhysics = null;
+  ScrollPhysics? scrollPhysics;
   ScrollController controller = ScrollController();
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    var appBarHight = Scaffold.of(
+          context,
+        ).appBarMaxHeight ??
+        0;
+    _maxHeight = MediaQuery.of(context).size.height - appBarHight;
+    _halfHeight = _maxHeight / 2;
+    _bottomHeight = _halfHeight;
+  }
 
   @override
   Widget build(BuildContext context) {
-    var appBarHight = Scaffold.of(context).appBarMaxHeight ?? 0;
-    _maxHeight =
-        MediaQuery.of(context).size.height - appBarHight; // Full page height
-    _halfHeight = _maxHeight / 2; // Half page height
-
     return Scaffold(
       backgroundColor: ColorManager.white,
       body: BlocConsumer<HomeBloc, HomeState>(
@@ -193,12 +198,6 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                     height: _bottomHeight,
                     child: GestureDetector(
                       onVerticalDragUpdate: (dragDetails) {
-                        // if (!dragDetails.delta.dy.isNegative) {
-                        //   print('positive: ${dragDetails.delta.dy}');
-                        //   scrollPhysics = NeverScrollableScrollPhysics();
-                        // } else {
-                        //   scrollPhysics = null;
-                        // }
                         setState(() {
                           _bottomHeight -= dragDetails.delta.dy;
                           // Limit the bottomHeight between _minHeight and full height (_maxHeight)
@@ -312,19 +311,14 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                                       onNotification: (scrollNotification) {
                                         if (scrollNotification
                                             is ScrollUpdateNotification) {
-                                          print(scrollNotification
-                                              .metrics.pixels);
                                           if (scrollNotification
                                                   .metrics.pixels ==
                                               0.0) {
-                                            print('stop');
-                                            // At the top of the scroll view
                                             setState(() {
                                               scrollPhysics =
                                                   const NeverScrollableScrollPhysics();
                                             });
                                           } else {
-                                            // Not at the top, allow scrolling
                                             setState(() {
                                               scrollPhysics =
                                                   const AlwaysScrollableScrollPhysics();

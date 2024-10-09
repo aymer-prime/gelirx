@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
@@ -47,53 +48,100 @@ class HomeContent extends StatelessWidget {
                 ],
               )
             : Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('Popular services'),
-                const SizedBox(height: AppSize.s10),
-                SizedBox(
-                  child: GridView.builder(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Popular services'),
+                  const SizedBox(height: AppSize.s10),
+                  GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      mainAxisSpacing: AppSize.s15,
-                      crossAxisSpacing: AppSize.s15,
+                      mainAxisSpacing: AppSize.s16,
+                      crossAxisSpacing: AppSize.s16,
+                      childAspectRatio: 0.65,
                     ),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: topCategories.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            flex: 9,
-                            fit: FlexFit.tight,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                AppSize.s20,
-                              ),
-                              child: CachedNetworkImage(
-                                imageUrl: topCategories[index].img.photo,
-                                fit: BoxFit.cover,
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s20,
+                          ),
+                          border: Border.all(
+                              color: ColorManager.lightGrey,
+                              width: AppSize.s1),
+                        ),
+                        child: Column(
+                          children: [
+                            Flexible(
+                              flex: 7,
+                              fit: FlexFit.tight,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(AppSize.s20),
+                                  topRight: Radius.circular(AppSize.s20),
+                                ),
+                                child: CachedNetworkImage(
+                                  imageUrl: topCategories[index].img.photo,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: AppSize.s10),
-                          Text(
-                            topCategories[index].name,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.textTheme.labelSmall!.copyWith(
-                              fontSize: FontSizeManager.s11,
+                            const SizedBox(height: AppSize.s10),
+                            Flexible(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: AppPadding.p10,
+                                  horizontal: AppPadding.p15,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      topCategories[index].name,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: context.textTheme.bodyMedium!
+                                          .copyWith(
+                                        color: ColorManager.joyColor,
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          FontAwesomeIcons.solidUser,
+                                          size: AppSize.s10,
+                                        ),
+                                        const SizedBox(
+                                          width: AppSize.s2,
+                                        ),
+                                        Text(
+                                          '12.927 Professionals',
+                                          style: context.textTheme.labelSmall!
+                                              .copyWith(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: FontSizeManager.s11,
+                                                  color: ColorManager
+                                                      .textSubtitleColor),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     },
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
         SizedBox(height: AppSize.s60.h),
       ],
     );
