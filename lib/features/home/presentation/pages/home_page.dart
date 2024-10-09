@@ -17,6 +17,7 @@ import 'package:gelirx/features/home/presentation/widgets/home_map_widget.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 @RoutePage()
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 

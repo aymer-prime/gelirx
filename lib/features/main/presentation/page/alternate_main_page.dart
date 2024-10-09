@@ -20,6 +20,10 @@ import 'package:gelirx/features/notifications/presentation/pages/notifications_p
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../app/injector/injection.dart';
+import '../../../../app/utils/app_constants.dart';
+import '../../../auth/presentation/bloc/auth_bloc.dart';
+
 @RoutePage()
 class AlternateMainPage extends StatefulWidget {
   const AlternateMainPage({super.key});
@@ -109,7 +113,6 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
               child: IconButton(
                 icon: Icon(FontAwesomeIcons.solidBell), // Customize the icon as needed
                 onPressed: () {
-                  _scaffoldKey.currentState?.openDrawer();
                 },
               ),
             ),
@@ -146,27 +149,21 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           // ),
         ],
         // leadingWidth: AppSize.s32,
-        leading:  Padding(
-          padding: const EdgeInsets.only(left: AppSize.s16),
-          child: CircleAvatar(
-            backgroundImage: NetworkImage("https://static.wixstatic.com/media/11dbc6cac2aa4e1eb57b0514259381a5.jpg/v1/fill/w_1000,h_1334,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11dbc6cac2aa4e1eb57b0514259381a5.jpg"),
+        leading: Padding(
+          padding: EdgeInsets.only(
+              bottom: AppSize.s8, left: AppSize.s16, top: AppSize.s8),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+                color: ColorManager.lightGrey),
+            child: IconButton(
+              icon: SvgPicture.asset(ImageAssets.menuIcon),
+              onPressed: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+            ),
           ),
         ),
-        // Padding(
-        //   padding: EdgeInsets.only(
-        //       bottom: AppSize.s8, left: AppSize.s16, top: AppSize.s8),
-        //   child: Container(
-        //     decoration: BoxDecoration(
-        //         borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
-        //         color: ColorManager.lightGrey),
-        //     child: IconButton(
-        //       icon: Icon(Icons.menu), // Customize the icon as needed
-        //       onPressed: () {
-        //         _scaffoldKey.currentState?.openDrawer();
-        //       },
-        //     ),
-        //   ),
-        // ),
       ),
       drawer: const AppDrawer(),
       body: BlocListener<AuthStatusBloc, AuthStatusState>(
@@ -233,29 +230,29 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           ],
         ),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: Container(
-      //   child: FloatingActionButton(
-      //     backgroundColor: ColorManager.primary,
-      //     elevation: 0,
-      //     onPressed: () {
-      //       //todo: move this logic to state management
-      //       final localServices = getIt<SharedPreferences>();
-      //       String? isMaster = localServices.getString(Constants.isMasterKey);
-      //       if (isMaster == null || isMaster == '0') {
-      //         context.read<AuthBloc>().add(const AuthEvent.setUserType(
-      //               true,
-      //             ));
-      //         context.router.push(const AuthRoute());
-      //       }
-      //     },
-      //     shape: const CircleBorder(),
-      //     child: Icon(
-      //       Icons.add_rounded,
-      //       color: ColorManager.white,
-      //     ),
-      //   ),
-      // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: AppSize.s20),
+        child: Container(
+          child: FloatingActionButton(
+            backgroundColor: ColorManager.joyColor,
+            elevation: 0,
+            onPressed: () {
+              //todo: move this logic to state management
+              final localServices = getIt<SharedPreferences>();
+              String? isMaster = localServices.getString(Constants.isMasterKey);
+              if (isMaster == null || isMaster == '0') {
+                context.read<AuthBloc>().add(const AuthEvent.setUserType(
+                      true,
+                    ));
+                context.router.push(const AuthRoute());
+              }
+            },
+            shape: const CircleBorder(),
+            child: SvgPicture.asset(ImageAssets.navbarAdd, color: Colors.white,)
+          ),
+        ),
+      ),
     );
   }
 }
