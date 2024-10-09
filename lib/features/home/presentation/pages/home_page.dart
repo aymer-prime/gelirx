@@ -85,8 +85,11 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(
                           AppSize.s30,
                         ),
-                        child: HomeMap(
-                          userPosition: userPosition,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: HomeMap(
+                            userPosition: userPosition,
+                          ),
                         ),
                       ),
                     ),
