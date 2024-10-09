@@ -130,7 +130,7 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                 return Marker(
                   rotate: true,
                   point: LatLng(master.latitude, master.longitude),
-                  width: AppSize.s80.w,
+                  width: AppSize.s60.w,
                   child: GestureDetector(
                       onTap: () {
                         showModalBottomSheet(
