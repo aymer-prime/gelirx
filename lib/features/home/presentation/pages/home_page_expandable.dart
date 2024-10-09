@@ -31,7 +31,9 @@ class _ResizableColumnState extends State<HomePageExpandable> {
 
   @override
   Widget build(BuildContext context) {
-    _maxHeight = MediaQuery.of(context).size.height; // Full page height
+    var appBarHight = Scaffold.of(context).appBarMaxHeight ?? 0;
+    _maxHeight =
+        MediaQuery.of(context).size.height - appBarHight; // Full page height
     _halfHeight = _maxHeight / 2; // Half page height
 
     return Scaffold(
