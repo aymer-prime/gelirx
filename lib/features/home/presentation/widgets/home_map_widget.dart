@@ -205,7 +205,7 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                         widget.userPosition.latitude,
                         widget.userPosition.longitude,
                       ),
-                      14,
+                      12,
                     );
                   },
                   backgroundColor: Colors.white,

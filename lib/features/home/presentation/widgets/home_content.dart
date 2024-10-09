@@ -38,53 +38,6 @@ class HomeContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        categories.isEmpty
-            ? const AllCategoriesLoadingPlaceholder()
-            : AllCategoriesWidgets(
-                categories: categories,
-              ),
-        filters.isNotEmpty
-            ? Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: AppPadding.p8.h,
-                ),
-                child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          context.read<HomeBloc>().add(
-                                const HomeEvent.clearFilters(),
-                              );
-                        },
-                        style: IconButton.styleFrom(
-                          backgroundColor: ColorManager.white,
-                        ),
-                        icon: Icon(
-                          Icons.close_rounded,
-                          size: AppSize.s24,
-                          color: ColorManager.textTitleColor,
-                        ),
-                      ),
-                      ...filters.map(
-                        (filter) => Container(
-                          padding: const EdgeInsets.all(AppPadding.p12),
-                          margin: const EdgeInsets.all(AppMargin.m4),
-                          decoration: BoxDecoration(
-                            color: ColorManager.white,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s20,
-                            ),
-                          ),
-                          child: Text(
-                            filter.name,
-                            style: context.textTheme.labelMedium,
-                          ),
-                        ),
-                      ),
-                    ]),
-              )
-            : const SizedBox(height: AppSize.s16),
         (categories.isEmpty || services.isEmpty)
             ? Column(
                 children: [
@@ -94,11 +47,12 @@ class HomeContent extends StatelessWidget {
                 ],
               )
             : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Popular services'),
-                  const SizedBox(height: AppSize.s10),
-                  GridView.builder(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Popular services'),
+                const SizedBox(height: AppSize.s10),
+                SizedBox(
+                  child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -137,8 +91,9 @@ class HomeContent extends StatelessWidget {
                       );
                     },
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
         SizedBox(height: AppSize.s60.h),
       ],
     );

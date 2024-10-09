@@ -47,26 +47,24 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //SizedBox(height: AppSize.s20.h),
-                  SizedBox(
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Discover ',
-                            style: context.textTheme.displaySmall!.copyWith(
-                              color: ColorManager.joyColor,
-                              fontSize: FontSizeManager.s26,
-                            ),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Discover ',
+                          style: context.textTheme.displaySmall!.copyWith(
+                            color: ColorManager.joyColor,
+                            fontSize: FontSizeManager.s26,
                           ),
-                          TextSpan(
-                            text: 'the best, highest quality services near you',
-                            style: context.textTheme.titleSmall!.copyWith(
-                              color: ColorManager.textTitleColor,
-                              fontSize: FontSizeManager.s26,
-                            ),
+                        ),
+                        TextSpan(
+                          text: 'the best, highest quality services near you',
+                          style: context.textTheme.titleSmall!.copyWith(
+                            color: ColorManager.textTitleColor,
+                            fontSize: FontSizeManager.s26,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: AppSize.s20.h),
