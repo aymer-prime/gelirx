@@ -10,7 +10,7 @@ class AppStrings {
   static const splashTitle1 = 'GelirX';
   //home
   static const homeTitle1 = 'Home Page !!!';
-  static const welcomeSubtitle = 'Master Name 👋';
+  static const welcomeSubtitle = 'Current Address';
   static const welcomeTitle = 'What you are looking for today';
   static const searchHint = 'Which service are you looking for?';
   static const location = 'Location';

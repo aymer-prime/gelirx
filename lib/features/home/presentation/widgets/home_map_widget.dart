@@ -128,6 +128,7 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
             MarkerLayer(
               markers: state.masters.map((master) {
                 return Marker(
+                  rotate: true,
                   point: LatLng(master.latitude, master.longitude),
                   width: AppSize.s80.w,
                   child: GestureDetector(

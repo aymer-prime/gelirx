@@ -25,6 +25,8 @@ class ImageAssets {
   static const String dark = '$imagePath/drawer/dark.png';
   static const String confirm = '$imagePath/misc/confirm.png';
   static const String caretDown = '$imagePath/misc/caret_down.svg';
+  static const String filterIcon = '$imagePath/misc/filter.svg';
+  static const String sortIcon = '$imagePath/misc/sort.svg';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';

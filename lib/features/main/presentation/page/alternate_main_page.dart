@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
@@ -32,7 +33,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
   final homeNavKey = GlobalKey<NavigatorState>();
   final searchNavKey = GlobalKey<NavigatorState>();
   final addnNavKey = GlobalKey<NavigatorState>();
-  final notificationNavKey = GlobalKey<NavigatorState>();
+  //final notificationNavKey = GlobalKey<NavigatorState>();
   final profileNavKey = GlobalKey<NavigatorState>();
   int selectedTab = 0;
   List<NavModel> items = [];
@@ -53,10 +54,10 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         page: const HomePage(),
         navKey: addnNavKey,
       ),
-      NavModel(
-        page: const NotificationsPage(),
-        navKey: notificationNavKey,
-      ),
+      // NavModel(
+      //   page: const NotificationsPage(),
+      //   navKey: notificationNavKey,
+      // ),
       NavModel(
         page: const ProfilePage(),
         navKey: profileNavKey,
@@ -85,6 +86,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Icon(Icons.location_on,color: ColorManager.joyColor,),
                 Text(
                   'Business Bay, Silver Tower',
                   style: context.textTheme.labelMedium?.copyWith(
@@ -97,53 +99,74 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           ],
         ),
         actions: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'BRONZE',
-                style: context.textTheme.labelLarge!.copyWith(
-                  color: ColorManager.bronzeTire,
-                  fontSize: FontSizeManager.s10,
-                ),
+          Padding(
+            padding: EdgeInsets.only(
+                bottom: AppSize.s8, right: AppSize.s16, top: AppSize.s8),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+                  color: ColorManager.lightGrey),
+              child: IconButton(
+                icon: Icon(FontAwesomeIcons.solidBell), // Customize the icon as needed
+                onPressed: () {
+                  _scaffoldKey.currentState?.openDrawer();
+                },
               ),
-              Text(
-                '20 Tokens',
-                style: context.textTheme.labelSmall!.copyWith(
-                  fontSize: FontSizeManager.s8,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const SizedBox(width: AppSize.s4),
-              SvgPicture.asset(
-                ImageAssets.tierIcon,
-                fit: BoxFit.cover,
-                colorFilter:
-                    ColorFilter.mode(ColorManager.bronzeTire, BlendMode.srcIn),
-              ),
-              const SizedBox(width: AppSize.s16),
-            ],
-          ),
-        ],
-        // leadingWidth: AppSize.s32,
-        leading: Padding(
-          padding: EdgeInsets.only(
-              bottom: AppSize.s8, left: AppSize.s16, top: AppSize.s8),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
-                color: ColorManager.lightGrey),
-            child: IconButton(
-              icon: Icon(Icons.menu), // Customize the icon as needed
-              onPressed: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
             ),
           ),
+          // Column(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Text(
+          //       'BRONZE',
+          //       style: context.textTheme.labelLarge!.copyWith(
+          //         color: ColorManager.bronzeTire,
+          //         fontSize: FontSizeManager.s10,
+          //       ),
+          //     ),
+          //     Text(
+          //       '20 Tokens',
+          //       style: context.textTheme.labelSmall!.copyWith(
+          //         fontSize: FontSizeManager.s8,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // Row(
+          //   children: [
+          //     const SizedBox(width: AppSize.s4),
+          //     SvgPicture.asset(
+          //       ImageAssets.tierIcon,
+          //       fit: BoxFit.cover,
+          //       colorFilter:
+          //           ColorFilter.mode(ColorManager.bronzeTire, BlendMode.srcIn),
+          //     ),
+          //     const SizedBox(width: AppSize.s16),
+          //   ],
+          // ),
+        ],
+        // leadingWidth: AppSize.s32,
+        leading:  Padding(
+          padding: const EdgeInsets.only(left: AppSize.s16),
+          child: CircleAvatar(
+            backgroundImage: NetworkImage("https://static.wixstatic.com/media/11dbc6cac2aa4e1eb57b0514259381a5.jpg/v1/fill/w_1000,h_1334,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11dbc6cac2aa4e1eb57b0514259381a5.jpg"),
+          ),
         ),
+        // Padding(
+        //   padding: EdgeInsets.only(
+        //       bottom: AppSize.s8, left: AppSize.s16, top: AppSize.s8),
+        //   child: Container(
+        //     decoration: BoxDecoration(
+        //         borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+        //         color: ColorManager.lightGrey),
+        //     child: IconButton(
+        //       icon: Icon(Icons.menu), // Customize the icon as needed
+        //       onPressed: () {
+        //         _scaffoldKey.currentState?.openDrawer();
+        //       },
+        //     ),
+        //   ),
+        // ),
       ),
       drawer: const AppDrawer(),
       body: BlocListener<AuthStatusBloc, AuthStatusState>(

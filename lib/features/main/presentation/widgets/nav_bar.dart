@@ -72,16 +72,16 @@ class NavBar extends StatelessWidget {
                 isSelected: pageIndex == 2,
                 onTap: () => onTap(2),
               ),
-              NavItem(
-                label: AppStrings.notification,
-                icon: SvgPicture.asset(ImageAssets.navbarNotification),
-                activeIcon: SvgPicture.asset(
-                  ImageAssets.navbarNotification,
-                  color: ColorManager.darkPrimary,
-                ),
-                isSelected: pageIndex == 3,
-                onTap: () => onTap(3),
-              ),
+              // NavItem(
+              //   label: AppStrings.notification,
+              //   icon: SvgPicture.asset(ImageAssets.navbarNotification),
+              //   activeIcon: SvgPicture.asset(
+              //     ImageAssets.navbarNotification,
+              //     color: ColorManager.darkPrimary,
+              //   ),
+              //   isSelected: pageIndex == 3,
+              //   onTap: () => onTap(3),
+              // ),
               NavItem(
                 label: AppStrings.profile,
                 icon: SvgPicture.asset(ImageAssets.navbarProfile),
