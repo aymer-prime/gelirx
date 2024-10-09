@@ -47,12 +47,13 @@ class AppStrings {
 
   //onboarding
   static const getStarted = 'Get Started';
-  static const onboardingTitle1 = 'Find Help Fast';
+  static const sonarki ="Sonraki";
+  static const onboardingTitle1 = 'Daha çok müşteriye ulaş, daha çok kazan';
   static const onboardingSubtitle1 =
-      'Easily hire trusted professionals like plumbers, cleaners, and handymen near you, anytime';
-  static const onboardingTitle2 = 'Get Things Done, Hassle-Free';
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tempus, massa eu suscipit feugiat, diam sapien rutrum diam, ut facilisis massa est eget ex. Proin mattis interdum commodo. Mauris commodo vestibulum magna et laoreet. Cras vehicula blandit enim nec tincidunt.';
+  static const onboardingTitle2 = 'Daha çok müşteriye ulaş, daha çok kazan';
   static const onboardingSubtitle2 =
-      'From repairs to cleaning, connect with reliable local experts and book services in minutes';
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tempus, massa eu suscipit feugiat, diam sapien rutrum diam, ut facilisis massa est eget ex. Proin mattis interdum commodo. Mauris commodo vestibulum magna et laoreet. Cras vehicula blandit enim nec tincidunt.';
 
   //Booking
   static const bookingsTitle = "Bookings";
