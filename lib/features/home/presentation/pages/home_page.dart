@@ -129,11 +129,11 @@ class HomePage extends StatelessWidget {
                               backgroundColor: ColorManager.lightGrey,
                             ),
                             onPressed: () {},
-                            child: Icon(
-                              FontAwesomeIcons.sliders,
-                              size: AppSize.s16,
+                            child:  SvgPicture.asset(
+                              ImageAssets.filterIcon,
+                              height: AppSize.s16,
                               color: ColorManager.textTitleColor,
-                            ),
+                            )
                           ),
                         ),
                         const SizedBox(width: AppSize.s8),
@@ -144,11 +144,11 @@ class HomePage extends StatelessWidget {
                               backgroundColor: ColorManager.lightGrey,
                             ),
                             onPressed: () {},
-                            child: Icon(
-                              FontAwesomeIcons.sort,
-                              size: AppSize.s16,
-                              color: ColorManager.textTitleColor,
-                            ),
+                            child: SvgPicture.asset(
+                              ImageAssets.sortIcon,
+                              height: AppSize.s16,
+                              color: ColorManager.black,
+                          ),
                           ),
                         ),
                       ],
