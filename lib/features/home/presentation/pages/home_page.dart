@@ -48,7 +48,6 @@ class HomePage extends StatelessWidget {
                 children: [
                   //SizedBox(height: AppSize.s20.h),
                   SizedBox(
-                    width: 300.w,
                     child: RichText(
                       text: TextSpan(
                         children: [
@@ -158,6 +157,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(height: AppSize.s20.h),
                   HomeContent(
                     categories: state.categories,
+                    topCategories:
+                        state.services.expand((obj) => obj.subSkill).toList(),
                     services: state.services,
                     filters: state.catFilterIndexes,
                   ),

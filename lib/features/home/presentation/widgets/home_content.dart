@@ -10,6 +10,7 @@ import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
@@ -21,11 +22,13 @@ import 'package:shimmer/shimmer.dart';
 
 class HomeContent extends StatelessWidget {
   final List<Category> categories;
+  final List<Category> topCategories;
   final List<Category> filters;
   final List<UserSkills> services;
   const HomeContent({
     super.key,
     required this.categories,
+    required this.topCategories,
     required this.services,
     required this.filters,
   });
@@ -81,7 +84,7 @@ class HomeContent extends StatelessWidget {
                       ),
                     ]),
               )
-            : const SizedBox(),
+            : const SizedBox(height: AppSize.s16),
         (categories.isEmpty || services.isEmpty)
             ? Column(
                 children: [
@@ -90,9 +93,51 @@ class HomeContent extends StatelessWidget {
                   const AllServicesLoadingPlaceholder(),
                 ],
               )
-            : AllServicesWidget(
-                allSkills: services,
-                filterIDs: filters.map((e) => e.id).toList(),
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Popular services'),
+                  const SizedBox(height: AppSize.s10),
+                  GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: AppSize.s15,
+                      crossAxisSpacing: AppSize.s15,
+                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: topCategories.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            flex: 9,
+                            fit: FlexFit.tight,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                AppSize.s20,
+                              ),
+                              child: CachedNetworkImage(
+                                imageUrl: topCategories[index].img.photo,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: AppSize.s10),
+                          Text(
+                            topCategories[index].name,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.textTheme.labelSmall!.copyWith(
+                              fontSize: FontSizeManager.s11,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ],
               ),
         SizedBox(height: AppSize.s60.h),
       ],
