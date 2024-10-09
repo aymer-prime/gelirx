@@ -24,8 +24,8 @@ class NavBar extends StatelessWidget {
     return BottomAppBar(
       height: AppSize.s60.h +
           MediaQueryData.fromWindow(ui.window).padding.bottom / 2,
-    //  shape: CircularNotchedRectangle(),
-    //  notchMargin: 4,
+      //  shape: CircularNotchedRectangle(),
+      //  notchMargin: 4,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       padding: EdgeInsets.zero,
       color: Colors.transparent,
@@ -57,23 +57,25 @@ class NavBar extends StatelessWidget {
               ),
               NavItem(
                 label: AppStrings.discover,
-                icon:  SvgPicture.asset(ImageAssets.navbarDiscover, height: AppSize.s20,),
-                activeIcon:  SvgPicture.asset(ImageAssets.navbarDiscover,
-                    height: AppSize.s20,
-                    color: ColorManager.darkPrimary),
+                icon: SvgPicture.asset(
+                  ImageAssets.navbarDiscover,
+                  height: AppSize.s20,
+                ),
+                activeIcon: SvgPicture.asset(ImageAssets.navbarDiscover,
+                    height: AppSize.s20, color: ColorManager.darkPrimary),
                 isSelected: pageIndex == 2,
                 onTap: () => onTap(2),
               ),
               NavItem(
                 label: AppStrings.provideService,
-                icon:  SvgPicture.asset(ImageAssets.navbarDiscover, height: AppSize.s20,color: ColorManager.white),
-                activeIcon:  SvgPicture.asset(ImageAssets.navbarDiscover,
-                    height: AppSize.s20,
-                    color: ColorManager.white),
+                icon: SvgPicture.asset(ImageAssets.navbarDiscover,
+                    height: AppSize.s20, color: ColorManager.white),
+                activeIcon: SvgPicture.asset(ImageAssets.navbarDiscover,
+                    height: AppSize.s20, color: ColorManager.white),
                 isSelected: pageIndex == 2,
                 onTap: () => onTap(2),
               ),
-            //  SizedBox(width: AppSize.s80.w),
+              //  SizedBox(width: AppSize.s80.w),
               NavItem(
                 label: AppStrings.messages,
                 icon: Icon(FontAwesomeIcons.message),
@@ -81,7 +83,6 @@ class NavBar extends StatelessWidget {
                 isSelected: pageIndex == 1,
                 onTap: () => onTap(1),
               ),
-
 
               // NavItem(
               //   label: AppStrings.notification,
@@ -96,7 +97,8 @@ class NavBar extends StatelessWidget {
               NavItem(
                 label: AppStrings.profile,
                 icon: SvgPicture.asset(ImageAssets.navbarProfile),
-                activeIcon: SvgPicture.asset(ImageAssets.navbarProfile,
+                activeIcon: SvgPicture.asset(
+                  ImageAssets.navbarProfile,
                   color: ColorManager.darkPrimary,
                 ),
                 isSelected: pageIndex == 3,
@@ -135,28 +137,38 @@ class NavItem extends StatelessWidget {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  activeIcon,
-                  Text(
-                    label,
-                    maxLines: 1,
-                    style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.black,
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: activeIcon,
+                  ),
+                  Flexible(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      style: context.textTheme.labelSmall!.copyWith(
+                        color: ColorManager.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               )
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  icon,
-                  Text(
-                    label,
-                    maxLines: 1,
-                    style: context.textTheme.labelSmall!.copyWith(
-                      color: ColorManager.black,
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: icon,
+                  ),
+                  Flexible(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      style: context.textTheme.labelSmall!.copyWith(
+                        color: ColorManager.black,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

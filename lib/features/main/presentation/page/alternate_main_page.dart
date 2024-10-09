@@ -91,7 +91,10 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.location_on,color: ColorManager.joyColor,),
+                Icon(
+                  Icons.location_on,
+                  color: ColorManager.joyColor,
+                ),
                 Text(
                   'Business Bay, Silver Tower',
                   style: context.textTheme.labelMedium?.copyWith(
@@ -112,9 +115,9 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
                   color: ColorManager.lightGrey),
               child: IconButton(
-                icon: Icon(FontAwesomeIcons.solidBell), // Customize the icon as needed
-                onPressed: () {
-                },
+                icon: Icon(
+                    FontAwesomeIcons.solidBell), // Customize the icon as needed
+                onPressed: () {},
               ),
             ),
           ),
@@ -236,22 +239,25 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         padding: const EdgeInsets.only(bottom: AppSize.s20),
         child: Container(
           child: FloatingActionButton(
-            backgroundColor: ColorManager.joyColor,
-            elevation: 0,
-            onPressed: () {
-              //todo: move this logic to state management
-              final localServices = getIt<SharedPreferences>();
-              String? isMaster = localServices.getString(Constants.isMasterKey);
-              if (isMaster == null || isMaster == '0') {
-                context.read<AuthBloc>().add(const AuthEvent.setUserType(
-                      true,
-                    ));
-                context.router.push(const AuthRoute());
-              }
-            },
-            shape: const CircleBorder(),
-            child: SvgPicture.asset(ImageAssets.navbarAdd, color: Colors.white,)
-          ),
+              backgroundColor: ColorManager.joyColor,
+              elevation: 0,
+              onPressed: () {
+                //todo: move this logic to state management
+                final localServices = getIt<SharedPreferences>();
+                String? isMaster =
+                    localServices.getString(Constants.isMasterKey);
+                if (isMaster == null || isMaster == '0') {
+                  context.read<AuthBloc>().add(const AuthEvent.setUserType(
+                        true,
+                      ));
+                  context.router.push(const AuthRoute());
+                }
+              },
+              shape: const CircleBorder(),
+              child: Icon(
+                FontAwesomeIcons.solidSquarePlus,
+                color: ColorManager.white,
+              )),
         ),
       ),
     );
