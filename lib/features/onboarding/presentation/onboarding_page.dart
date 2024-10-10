@@ -41,12 +41,18 @@ class OnboardingPage extends HookWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
+                Padding(
+                  padding: EdgeInsets.only(
+                      bottom: AppSize.s8, left: AppSize.s16),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+                        color: ColorManager.lightGrey),
+                    child: IconButton(
+                      icon: Icon(
+                          FontAwesomeIcons.caretLeft), // Customize the icon as needed
+                      onPressed: () {},
+                    ),
                   ),
                 ),
               ],

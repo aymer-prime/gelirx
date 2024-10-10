@@ -31,6 +31,7 @@ class ImageAssets {
   static const String light = '$imagePath/drawer/light.png';
   static const String dark = '$imagePath/drawer/dark.png';
   static const String menuIcon = '$imagePath/drawer/menu.svg';
+  static const String bellIcon = '$imagePath/drawer/bell.svg';
 
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
