@@ -33,6 +33,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: OnboardingRoute.page,
+
         ),
         AutoRoute(
           page: MainRoute.page,

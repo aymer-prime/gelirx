@@ -22,7 +22,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      height: AppSize.s60.h +
+      height: AppSize.s90.h +
           MediaQueryData.fromWindow(ui.window).padding.bottom / 2,
       //  shape: CircularNotchedRectangle(),
       //  notchMargin: 4,
@@ -53,7 +53,8 @@ class NavBar extends StatelessWidget {
                   color: ColorManager.darkPrimary,
                 ),
                 isSelected: pageIndex == 0,
-                onTap: () => onTap(0),
+                onTap: ()  =>
+                    onTap(0), isCenterNavItem: false,
               ),
               NavItem(
                 label: AppStrings.discover,
@@ -64,16 +65,16 @@ class NavBar extends StatelessWidget {
                 activeIcon: SvgPicture.asset(ImageAssets.navbarDiscover,
                     height: AppSize.s20, color: ColorManager.darkPrimary),
                 isSelected: pageIndex == 2,
-                onTap: () => onTap(2),
+                onTap: () => onTap(2), isCenterNavItem: false,
               ),
               NavItem(
                 label: AppStrings.provideService,
-                icon: SvgPicture.asset(ImageAssets.navbarDiscover,
+                icon: SvgPicture.asset(ImageAssets.navbarAdd,
                     height: AppSize.s20, color: ColorManager.white),
-                activeIcon: SvgPicture.asset(ImageAssets.navbarDiscover,
+                activeIcon: SvgPicture.asset(ImageAssets.navbarAdd,
                     height: AppSize.s20, color: ColorManager.white),
                 isSelected: pageIndex == 2,
-                onTap: () => onTap(2),
+                onTap: () => onTap(2), isCenterNavItem: true,
               ),
               //  SizedBox(width: AppSize.s80.w),
               NavItem(
@@ -81,7 +82,7 @@ class NavBar extends StatelessWidget {
                 icon: Icon(FontAwesomeIcons.message),
                 activeIcon: Icon(FontAwesomeIcons.message),
                 isSelected: pageIndex == 1,
-                onTap: () => onTap(1),
+                onTap: () => onTap(1), isCenterNavItem: false,
               ),
 
               // NavItem(
@@ -102,7 +103,7 @@ class NavBar extends StatelessWidget {
                   color: ColorManager.darkPrimary,
                 ),
                 isSelected: pageIndex == 3,
-                onTap: () => onTap(3),
+                onTap: () => onTap(3), isCenterNavItem: false,
               ),
               // SizedBox(width: AppSize.s80.w),
             ],
@@ -118,6 +119,7 @@ class NavItem extends StatelessWidget {
   final Widget activeIcon;
   final String label;
   final bool isSelected;
+  final bool isCenterNavItem;
   final VoidCallback onTap;
   const NavItem({
     super.key,
@@ -125,7 +127,8 @@ class NavItem extends StatelessWidget {
     required this.activeIcon,
     required this.label,
     required this.isSelected,
-    required this.onTap,
+    required this.onTap, 
+    required this.isCenterNavItem,
   });
 
   @override
@@ -133,45 +136,36 @@ class NavItem extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: onTap,
-        child: isSelected
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    fit: FlexFit.tight,
-                    child: activeIcon,
-                  ),
-                  Flexible(
-                    child: Text(
-                      label,
-                      maxLines: 1,
-                      style: context.textTheme.labelSmall!.copyWith(
-                        color: ColorManager.black,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    fit: FlexFit.tight,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              fit: FlexFit.tight,
+              child: Container(
+                width: AppSize.s45,
+                  height: AppSize.s55,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+                      color: isCenterNavItem 
+                          ? ColorManager.joyColor
+                      : ColorManager.lightGrey),
+                  child: Padding(
+                    padding: const EdgeInsets.all(AppSize.s12),
                     child: icon,
-                  ),
-                  Flexible(
-                    child: Text(
-                      label,
-                      maxLines: 1,
-                      style: context.textTheme.labelSmall!.copyWith(
-                        color: ColorManager.black,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+                  )),
+            ),
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                style: context.textTheme.labelSmall!.copyWith(
+                  color: ColorManager.black,
+                ),
+                overflow: TextOverflow.ellipsis,
               ),
+            ),
+          ],
+        ),
       ),
     );
   }

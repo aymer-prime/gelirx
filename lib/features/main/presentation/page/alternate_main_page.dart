@@ -76,6 +76,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
       key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
+        leadingWidth: AppSize.s64,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -109,15 +110,21 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         actions: [
           Padding(
             padding: EdgeInsets.only(
-                bottom: AppSize.s8, right: AppSize.s16, top: AppSize.s8),
+                bottom: AppSize.s8, right: AppSize.s16),
             child: Container(
+              width: AppSize.s50,
+              height: AppSize.s55,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
                   color: ColorManager.lightGrey),
-              child: IconButton(
-                icon: Icon(
-                    FontAwesomeIcons.solidBell), // Customize the icon as needed
-                onPressed: () {},
+              child: Padding(
+                padding: const EdgeInsets.all(AppSize.s6),
+                child: IconButton(
+                  icon: SvgPicture.asset(ImageAssets.bellIcon),
+                  onPressed: () {
+                    _scaffoldKey.currentState?.openDrawer();
+                  },
+                ),
               ),
             ),
           ),
@@ -155,16 +162,21 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         // leadingWidth: AppSize.s32,
         leading: Padding(
           padding: EdgeInsets.only(
-              bottom: AppSize.s8, left: AppSize.s16, top: AppSize.s8),
+              bottom: AppSize.s8, left: AppSize.s16),
           child: Container(
+            width: AppSize.s55,
+            height: AppSize.s55,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
                 color: ColorManager.lightGrey),
-            child: IconButton(
-              icon: SvgPicture.asset(ImageAssets.menuIcon),
-              onPressed: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
+            child: Padding(
+              padding: const EdgeInsets.all(AppSize.s6),
+              child: IconButton(
+                icon: SvgPicture.asset(ImageAssets.menuIcon),
+                onPressed: () {
+                  _scaffoldKey.currentState?.openDrawer();
+                },
+              ),
             ),
           ),
         ),
@@ -234,32 +246,32 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: AppSize.s20),
-        child: Container(
-          child: FloatingActionButton(
-              backgroundColor: ColorManager.joyColor,
-              elevation: 0,
-              onPressed: () {
-                //todo: move this logic to state management
-                final localServices = getIt<SharedPreferences>();
-                String? isMaster =
-                    localServices.getString(Constants.isMasterKey);
-                if (isMaster == null || isMaster == '0') {
-                  context.read<AuthBloc>().add(const AuthEvent.setUserType(
-                        true,
-                      ));
-                  context.router.push(const AuthRoute());
-                }
-              },
-              shape: const CircleBorder(),
-              child: Icon(
-                FontAwesomeIcons.solidSquarePlus,
-                color: ColorManager.white,
-              )),
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.only(bottom: AppSize.s20),
+      //   child: Container(
+      //     child: FloatingActionButton(
+      //         backgroundColor: ColorManager.joyColor,
+      //         elevation: 0,
+      //         onPressed: () {
+      //           //todo: move this logic to state management
+      //           final localServices = getIt<SharedPreferences>();
+      //           String? isMaster =
+      //               localServices.getString(Constants.isMasterKey);
+      //           if (isMaster == null || isMaster == '0') {
+      //             context.read<AuthBloc>().add(const AuthEvent.setUserType(
+      //                   true,
+      //                 ));
+      //             context.router.push(OnboardingRoute());
+      //           }
+      //         },
+      //         shape: const CircleBorder(),
+      //         child: Icon(
+      //           FontAwesomeIcons.solidSquarePlus,
+      //           color: ColorManager.white,
+      //         )),
+      //   ),
+      // ),
     );
   }
 }

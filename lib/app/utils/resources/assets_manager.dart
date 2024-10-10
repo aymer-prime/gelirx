@@ -28,6 +28,7 @@ class ImageAssets {
   static const String filterIcon = '$imagePath/misc/filter.svg';
   static const String sortIcon = '$imagePath/misc/sort.svg';
   static const String menuIcon = '$imagePath/drawer/menu.svg';
+  static const String bellIcon = '$imagePath/drawer/bell.svg';
   //navbar
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
