@@ -4,13 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
+import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/tile_provider.dart';
+import 'package:gelirx/features/home/presentation/widgets/master_info_sheet.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:lottie/lottie.dart' show Lottie;
@@ -133,12 +138,11 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                   width: AppSize.s60.w,
                   child: GestureDetector(
                       onTap: () {
-                        showModalBottomSheet(
+                        showDialog(
                           context: context,
-                          backgroundColor: ColorManager.white,
-                          isScrollControlled: true,
+                          barrierColor: Colors.transparent,
                           builder: (BuildContext context) {
-                            return MasterInfoSheet(
+                            return MasterDetailsDialog(
                               master: master,
                             );
                           },
@@ -224,219 +228,190 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
   }
 }
 
-class MasterInfoSheet extends StatelessWidget {
+class MasterDetailsDialog extends StatelessWidget {
   final Master master;
-  const MasterInfoSheet({super.key, required this.master});
+  const MasterDetailsDialog({
+    super.key,
+    required this.master,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppPadding.p16,
-          vertical: AppPadding.p8,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Container(
-                height: AppSize.s4,
-                width: AppSize.s64,
-                decoration: BoxDecoration(
-                  color: ColorManager.lightPrimary,
-                  borderRadius: BorderRadius.circular(
-                    AppSize.s4,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: AppSize.s16),
-            GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                padding: const EdgeInsets.all(AppSize.s4),
-                decoration: BoxDecoration(
-                  color: ColorManager.white,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: ColorManager.textTitleLightColor,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.arrow_back_ios_rounded,
-                ),
-              ),
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(AppPadding.p16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: AppSize.s40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: ColorManager.darkPrimary,
-                            ),
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.zero,
+      alignment: Alignment.bottomCenter,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+        child: SizedBox(
+          height: context.screenSize.height * 0.4 + 32,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                bottom: 32,
+                left: 0,
+                right: 0,
+                child: Container(
+                  color: Colors.transparent,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.p32,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 10,
+                            offset: Offset(0, 4),
                           ),
-                          child: Image.asset(
-                            ImageAssets.masterIcon,
-                          ),
-                        ),
-                        const SizedBox(width: AppSize.s8),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Text(
-                            //   master.name,
-                            //   style: context.textTheme.titleLarge,
-                            // ),
-                            const SizedBox(width: AppSize.s8),
-                            Row(
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Stack(
                               children: [
-                                SvgPicture.asset(ImageAssets.star),
-                                const SizedBox(width: AppSize.s4),
-                                Text(
-                                  master.point,
-                                  style: context.textTheme.labelMedium,
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(AppSize.s16),
+                                      topRight: Radius.circular(AppSize.s16),
+                                    ),
+                                    child: Image.asset(
+                                      ImageAssets.tesisat,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(width: AppSize.s4),
-                                Text(
-                                  '(87)',
-                                  style: context.textTheme.labelSmall,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {},
+                                      style: IconButton.styleFrom(
+                                        shape: const CircleBorder(),
+                                        backgroundColor: ColorManager.white,
+                                      ),
+                                      icon: const Icon(
+                                        FontAwesomeIcons.heart,
+                                        size: 16,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      style: IconButton.styleFrom(
+                                        shape: const CircleBorder(),
+                                        backgroundColor: ColorManager.white,
+                                      ),
+                                      icon: const Icon(
+                                        FontAwesomeIcons.xmark,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: AppSize.s16),
-                    Text(
-                      'Phone Number',
-                      style: context.textTheme.labelLarge,
-                    ),
-                    // Container(
-                    //   //height: AppSize.s60,
-                    //   width: double.infinity,
-                    //   padding: const EdgeInsets.all(AppPadding.p16),
-                    //   decoration: BoxDecoration(
-                    //     color: ColorManager.textfieldFillColor,
-                    //     borderRadius: BorderRadius.circular(AppSize.s12),
-                    //     border: Border.all(
-                    //       color: ColorManager.textfieldBorderColor,
-                    //     ),
-                    //   ),
-                    //   child: Text(master.phone),
-                    // ),
-                    const SizedBox(height: AppSize.s16),
-                    Text(
-                      'Year of Birth',
-                      style: context.textTheme.labelLarge,
-                    ),
-                    Container(
-                      //height: AppSize.s60,
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(AppPadding.p16),
-                      decoration: BoxDecoration(
-                        color: ColorManager.textfieldFillColor,
-                        borderRadius: BorderRadius.circular(AppSize.s12),
-                        border: Border.all(
-                          color: ColorManager.textfieldBorderColor,
-                        ),
-                      ),
-                      child: const Text('1956'),
-                    ),
-                    const SizedBox(height: AppSize.s16),
-                    Text(
-                      'E-mail',
-                      style: context.textTheme.labelLarge,
-                    ),
-                    Container(
-                      //height: AppSize.s60,
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(AppPadding.p16),
-                      decoration: BoxDecoration(
-                        color: ColorManager.textfieldFillColor,
-                        borderRadius: BorderRadius.circular(AppSize.s12),
-                        border: Border.all(
-                          color: ColorManager.textfieldBorderColor,
-                        ),
-                      ),
-                      child: const Text('abc@outlook.com'),
-                    ),
-                    const SizedBox(height: AppSize.s16),
-                    Text(
-                      'Skills',
-                      style: context.textTheme.labelLarge,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(AppPadding.p8),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: ColorManager.textfieldFillColor,
-                        borderRadius: BorderRadius.circular(AppSize.s8),
-                        border: Border.all(
-                            color: ColorManager.textfieldBorderColor),
-                      ),
-                      child: master.categories.isEmpty
-                          ? const Text('you must choose at least one skill')
-                          : Wrap(
-                              children: master.categories
-                                  .map(
-                                    (e) => Container(
-                                      padding:
-                                          const EdgeInsets.all(AppPadding.p6),
-                                      margin:
-                                          const EdgeInsets.all(AppMargin.m4),
-                                      decoration: BoxDecoration(
-                                        color: ColorManager.white,
-                                        border: Border.all(
-                                          color:
-                                              ColorManager.textfieldBorderColor,
-                                        ),
-                                        borderRadius: BorderRadius.circular(
-                                          AppSize.s12,
-                                        ),
-                                      ),
-                                      child: Wrap(
-                                        children: [
-                                          // Text(
-                                          //   e.name,
-                                          //   style:
-                                          //       context.textTheme.labelMedium,
-                                          // ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(
+                              AppPadding.p16,
                             ),
-                    ),
-                    const SizedBox(height: AppSize.s16),
-                    SizedBox(
-                      height: AppSize.s48,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Call'),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Osman Yancıgil',
+                                  style: getRegularStyle(
+                                    color: ColorManager.textTitleColor,
+                                    fontSize: FontSizeManager.s20,
+                                  ),
+                                ),
+                                const SizedBox(height: AppSize.s10),
+                                Text(
+                                  'Petek Temizliği, Ev Temizliği, Evden Eve Nakliyat',
+                                  style: context.textTheme.bodyMedium,
+                                ),
+                                const SizedBox(height: AppSize.s12),
+                                Row(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          ImageAssets.star,
+                                        ),
+                                        RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: ' 4.1 ',
+                                                style: context
+                                                    .textTheme.bodyMedium!
+                                                    .copyWith(
+                                                  color: ColorManager
+                                                      .textTitleColor,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: '(27)',
+                                                style: context
+                                                    .textTheme.bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(width: AppSize.s30),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.location_on_outlined),
+                                        RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: '35 Km ',
+                                                style: context
+                                                    .textTheme.bodyMedium!
+                                                    .copyWith(
+                                                  color: ColorManager
+                                                      .textTitleColor,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: '(Yaklaşık 40 dk)',
+                                                style: context
+                                                    .textTheme.bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
+                    ),
+                  ),
                 ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );

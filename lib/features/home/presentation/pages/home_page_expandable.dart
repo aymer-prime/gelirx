@@ -118,13 +118,66 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: AppSize.s20),
-                            Container(
-                              padding: !(_bottomHeight < _halfHeight)
-                                  ? EdgeInsets.zero
-                                  : const EdgeInsets.symmetric(
-                                      horizontal: AppPadding.p16,
-                                    ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Bottom widget (resizable and draggable)
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: GestureDetector(
+                      onVerticalDragUpdate: (dragDetails) {
+                        setState(() {
+                          _bottomHeight -= dragDetails.delta.dy;
+                          // Limit the bottomHeight between _minHeight and full height (_maxHeight)
+                          _bottomHeight =
+                              _bottomHeight.clamp(_minHeight, _maxHeight);
+                        });
+                      },
+                      onVerticalDragEnd: (dragDetails) {
+                        setState(() {
+                          // Snap the bottomHeight based on drag position
+                          if (_bottomHeight < _halfHeight * 0.75) {
+                            _bottomHeight =
+                                _minHeight; // Snap to minimum height
+                          } else if (_bottomHeight > _halfHeight * 1.6) {
+                            _bottomHeight = _maxHeight; // Snap to full height
+                            scrollPhysics =
+                                const AlwaysScrollableScrollPhysics();
+                          } else {
+                            _bottomHeight = _halfHeight; // Snap to half height
+                          }
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        height: _bottomHeight,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppPadding.p16,
+                        ),
+                        color: ColorManager.white,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: AppSize.s8),
+                            Center(
+                              child: Container(
+                                height: AppSize.s4,
+                                width: AppSize.s64,
+                                decoration: BoxDecoration(
+                                  color: ColorManager.lightGrey,
+                                  borderRadius: BorderRadius.circular(
+                                    AppSize.s4,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: AppSize.s8),
+                            SizedBox(
                               height: 40,
                               child: Row(
                                 children: [
@@ -189,64 +242,6 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                               ),
                             ),
                             const SizedBox(height: AppSize.s10),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  // Bottom widget (resizable and draggable)
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    height: _bottomHeight,
-                    child: GestureDetector(
-                      onVerticalDragUpdate: (dragDetails) {
-                        setState(() {
-                          _bottomHeight -= dragDetails.delta.dy;
-                          // Limit the bottomHeight between _minHeight and full height (_maxHeight)
-                          _bottomHeight =
-                              _bottomHeight.clamp(_minHeight, _maxHeight);
-                        });
-                      },
-                      onVerticalDragEnd: (dragDetails) {
-                        setState(() {
-                          // Snap the bottomHeight based on drag position
-                          if (_bottomHeight < _halfHeight * 0.75) {
-                            _bottomHeight =
-                                _minHeight; // Snap to minimum height
-                          } else if (_bottomHeight > _halfHeight * 1.25) {
-                            _bottomHeight = _maxHeight; // Snap to full height
-                            scrollPhysics =
-                                const AlwaysScrollableScrollPhysics();
-                          } else {
-                            _bottomHeight = _halfHeight; // Snap to half height
-                          }
-                        });
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppPadding.p16,
-                        ),
-                        color: ColorManager.white,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: AppSize.s8),
-                            Center(
-                              child: Container(
-                                height: AppSize.s4,
-                                width: AppSize.s64,
-                                decoration: BoxDecoration(
-                                  color: ColorManager.lightGrey,
-                                  borderRadius: BorderRadius.circular(
-                                    AppSize.s4,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: AppSize.s8),
                             if (_bottomHeight > _minHeight)
                               Flexible(
                                 child: Column(
