@@ -21,7 +21,7 @@ class HomePageExpandable extends StatefulWidget {
 }
 
 class _ResizableColumnState extends State<HomePageExpandable> {
-  final double _minHeight = 150;
+  final double _minHeight = 120;
   late double _bottomHeight;
   late double _maxHeight;
   late double _halfHeight;
@@ -119,7 +119,12 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                               ),
                             ),
                             const SizedBox(height: AppSize.s20),
-                            SizedBox(
+                            Container(
+                              padding: !(_bottomHeight < _halfHeight)
+                                  ? EdgeInsets.zero
+                                  : const EdgeInsets.symmetric(
+                                      horizontal: AppPadding.p16,
+                                    ),
                               height: 40,
                               child: Row(
                                 children: [
@@ -242,108 +247,111 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                               ),
                             ),
                             const SizedBox(height: AppSize.s8),
-                            Flexible(
-                              child: Column(
-                                children: [
-                                  state.categories.isEmpty
-                                      ? const AllCategoriesLoadingPlaceholder()
-                                      : AllCategoriesWidgets(
-                                          categories: state.categories,
-                                        ),
-                                  state.catFilterIndexes.isNotEmpty
-                                      ? Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: AppPadding.p8,
+                            if (_bottomHeight > _minHeight)
+                              Flexible(
+                                child: Column(
+                                  children: [
+                                    state.categories.isEmpty
+                                        ? const AllCategoriesLoadingPlaceholder()
+                                        : AllCategoriesWidgets(
+                                            categories: state.categories,
                                           ),
-                                          child: Wrap(
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.center,
-                                              children: [
-                                                IconButton(
-                                                  onPressed: () {
-                                                    context
-                                                        .read<HomeBloc>()
-                                                        .add(
-                                                          const HomeEvent
-                                                              .clearFilters(),
-                                                        );
-                                                  },
-                                                  style: IconButton.styleFrom(
-                                                    backgroundColor:
-                                                        ColorManager.white,
+                                    state.catFilterIndexes.isNotEmpty
+                                        ? Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: AppPadding.p8,
+                                            ),
+                                            child: Wrap(
+                                                crossAxisAlignment:
+                                                    WrapCrossAlignment.center,
+                                                children: [
+                                                  IconButton(
+                                                    onPressed: () {
+                                                      context
+                                                          .read<HomeBloc>()
+                                                          .add(
+                                                            const HomeEvent
+                                                                .clearFilters(),
+                                                          );
+                                                    },
+                                                    style: IconButton.styleFrom(
+                                                      backgroundColor:
+                                                          ColorManager.white,
+                                                    ),
+                                                    icon: Icon(
+                                                      Icons.close_rounded,
+                                                      size: AppSize.s24,
+                                                      color: ColorManager
+                                                          .textTitleColor,
+                                                    ),
                                                   ),
-                                                  icon: Icon(
-                                                    Icons.close_rounded,
-                                                    size: AppSize.s24,
-                                                    color: ColorManager
-                                                        .textTitleColor,
-                                                  ),
-                                                ),
-                                                ...state.catFilterIndexes.map(
-                                                  (filter) => Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            AppPadding.p12),
-                                                    margin:
-                                                        const EdgeInsets.all(
-                                                            AppMargin.m4),
-                                                    decoration: BoxDecoration(
-                                                      color: ColorManager.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                        AppSize.s20,
+                                                  ...state.catFilterIndexes.map(
+                                                    (filter) => Container(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              AppPadding.p12),
+                                                      margin:
+                                                          const EdgeInsets.all(
+                                                              AppMargin.m4),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            ColorManager.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                          AppSize.s20,
+                                                        ),
+                                                      ),
+                                                      child: Text(
+                                                        filter.name,
+                                                        style: context.textTheme
+                                                            .labelMedium,
                                                       ),
                                                     ),
-                                                    child: Text(
-                                                      filter.name,
-                                                      style: context.textTheme
-                                                          .labelMedium,
-                                                    ),
                                                   ),
-                                                ),
-                                              ]),
-                                        )
-                                      : const SizedBox(height: AppSize.s16),
-                                  const SizedBox(height: AppSize.s8),
-                                  Flexible(
-                                    child: NotificationListener<
-                                        ScrollNotification>(
-                                      onNotification: (scrollNotification) {
-                                        if (scrollNotification
-                                            is ScrollUpdateNotification) {
+                                                ]),
+                                          )
+                                        : const SizedBox(height: AppSize.s16),
+                                    const SizedBox(height: AppSize.s8),
+                                    Flexible(
+                                      child: NotificationListener<
+                                          ScrollNotification>(
+                                        onNotification: (scrollNotification) {
                                           if (scrollNotification
-                                                  .metrics.pixels ==
-                                              0.0) {
-                                            setState(() {
-                                              scrollPhysics =
-                                                  const NeverScrollableScrollPhysics();
-                                            });
-                                          } else {
-                                            setState(() {
-                                              scrollPhysics =
-                                                  const AlwaysScrollableScrollPhysics();
-                                            });
+                                              is ScrollUpdateNotification) {
+                                            if (scrollNotification
+                                                    .metrics.pixels ==
+                                                0.0) {
+                                              setState(() {
+                                                scrollPhysics =
+                                                    const NeverScrollableScrollPhysics();
+                                              });
+                                            } else {
+                                              setState(() {
+                                                scrollPhysics =
+                                                    const AlwaysScrollableScrollPhysics();
+                                              });
+                                            }
                                           }
-                                        }
-                                        return false;
-                                      },
-                                      child: SingleChildScrollView(
-                                        controller: controller,
-                                        physics: scrollPhysics,
-                                        child: HomeContent(
-                                          categories: state.categories,
-                                          topCategories: state.services
-                                              .expand((obj) => obj.subSkill)
-                                              .toList(),
-                                          services: state.services,
-                                          filters: state.catFilterIndexes,
+                                          return false;
+                                        },
+                                        child: SingleChildScrollView(
+                                          controller: controller,
+                                          physics: scrollPhysics,
+                                          child: HomeContent(
+                                            categories: state.categories,
+                                            topCategories: state.services
+                                                .expand((obj) => obj.subSkill)
+                                                .toList(),
+                                            services: state.services,
+                                            filters: state.catFilterIndexes,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            )
+                                  ],
+                                ),
+                              )
                           ],
                         ),
                       ),
