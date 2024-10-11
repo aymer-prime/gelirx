@@ -22,10 +22,12 @@ import 'package:lottie/lottie.dart' show Lottie;
 
 class HomeMap extends StatefulWidget {
   final Position userPosition;
+  final VoidCallback onMasterTap;
 
   HomeMap({
     super.key,
     required this.userPosition,
+    required this.onMasterTap,
   });
 
   @override
@@ -138,6 +140,7 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                   width: AppSize.s60.w,
                   child: GestureDetector(
                       onTap: () {
+                        widget.onMasterTap();
                         showDialog(
                           context: context,
                           barrierColor: Colors.transparent,

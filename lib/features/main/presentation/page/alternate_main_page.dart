@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
@@ -17,13 +16,7 @@ import 'package:gelirx/features/home/presentation/pages/home_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page_expandable.dart';
 import 'package:gelirx/features/main/presentation/widgets/drawer_tile.dart';
 import 'package:gelirx/features/main/presentation/widgets/nav_bar.dart';
-import 'package:gelirx/features/notifications/presentation/pages/notifications_page.dart';
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../app/injector/injection.dart';
-import '../../../../app/utils/app_constants.dart';
-import '../../../auth/presentation/bloc/auth_bloc.dart';
 
 @RoutePage()
 class AlternateMainPage extends StatefulWidget {
@@ -109,13 +102,12 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(
-                bottom: AppSize.s8, right: AppSize.s16),
+            padding: const EdgeInsets.only(bottom: AppSize.s8, right: AppSize.s16),
             child: Container(
               width: AppSize.s50,
               height: AppSize.s55,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+                  borderRadius: const BorderRadius.all(Radius.circular(AppSize.s12)),
                   color: ColorManager.lightGrey),
               child: Padding(
                 padding: const EdgeInsets.all(AppSize.s6),
@@ -161,8 +153,7 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         ],
         // leadingWidth: AppSize.s32,
         leading: Padding(
-          padding: EdgeInsets.only(
-              bottom: AppSize.s8, left: AppSize.s16),
+          padding: EdgeInsets.only(bottom: AppSize.s8, left: AppSize.s16),
           child: Container(
             width: AppSize.s55,
             height: AppSize.s55,

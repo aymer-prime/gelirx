@@ -73,10 +73,47 @@ class _ResizableColumnState extends State<HomePageExpandable>
     _bottomHeight = _halfHeight;
   }
 
+  void snapToMinHeight() {
+    setState(() {
+      _bottomHeight = _minHeight;
+      titleAnimationController.forward();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.white,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButton: _bottomHeight != _maxHeight
+          ? null
+          : Padding(
+              padding: const EdgeInsets.only(bottom: 100),
+              child: SizedBox(
+                height: AppSize.s32,
+                child: FloatingActionButton.extended(
+                  shape: StadiumBorder(),
+                  backgroundColor: ColorManager.black,
+                  foregroundColor: Colors.black,
+                  onPressed: () {
+                    setState(() {
+                      _bottomHeight = _halfHeight;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.map_outlined,
+                    color: ColorManager.white,
+                    size: AppSize.s20,
+                  ),
+                  label: Text(
+                    'Map',
+                    style: context.textTheme.labelSmall!.copyWith(
+                        color: ColorManager.white, fontSize: FontSizeManager.s10),
+                  ),
+                ),
+              ),
+            ),
       body: BlocConsumer<HomeBloc, HomeState>(
         listenWhen: (previous, current) =>
             previous.isLoading != current.isLoading,
@@ -170,6 +207,7 @@ class _ResizableColumnState extends State<HomePageExpandable>
                                   ),
                                   child: HomeMap(
                                     userPosition: userPosition,
+                                    onMasterTap: snapToMinHeight,
                                   ),
                                 );
                               }),
