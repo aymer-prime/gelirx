@@ -20,13 +20,40 @@ class HomePageExpandable extends StatefulWidget {
   _ResizableColumnState createState() => _ResizableColumnState();
 }
 
-class _ResizableColumnState extends State<HomePageExpandable> {
-  final double _minHeight = 120;
+class _ResizableColumnState extends State<HomePageExpandable>
+    with SingleTickerProviderStateMixin {
+  final double _minHeight = 160;
   late double _bottomHeight;
   late double _maxHeight;
   late double _halfHeight;
   ScrollPhysics? scrollPhysics;
-  ScrollController controller = ScrollController();
+  final ScrollController controller = ScrollController();
+  late AnimationController titleAnimationController;
+  late Animation<double> titleFadeAnimation;
+  late Animation<double> titleTransitionAnimation;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    titleAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+    );
+    titleFadeAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(
+      titleAnimationController,
+    );
+    titleTransitionAnimation = Tween<double>(
+      begin: 0.0,
+      end: -100,
+    ).animate(
+      titleAnimationController,
+    );
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -69,8 +96,8 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                         ? _halfHeight
                         : _bottomHeight,
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      margin: _bottomHeight < _halfHeight
+                      duration: const Duration(milliseconds: 300),
+                      margin: _bottomHeight == _minHeight
                           ? EdgeInsets.zero
                           : const EdgeInsets.symmetric(
                               horizontal: AppPadding.p16,
@@ -81,30 +108,54 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                         ),
                         (userPosition) => Column(
                           children: [
-                            if (_bottomHeight >= _halfHeight)
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: 'Discover ',
-                                      style: context.textTheme.displaySmall!
-                                          .copyWith(
-                                        color: ColorManager.joyColor,
-                                        fontSize: FontSizeManager.s26,
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              height: (_bottomHeight == _minHeight) ? 0 : 80,
+                              child: AnimatedBuilder(
+                                  animation: Listenable.merge(
+                                    [
+                                      titleFadeAnimation,
+                                      titleTransitionAnimation,
+                                    ],
+                                  ),
+                                  builder: (_, child) {
+                                    return Transform.translate(
+                                      offset: Offset(
+                                        0,
+                                        titleTransitionAnimation.value,
                                       ),
-                                    ),
-                                    TextSpan(
-                                      text:
-                                          'the best, highest quality services near you',
-                                      style: context.textTheme.titleSmall!
-                                          .copyWith(
-                                        color: ColorManager.textTitleColor,
-                                        fontSize: FontSizeManager.s26,
+                                      child: FadeTransition(
+                                        opacity: titleFadeAnimation,
+                                        child: RichText(
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: 'Discover ',
+                                                style: context
+                                                    .textTheme.displaySmall!
+                                                    .copyWith(
+                                                  color: ColorManager.joyColor,
+                                                  fontSize: FontSizeManager.s26,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    'the best, highest quality services near you',
+                                                style: context
+                                                    .textTheme.titleSmall!
+                                                    .copyWith(
+                                                  color: ColorManager
+                                                      .textTitleColor,
+                                                  fontSize: FontSizeManager.s26,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                    );
+                                  }),
+                            ),
                             const SizedBox(height: AppSize.s8),
                             Flexible(
                               child: ClipRRect(
@@ -144,11 +195,14 @@ class _ResizableColumnState extends State<HomePageExpandable> {
                           if (_bottomHeight < _halfHeight * 0.75) {
                             _bottomHeight =
                                 _minHeight; // Snap to minimum height
-                          } else if (_bottomHeight > _halfHeight * 1.6) {
+                            titleAnimationController.forward();
+                          } else if (_bottomHeight > _halfHeight * 1.4) {
+                            titleAnimationController.animateBack(0.0);
                             _bottomHeight = _maxHeight; // Snap to full height
                             scrollPhysics =
                                 const AlwaysScrollableScrollPhysics();
                           } else {
+                            titleAnimationController.animateBack(0.0);
                             _bottomHeight = _halfHeight; // Snap to half height
                           }
                         });
