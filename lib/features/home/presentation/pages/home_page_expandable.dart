@@ -45,7 +45,6 @@ class _ResizableColumnState extends State<HomePageExpandable>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     titleAnimationController = AnimationController(
       vsync: this,

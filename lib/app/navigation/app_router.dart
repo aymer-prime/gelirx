@@ -7,6 +7,7 @@ import 'package:gelirx/features/auth/presentation/pages/master_info/master_form_
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_info_wrapper.dart';
 import 'package:gelirx/features/auth/presentation/pages/user_info/user_info_page.dart';
 import 'package:gelirx/features/home/presentation/pages/booking_details_page.dart';
+import 'package:gelirx/features/home/presentation/pages/home_expandable_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page_old.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
@@ -31,6 +32,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: SplashRoute.page,
+          initial: true,
         ),
         AutoRoute(
           page: OnboardingRoute.page,
@@ -85,7 +87,6 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: MasterRoute.page,
-          initial: true,
         )
       ];
 }
