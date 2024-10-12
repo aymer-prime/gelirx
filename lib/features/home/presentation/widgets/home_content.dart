@@ -39,6 +39,53 @@ class HomeContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        categories.isEmpty
+            ? const AllCategoriesLoadingPlaceholder()
+            : AllCategoriesWidgets(
+                categories: categories,
+              ),
+        filters.isNotEmpty
+            ? Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppPadding.p8,
+                ),
+                child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          context.read<HomeBloc>().add(
+                                const HomeEvent.clearFilters(),
+                              );
+                        },
+                        style: IconButton.styleFrom(
+                          backgroundColor: ColorManager.white,
+                        ),
+                        icon: Icon(
+                          Icons.close_rounded,
+                          size: AppSize.s24,
+                          color: ColorManager.textTitleColor,
+                        ),
+                      ),
+                      ...filters.map(
+                        (filter) => Container(
+                          padding: const EdgeInsets.all(AppPadding.p12),
+                          margin: const EdgeInsets.all(AppMargin.m4),
+                          decoration: BoxDecoration(
+                            color: ColorManager.white,
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s20,
+                            ),
+                          ),
+                          child: Text(
+                            filter.name,
+                            style: context.textTheme.labelMedium,
+                          ),
+                        ),
+                      ),
+                    ]),
+              )
+            : const SizedBox(height: AppSize.s0),
         (categories.isEmpty || services.isEmpty)
             ? Column(
                 children: [
@@ -70,8 +117,7 @@ class HomeContent extends StatelessWidget {
                             AppSize.s20,
                           ),
                           border: Border.all(
-                              color: ColorManager.lightGrey,
-                              width: AppSize.s1),
+                              color: ColorManager.lightGrey, width: AppSize.s1),
                         ),
                         child: Column(
                           children: [
@@ -394,7 +440,7 @@ class AllCategoriesLoadingPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSize.s120,
+      height: AppSize.s100,
       decoration: BoxDecoration(
         color: ColorManager.white,
         borderRadius: BorderRadius.circular(

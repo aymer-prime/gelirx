@@ -6,6 +6,7 @@ import 'package:gelirx/features/auth/presentation/pages/master_info/master_skill
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_form_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_info_wrapper.dart';
 import 'package:gelirx/features/auth/presentation/pages/user_info/user_info_page.dart';
+import 'package:gelirx/features/home/presentation/pages/booking_details_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page_old.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_page.dart';
@@ -33,7 +34,6 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: OnboardingRoute.page,
-
         ),
         AutoRoute(
           page: MainRoute.page,
@@ -79,6 +79,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: OrderDetailsRoute.page,
+        ),
+        AutoRoute(
+          page: BookingDetailsRoute.page,
         )
       ];
 }

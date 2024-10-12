@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
@@ -14,7 +17,13 @@ import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 
 class HomePageExpandable extends StatefulWidget {
-  const HomePageExpandable({super.key});
+  final VoidCallback hideBottomNavBar;
+  final VoidCallback showBottomNavBar;
+  const HomePageExpandable({
+    super.key,
+    required this.hideBottomNavBar,
+    required this.showBottomNavBar,
+  });
 
   @override
   _ResizableColumnState createState() => _ResizableColumnState();
@@ -22,10 +31,11 @@ class HomePageExpandable extends StatefulWidget {
 
 class _ResizableColumnState extends State<HomePageExpandable>
     with SingleTickerProviderStateMixin {
-  final double _minHeight = 160;
+  final double _minHeight = AppSize.s80;
   late double _bottomHeight;
   late double _maxHeight;
   late double _halfHeight;
+  int duration = 1;
   ScrollPhysics? scrollPhysics;
   final ScrollController controller = ScrollController();
   late AnimationController titleAnimationController;
@@ -74,6 +84,7 @@ class _ResizableColumnState extends State<HomePageExpandable>
   }
 
   void snapToMinHeight() {
+    widget.hideBottomNavBar();
     setState(() {
       _bottomHeight = _minHeight;
       titleAnimationController.forward();
@@ -89,11 +100,11 @@ class _ResizableColumnState extends State<HomePageExpandable>
       floatingActionButton: _bottomHeight != _maxHeight
           ? null
           : Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: const EdgeInsets.only(bottom: AppSize.s100),
               child: SizedBox(
                 height: AppSize.s32,
                 child: FloatingActionButton.extended(
-                  shape: StadiumBorder(),
+                  shape: const StadiumBorder(),
                   backgroundColor: ColorManager.black,
                   foregroundColor: Colors.black,
                   onPressed: () {
@@ -109,7 +120,8 @@ class _ResizableColumnState extends State<HomePageExpandable>
                   label: Text(
                     'Map',
                     style: context.textTheme.labelSmall!.copyWith(
-                        color: ColorManager.white, fontSize: FontSizeManager.s10),
+                        color: ColorManager.white,
+                        fontSize: FontSizeManager.s10),
                   ),
                 ),
               ),
@@ -149,8 +161,7 @@ class _ResizableColumnState extends State<HomePageExpandable>
                     ),
                     (userPosition) => Column(
                       children: [
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 300),
+                        SizedBox(
                           height: (_bottomHeight == _minHeight) ? 0 : 80,
                           child: AnimatedBuilder(
                               animation: Listenable.merge(
@@ -224,6 +235,13 @@ class _ResizableColumnState extends State<HomePageExpandable>
                 right: 0,
                 bottom: 0,
                 child: GestureDetector(
+                  onVerticalDragStart: (details) {
+                    if (duration != 0) {
+                      setState(() {
+                        duration = 0;
+                      });
+                    }
+                  },
                   onVerticalDragUpdate: (dragDetails) {
                     setState(() {
                       _bottomHeight -= dragDetails.delta.dy;
@@ -235,21 +253,25 @@ class _ResizableColumnState extends State<HomePageExpandable>
                   onVerticalDragEnd: (dragDetails) {
                     setState(() {
                       // Snap the bottomHeight based on drag position
+                      duration = 300;
                       if (_bottomHeight < _halfHeight * 0.75) {
                         _bottomHeight = _minHeight; // Snap to minimum height
                         titleAnimationController.forward();
+                        widget.hideBottomNavBar();
                       } else if (_bottomHeight > _halfHeight * 1.4) {
+                        widget.showBottomNavBar();
                         titleAnimationController.animateBack(0.0);
                         _bottomHeight = _maxHeight; // Snap to full height
                         scrollPhysics = const AlwaysScrollableScrollPhysics();
                       } else {
+                        widget.showBottomNavBar();
                         titleAnimationController.animateBack(0.0);
                         _bottomHeight = _halfHeight; // Snap to half height
                       }
                     });
                   },
                   child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
+                    duration: Duration(milliseconds: duration),
                     height: _bottomHeight,
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppPadding.p16,
@@ -309,7 +331,10 @@ class _ResizableColumnState extends State<HomePageExpandable>
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: ColorManager.lightGrey,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      context.router
+                                          .push(const BookingDetailsRoute());
+                                    },
                                     child: SvgPicture.asset(
                                       ImageAssets.filterIcon,
                                       height: AppSize.s16,
@@ -335,104 +360,73 @@ class _ResizableColumnState extends State<HomePageExpandable>
                           ),
                         ),
                         const SizedBox(height: AppSize.s10),
-                        if (_bottomHeight > _minHeight)
-                          Flexible(
-                            child: Column(
-                              children: [
-                                state.categories.isEmpty
-                                    ? const AllCategoriesLoadingPlaceholder()
-                                    : AllCategoriesWidgets(
-                                        categories: state.categories,
-                                      ),
-                                state.catFilterIndexes.isNotEmpty
-                                    ? Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: AppPadding.p8,
-                                        ),
-                                        child: Wrap(
-                                            crossAxisAlignment:
-                                                WrapCrossAlignment.center,
-                                            children: [
-                                              IconButton(
-                                                onPressed: () {
-                                                  context.read<HomeBloc>().add(
-                                                        const HomeEvent
-                                                            .clearFilters(),
-                                                      );
-                                                },
-                                                style: IconButton.styleFrom(
-                                                  backgroundColor:
-                                                      ColorManager.white,
-                                                ),
-                                                icon: Icon(
-                                                  Icons.close_rounded,
-                                                  size: AppSize.s24,
-                                                  color: ColorManager
-                                                      .textTitleColor,
-                                                ),
-                                              ),
-                                              ...state.catFilterIndexes.map(
-                                                (filter) => Container(
-                                                  padding: const EdgeInsets.all(
-                                                      AppPadding.p12),
-                                                  margin: const EdgeInsets.all(
-                                                      AppMargin.m4),
-                                                  decoration: BoxDecoration(
-                                                    color: ColorManager.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                      AppSize.s20,
-                                                    ),
-                                                  ),
-                                                  child: Text(
-                                                    filter.name,
-                                                    style: context
-                                                        .textTheme.labelMedium,
-                                                  ),
-                                                ),
-                                              ),
-                                            ]),
-                                      )
-                                    : const SizedBox(height: AppSize.s16),
-                                const SizedBox(height: AppSize.s8),
-                                Flexible(
-                                  child:
-                                      NotificationListener<ScrollNotification>(
-                                    onNotification: (scrollNotification) {
-                                      if (scrollNotification
-                                          is ScrollUpdateNotification) {
-                                        if (scrollNotification.metrics.pixels ==
-                                            0.0) {
-                                          setState(() {
-                                            scrollPhysics =
-                                                const NeverScrollableScrollPhysics();
-                                          });
-                                        } else {
-                                          setState(() {
-                                            scrollPhysics =
-                                                const AlwaysScrollableScrollPhysics();
-                                          });
-                                        }
-                                      }
-                                      return false;
-                                    },
-                                    child: SingleChildScrollView(
-                                      controller: controller,
-                                      physics: scrollPhysics,
-                                      child: HomeContent(
-                                        categories: state.categories,
-                                        topCategories: state.services
-                                            .expand((obj) => obj.subSkill)
-                                            .toList(),
-                                        services: state.services,
-                                        filters: state.catFilterIndexes,
-                                      ),
-                                    ),
-                                  ),
+                        Flexible(
+                          child: NotificationListener<
+                              OverscrollIndicatorNotification>(
+                            onNotification: (overScrollNotification) {
+                              overScrollNotification.disallowIndicator();
+                              if (overScrollNotification.leading) {
+                                setState(() {
+                                  scrollPhysics =
+                                      const NeverScrollableScrollPhysics();
+                                });
+                              }
+                              return true;
+                            },
+                            child: NotificationListener<ScrollNotification>(
+                              onNotification: (scrollNotification) {
+                                // if (scrollNotification
+                                //         is UserScrollNotification &&
+                                //     scrollNotification.direction ==
+                                //         ScrollDirection.reverse) {
+                                //   scrollPhysics =
+                                //       const AlwaysScrollableScrollPhysics();
+                                // } else if (scrollNotification
+                                //         is UserScrollNotification &&
+                                //     scrollNotification.direction ==
+                                //         ScrollDirection.forward) {
+                                //   if (scrollNotification.metrics.pixels ==
+                                //       0.0) {
+                                //     setState(() {
+                                //       scrollPhysics =
+                                //           const NeverScrollableScrollPhysics();
+                                //     });
+                                //   }
+                                // }
+                                if (scrollNotification
+                                    is ScrollUpdateNotification) {
+                                  if (scrollNotification.metrics.pixels ==
+                                      0.0) {
+                                    setState(() {
+                                      scrollPhysics =
+                                          const NeverScrollableScrollPhysics();
+                                    });
+                                  } else {
+                                    setState(() {
+                                      scrollPhysics =
+                                          const AlwaysScrollableScrollPhysics();
+                                    });
+                                  }
+                                }
+                                return true;
+                              },
+                              child: SingleChildScrollView(
+                                controller: controller,
+                                physics: _bottomHeight != _maxHeight
+                                    ? NeverScrollableScrollPhysics()
+                                    : scrollPhysics,
+                                child: HomeContent(
+                                  categories: state.categories,
+                                  topCategories: state.services
+                                      .expand((obj) => obj.subSkill)
+                                      .toList(),
+                                  services: state.services,
+                                  filters: state.catFilterIndexes,
                                 ),
-                              ],
+                              ),
                             ),
-                          )
+                          ),
+                        )
                       ],
                     ),
                   ),

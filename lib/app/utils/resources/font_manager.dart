@@ -14,20 +14,21 @@ class FontWeightManager {
 }
 
 class FontSizeManager {
-  static double s8 = 8.0.sp;
-  static double s9 = 9.0.sp;
-  static double s10 = 10.0.sp;
-  static double s11 = 11.0.sp;
-  static double s12 = 12.0.sp;
-  static double s14 = 14.0.sp;
-  static double s15 = 15.0.sp;
-  static double s16 = 16.0.sp;
-  static double s17 = 17.0.sp;
-  static double s18 = 18.0.sp;
-  static double s20 = 20.0.sp;
-  static double s22 = 22.0.sp;
-  static double s24 = 24.0.sp;
-  static double s26 = 26.0.sp;
-  static double s32 = 32.0.sp;
-  static double s48 = 48.0.sp;
+  static double s8 = 8.0;
+  static double s9 = 9.0;
+  static double s10 = 10.0;
+  static double s11 = 11.0;
+  static double s12 = 12.0;
+  static double s12_8 = 12.8;
+  static double s14 = 14.0;
+  static double s15 = 15.0;
+  static double s16 = 16.0;
+  static double s17 = 17.0;
+  static double s18 = 18.0;
+  static double s20 = 20.0;
+  static double s22 = 22.0;
+  static double s24 = 24.0;
+  static double s26 = 26.0;
+  static double s32 = 32.0;
+  static double s48 = 48.0;
 }

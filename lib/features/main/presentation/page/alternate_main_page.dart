@@ -26,7 +26,8 @@ class AlternateMainPage extends StatefulWidget {
   State<AlternateMainPage> createState() => _AlternateMainPageState();
 }
 
-class _AlternateMainPageState extends State<AlternateMainPage> {
+class _AlternateMainPageState extends State<AlternateMainPage>
+    with SingleTickerProviderStateMixin {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final homeNavKey = GlobalKey<NavigatorState>();
   final searchNavKey = GlobalKey<NavigatorState>();
@@ -35,13 +36,32 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
   final profileNavKey = GlobalKey<NavigatorState>();
   int selectedTab = 0;
   List<NavModel> items = [];
+  late AnimationController navBarAnimationController;
+  late Animation<double> navBarTransitionAnimation;
 
   @override
   void initState() {
     super.initState();
+    navBarAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+    );
+    navBarTransitionAnimation = Tween<double>(
+      begin: 0.0,
+      end: -100.0,
+    ).animate(
+      navBarAnimationController,
+    );
     items = [
       NavModel(
-        page: const HomePageExpandable(),
+        page: HomePageExpandable(
+          hideBottomNavBar: () {
+            navBarAnimationController.forward();
+          },
+          showBottomNavBar: () {
+            navBarAnimationController.reverse();
+          },
+        ),
         navKey: homeNavKey,
       ),
       NavModel(
@@ -102,12 +122,14 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(bottom: AppSize.s8, right: AppSize.s16),
+            padding:
+                const EdgeInsets.only(bottom: AppSize.s8, right: AppSize.s16),
             child: Container(
               width: AppSize.s50,
               height: AppSize.s55,
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(AppSize.s12)),
+                  borderRadius:
+                      const BorderRadius.all(Radius.circular(AppSize.s12)),
                   color: ColorManager.lightGrey),
               child: Padding(
                 padding: const EdgeInsets.all(AppSize.s6),
@@ -199,41 +221,45 @@ class _AlternateMainPageState extends State<AlternateMainPage> {
                       ))
                   .toList(),
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: MediaQuery.removePadding(
-                context: context,
-                removeBottom: true,
-                child: NavBar(
-                  pageIndex: selectedTab,
-                  onTap: (index) {
-                    //todo uncomment this to add button
-                    // onPressed: () {
-                    //   final localServices = getIt<SharedPreferences>();
-                    //   String? isMaster = localServices.getString(Constants.isMasterKey);
-                    //   if (isMaster == null || isMaster == '0') {
-                    //     context.read<AuthBloc>().add(const AuthEvent.setUserType(
-                    //       true,
-                    //     ));
-                    //     context.router.push(const AuthRoute());
-                    //   }
-                    // },
-                    if (index == selectedTab) {
-                      items[index]
-                          .navKey
-                          .currentState
-                          ?.popUntil((route) => route.isFirst);
-                    } else {
-                      setState(() {
-                        selectedTab = index;
-                      });
-                    }
-                  },
-                ),
-              ),
-            ),
+            AnimatedBuilder(
+                animation: Listenable.merge([navBarTransitionAnimation]),
+                builder: (context, child) {
+                  return Positioned(
+                    bottom: navBarTransitionAnimation.value,
+                    left: 0,
+                    right: 0,
+                    child: MediaQuery.removePadding(
+                      context: context,
+                      removeBottom: true,
+                      child: NavBar(
+                        pageIndex: selectedTab,
+                        onTap: (index) {
+                          //todo uncomment this to add button
+                          // onPressed: () {
+                          //   final localServices = getIt<SharedPreferences>();
+                          //   String? isMaster = localServices.getString(Constants.isMasterKey);
+                          //   if (isMaster == null || isMaster == '0') {
+                          //     context.read<AuthBloc>().add(const AuthEvent.setUserType(
+                          //       true,
+                          //     ));
+                          //     context.router.push(const AuthRoute());
+                          //   }
+                          // },
+                          if (index == selectedTab) {
+                            items[index]
+                                .navKey
+                                .currentState
+                                ?.popUntil((route) => route.isFirst);
+                          } else {
+                            setState(() {
+                              selectedTab = index;
+                            });
+                          }
+                        },
+                      ),
+                    ),
+                  );
+                }),
           ],
         ),
       ),

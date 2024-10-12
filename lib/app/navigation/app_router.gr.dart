@@ -48,6 +48,25 @@ class AuthRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BookingDetailsPage]
+class BookingDetailsRoute extends PageRouteInfo<void> {
+  const BookingDetailsRoute({List<PageRouteInfo>? children})
+      : super(
+          BookingDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BookingDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BookingDetailsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [BookingPage]
 class BookingRoute extends PageRouteInfo<void> {
   const BookingRoute({List<PageRouteInfo>? children})
