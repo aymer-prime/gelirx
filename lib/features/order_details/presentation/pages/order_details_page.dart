@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
@@ -85,20 +86,71 @@ class OrderDetailsPage extends HookWidget {
                     child: SizedBox(
                         height: 20, child: AnimatedSteps(activeStep: 0))),
                 SizedBox(height: AppSize.s16.h),
-                Text(
-                  'Arrives in 17 Minutes',
-                  style: context.textTheme.displaySmall,
-                ),
-                Text(
-                  'The Master is On his Way to Fix Your Problem.',
-                  style: context.textTheme.labelSmall,
-                ),
+
               ],
             ),
-            Divider(
-              color: ColorManager.disabledButtonTextColor,
-              thickness: AppSize.s1,
-            ),
+           Padding(
+             padding: const EdgeInsets.all(8.0),
+             child: Container(
+               decoration: BoxDecoration(
+                 color: ColorManager.blueColor,
+                 borderRadius: BorderRadius.circular(20)
+               ),
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     Text(
+                       'Address:',
+                       style: context.textTheme.titleSmall,
+                     ),
+                     Text(
+                       'Business Bay, Silver Tower 9 floor 904, Dubai',
+                       style: context.textTheme.titleSmall,
+                     ),
+                     Divider(),
+                     Row(
+                       children: [
+                         CircleAvatar(
+                           maxRadius: AppSize.s25,
+                           minRadius: AppSize.s25,
+                           backgroundImage: AssetImage(ImageAssets.handyman),
+                         ),
+                         SizedBox(
+                           width: AppSize.s10,
+                         ),
+                         Column(
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           children: [
+                             Text("Osman Yancigil",
+                                 style: getTextStyle(
+                                     AppSize.s20, FontWeight.w400, Colors.white)),
+                             Row(
+                               children: [
+                                 SvgPicture.asset(ImageAssets.location,height: AppSize.s15,),
+                                 Text(" 35 km ",
+                                     style: getTextStyle(
+                                         AppSize.s14,
+                                         FontWeight.w400,
+                                         ColorManager.white)),
+                                 Text("(Approx. 40 min)",
+                                     style: getTextStyle(
+                                         AppSize.s14,
+                                         FontWeight.w400,
+                                         ColorManager.lightGreyText)),
+                               ],
+                             ),
+                           ],
+                         )
+                       ],
+                     ),
+
+                   ],
+                 ),
+               ),
+             ),
+           ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
               child: Column(
