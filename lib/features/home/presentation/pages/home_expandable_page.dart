@@ -103,35 +103,41 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
       backgroundColor: ColorManager.white,
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: _bottomHeight != _maxHeight
+      floatingActionButton: !_controller.isAttached
           ? null
-          : Padding(
-              padding: const EdgeInsets.only(bottom: AppSize.s100),
-              child: SizedBox(
-                height: AppSize.s32,
-                child: FloatingActionButton.extended(
-                  shape: const StadiumBorder(),
-                  backgroundColor: ColorManager.black,
-                  foregroundColor: Colors.black,
-                  onPressed: () {
-                    setState(() {
-                      _bottomHeight = _halfHeight;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.map_outlined,
-                    color: ColorManager.white,
-                    size: AppSize.s20,
-                  ),
-                  label: Text(
-                    'Map',
-                    style: context.textTheme.labelSmall!.copyWith(
+          : _controller.pixels < _maxHeight
+              ? null
+              : Padding(
+                  padding: const EdgeInsets.only(bottom: AppSize.s100),
+                  child: SizedBox(
+                    height: AppSize.s32,
+                    child: FloatingActionButton.extended(
+                      shape: const StadiumBorder(),
+                      backgroundColor: ColorManager.black,
+                      foregroundColor: Colors.black,
+                      onPressed: () {
+                        setState(() {
+                          _controller.animateTo(
+                            0.5,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.linear,
+                          );
+                        });
+                      },
+                      icon: Icon(
+                        Icons.map_outlined,
                         color: ColorManager.white,
-                        fontSize: FontSizeManager.s10),
+                        size: AppSize.s20,
+                      ),
+                      label: Text(
+                        'Map',
+                        style: context.textTheme.labelSmall!.copyWith(
+                            color: ColorManager.white,
+                            fontSize: FontSizeManager.s10),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
       body: BlocConsumer<HomeBloc, HomeState>(
         listenWhen: (previous, current) =>
             previous.isLoading != current.isLoading,

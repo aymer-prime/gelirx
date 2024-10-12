@@ -249,7 +249,7 @@ class MasterDetailsDialog extends StatelessWidget {
           Navigator.of(context).pop();
         },
         child: SizedBox(
-          height: context.screenSize.height * 0.4 + 32,
+          height: 300 + 32,
           child: Stack(
             children: [
               Positioned.fill(
@@ -261,11 +261,12 @@ class MasterDetailsDialog extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {},
                     child: Container(
+                      padding: const EdgeInsets.all(AppPadding.p15),
                       margin: const EdgeInsets.symmetric(
                         horizontal: AppPadding.p32,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: ColorManager.blueColor,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: const [
                           BoxShadow(
@@ -284,9 +285,8 @@ class MasterDetailsDialog extends StatelessWidget {
                                 SizedBox(
                                   width: double.infinity,
                                   child: ClipRRect(
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(AppSize.s16),
-                                      topRight: Radius.circular(AppSize.s16),
+                                    borderRadius: BorderRadius.circular(
+                                      AppSize.s16,
                                     ),
                                     child: Image.asset(
                                       ImageAssets.tesisat,
@@ -326,86 +326,94 @@ class MasterDetailsDialog extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(
-                              AppPadding.p16,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'Osman Yancıgil',
-                                  style: getRegularStyle(
-                                    color: ColorManager.textTitleColor,
-                                    fontSize: FontSizeManager.s20,
-                                  ),
+                          const SizedBox(height: AppSize.s10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Osman Yancıgil',
+                                style: getRegularStyle(
+                                  color: ColorManager.white,
+                                  fontSize: FontSizeManager.s20,
                                 ),
-                                const SizedBox(height: AppSize.s10),
-                                Text(
-                                  'Petek Temizliği, Ev Temizliği, Evden Eve Nakliyat',
-                                  style: context.textTheme.bodyMedium,
+                              ),
+                              const SizedBox(height: AppSize.s10),
+                              Text(
+                                'Petek Temizliği, Ev Temizliği, Evden Eve Nakliyat',
+                                style: context.textTheme.bodyMedium!.copyWith(
+                                  color: ColorManager.lightGreyText,
                                 ),
-                                const SizedBox(height: AppSize.s12),
-                                Row(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          ImageAssets.star,
+                              ),
+                              const SizedBox(height: AppSize.s12),
+                              Row(
+                                children: [
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        ImageAssets.star,
+                                      ),
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: ' 4.1 ',
+                                              style: context
+                                                  .textTheme.bodyMedium!
+                                                  .copyWith(
+                                                color: ColorManager.white,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: '(27)',
+                                              style: context
+                                                  .textTheme.bodyMedium!
+                                                  .copyWith(
+                                                color:
+                                                    ColorManager.lightGreyText,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: ' 4.1 ',
-                                                style: context
-                                                    .textTheme.bodyMedium!
-                                                    .copyWith(
-                                                  color: ColorManager
-                                                      .textTitleColor,
-                                                ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(width: AppSize.s30),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.location_on_outlined,
+                                        color: ColorManager.white,
+                                        size: AppSize.s14,
+                                      ),
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: '35 Km ',
+                                              style: context
+                                                  .textTheme.bodyMedium!
+                                                  .copyWith(
+                                                color: ColorManager.white,
                                               ),
-                                              TextSpan(
-                                                text: '(27)',
-                                                style: context
-                                                    .textTheme.bodyMedium,
+                                            ),
+                                            TextSpan(
+                                              text: '(Yaklaşık 40 dk)',
+                                              style: context
+                                                  .textTheme.bodyMedium!
+                                                  .copyWith(
+                                                color:
+                                                    ColorManager.lightGreyText,
                                               ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(width: AppSize.s30),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.location_on_outlined),
-                                        RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: '35 Km ',
-                                                style: context
-                                                    .textTheme.bodyMedium!
-                                                    .copyWith(
-                                                  color: ColorManager
-                                                      .textTitleColor,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: '(Yaklaşık 40 dk)',
-                                                style: context
-                                                    .textTheme.bodyMedium,
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
                           )
                         ],
                       ),

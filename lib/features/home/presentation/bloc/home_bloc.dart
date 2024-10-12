@@ -27,6 +27,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           userPosition: some(position),
         ),
       );
+      add(
+        _GetMasters(LatLng(position.latitude, position.longitude)),
+      );
     });
     on<_GetCategories>((event, emit) async {
       // emit(
