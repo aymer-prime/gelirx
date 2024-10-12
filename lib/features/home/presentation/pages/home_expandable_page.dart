@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/extensions/double_extensions.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -165,19 +166,23 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                     (userPosition) => Column(
                       children: [
                         SizedBox(
-                          height: (_bottomHeight <= _maxHeight * 0.2) ? 0 : 80,
+                          height: _bottomHeight.normalize(
+                                  _maxHeight * 0.02, _halfHeight) *
+                              80, //(_bottomHeight <= _maxHeight * 0.2) ? 0 : 80,
                           child: AnimatedBuilder(
                               animation: Listenable.merge(
                                 [
                                   titleFadeAnimation,
-                                  titleTransitionAnimation,
+                                  //titleTransitionAnimation,
                                 ],
                               ),
                               builder: (_, child) {
                                 return Transform.translate(
                                   offset: Offset(
                                     0,
-                                    titleTransitionAnimation.value,
+                                    _bottomHeight.normalize(
+                                            _halfHeight, _maxHeight * 0.1) *
+                                        -160,
                                   ),
                                   child: FadeTransition(
                                     opacity: titleFadeAnimation,
