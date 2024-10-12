@@ -200,6 +200,41 @@ class MasterMainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MasterPage]
+class MasterRoute extends PageRouteInfo<MasterRouteArgs> {
+  MasterRoute({
+    dynamic key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MasterRoute.name,
+          args: MasterRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<MasterRouteArgs>(orElse: () => const MasterRouteArgs());
+      return MasterPage(key: args.key);
+    },
+  );
+}
+
+class MasterRouteArgs {
+  const MasterRouteArgs({this.key});
+
+  final dynamic key;
+
+  @override
+  String toString() {
+    return 'MasterRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [MasterPicPage]
 class MasterPicRoute extends PageRouteInfo<void> {
   const MasterPicRoute({List<PageRouteInfo>? children})

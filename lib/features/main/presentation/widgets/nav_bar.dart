@@ -22,8 +22,7 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      height: AppSize.s90.h +
-          MediaQueryData.fromWindow(ui.window).padding.bottom / 2,
+      height: AppSize.s90.h ,
       //  shape: CircularNotchedRectangle(),
       //  notchMargin: 4,
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -42,7 +41,7 @@ class NavBar extends StatelessWidget {
         ),
         child: Padding(
           padding: EdgeInsets.only(
-              bottom: MediaQueryData.fromWindow(ui.window).padding.bottom),
+              bottom: MediaQueryData.fromWindow(ui.window).padding.bottom/3),
           child: Row(
             children: [
               NavItem(
