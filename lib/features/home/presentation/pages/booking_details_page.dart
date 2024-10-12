@@ -198,7 +198,7 @@ class BookingDetailsPage extends StatelessWidget {
                         height: AppSize.s48,
                         child: ElevatedButton(
                           onPressed: () {
-                            context.router.replace(OrderDetailsRoute());
+                            context.router.push(OrderDetailsRoute());
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorManager.joyColor,

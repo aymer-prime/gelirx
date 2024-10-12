@@ -7,9 +7,9 @@ import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/app/view/app.dart';
 
 @RoutePage()
 class OrderDetailsPage extends HookWidget {
@@ -86,93 +86,122 @@ class OrderDetailsPage extends HookWidget {
                     child: SizedBox(
                         height: 20, child: AnimatedSteps(activeStep: 0))),
                 SizedBox(height: AppSize.s16.h),
-
               ],
             ),
-           Padding(
-             padding: const EdgeInsets.all(8.0),
-             child: Container(
-               decoration: BoxDecoration(
-                 color: ColorManager.blueColor,
-                 borderRadius: BorderRadius.circular(20)
-               ),
-               child: Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text(
-                       'Address:',
-                       style: context.textTheme.titleSmall,
-                     ),
-                     Text(
-                       'Business Bay, Silver Tower 9 floor 904, Dubai',
-                       style: context.textTheme.titleSmall,
-                     ),
-                     Divider(),
-                     Row(
-                       children: [
-                         CircleAvatar(
-                           maxRadius: AppSize.s25,
-                           minRadius: AppSize.s25,
-                           backgroundImage: AssetImage(ImageAssets.handyman),
-                         ),
-                         SizedBox(
-                           width: AppSize.s10,
-                         ),
-                         Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Text("Osman Yancigil",
-                                 style: getTextStyle(
-                                     AppSize.s20, FontWeight.w400, Colors.white)),
-                             Row(
-                               children: [
-                                 SvgPicture.asset(ImageAssets.location,height: AppSize.s15,),
-                                 Text(" 35 km ",
-                                     style: getTextStyle(
-                                         AppSize.s14,
-                                         FontWeight.w400,
-                                         ColorManager.white)),
-                                 Text("(Approx. 40 min)",
-                                     style: getTextStyle(
-                                         AppSize.s14,
-                                         FontWeight.w400,
-                                         ColorManager.lightGreyText)),
-                               ],
-                             ),
-                           ],
-                         )
-                       ],
-                     ),
-
-                   ],
-                 ),
-               ),
-             ),
-           ),
+            Padding(
+              padding: const EdgeInsets.all(AppPadding.p16),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: ColorManager.blueColor,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Padding(
+                  padding: const EdgeInsets.all(AppPadding.p16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Address:',
+                        style: context.textTheme.titleSmall!.copyWith(
+                          color: ColorManager.lightGreyText,
+                        ),
+                      ),
+                      Text(
+                        'Business Bay, Silver Tower 9 floor 904, Dubai',
+                        style: context.textTheme.titleSmall!.copyWith(
+                          color: ColorManager.white,
+                        ),
+                      ),
+                      Divider(),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            maxRadius: AppSize.s25,
+                            minRadius: AppSize.s25,
+                            backgroundImage: AssetImage(ImageAssets.handyman),
+                          ),
+                          SizedBox(
+                            width: AppSize.s10,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Osman Yancigil",
+                                  style: getTextStyle(AppSize.s20,
+                                      FontWeight.w400, Colors.white)),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    ImageAssets.location,
+                                    height: AppSize.s15,
+                                  ),
+                                  Text(
+                                    " 35 km ",
+                                    style: getTextStyle(AppSize.s14,
+                                        FontWeight.w400, ColorManager.white),
+                                  ),
+                                  Text("(Approx. 40 min)",
+                                      style: getTextStyle(
+                                          AppSize.s14,
+                                          FontWeight.w400,
+                                          ColorManager.lightGreyText)),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Address:',
-                    style: context.textTheme.titleSmall,
-                  ),
-                  Text(
-                    'Business Bay, Silver Tower 9 floor 904, Silver Tower - marasi Dr - Business Bay - Dubai, Dubai',
-                    style: context.textTheme.labelLarge,
-                  ),
-                  SizedBox(height: AppSize.s16.h),
-                  Text(
-                    'Problem Description:',
-                    style: context.textTheme.titleSmall,
+                    'Explanation',
+                    style: getRegularStyle(
+                      color: ColorManager.lightGreyText,
+                      fontSize: FontSizeManager.s12_8,
+                    ),
                   ),
                   Text(
                     'Lorem ipsum odor amet, consectetuer adipiscing elit. Per maximus odio felis lacinia magna, fermentum placerat. In leo mollis posuere consectetur donec nostra.',
-                    style: context.textTheme.labelLarge,
-                  )
+                    style: getLightStyle(
+                      color: ColorManager.welcomeTextColor,
+                      fontSize: FontSizeManager.s14,
+                    ),
+                  ),
+                  const SizedBox(height: AppSize.s20),
+                  Text(
+                    'Photos',
+                    style: getRegularStyle(
+                      color: ColorManager.lightGreyText,
+                      fontSize: FontSizeManager.s12_8,
+                    ),
+                  ),
+                  const SizedBox(height: AppSize.s8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      5,
+                      (index) => Container(
+                        width: 68,
+                        height: 76,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s10,
+                          ),
+                          child: Image.asset(
+                            ImageAssets.tesisat,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -221,7 +250,9 @@ class AnimatedSteps extends HookWidget {
                   height: 4,
                   width: stepWidth,
                   decoration: BoxDecoration(
-                    color:  index > activeStep + 1 ? Colors.grey : ColorManager.joyColor,
+                    color: index > activeStep + 1
+                        ? Colors.grey
+                        : ColorManager.joyColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
                 );

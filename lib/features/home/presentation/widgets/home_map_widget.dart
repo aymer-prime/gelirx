@@ -263,7 +263,7 @@ class MasterDetailsDialog extends StatelessWidget {
                   color: Colors.transparent,
                   child: GestureDetector(
                     onTap: () {
-                      context.router.replace( MasterRoute());
+                      context.router.push(MasterRoute());
                     },
                     child: Container(
                       padding: const EdgeInsets.all(AppPadding.p15),

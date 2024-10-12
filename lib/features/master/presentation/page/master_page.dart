@@ -18,11 +18,10 @@ class MasterPage extends StatelessWidget {
   final double rating = 3.5;
   const MasterPage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorManager.white,
       body: Stack(
         children: [
           CustomScrollView(
@@ -40,30 +39,42 @@ class MasterPage extends StatelessWidget {
                 actions: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Container(
-                      width: AppSize.s55,
-                      height: AppSize.s55,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
-                        color: ColorManager.lightGrey,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: AppSize.s55,
+                        height: AppSize.s55,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(AppSize.s12)),
+                          color: ColorManager.lightGrey,
+                        ),
+                        child: Icon(
+                          FontAwesomeIcons.caretLeft,
+                          size: AppSize.s18,
+                        ),
                       ),
-                      child: Icon(FontAwesomeIcons.caretLeft, size: AppSize.s18,),
                     ),
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s20),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s20),
                     child: Container(
                       width: AppSize.s55,
                       height: AppSize.s55,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(AppSize.s12)),
                         color: ColorManager.lightGrey,
                       ),
-                      child: Icon(FontAwesomeIcons.heart,size: AppSize.s18), // Example icon for trailing (replace as needed)
+                      child: Icon(FontAwesomeIcons.heart,
+                          size: AppSize
+                              .s18), // Example icon for trailing (replace as needed)
                     ),
                   ),
-
                 ],
               ),
               SliverPadding(
@@ -73,63 +84,72 @@ class MasterPage extends StatelessWidget {
                     [
                       Container(
                         decoration: BoxDecoration(
-                          color: ColorManager.blueColor,
-                          borderRadius: BorderRadius.all(Radius.circular(AppSize.s20))
-                        ),
+                            color: ColorManager.blueColor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(AppSize.s20))),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
                             children: [
                               Row(
-                              children: [
-                                CircleAvatar(
-                                  maxRadius: AppSize.s25,
-                                  minRadius: AppSize.s25,
-                                  backgroundImage: AssetImage(ImageAssets.handyman),
-                                ),
-                                SizedBox(
-                                  width: AppSize.s10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Osman Yancigil",
-                                        style: getTextStyle(
-                                            AppSize.s20, FontWeight.w400, Colors.white)),
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(ImageAssets.location,height: AppSize.s15,),
-                                        Text(" 35 km ",
-                                            style: getTextStyle(
-                                                AppSize.s14,
-                                                FontWeight.w400,
-                                                ColorManager.white)),
-                                        Text("(Approx. 40 min)",
-                                            style: getTextStyle(
-                                                AppSize.s14,
-                                                FontWeight.w400,
-                                                ColorManager.lightGreyText)),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                                children: [
+                                  CircleAvatar(
+                                    maxRadius: AppSize.s25,
+                                    minRadius: AppSize.s25,
+                                    backgroundImage:
+                                        AssetImage(ImageAssets.handyman),
+                                  ),
+                                  SizedBox(
+                                    width: AppSize.s10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Osman Yancigil",
+                                          style: getTextStyle(AppSize.s20,
+                                              FontWeight.w400, Colors.white)),
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                            ImageAssets.location,
+                                            height: AppSize.s15,
+                                          ),
+                                          Text(" 35 km ",
+                                              style: getTextStyle(
+                                                  AppSize.s14,
+                                                  FontWeight.w400,
+                                                  ColorManager.white)),
+                                          Text("(Approx. 40 min)",
+                                              style: getTextStyle(
+                                                  AppSize.s14,
+                                                  FontWeight.w400,
+                                                  ColorManager.lightGreyText)),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                               SizedBox(height: AppSize.s10),
                               Text(
                                 "Radiator Cleaning, House Cleaning, House to House Transportation",
-                                style: getTextStyle(AppSize.s14, FontWeight.w400,
-                                    ColorManager.white),
+                                style: getTextStyle(AppSize.s14,
+                                    FontWeight.w400, ColorManager.white),
                               ),
                               Row(
                                 children: [
                                   SvgPicture.asset(ImageAssets.check,
                                       color: ColorManager.greenColor),
                                   Text(" 12",
-                                      style: getTextStyle(AppSize.s14, FontWeight.w600,
+                                      style: getTextStyle(
+                                          AppSize.s14,
+                                          FontWeight.w600,
                                           ColorManager.greenColor)),
                                   Text(" Completed work",
-                                      style: getTextStyle(AppSize.s14, FontWeight.w400,
+                                      style: getTextStyle(
+                                          AppSize.s14,
+                                          FontWeight.w400,
                                           ColorManager.greenColor)),
                                 ],
                               ),
@@ -139,10 +159,11 @@ class MasterPage extends StatelessWidget {
                       ),
                       SizedBox(height: AppSize.s20),
                       Reviews(),
-                      SizedBox(height: AppSize.s60),// Assuming Reviews is a scrollable widget
+                      SizedBox(
+                          height: AppSize
+                              .s60), // Assuming Reviews is a scrollable widget
                     ],
                   ),
-
                 ),
               ),
             ],
@@ -153,7 +174,7 @@ class MasterPage extends StatelessWidget {
             right: AppSize.s16,
             child: ElevatedButton(
               onPressed: () {
-                context.router.replace(BookingDetailsRoute());
+                context.router.push(BookingDetailsRoute());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.joyColor,
@@ -163,7 +184,8 @@ class MasterPage extends StatelessWidget {
                 ),
               ),
               child: Text("Call Now",
-                  style: getTextStyle(AppSize.s16, FontWeight.w600, Colors.white)),
+                  style:
+                      getTextStyle(AppSize.s16, FontWeight.w600, Colors.white)),
             ),
           ),
         ],
