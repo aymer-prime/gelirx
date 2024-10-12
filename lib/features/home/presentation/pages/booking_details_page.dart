@@ -1,13 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gelirx/app/extensions/List.dart';
-import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
+import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/app/view/app.dart';
+
+import '../../../master/presentation/widget/review_star_row.dart';
 
 @RoutePage()
 class BookingDetailsPage extends StatelessWidget {
@@ -20,29 +24,73 @@ class BookingDetailsPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppSize.s16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  height: AppSize.s55,
-                  width: AppSize.s55,
-                  decoration: BoxDecoration(
-                    color: ColorManager.background,
-                    borderRadius: BorderRadius.circular(AppSize.s15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: AppSize.s55,
+                      width: AppSize.s55,
+                      decoration: BoxDecoration(
+                        color: ColorManager.background,
+                        borderRadius: BorderRadius.circular(AppSize.s15),
+                      ),
+                      child: Icon(FontAwesomeIcons.caretLeft,size: AppSize.s18),
+                    ),
                   ),
-                  child: Icon(FontAwesomeIcons.caretLeft),
-                ),
+                ],
               ),
+              SizedBox(height: AppSize.s16,),
+              CircleAvatar(
+                backgroundImage: AssetImage(ImageAssets.handyman),
+                maxRadius: AppSize.s90,
+                minRadius: AppSize.s90,
+              ),
+              SizedBox(height: AppSize.s16),
+              Center(child: Text("Osman Yancigil",style: getTextStyle(AppSize.s20, FontWeight.w600, Colors.black),)),
+              Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("4.7",
+                    style: getTextStyle(AppSize.s16, FontWeight.w500,
+                        ColorManager.welcomeTextColor)),
+                SizedBox(width: AppSize.s5),
+                Stars(starSize: AppSize.s14),
+                SizedBox(width: AppSize.s8),
+                Text("(17)",
+                    style: getTextStyle(
+                        AppSize.s16, FontWeight.w300, ColorManager.tabBarColor)),
+              ],
+            ),
+              Text("Radiator Cleaning, House Cleaning, House to House Transportation",textAlign: TextAlign.center,
+                style: getTextStyle(AppSize.s14, FontWeight.w400, ColorManager.textSubtitleColor)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(ImageAssets.location,height: AppSize.s15,color: ColorManager.welcomeTextColor,),
+                  Text(" 35 km ",
+                      style: getTextStyle(
+                          AppSize.s14,
+                          FontWeight.w400,
+                          ColorManager.welcomeTextColor)),
+                  Text("(Approx. 40 min)",
+                      style: getTextStyle(
+                          AppSize.s14,
+                          FontWeight.w400,
+                          ColorManager.lightGreyText)),
+                ],
+              ),
+              SizedBox(height: AppSize.s32),
               Container(
                 width: double.infinity,
                 height: AppSize.s360,
                 decoration: BoxDecoration(
-                  color: const Color(0xff181F30),
+                  color: ColorManager.blueColor,
                   borderRadius: BorderRadius.circular(AppSize.s20),
                 ),
                 child: Padding(
@@ -80,7 +128,7 @@ class BookingDetailsPage extends StatelessWidget {
                             fillColor: Color(0xff3c455b),
                             counterText: '',
                             hintStyle: getLightStyle(
-                              color: Color(0xffb1babf),
+                              color: ColorManager.lightGreyText,
                               fontSize: FontSizeManager.s12,
                             ),
                             hintText:
@@ -95,7 +143,7 @@ class BookingDetailsPage extends StatelessWidget {
                             TextSpan(
                               text: 'Upload photos of the problem ',
                               style: getRegularStyle(
-                                color: const Color(0xffb1babf),
+                                color: ColorManager.lightGreyText,
                                 fontSize: FontSizeManager.s12_8,
                               ),
                             ),
@@ -149,11 +197,21 @@ class BookingDetailsPage extends StatelessWidget {
                         width: double.infinity,
                         height: AppSize.s48,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.router.replace(OrderDetailsRoute());
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorManager.joyColor,
                           ),
-                          child: const Text('Call Now (40 minutes)'),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                               Text('Call Now',style: getTextStyle(
+                              AppSize.s16, FontWeight.w600, Colors.white)),
+                               Text(' (40 min)', style: getTextStyle(
+                                  AppSize.s16, FontWeight.w300, Colors.white)),
+                            ],
+                          ),
                         ),
                       )
                     ],
