@@ -16,6 +16,8 @@ class ColorManager {
   //text
   static Color textTitleColor = const Color(0xff172B4D);
   static Color welcomeTextColor = const Color(0xff25283C);
+  static Color lightGreyText = const Color(0xffb1babf);
+  static Color blueColor = const Color(0xff181f30);
   static Color textTitleLightColor = const Color(0xff666C89);
   static Color textSubtitleColor = const Color(0xff4e5860);
   static Color textErrorColor = const Color(0xffcd3131);
@@ -23,6 +25,15 @@ class ColorManager {
   static Color pendingTextColor = const Color(0xFFEB833C);
   static Color headerTextColor = const Color.fromRGBO(26, 29, 31, 1);
   static Color blackTextColorWithOpacity = const Color.fromRGBO(83, 87, 99, 1);
+  static Color greenColor = const Color(0xff00a576);
+  static Color tabBarColor = const Color(0xff828e95);
+  static Color ratingColor = const Color(0xffffb000);
+  static Color fiveRatingColor = const Color(0xff38ae04);
+  static Color fourRatingColor = const Color(0xff82ae04);
+  static Color threeRatingColor = const Color(0xfff3ac30);
+  static Color twoRatingColor = const Color(0xfff36c32);
+  static Color oneRatingColor = const Color(0xffff4e00);
+
 
   //buttons
   static Color buttonTextColor = const Color(0xffffffff);

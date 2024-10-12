@@ -19,6 +19,7 @@ import 'package:gelirx/features/order_details/presentation/pages/order_details_p
 import 'package:gelirx/features/shared/domain/entities/shared_entities.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
 
+import '../../features/master/presentation/page/master_page.dart';
 import '../../features/master_dashboard/presentation/pages/master_dashboard_page.dart';
 import '../../features/navigation/presentation/pages/navigation_page.dart';
 
@@ -30,7 +31,6 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: SplashRoute.page,
-          initial: true,
         ),
         AutoRoute(
           page: OnboardingRoute.page,
@@ -82,6 +82,10 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: BookingDetailsRoute.page,
+        ),
+        AutoRoute(
+          page: MasterRoute.page,
+          initial: true,
         )
       ];
 }

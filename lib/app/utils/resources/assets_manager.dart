@@ -19,7 +19,9 @@ class ImageAssets {
   static const String filterIcon = '$imagePath/misc/filter.svg';
   static const String sortIcon = '$imagePath/misc/sort.svg';
   static const String tesisat = '$imagePath/misc/tesisat.png';
-  
+  static const String handyman = '$imagePath/misc/handyman.jpg';
+  static const String check = '$imagePath/misc/check.svg';
+  static const String location = '$imagePath/misc/location.svg';
   //drawer
   static const String calender = '$imagePath/drawer/calender.png';
   static const String wallet = '$imagePath/drawer/wallet.png';
