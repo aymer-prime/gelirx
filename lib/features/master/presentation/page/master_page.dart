@@ -1,7 +1,9 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
@@ -136,7 +138,8 @@ class MasterPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: AppSize.s20),
-                      Reviews(), // Assuming Reviews is a scrollable widget
+                      Reviews(),
+                      SizedBox(height: AppSize.s60),// Assuming Reviews is a scrollable widget
                     ],
                   ),
 
@@ -150,7 +153,7 @@ class MasterPage extends StatelessWidget {
             right: AppSize.s16,
             child: ElevatedButton(
               onPressed: () {
-
+                context.router.replace(BookingDetailsRoute());
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.joyColor,

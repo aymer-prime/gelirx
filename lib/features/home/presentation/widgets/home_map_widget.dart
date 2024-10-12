@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
@@ -16,6 +18,7 @@ import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/tile_provider.dart';
 import 'package:gelirx/features/home/presentation/widgets/master_info_sheet.dart';
+import 'package:gelirx/features/master/presentation/page/master_page.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:lottie/lottie.dart' show Lottie;
@@ -259,7 +262,9 @@ class MasterDetailsDialog extends StatelessWidget {
                 child: Container(
                   color: Colors.transparent,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      context.router.replace( MasterRoute());
+                    },
                     child: Container(
                       margin: const EdgeInsets.symmetric(
                         horizontal: AppPadding.p32,
