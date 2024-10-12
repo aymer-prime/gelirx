@@ -89,6 +89,8 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
       } else if (_controller.size >= 0.4) {
         widget.showBottomNavBar();
         setState(() {});
+      } else if (_controller.size >= 0.2) {
+        titleAnimationController.animateBack(0.0);
       }
     });
     super.initState();
@@ -97,7 +99,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.categoryColor1,
+      backgroundColor: ColorManager.white,
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: _bottomHeight != _maxHeight
