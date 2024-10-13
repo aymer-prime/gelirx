@@ -105,7 +105,7 @@ class HomeContent extends StatelessWidget {
                       crossAxisCount: 2,
                       mainAxisSpacing: AppSize.s16,
                       crossAxisSpacing: AppSize.s16,
-                      childAspectRatio: 0.65,
+                      childAspectRatio: 0.7,
                     ),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: topCategories.length,
@@ -121,9 +121,10 @@ class HomeContent extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            Flexible(
-                              flex: 7,
-                              fit: FlexFit.tight,
+                            SizedBox(
+                              // flex: 7,
+                              // fit: FlexFit.tight,
+                              height: 180,
                               child: ClipRRect(
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(AppSize.s20),
@@ -135,9 +136,9 @@ class HomeContent extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: AppSize.s10),
+                            //const SizedBox(height: AppSize.s10),
                             Flexible(
-                              flex: 3,
+                              //flex: 3,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: AppPadding.p10,
@@ -150,10 +151,9 @@ class HomeContent extends StatelessWidget {
                                   children: [
                                     Text(
                                       topCategories[index].name,
-                                      overflow: TextOverflow.ellipsis,
                                       style: context.textTheme.bodyMedium!
                                           .copyWith(
-                                        color: ColorManager.joyColor,
+                                        color: ColorManager.black,
                                       ),
                                     ),
                                     Row(

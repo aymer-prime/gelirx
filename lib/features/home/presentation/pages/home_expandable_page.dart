@@ -307,7 +307,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                       ?.unfocus(),
                                   textAlignVertical: TextAlignVertical.center,
                                   decoration: InputDecoration(
-                                    fillColor: ColorManager.lightGrey,
+                                    fillColor: ColorManager.white,
                                     hintText: AppStrings.searchHint,
                                     prefixIconConstraints: const BoxConstraints(
                                       maxWidth: 40,
@@ -334,7 +334,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                               height: AppSize.s55,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: ColorManager.lightGrey,
+                                    backgroundColor: ColorManager.white,
                                   ),
                                   onPressed: () {
                                     // context.router
@@ -352,7 +352,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                               height: AppSize.s55,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: ColorManager.lightGrey,
+                                  backgroundColor: ColorManager.white,
                                 ),
                                 onPressed: () {},
                                 child: SvgPicture.asset(
