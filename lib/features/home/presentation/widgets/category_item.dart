@@ -28,13 +28,14 @@ class CategoryItem extends StatelessWidget {
             padding: const EdgeInsets.all(AppPadding.p12),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: ColorManager.lightGrey, //Color(0xffe0e2ea),
-              ),
+              color: ColorManager.joyColor,
+              // border: Border.all(
+              //   color: ColorManager.lightGrey, //Color(0xffe0e2ea),
+              // ),
             ),
             child: CachedNetworkImage(
               imageUrl: category.img.icon,
-              color: ColorManager.joyColor,
+              color: ColorManager.white,
             ),
           ),
           Text(

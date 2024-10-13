@@ -286,39 +286,52 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                         ),
                       ),
                       const SizedBox(height: AppSize.s8),
-                      SizedBox(
-                        height: 40,
+                      Container(
+                        padding: EdgeInsets.all(AppPadding.p16),
+                        decoration: BoxDecoration(
+                            color: ColorManager.blueColor,
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s20,
+                            )),
                         child: Row(
                           children: [
                             Flexible(
-                              flex: 6,
-                              child: TextField(
-                                onTapOutside: (_) => FocusManager
-                                    .instance.primaryFocus
-                                    ?.unfocus(),
-                                textAlignVertical: TextAlignVertical.center,
-                                decoration: InputDecoration(
-                                  fillColor: ColorManager.lightGrey,
-                                  hintText: AppStrings.searchHint,
-                                  prefixIcon: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: AppPadding.p12,
+                              child: SizedBox(
+                                height: AppSize.s55,
+                                child: TextField(
+                                  expands: true,
+                                  maxLines: null,
+                                  minLines: null,
+                                  onTapOutside: (_) => FocusManager
+                                      .instance.primaryFocus
+                                      ?.unfocus(),
+                                  textAlignVertical: TextAlignVertical.center,
+                                  decoration: InputDecoration(
+                                    fillColor: ColorManager.lightGrey,
+                                    hintText: AppStrings.searchHint,
+                                    prefixIconConstraints: const BoxConstraints(
+                                      maxWidth: 40,
                                     ),
-                                    child: SvgPicture.asset(
-                                      ImageAssets.searchIcon,
-                                      fit: BoxFit.fitHeight,
-                                      colorFilter: ColorFilter.mode(
-                                        ColorManager.textTitleColor,
-                                        BlendMode.srcIn,
+                                    prefixIcon: SizedBox(
+                                      width: 30,
+                                      child: SvgPicture.asset(
+                                        ImageAssets.searchIcon,
+                                        fit: BoxFit.scaleDown,
+                                        height: 20,
+                                        colorFilter: ColorFilter.mode(
+                                          ColorManager.textTitleColor,
+                                          BlendMode.srcIn,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(width: AppSize.s8),
-                            Flexible(
-                              flex: 1,
+                            const SizedBox(width: AppSize.s4),
+                            SizedBox(
+                              width: AppSize.s55,
+                              height: AppSize.s55,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: ColorManager.lightGrey,
@@ -333,9 +346,10 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                     color: ColorManager.textTitleColor,
                                   )),
                             ),
-                            const SizedBox(width: AppSize.s8),
-                            Flexible(
-                              flex: 1,
+                            const SizedBox(width: AppSize.s4),
+                            SizedBox(
+                              width: AppSize.s55,
+                              height: AppSize.s55,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: ColorManager.lightGrey,
@@ -351,7 +365,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                           ],
                         ),
                       ),
-                      const SizedBox(height: AppSize.s10),
+                      const SizedBox(height: AppSize.s25),
                       HomeContent(
                         categories: state.categories,
                         topCategories: state.services
