@@ -31,7 +31,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
     with SingleTickerProviderStateMixin {
   final DraggableScrollableController _controller =
       DraggableScrollableController();
-  final minSize = 0.15;
+  final minSize = 0.08;
   final maxSize = 1.0;
   late double _bottomHeight;
   late double _maxHeight;
@@ -264,7 +264,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                   expand: true,
                   snap: true,
                   snapSizes: const [
-                    0.15,
+                    0.08,
                     0.5,
                   ],
                   snapAnimationDuration: const Duration(milliseconds: 300),
@@ -294,87 +294,91 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                             ),
                           ),
                           const SizedBox(height: AppSize.s8),
-                          Container(
-                            padding: EdgeInsets.all(AppPadding.p16),
-                            decoration: BoxDecoration(
-                                color: ColorManager.blueColor,
-                                borderRadius: BorderRadius.circular(
-                                  AppSize.s20,
-                                )),
-                            child: Row(
-                              children: [
-                                Flexible(
-                                  child: SizedBox(
-                                    height: AppSize.s55,
-                                    child: TextField(
-                                      expands: true,
-                                      maxLines: null,
-                                      minLines: null,
-                                      onTapOutside: (_) => FocusManager
-                                          .instance.primaryFocus
-                                          ?.unfocus(),
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      decoration: InputDecoration(
-                                        fillColor: ColorManager.white,
-                                        hintText: AppStrings.searchHint,
-                                        prefixIconConstraints:
-                                            const BoxConstraints(
-                                          maxWidth: 40,
-                                        ),
-                                        prefixIcon: SizedBox(
-                                          width: 30,
-                                          child: SvgPicture.asset(
-                                            ImageAssets.searchIcon,
-                                            fit: BoxFit.scaleDown,
-                                            height: 20,
-                                            colorFilter: ColorFilter.mode(
-                                              ColorManager.textTitleColor,
-                                              BlendMode.srcIn,
+                          _bottomHeight <= 0.1 * _maxHeight
+                              ? SizedBox(height: AppSize.s55)
+                              : Container(
+                                  padding: EdgeInsets.all(AppPadding.p16),
+                                  decoration: BoxDecoration(
+                                      color: ColorManager.blueColor,
+                                      borderRadius: BorderRadius.circular(
+                                        AppSize.s20,
+                                      )),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        child: SizedBox(
+                                          height: AppSize.s55,
+                                          child: TextField(
+                                            expands: true,
+                                            maxLines: null,
+                                            minLines: null,
+                                            onTapOutside: (_) => FocusManager
+                                                .instance.primaryFocus
+                                                ?.unfocus(),
+                                            textAlignVertical:
+                                                TextAlignVertical.center,
+                                            decoration: InputDecoration(
+                                              fillColor: ColorManager.white,
+                                              hintText: AppStrings.searchHint,
+                                              prefixIconConstraints:
+                                                  const BoxConstraints(
+                                                maxWidth: 40,
+                                              ),
+                                              prefixIcon: SizedBox(
+                                                width: 30,
+                                                child: SvgPicture.asset(
+                                                  ImageAssets.searchIcon,
+                                                  fit: BoxFit.scaleDown,
+                                                  height: 20,
+                                                  colorFilter: ColorFilter.mode(
+                                                    ColorManager.textTitleColor,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(width: AppSize.s4),
-                                SizedBox(
-                                  width: AppSize.s55,
-                                  height: AppSize.s55,
-                                  child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: ColorManager.white,
+                                      const SizedBox(width: AppSize.s4),
+                                      SizedBox(
+                                        width: AppSize.s55,
+                                        height: AppSize.s55,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  ColorManager.white,
+                                            ),
+                                            onPressed: () {
+                                              // context.router
+                                              //     .push(const BookingDetailsRoute());
+                                            },
+                                            child: SvgPicture.asset(
+                                              ImageAssets.filterIcon,
+                                              height: AppSize.s16,
+                                              color:
+                                                  ColorManager.textTitleColor,
+                                            )),
                                       ),
-                                      onPressed: () {
-                                        // context.router
-                                        //     .push(const BookingDetailsRoute());
-                                      },
-                                      child: SvgPicture.asset(
-                                        ImageAssets.filterIcon,
-                                        height: AppSize.s16,
-                                        color: ColorManager.textTitleColor,
-                                      )),
-                                ),
-                                const SizedBox(width: AppSize.s4),
-                                SizedBox(
-                                  width: AppSize.s55,
-                                  height: AppSize.s55,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: ColorManager.white,
-                                    ),
-                                    onPressed: () {},
-                                    child: SvgPicture.asset(
-                                      ImageAssets.sortIcon,
-                                      height: AppSize.s16,
-                                      color: ColorManager.black,
-                                    ),
+                                      const SizedBox(width: AppSize.s4),
+                                      SizedBox(
+                                        width: AppSize.s55,
+                                        height: AppSize.s55,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: ColorManager.white,
+                                          ),
+                                          onPressed: () {},
+                                          child: SvgPicture.asset(
+                                            ImageAssets.sortIcon,
+                                            height: AppSize.s16,
+                                            color: ColorManager.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
                           const SizedBox(height: AppSize.s25),
                           HomeContent(
                             categories: state.categories,
