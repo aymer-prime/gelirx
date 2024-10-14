@@ -182,5 +182,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         state.copyWith(services: newServices),
       );
     });
+    on<_SelectMaster>((event, emit) async {
+
+      emit(
+         state.copyWith(selectedMasterId: event.id),
+      );
+    });
   }
 }

@@ -144,6 +144,9 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                   child: GestureDetector(
                       onTap: () {
                         widget.onMasterTap();
+                        context.read<HomeBloc>().add(
+                          HomeEvent.selectMaster(master.id),
+                        );
                         showDialog(
                           context: context,
                           barrierColor: Colors.transparent,
@@ -160,7 +163,9 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                             child: Container(
                               //padding: const EdgeInsets.all(AppPadding.p3),
                               decoration: ShapeDecoration(
-                                color: ColorManager.white,
+                                color: master.id == context.read<HomeBloc>().state.selectedMasterId
+                                ? ColorManager.blueColor
+                                : ColorManager.white,
                                 shape: const StadiumBorder(),
                               ),
                               child: Row(
@@ -192,7 +197,9 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                             ImageAssets.caretDown,
                             height: 5,
                             colorFilter: ColorFilter.mode(
-                              ColorManager.white,
+                               master.id == context.read<HomeBloc>().state.selectedMasterId
+                                  ? ColorManager.blueColor
+                                  : ColorManager.white,
                               BlendMode.srcIn,
                             ),
                           ),

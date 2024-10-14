@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
@@ -73,7 +75,9 @@ class NavBar extends StatelessWidget {
                 activeIcon: SvgPicture.asset(ImageAssets.navbarAdd,
                     height: AppSize.s20, color: ColorManager.white),
                 isSelected: pageIndex == 2,
-                onTap: () => onTap(2), isCenterNavItem: true,
+                onTap: ()  {
+                  context.router.push(OnboardingRoute());
+                }, isCenterNavItem: true,
               ),
               //  SizedBox(width: AppSize.s80.w),
               NavItem(
@@ -147,7 +151,7 @@ class NavItem extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
                       color: isCenterNavItem 
                           ? ColorManager.joyColor
-                      : ColorManager.lightGrey),
+                      : ColorManager.white),
                   child: Padding(
                     padding: const EdgeInsets.all(AppSize.s12),
                     child: icon,

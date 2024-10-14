@@ -70,9 +70,7 @@ class MasterPage extends StatelessWidget {
                             BorderRadius.all(Radius.circular(AppSize.s12)),
                         color: ColorManager.lightGrey,
                       ),
-                      child: Icon(FontAwesomeIcons.heart,
-                          size: AppSize
-                              .s18), // Example icon for trailing (replace as needed)
+                      child: Icon(FontAwesomeIcons.heart, size: AppSize.s18),
                     ),
                   ),
                 ],
@@ -82,6 +80,7 @@ class MasterPage extends StatelessWidget {
                 sliver: SliverList(
                   delegate: SliverChildListDelegate(
                     [
+                      SizedBox(height: AppSize.s16),
                       Container(
                         decoration: BoxDecoration(
                             color: ColorManager.blueColor,
@@ -115,7 +114,7 @@ class MasterPage extends StatelessWidget {
                                             ImageAssets.location,
                                             height: AppSize.s15,
                                           ),
-                                          Text(" 35 km ",
+                                          Text("35 km ",
                                               style: getTextStyle(
                                                   AppSize.s14,
                                                   FontWeight.w400,
@@ -157,7 +156,7 @@ class MasterPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: AppSize.s20),
+                      SizedBox(height: AppSize.s16),
                       Reviews(),
                       SizedBox(
                           height: AppSize
@@ -169,23 +168,27 @@ class MasterPage extends StatelessWidget {
             ],
           ),
           Positioned(
-            bottom: AppSize.s16,
-            left: AppSize.s16,
-            right: AppSize.s16,
-            child: ElevatedButton(
-              onPressed: () {
-                context.router.push(BookingDetailsRoute());
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorManager.joyColor,
-                padding: EdgeInsets.symmetric(vertical: AppSize.s16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSize.s15),
+            bottom: AppSize.s0,
+            left: AppSize.s0,
+            right: AppSize.s0,
+            child: Container(
+              padding: EdgeInsets.all(AppSize.s16),
+              color: Colors.white,
+              child: ElevatedButton(
+                onPressed: () {
+                  context.router.push(BookingDetailsRoute());
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorManager.joyColor,
+                  padding: EdgeInsets.symmetric(vertical: AppSize.s16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppSize.s15),
+                  ),
                 ),
+                child: Text("Call Now",
+                    style: getTextStyle(
+                        AppSize.s16, FontWeight.w600, Colors.white)),
               ),
-              child: Text("Call Now",
-                  style:
-                      getTextStyle(AppSize.s16, FontWeight.w600, Colors.white)),
             ),
           ),
         ],

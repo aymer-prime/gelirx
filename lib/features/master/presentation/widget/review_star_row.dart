@@ -14,12 +14,11 @@ class Reviews extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: AppSize.s30),
         Text("Reviews", style: getTextStyle(AppSize.s13, FontWeight.w400, ColorManager.tabBarColor),),
         Stack(
           children: [
-            Divider(thickness: 4,),
-            Divider(),
+            Divider(thickness: 1,),
+            SizedBox(width: AppSize.s72, child: Divider(thickness: 1,color: ColorManager.black)),
           ],
         ),
         Row(
