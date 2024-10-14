@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,6 +11,8 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'dart:ui' as ui;
+
+import '../../../auth/presentation/bloc/auth_bloc.dart';
 
 class NavBar extends StatelessWidget {
   final int pageIndex;
@@ -23,6 +26,8 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return  BlocBuilder<AuthBloc, AuthState>(
+    builder: (context, state) {
     return BottomAppBar(
       height: AppSize.s90.h ,
       //  shape: CircularNotchedRectangle(),
@@ -76,7 +81,9 @@ class NavBar extends StatelessWidget {
                     height: AppSize.s20, color: ColorManager.white),
                 isSelected: pageIndex == 2,
                 onTap: ()  {
-                  context.router.push(OnboardingRoute());
+                  if (state.user.isNone()) {
+                    context.router.push(OnboardingRoute());
+                  }
                 }, isCenterNavItem: true,
               ),
               //  SizedBox(width: AppSize.s80.w),
@@ -114,6 +121,8 @@ class NavBar extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }
 
