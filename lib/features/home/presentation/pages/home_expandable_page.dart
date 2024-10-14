@@ -31,7 +31,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
     with SingleTickerProviderStateMixin {
   final DraggableScrollableController _controller =
       DraggableScrollableController();
-  final minSize = 0.1;
+  final minSize = 0.14;
   final maxSize = 1.0;
   late double _bottomHeight;
   late double _maxHeight;
@@ -258,7 +258,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                 expand: true,
                 snap: true,
                 snapSizes: const [
-                  0.1,
+                  0.14,
                   0.5,
                 ],
                 snapAnimationDuration: const Duration(milliseconds: 300),

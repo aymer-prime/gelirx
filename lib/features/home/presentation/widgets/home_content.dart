@@ -151,6 +151,7 @@ class HomeContent extends StatelessWidget {
                                   children: [
                                     Text(
                                       topCategories[index].name,
+                                      overflow: TextOverflow.ellipsis,
                                       style: context.textTheme.bodyMedium!
                                           .copyWith(
                                         color: ColorManager.black,
