@@ -4,6 +4,7 @@ part of 'home_bloc.dart';
 class HomeState with _$HomeState {
   const factory HomeState({
     int? selectedCategory,
+    String? selectedMasterId,
     required bool isLoading,
     required Option<Position> userPosition,
     required List<Category> categories,
@@ -16,6 +17,7 @@ class HomeState with _$HomeState {
   factory HomeState.initial() => HomeState(
         catFilterIndexes: [],
         selectedCategory: null,
+        selectedMasterId: null,
         isLoading: false,
         userPosition: none(),
         categories: [],

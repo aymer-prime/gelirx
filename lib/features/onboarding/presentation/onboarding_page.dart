@@ -51,7 +51,9 @@ class OnboardingPage extends HookWidget {
                     child: IconButton(
                       icon: Icon(
                           FontAwesomeIcons.caretLeft), // Customize the icon as needed
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ),
                 ),

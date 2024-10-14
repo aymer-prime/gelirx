@@ -12,4 +12,5 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.clearFilters() = _ClearFilters;
   const factory HomeEvent.selectSub(String id, String subId) = _SelectSub;
   const factory HomeEvent.unselectSub(String id) = _UnselectSub;
+  const factory HomeEvent.selectMaster(String id) = _SelectMaster;
 }
