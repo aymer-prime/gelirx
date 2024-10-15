@@ -8,6 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:dio/dio.dart' as _i361;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
@@ -65,6 +66,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i183.ImagePicker>(() => injectableModules.imagePicker);
     gh.lazySingleton<_i973.InternetConnectionChecker>(
         () => injectableModules.internetConnectionChecker);
+    gh.lazySingleton<_i974.FirebaseFirestore>(
+        () => injectableModules.firebaseFirestore);
     gh.lazySingleton<_i59.FirebaseAuth>(() => injectableModules.firebaseAuth);
     gh.lazySingleton<_i892.FirebaseMessaging>(
         () => injectableModules.firebaseMessaging);

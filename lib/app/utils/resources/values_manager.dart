@@ -96,5 +96,7 @@ class AppSize {
   static const double s320 = 320.0;
   static const double s350 = 350.0;
   static const double s360 = 360.0;
+  static const double s375 = 375.0;
+  static const double s380 = 380.0;
   static const double s400 = 400.0;
 }

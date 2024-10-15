@@ -331,8 +331,8 @@ class _ResizableColumnState extends State<HomePageExpandable>
                                       backgroundColor: ColorManager.lightGrey,
                                     ),
                                     onPressed: () {
-                                      context.router
-                                          .push(const BookingDetailsRoute());
+                                      // context.router
+                                      //     .push(const BookingDetailsRoute());
                                     },
                                     child: SvgPicture.asset(
                                       ImageAssets.filterIcon,

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
@@ -183,9 +184,35 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       );
     });
     on<_SelectMaster>((event, emit) async {
-
       emit(
-         state.copyWith(selectedMasterId: event.id),
+        state.copyWith(selectedMasterId: event.id),
+      );
+    });
+    on<_CallMaster>((event, emit) async {
+      emit(
+        state.copyWith(isLoading: true),
+      );
+      await state.userPosition.fold(
+        () async => null,
+        (userPosition) async {
+          var result = await _iHomeRepository.callMaster(
+            LatLng(userPosition.latitude, userPosition.longitude),
+            'address',
+            'description',
+            event.id,
+          );
+          result.fold(
+            (l) => emit(
+              state.copyWith(isLoading: false),
+            ),
+            (r) {
+              emit(
+                state.copyWith(isLoading: false),
+              );
+              event.onSuccess();
+            },
+          );
+        },
       );
     });
   }

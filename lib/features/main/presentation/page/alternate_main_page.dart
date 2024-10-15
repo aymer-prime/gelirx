@@ -13,7 +13,6 @@ import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_expandable_page.dart';
-import 'package:gelirx/features/home/presentation/pages/home_page_expandable.dart';
 import 'package:gelirx/features/main/presentation/widgets/drawer_tile.dart';
 import 'package:gelirx/features/main/presentation/widgets/nav_bar.dart';
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';

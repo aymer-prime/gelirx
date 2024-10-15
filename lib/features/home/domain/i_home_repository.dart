@@ -16,6 +16,12 @@ abstract class IHomeRepository {
     String description,
     String categoryId,
   );
+  Future<Either<ApiException, Unit>> callMaster(
+    LatLng centerPosition,
+    String address,
+    String description,
+    String masterId,
+  );
   Future<Either<ApiException, Unit>> updateUserLocationAndToken(
       Position userPosition);
 }

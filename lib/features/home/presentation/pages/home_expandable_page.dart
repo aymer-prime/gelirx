@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/double_extensions.dart';
+import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -368,7 +371,11 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: ColorManager.white,
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            // context.router.push(
+                                            //     BookingDetailsRoute(
+                                            //         masterId: '36'));
+                                          },
                                           child: SvgPicture.asset(
                                             ImageAssets.sortIcon,
                                             height: AppSize.s16,

@@ -8,15 +8,17 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/app/view/app.dart';
 
-import '../widget/review_comment.dart';
 import '../widget/review_star_row.dart';
 
 @RoutePage()
 class MasterPage extends StatelessWidget {
   final double rating = 3.5;
-  const MasterPage({super.key});
+  final String masterId;
+  const MasterPage({
+    super.key,
+    required this.masterId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -172,15 +174,15 @@ class MasterPage extends StatelessWidget {
             left: AppSize.s0,
             right: AppSize.s0,
             child: Container(
-              padding: EdgeInsets.all(AppSize.s16),
+              padding: const EdgeInsets.all(AppSize.s16),
               color: Colors.white,
               child: ElevatedButton(
                 onPressed: () {
-                  context.router.push(BookingDetailsRoute());
+                  context.router.push(BookingDetailsRoute(masterId: masterId));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorManager.joyColor,
-                  padding: EdgeInsets.symmetric(vertical: AppSize.s16),
+                  padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppSize.s15),
                   ),

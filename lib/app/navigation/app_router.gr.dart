@@ -49,10 +49,17 @@ class AuthRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [BookingDetailsPage]
-class BookingDetailsRoute extends PageRouteInfo<void> {
-  const BookingDetailsRoute({List<PageRouteInfo>? children})
-      : super(
+class BookingDetailsRoute extends PageRouteInfo<BookingDetailsRouteArgs> {
+  BookingDetailsRoute({
+    Key? key,
+    required String masterId,
+    List<PageRouteInfo>? children,
+  }) : super(
           BookingDetailsRoute.name,
+          args: BookingDetailsRouteArgs(
+            key: key,
+            masterId: masterId,
+          ),
           initialChildren: children,
         );
 
@@ -61,9 +68,29 @@ class BookingDetailsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const BookingDetailsPage();
+      final args = data.argsAs<BookingDetailsRouteArgs>();
+      return BookingDetailsPage(
+        key: args.key,
+        masterId: args.masterId,
+      );
     },
   );
+}
+
+class BookingDetailsRouteArgs {
+  const BookingDetailsRouteArgs({
+    this.key,
+    required this.masterId,
+  });
+
+  final Key? key;
+
+  final String masterId;
+
+  @override
+  String toString() {
+    return 'BookingDetailsRouteArgs{key: $key, masterId: $masterId}';
+  }
 }
 
 /// generated route for
@@ -223,10 +250,14 @@ class MasterMainRoute extends PageRouteInfo<void> {
 class MasterRoute extends PageRouteInfo<MasterRouteArgs> {
   MasterRoute({
     dynamic key,
+    required String masterId,
     List<PageRouteInfo>? children,
   }) : super(
           MasterRoute.name,
-          args: MasterRouteArgs(key: key),
+          args: MasterRouteArgs(
+            key: key,
+            masterId: masterId,
+          ),
           initialChildren: children,
         );
 
@@ -235,21 +266,28 @@ class MasterRoute extends PageRouteInfo<MasterRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<MasterRouteArgs>(orElse: () => const MasterRouteArgs());
-      return MasterPage(key: args.key);
+      final args = data.argsAs<MasterRouteArgs>();
+      return MasterPage(
+        key: args.key,
+        masterId: args.masterId,
+      );
     },
   );
 }
 
 class MasterRouteArgs {
-  const MasterRouteArgs({this.key});
+  const MasterRouteArgs({
+    this.key,
+    required this.masterId,
+  });
 
   final dynamic key;
 
+  final String masterId;
+
   @override
   String toString() {
-    return 'MasterRouteArgs{key: $key}';
+    return 'MasterRouteArgs{key: $key, masterId: $masterId}';
   }
 }
 

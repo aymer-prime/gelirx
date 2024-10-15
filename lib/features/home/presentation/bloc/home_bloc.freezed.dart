@@ -28,6 +28,7 @@ mixin _$HomeEvent {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$HomeEvent {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +58,7 @@ mixin _$HomeEvent {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -71,6 +74,7 @@ mixin _$HomeEvent {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +89,7 @@ mixin _$HomeEvent {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,6 +104,7 @@ mixin _$HomeEvent {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -175,6 +181,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return getCurrentPosition();
   }
@@ -192,6 +199,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return getCurrentPosition?.call();
   }
@@ -209,6 +217,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (getCurrentPosition != null) {
@@ -230,6 +239,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return getCurrentPosition(this);
   }
@@ -247,6 +257,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return getCurrentPosition?.call(this);
   }
@@ -264,6 +275,7 @@ class _$GetCurrentPositionImpl implements _GetCurrentPosition {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (getCurrentPosition != null) {
@@ -328,6 +340,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return getCategories();
   }
@@ -345,6 +358,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return getCategories?.call();
   }
@@ -362,6 +376,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (getCategories != null) {
@@ -383,6 +398,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return getCategories(this);
   }
@@ -400,6 +416,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return getCategories?.call(this);
   }
@@ -417,6 +434,7 @@ class _$GetCategoriesImpl implements _GetCategories {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (getCategories != null) {
@@ -510,6 +528,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return getSubCategories(catIndex);
   }
@@ -527,6 +546,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return getSubCategories?.call(catIndex);
   }
@@ -544,6 +564,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (getSubCategories != null) {
@@ -565,6 +586,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return getSubCategories(this);
   }
@@ -582,6 +604,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return getSubCategories?.call(this);
   }
@@ -599,6 +622,7 @@ class _$GetSubCategoriesImpl implements _GetSubCategories {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (getSubCategories != null) {
@@ -672,6 +696,7 @@ class _$GetServicesImpl implements _GetServices {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return getServices();
   }
@@ -689,6 +714,7 @@ class _$GetServicesImpl implements _GetServices {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return getServices?.call();
   }
@@ -706,6 +732,7 @@ class _$GetServicesImpl implements _GetServices {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (getServices != null) {
@@ -727,6 +754,7 @@ class _$GetServicesImpl implements _GetServices {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return getServices(this);
   }
@@ -744,6 +772,7 @@ class _$GetServicesImpl implements _GetServices {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return getServices?.call(this);
   }
@@ -761,6 +790,7 @@ class _$GetServicesImpl implements _GetServices {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (getServices != null) {
@@ -853,6 +883,7 @@ class _$GetMastersImpl implements _GetMasters {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return getMasters(centerPosition);
   }
@@ -870,6 +901,7 @@ class _$GetMastersImpl implements _GetMasters {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return getMasters?.call(centerPosition);
   }
@@ -887,6 +919,7 @@ class _$GetMastersImpl implements _GetMasters {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (getMasters != null) {
@@ -908,6 +941,7 @@ class _$GetMastersImpl implements _GetMasters {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return getMasters(this);
   }
@@ -925,6 +959,7 @@ class _$GetMastersImpl implements _GetMasters {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return getMasters?.call(this);
   }
@@ -942,6 +977,7 @@ class _$GetMastersImpl implements _GetMasters {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (getMasters != null) {
@@ -1053,6 +1089,7 @@ class _$SetFiltersImpl implements _SetFilters {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return setFilters(cat);
   }
@@ -1070,6 +1107,7 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return setFilters?.call(cat);
   }
@@ -1087,6 +1125,7 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (setFilters != null) {
@@ -1108,6 +1147,7 @@ class _$SetFiltersImpl implements _SetFilters {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return setFilters(this);
   }
@@ -1125,6 +1165,7 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return setFilters?.call(this);
   }
@@ -1142,6 +1183,7 @@ class _$SetFiltersImpl implements _SetFilters {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (setFilters != null) {
@@ -1214,6 +1256,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return clearFilters();
   }
@@ -1231,6 +1274,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return clearFilters?.call();
   }
@@ -1248,6 +1292,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -1269,6 +1314,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return clearFilters(this);
   }
@@ -1286,6 +1332,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return clearFilters?.call(this);
   }
@@ -1303,6 +1350,7 @@ class _$ClearFiltersImpl implements _ClearFilters {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (clearFilters != null) {
@@ -1402,6 +1450,7 @@ class _$SelectSubImpl implements _SelectSub {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return selectSub(id, subId);
   }
@@ -1419,6 +1468,7 @@ class _$SelectSubImpl implements _SelectSub {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return selectSub?.call(id, subId);
   }
@@ -1436,6 +1486,7 @@ class _$SelectSubImpl implements _SelectSub {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (selectSub != null) {
@@ -1457,6 +1508,7 @@ class _$SelectSubImpl implements _SelectSub {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return selectSub(this);
   }
@@ -1474,6 +1526,7 @@ class _$SelectSubImpl implements _SelectSub {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return selectSub?.call(this);
   }
@@ -1491,6 +1544,7 @@ class _$SelectSubImpl implements _SelectSub {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (selectSub != null) {
@@ -1592,6 +1646,7 @@ class _$UnselectSubImpl implements _UnselectSub {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return unselectSub(id);
   }
@@ -1609,6 +1664,7 @@ class _$UnselectSubImpl implements _UnselectSub {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return unselectSub?.call(id);
   }
@@ -1626,6 +1682,7 @@ class _$UnselectSubImpl implements _UnselectSub {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (unselectSub != null) {
@@ -1647,6 +1704,7 @@ class _$UnselectSubImpl implements _UnselectSub {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return unselectSub(this);
   }
@@ -1664,6 +1722,7 @@ class _$UnselectSubImpl implements _UnselectSub {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return unselectSub?.call(this);
   }
@@ -1681,6 +1740,7 @@ class _$UnselectSubImpl implements _UnselectSub {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (unselectSub != null) {
@@ -1780,6 +1840,7 @@ class _$SelectMasterImpl implements _SelectMaster {
     required TResult Function(String id, String subId) selectSub,
     required TResult Function(String id) unselectSub,
     required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
   }) {
     return selectMaster(id);
   }
@@ -1797,6 +1858,7 @@ class _$SelectMasterImpl implements _SelectMaster {
     TResult? Function(String id, String subId)? selectSub,
     TResult? Function(String id)? unselectSub,
     TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
   }) {
     return selectMaster?.call(id);
   }
@@ -1814,6 +1876,7 @@ class _$SelectMasterImpl implements _SelectMaster {
     TResult Function(String id, String subId)? selectSub,
     TResult Function(String id)? unselectSub,
     TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
     required TResult orElse(),
   }) {
     if (selectMaster != null) {
@@ -1835,6 +1898,7 @@ class _$SelectMasterImpl implements _SelectMaster {
     required TResult Function(_SelectSub value) selectSub,
     required TResult Function(_UnselectSub value) unselectSub,
     required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
   }) {
     return selectMaster(this);
   }
@@ -1852,6 +1916,7 @@ class _$SelectMasterImpl implements _SelectMaster {
     TResult? Function(_SelectSub value)? selectSub,
     TResult? Function(_UnselectSub value)? unselectSub,
     TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
   }) {
     return selectMaster?.call(this);
   }
@@ -1869,6 +1934,7 @@ class _$SelectMasterImpl implements _SelectMaster {
     TResult Function(_SelectSub value)? selectSub,
     TResult Function(_UnselectSub value)? unselectSub,
     TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
     required TResult orElse(),
   }) {
     if (selectMaster != null) {
@@ -1887,6 +1953,211 @@ abstract class _SelectMaster implements HomeEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectMasterImplCopyWith<_$SelectMasterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CallMasterImplCopyWith<$Res> {
+  factory _$$CallMasterImplCopyWith(
+          _$CallMasterImpl value, $Res Function(_$CallMasterImpl) then) =
+      __$$CallMasterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id, VoidCallback onSuccess});
+}
+
+/// @nodoc
+class __$$CallMasterImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$CallMasterImpl>
+    implements _$$CallMasterImplCopyWith<$Res> {
+  __$$CallMasterImplCopyWithImpl(
+      _$CallMasterImpl _value, $Res Function(_$CallMasterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? onSuccess = null,
+  }) {
+    return _then(_$CallMasterImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as VoidCallback,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CallMasterImpl implements _CallMaster {
+  const _$CallMasterImpl(this.id, this.onSuccess);
+
+  @override
+  final String id;
+  @override
+  final VoidCallback onSuccess;
+
+  @override
+  String toString() {
+    return 'HomeEvent.callMaster(id: $id, onSuccess: $onSuccess)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CallMasterImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, onSuccess);
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CallMasterImplCopyWith<_$CallMasterImpl> get copyWith =>
+      __$$CallMasterImplCopyWithImpl<_$CallMasterImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCurrentPosition,
+    required TResult Function() getCategories,
+    required TResult Function(int catIndex) getSubCategories,
+    required TResult Function() getServices,
+    required TResult Function(LatLng centerPosition) getMasters,
+    required TResult Function(Category cat) setFilters,
+    required TResult Function() clearFilters,
+    required TResult Function(String id, String subId) selectSub,
+    required TResult Function(String id) unselectSub,
+    required TResult Function(String id) selectMaster,
+    required TResult Function(String id, VoidCallback onSuccess) callMaster,
+  }) {
+    return callMaster(id, onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCurrentPosition,
+    TResult? Function()? getCategories,
+    TResult? Function(int catIndex)? getSubCategories,
+    TResult? Function()? getServices,
+    TResult? Function(LatLng centerPosition)? getMasters,
+    TResult? Function(Category cat)? setFilters,
+    TResult? Function()? clearFilters,
+    TResult? Function(String id, String subId)? selectSub,
+    TResult? Function(String id)? unselectSub,
+    TResult? Function(String id)? selectMaster,
+    TResult? Function(String id, VoidCallback onSuccess)? callMaster,
+  }) {
+    return callMaster?.call(id, onSuccess);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCurrentPosition,
+    TResult Function()? getCategories,
+    TResult Function(int catIndex)? getSubCategories,
+    TResult Function()? getServices,
+    TResult Function(LatLng centerPosition)? getMasters,
+    TResult Function(Category cat)? setFilters,
+    TResult Function()? clearFilters,
+    TResult Function(String id, String subId)? selectSub,
+    TResult Function(String id)? unselectSub,
+    TResult Function(String id)? selectMaster,
+    TResult Function(String id, VoidCallback onSuccess)? callMaster,
+    required TResult orElse(),
+  }) {
+    if (callMaster != null) {
+      return callMaster(id, onSuccess);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetCurrentPosition value) getCurrentPosition,
+    required TResult Function(_GetCategories value) getCategories,
+    required TResult Function(_GetSubCategories value) getSubCategories,
+    required TResult Function(_GetServices value) getServices,
+    required TResult Function(_GetMasters value) getMasters,
+    required TResult Function(_SetFilters value) setFilters,
+    required TResult Function(_ClearFilters value) clearFilters,
+    required TResult Function(_SelectSub value) selectSub,
+    required TResult Function(_UnselectSub value) unselectSub,
+    required TResult Function(_SelectMaster value) selectMaster,
+    required TResult Function(_CallMaster value) callMaster,
+  }) {
+    return callMaster(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult? Function(_GetCategories value)? getCategories,
+    TResult? Function(_GetSubCategories value)? getSubCategories,
+    TResult? Function(_GetServices value)? getServices,
+    TResult? Function(_GetMasters value)? getMasters,
+    TResult? Function(_SetFilters value)? setFilters,
+    TResult? Function(_ClearFilters value)? clearFilters,
+    TResult? Function(_SelectSub value)? selectSub,
+    TResult? Function(_UnselectSub value)? unselectSub,
+    TResult? Function(_SelectMaster value)? selectMaster,
+    TResult? Function(_CallMaster value)? callMaster,
+  }) {
+    return callMaster?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetCurrentPosition value)? getCurrentPosition,
+    TResult Function(_GetCategories value)? getCategories,
+    TResult Function(_GetSubCategories value)? getSubCategories,
+    TResult Function(_GetServices value)? getServices,
+    TResult Function(_GetMasters value)? getMasters,
+    TResult Function(_SetFilters value)? setFilters,
+    TResult Function(_ClearFilters value)? clearFilters,
+    TResult Function(_SelectSub value)? selectSub,
+    TResult Function(_UnselectSub value)? unselectSub,
+    TResult Function(_SelectMaster value)? selectMaster,
+    TResult Function(_CallMaster value)? callMaster,
+    required TResult orElse(),
+  }) {
+    if (callMaster != null) {
+      return callMaster(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CallMaster implements HomeEvent {
+  const factory _CallMaster(final String id, final VoidCallback onSuccess) =
+      _$CallMasterImpl;
+
+  String get id;
+  VoidCallback get onSuccess;
+
+  /// Create a copy of HomeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CallMasterImplCopyWith<_$CallMasterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

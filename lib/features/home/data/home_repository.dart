@@ -163,6 +163,43 @@ class HomeRepository implements IHomeRepository {
     }
   }
 
+  @override
+  Future<Either<ApiException, Unit>> callMaster(
+    LatLng userPosition,
+    String address,
+    String description,
+    String masterId,
+  ) async {
+    try {
+      var headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      };
+      var data = {
+        'lang': 'tr',
+        'master_id': masterId,
+        'user_id': '12',
+        'description': description,
+        'latitude': userPosition.latitude,
+        'longitude': userPosition.longitude,
+        'address': address,
+        'category_id': '2'
+      };
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}general/call-master.php',
+        options: Options(
+          headers: headers,
+        ),
+        data: data,
+      );
+      return right(unit);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
 
   @override
   Future<Either<ApiException, Unit>> updateUserLocationAndToken(
