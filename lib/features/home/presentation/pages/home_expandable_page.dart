@@ -31,11 +31,12 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
     with SingleTickerProviderStateMixin {
   final DraggableScrollableController _controller =
       DraggableScrollableController();
-  final minSize = 0.14;
+  final minSize = 0.08;
   final maxSize = 1.0;
   late double _bottomHeight;
   late double _maxHeight;
   late double _halfHeight;
+  late ScrollController scrollCtrlr;
   late AnimationController titleAnimationController;
   late Animation<double> titleFadeAnimation;
   late Animation<double> titleTransitionAnimation;
@@ -123,6 +124,11 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                             curve: Curves.linear,
                           );
                         });
+                        scrollCtrlr.animateTo(
+                          0.0,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.linear,
+                        );
                       },
                       icon: Icon(
                         Icons.map_outlined,
@@ -251,133 +257,141 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                 ),
               ),
               DraggableScrollableSheet(
-                controller: _controller,
-                initialChildSize: 0.5,
-                minChildSize: minSize,
-                maxChildSize: maxSize,
-                expand: true,
-                snap: true,
-                snapSizes: const [
-                  0.14,
-                  0.5,
-                ],
-                snapAnimationDuration: const Duration(milliseconds: 300),
-                builder: (context, scrollController) => Container(
-                  height: _bottomHeight,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppPadding.p16,
-                  ),
-                  color: ColorManager.white,
-                  child: ListView(
-                    shrinkWrap: true,
-                    controller: scrollController,
-                    children: [
-                      const SizedBox(height: AppSize.s8),
-                      Center(
-                        child: Container(
-                          height: AppSize.s4,
-                          width: AppSize.s64,
-                          decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s4,
+                  controller: _controller,
+                  initialChildSize: 0.5,
+                  minChildSize: minSize,
+                  maxChildSize: maxSize,
+                  expand: true,
+                  snap: true,
+                  snapSizes: const [
+                    0.08,
+                    0.5,
+                  ],
+                  snapAnimationDuration: const Duration(milliseconds: 300),
+                  builder: (context, scrollController) {
+                    scrollCtrlr = scrollController;
+                    return Container(
+                      height: _bottomHeight,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.p16,
+                      ),
+                      color: ColorManager.white,
+                      child: ListView(
+                        shrinkWrap: true,
+                        controller: scrollController,
+                        children: [
+                          const SizedBox(height: AppSize.s8),
+                          Center(
+                            child: Container(
+                              height: AppSize.s4,
+                              width: AppSize.s64,
+                              decoration: BoxDecoration(
+                                color: ColorManager.lightGrey,
+                                borderRadius: BorderRadius.circular(
+                                  AppSize.s4,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: AppSize.s8),
-                      Container(
-                        padding: EdgeInsets.all(AppPadding.p16),
-                        decoration: BoxDecoration(
-                            color: ColorManager.blueColor,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s20,
-                            )),
-                        child: Row(
-                          children: [
-                            Flexible(
-                              child: SizedBox(
-                                height: AppSize.s55,
-                                child: TextField(
-                                  expands: true,
-                                  maxLines: null,
-                                  minLines: null,
-                                  onTapOutside: (_) => FocusManager
-                                      .instance.primaryFocus
-                                      ?.unfocus(),
-                                  textAlignVertical: TextAlignVertical.center,
-                                  decoration: InputDecoration(
-                                    fillColor: ColorManager.white,
-                                    hintText: AppStrings.searchHint,
-                                    prefixIconConstraints: const BoxConstraints(
-                                      maxWidth: 40,
-                                    ),
-                                    prefixIcon: SizedBox(
-                                      width: 30,
-                                      child: SvgPicture.asset(
-                                        ImageAssets.searchIcon,
-                                        fit: BoxFit.scaleDown,
-                                        height: 20,
-                                        colorFilter: ColorFilter.mode(
-                                          ColorManager.textTitleColor,
-                                          BlendMode.srcIn,
+                          const SizedBox(height: AppSize.s8),
+                          _bottomHeight <= 0.1 * _maxHeight
+                              ? SizedBox(height: AppSize.s55)
+                              : Container(
+                                  padding: EdgeInsets.all(AppPadding.p16),
+                                  decoration: BoxDecoration(
+                                      color: ColorManager.blueColor,
+                                      borderRadius: BorderRadius.circular(
+                                        AppSize.s20,
+                                      )),
+                                  child: Row(
+                                    children: [
+                                      Flexible(
+                                        child: SizedBox(
+                                          height: AppSize.s55,
+                                          child: TextField(
+                                            expands: true,
+                                            maxLines: null,
+                                            minLines: null,
+                                            onTapOutside: (_) => FocusManager
+                                                .instance.primaryFocus
+                                                ?.unfocus(),
+                                            textAlignVertical:
+                                                TextAlignVertical.center,
+                                            decoration: InputDecoration(
+                                              fillColor: ColorManager.white,
+                                              hintText: AppStrings.searchHint,
+                                              prefixIconConstraints:
+                                                  const BoxConstraints(
+                                                maxWidth: 40,
+                                              ),
+                                              prefixIcon: SizedBox(
+                                                width: 30,
+                                                child: SvgPicture.asset(
+                                                  ImageAssets.searchIcon,
+                                                  fit: BoxFit.scaleDown,
+                                                  height: 20,
+                                                  colorFilter: ColorFilter.mode(
+                                                    ColorManager.textTitleColor,
+                                                    BlendMode.srcIn,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                      const SizedBox(width: AppSize.s4),
+                                      SizedBox(
+                                        width: AppSize.s55,
+                                        height: AppSize.s55,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  ColorManager.white,
+                                            ),
+                                            onPressed: () {
+                                              // context.router
+                                              //     .push(const BookingDetailsRoute());
+                                            },
+                                            child: SvgPicture.asset(
+                                              ImageAssets.filterIcon,
+                                              height: AppSize.s16,
+                                              color:
+                                                  ColorManager.textTitleColor,
+                                            )),
+                                      ),
+                                      const SizedBox(width: AppSize.s4),
+                                      SizedBox(
+                                        width: AppSize.s55,
+                                        height: AppSize.s55,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: ColorManager.white,
+                                          ),
+                                          onPressed: () {},
+                                          child: SvgPicture.asset(
+                                            ImageAssets.sortIcon,
+                                            height: AppSize.s16,
+                                            color: ColorManager.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                            ),
-                            const SizedBox(width: AppSize.s4),
-                            SizedBox(
-                              width: AppSize.s55,
-                              height: AppSize.s55,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: ColorManager.white,
-                                  ),
-                                  onPressed: () {
-                                    // context.router
-                                    //     .push(const BookingDetailsRoute());
-                                  },
-                                  child: SvgPicture.asset(
-                                    ImageAssets.filterIcon,
-                                    height: AppSize.s16,
-                                    color: ColorManager.textTitleColor,
-                                  )),
-                            ),
-                            const SizedBox(width: AppSize.s4),
-                            SizedBox(
-                              width: AppSize.s55,
-                              height: AppSize.s55,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: ColorManager.white,
-                                ),
-                                onPressed: () {},
-                                child: SvgPicture.asset(
-                                  ImageAssets.sortIcon,
-                                  height: AppSize.s16,
-                                  color: ColorManager.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          const SizedBox(height: AppSize.s25),
+                          HomeContent(
+                            categories: state.categories,
+                            topCategories: state.services
+                                .expand((obj) => obj.subSkill)
+                                .toList(),
+                            services: state.services,
+                            filters: state.catFilterIndexes,
+                          )
+                        ],
                       ),
-                      const SizedBox(height: AppSize.s25),
-                      HomeContent(
-                        categories: state.categories,
-                        topCategories: state.services
-                            .expand((obj) => obj.subSkill)
-                            .toList(),
-                        services: state.services,
-                        filters: state.catFilterIndexes,
-                      )
-                    ],
-                  ),
-                ),
-              ),
+                    );
+                  }),
             ],
           );
         },
