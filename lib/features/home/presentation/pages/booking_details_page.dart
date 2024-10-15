@@ -24,7 +24,7 @@ class BookingDetailsPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppSize.s16),
-          child: ListView(
+          child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -46,45 +46,126 @@ class BookingDetailsPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: AppSize.s16,),
-              CircleAvatar(
-                backgroundImage: AssetImage(ImageAssets.handyman),
-                maxRadius: AppSize.s90,
-                minRadius: AppSize.s90,
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  if (constraints.maxWidth > 400) {
+                    return Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage(ImageAssets.handyman),
+                          maxRadius: AppSize.s90,
+                          minRadius: AppSize.s90,
+                        ),
+                        SizedBox(height: AppSize.s16),
+                        Center(child: Text("Osman Yancigil",
+                          style: getTextStyle(
+                              AppSize.s20, FontWeight.w600, Colors.black),)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("4.7",
+                                style: getTextStyle(
+                                    AppSize.s16, FontWeight.w500,
+                                    ColorManager.welcomeTextColor)),
+                            SizedBox(width: AppSize.s5),
+                            Stars(starSize: AppSize.s14),
+                            SizedBox(width: AppSize.s8),
+                            Text("(17)",
+                                style: getTextStyle(
+                                    AppSize.s16, FontWeight.w300,
+                                    ColorManager.tabBarColor)),
+                          ],
+                        ),
+                        Text(
+                            "Radiator Cleaning, House Cleaning, House to House Transportation",
+                            textAlign: TextAlign.center,
+                            style: getTextStyle(AppSize.s14, FontWeight.w400,
+                                ColorManager.textSubtitleColor)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              ImageAssets.location, height: AppSize.s15,
+                              color: ColorManager.welcomeTextColor,),
+                            Text(" 35 km ",
+                                style: getTextStyle(
+                                    AppSize.s14,
+                                    FontWeight.w400,
+                                    ColorManager.welcomeTextColor)),
+                            Text("(Approx. 40 min)",
+                                style: getTextStyle(
+                                    AppSize.s14,
+                                    FontWeight.w400,
+                                    ColorManager.lightGreyText)),
+                          ],
+                        ),
+                      ],
+                    );
+                  }
+                  else {
+                    return Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: AssetImage(ImageAssets.handyman),
+                          maxRadius: AppSize.s68,
+                          minRadius: AppSize.s68,
+                        ),
+
+                        Flexible(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                            Text("Osman Yancigil",
+                              style: getTextStyle(
+                                  AppSize.s20, FontWeight.w600, Colors.black),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text("4.7",
+                                    style: getTextStyle(
+                                        AppSize.s16, FontWeight.w500,
+                                        ColorManager.welcomeTextColor)),
+                                SizedBox(width: AppSize.s5),
+                                Stars(starSize: AppSize.s14),
+                                SizedBox(width: AppSize.s8),
+                                Text("(17)",
+                                    style: getTextStyle(
+                                        AppSize.s16, FontWeight.w300,
+                                        ColorManager.tabBarColor)),
+                              ],
+                            ),
+                            Text(
+                                "Radiator Cleaning, House Cleaning, House to House Transportation",
+                                textAlign: TextAlign.start,
+                                style: getTextStyle(AppSize.s14, FontWeight.w400,
+                                    ColorManager.textSubtitleColor)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SvgPicture.asset(
+                                  ImageAssets.location, height: AppSize.s15,
+                                  color: ColorManager.welcomeTextColor,),
+                                Text(" 35 km ",
+                                    style: getTextStyle(
+                                        AppSize.s14,
+                                        FontWeight.w400,
+                                        ColorManager.welcomeTextColor)),
+                                Text("(Approx. 40 min)",
+                                    style: getTextStyle(
+                                        AppSize.s14,
+                                        FontWeight.w400,
+                                        ColorManager.lightGreyText)),
+                              ],
+                            ),
+                          ],),
+                        )
+                      ],
+                    );
+                  }
+                }
               ),
-              SizedBox(height: AppSize.s16),
-              Center(child: Text("Osman Yancigil",style: getTextStyle(AppSize.s20, FontWeight.w600, Colors.black),)),
-              Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("4.7",
-                    style: getTextStyle(AppSize.s16, FontWeight.w500,
-                        ColorManager.welcomeTextColor)),
-                SizedBox(width: AppSize.s5),
-                Stars(starSize: AppSize.s14),
-                SizedBox(width: AppSize.s8),
-                Text("(17)",
-                    style: getTextStyle(
-                        AppSize.s16, FontWeight.w300, ColorManager.tabBarColor)),
-              ],
-            ),
-              Text("Radiator Cleaning, House Cleaning, House to House Transportation",textAlign: TextAlign.center,
-                style: getTextStyle(AppSize.s14, FontWeight.w400, ColorManager.textSubtitleColor)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(ImageAssets.location,height: AppSize.s15,color: ColorManager.welcomeTextColor,),
-                  Text(" 35 km ",
-                      style: getTextStyle(
-                          AppSize.s14,
-                          FontWeight.w400,
-                          ColorManager.welcomeTextColor)),
-                  Text("(Approx. 40 min)",
-                      style: getTextStyle(
-                          AppSize.s14,
-                          FontWeight.w400,
-                          ColorManager.lightGreyText)),
-                ],
-              ),
+
+
               SizedBox(height: AppSize.s32),
               Container(
                 width: double.infinity,

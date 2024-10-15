@@ -82,7 +82,7 @@ class NavBar extends StatelessWidget {
                 isSelected: pageIndex == 2,
                 onTap: ()  {
                   if (state.user.isNone()) {
-                    context.router.push(OnboardingRoute());
+                    context.router.push(AuthRoute());
                   }
                 }, isCenterNavItem: true,
               ),
