@@ -163,6 +163,7 @@ class RemoteService {
         return result.data?['result'];
       }
     } on DioException catch (e) {
+      //print('e: $e');
       throw ApiExceptionHandler.handleException(e);
     }
   }

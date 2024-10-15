@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -19,6 +22,10 @@ class DioClient {
   DioClient(
     this._dio,
   ) {
+    // (_dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () =>
+    //     HttpClient()
+    //       ..badCertificateCallback =
+    //           (X509Certificate cert, String host, int port) => true;
     _dio.options = httpOptions;
 
     final prettyDioLogger = PrettyDioLogger(
