@@ -33,8 +33,8 @@ class OrderDetailsPage extends HookWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: ListView(
+
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -80,6 +80,15 @@ class OrderDetailsPage extends HookWidget {
             SizedBox(height: AppSize.s40.h),
             Column(
               children: [
+                Text(
+                  'Processing the request, please wait',
+                  style: getTextStyle(AppSize.s18, FontWeight.w500, ColorManager.welcomeTextColor)
+                ),
+                Text(
+                  'This process takes at most 1 minute.',
+                    style: getTextStyle(AppSize.s14, FontWeight.w300, ColorManager.lightGreyText)
+                ),
+                SizedBox(height: AppSize.s30.h),
                 Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: AppSize.s16),
