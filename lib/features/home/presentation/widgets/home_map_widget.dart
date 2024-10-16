@@ -105,6 +105,7 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
         return FlutterMap(
           mapController: mapController,
           options: MapOptions(
+            backgroundColor: const Color(0xffFFFDD0),
             onMapEvent: (mapEvent) {
               if (mapEvent is MapEventMoveEnd) {
                 final newCenter = mapEvent.camera.center;
@@ -121,7 +122,10 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
             minZoom: 12,
           ),
           children: [
-            openStreetMapTileLayer,
+            Opacity(
+              opacity: 0.75,
+              child: openStreetMapTileLayer,
+            ),
             MarkerLayer(
               markers: [
                 Marker(

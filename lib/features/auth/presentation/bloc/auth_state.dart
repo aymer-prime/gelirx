@@ -16,7 +16,7 @@ class AuthState with _$AuthState {
 
   factory AuthState.initial() => AuthState(
         isLoading: false,
-        isMaster: false,
+        isMaster: true,
         isRegister: false,
         requestAgainTime: 0,
         user: none(),
