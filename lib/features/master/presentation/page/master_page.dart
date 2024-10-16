@@ -46,11 +46,10 @@ class MasterPage extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Container(
-                        width: AppSize.s55,
-                        height: AppSize.s55,
+                        width: AppSize.s40,
+                        height: AppSize.s40,
                         decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(AppSize.s12)),
+                        shape: BoxShape.circle,
                           color: ColorManager.lightGrey,
                         ),
                         child: Icon(
@@ -65,11 +64,10 @@ class MasterPage extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: AppSize.s20),
                     child: Container(
-                      width: AppSize.s55,
-                      height: AppSize.s55,
+                      width: AppSize.s40,
+                      height: AppSize.s40,
                       decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.all(Radius.circular(AppSize.s12)),
+                        shape: BoxShape.circle,
                         color: ColorManager.lightGrey,
                       ),
                       child: Icon(FontAwesomeIcons.heart, size: AppSize.s18),
@@ -89,55 +87,46 @@ class MasterPage extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(AppSize.s20))),
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(AppSize.s24),
                           child: Column(
                             children: [
                               Row(
                                 children: [
-                                  CircleAvatar(
-                                    maxRadius: AppSize.s25,
-                                    minRadius: AppSize.s25,
-                                    backgroundImage:
-                                        AssetImage(ImageAssets.handyman),
+                                  Container(
+                                    width: AppSize.s60,
+                                    height: AppSize.s60,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                        image: AssetImage(ImageAssets.handyman),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(
                                     width: AppSize.s10,
                                   ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text("Osman Yancigil",
-                                          style: getTextStyle(AppSize.s20,
-                                              FontWeight.w400, Colors.white)),
-                                      Row(
-                                        children: [
-                                          SvgPicture.asset(
-                                            ImageAssets.location,
-                                            height: AppSize.s15,
-                                          ),
-                                          Text("35 km ",
-                                              style: getTextStyle(
-                                                  AppSize.s14,
-                                                  FontWeight.w400,
-                                                  ColorManager.white)),
-                                          Text("(Approx. 40 min)",
-                                              style: getTextStyle(
-                                                  AppSize.s14,
-                                                  FontWeight.w400,
-                                                  ColorManager.lightGreyText)),
-                                        ],
-                                      ),
-                                    ],
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+
+                                      children: [
+                                        Text("Osman Yancigil",
+                                            style: getTextStyle(AppSize.s20,
+                                                FontWeight.w400, Colors.white)),
+                                        Text(
+                                          "Radiator Cleaning, House Cleaning, House to House Transportation",
+                                          style: getTextStyle(AppSize.s14,
+                                              FontWeight.w400, ColorManager.lightGreyText),
+                                        ),
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
-                              SizedBox(height: AppSize.s10),
-                              Text(
-                                "Radiator Cleaning, House Cleaning, House to House Transportation",
-                                style: getTextStyle(AppSize.s14,
-                                    FontWeight.w400, ColorManager.white),
-                              ),
+
                               Row(
                                 children: [
                                   SvgPicture.asset(ImageAssets.check,
@@ -154,6 +143,25 @@ class MasterPage extends StatelessWidget {
                                           ColorManager.greenColor)),
                                 ],
                               ),
+                              SizedBox(height: AppSize.s5),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    ImageAssets.location,
+                                    height: AppSize.s15,
+                                  ),
+                                  Text("35 km ",
+                                      style: getTextStyle(
+                                          AppSize.s14,
+                                          FontWeight.w400,
+                                          ColorManager.white)),
+                                  Text("(Approx. 40 min)",
+                                      style: getTextStyle(
+                                          AppSize.s14,
+                                          FontWeight.w400,
+                                          ColorManager.lightGreyText)),
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -162,7 +170,7 @@ class MasterPage extends StatelessWidget {
                       Reviews(),
                       SizedBox(
                           height: AppSize
-                              .s60), // Assuming Reviews is a scrollable widget
+                              .s60),
                     ],
                   ),
                 ),
@@ -187,9 +195,19 @@ class MasterPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(AppSize.s15),
                   ),
                 ),
-                child: Text("Call Now",
-                    style: getTextStyle(
-                        AppSize.s16, FontWeight.w600, Colors.white)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Call Now",
+                        style: getTextStyle(
+                            AppSize.s16, FontWeight.w600, Colors.white)),
+                    Text(" (40 min)",
+                        style: getTextStyle(
+                            AppSize.s16,
+                            FontWeight.w300,
+                            ColorManager.lightGreyText)),
+                  ],
+                ),
               ),
             ),
           ),
