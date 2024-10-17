@@ -12,6 +12,7 @@ import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
+import 'package:gelirx/features/favorite/presentation/pages/favorite_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_expandable_page.dart';
 import 'package:gelirx/features/main/presentation/widgets/drawer_tile.dart';
 import 'package:gelirx/features/main/presentation/widgets/nav_bar.dart';
@@ -68,14 +69,7 @@ class _AlternateMainPageState extends State<AlternateMainPage>
         navKey: searchNavKey,
       ),
       NavModel(
-        page: HomeExpandablePage(
-          hideBottomNavBar: () {
-            navBarAnimationController.forward();
-          },
-          showBottomNavBar: () {
-            navBarAnimationController.reverse();
-          },
-        ),
+        page: FavoritePage(),
         navKey: addnNavKey,
       ),
       // NavModel(

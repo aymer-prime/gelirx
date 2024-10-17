@@ -31,6 +31,7 @@ class FontSizeManager {
   static double s22 = 22.0;
   static double s24 = 24.0;
   static double s26 = 26.0;
+  static double s30 = 30.0;
   static double s32 = 32.0;
   static double s48 = 48.0;
 }
