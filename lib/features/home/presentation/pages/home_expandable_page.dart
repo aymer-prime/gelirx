@@ -175,11 +175,11 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                   child: Column(
                     children: [
                       const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: AppPadding.p24),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: AppPadding.p24,
+                            vertical: AppPadding.p15),
                         child: SearchFilterWidget(),
                       ),
-                      const SizedBox(height: AppSize.s15),
                       state.categories.isEmpty
                           ? const AllCategoriesLoadingPlaceholder()
                           : Padding(

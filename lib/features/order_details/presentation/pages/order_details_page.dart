@@ -108,7 +108,7 @@ class OrderDetailsPage extends HookWidget {
                           ),
                           onPressed: () {},
                           child: Text(
-                            "Return to Home Page",
+                            "My Demands",
                             style: getTextStyle(
                                 AppSize.s14, FontWeight.w500, Colors.black),
                           ),
@@ -129,7 +129,7 @@ class OrderDetailsPage extends HookWidget {
                           ),
                           onPressed: () {},
                           child: Text(
-                            "All My Requests",
+                            "Cancel Transaction",
                             style: getTextStyle(
                                 AppSize.s14, FontWeight.w500, Colors.black),
                           ),
