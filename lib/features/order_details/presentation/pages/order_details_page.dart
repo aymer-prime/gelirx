@@ -5,13 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 
 @RoutePage()
 class OrderDetailsPage extends HookWidget {
@@ -36,7 +34,6 @@ class OrderDetailsPage extends HookWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
-
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -82,16 +79,13 @@ class OrderDetailsPage extends HookWidget {
             SizedBox(height: AppSize.s20.h),
             Column(
               children: [
-                Text(
-                  'Processing the request, please wait',
-                  style: getTextStyle(AppSize.s18, FontWeight.w500, ColorManager.welcomeTextColor)
-                ),
-                Text(
-                  'This process takes at most 1 minute.',
-                    style: getTextStyle(AppSize.s14, FontWeight.w300, ColorManager.lightGreyText)
-                ),
+                Text('Processing the request, please wait',
+                    style: getTextStyle(AppSize.s18, FontWeight.w500,
+                        ColorManager.welcomeTextColor)),
+                Text('This process takes at most 1 minute.',
+                    style: getTextStyle(AppSize.s14, FontWeight.w300,
+                        ColorManager.lightGreyText)),
                 SizedBox(height: AppSize.s20.h),
-
                 Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: AppSize.s16),
@@ -99,34 +93,50 @@ class OrderDetailsPage extends HookWidget {
                         height: 20, child: AnimatedSteps(activeStep: 0))),
                 SizedBox(height: AppSize.s16.h),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: AppSize.s16),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
+                  padding: EdgeInsets.symmetric(horizontal: AppSize.s16),
+                  child: Row(children: [
+                    Flexible(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:  Color(0xfff0f2f8),
+                            backgroundColor: Color(0xfff0f2f8),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(AppSize.s10)),
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s10)),
                             minimumSize: const Size(AppSize.s170, AppSize.s45),
                           ),
-                          onPressed: (){},
-                          child: Text("Return to Home Page", style: getTextStyle(AppSize.s14, FontWeight.w500, Colors.black),),
+                          onPressed: () {},
+                          child: Text(
+                            "Return to Home Page",
+                            style: getTextStyle(
+                                AppSize.s14, FontWeight.w500, Colors.black),
+                          ),
                         ),
-
-                        ElevatedButton(
+                      ),
+                    ),
+                    const SizedBox(width: AppSize.s15),
+                    Flexible(
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:  Color(0xfff0f2f8),
+                            backgroundColor: Color(0xfff0f2f8),
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(AppSize.s10)),
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s10)),
                             minimumSize: const Size(AppSize.s170, AppSize.s45),
                           ),
-                          onPressed: (){
-                            context.router.push(BookingHistoryRoute());
-                          },
-                          child: Text("All My Requests", style: getTextStyle(AppSize.s14, FontWeight.w500, Colors.black),),
-                        )
-                      ]),
+                          onPressed: () {},
+                          child: Text(
+                            "All My Requests",
+                            style: getTextStyle(
+                                AppSize.s14, FontWeight.w500, Colors.black),
+                          ),
+                        ),
+                      ),
+                    )
+                  ]),
                 ),
               ],
             ),
@@ -137,14 +147,76 @@ class OrderDetailsPage extends HookWidget {
                     color: ColorManager.blueColor,
                     borderRadius: BorderRadius.circular(20)),
                 child: Padding(
-                  padding: const EdgeInsets.all(AppPadding.p16),
+                  padding: const EdgeInsets.all(AppPadding.p24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
+                        'If someone other than the above mentioned person provides transportation, please cancel the transaction and notify us.',
+                        textAlign: TextAlign.center,
+                        style: getLightStyle(
+                          color: const Color(0xffffca00),
+                          fontSize: FontSizeManager.s15,
+                        ),
+                      ),
+                      SizedBox(height: AppSize.s15),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: AppSize.s90,
+                            height: AppSize.s90,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: const DecorationImage(
+                                image: AssetImage(ImageAssets.handyman),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: AppSize.s10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Osman Yancigil",
+                                style: getRegularStyle(
+                                  color: ColorManager.white,
+                                  fontSize: FontSizeManager.s16,
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    ImageAssets.location,
+                                    height: AppSize.s15,
+                                  ),
+                                  Text(
+                                    "35 km ",
+                                    style: getTextStyle(AppSize.s14,
+                                        FontWeight.w400, ColorManager.white),
+                                  ),
+                                  Text("(Approx. 40 min)",
+                                      style: getTextStyle(
+                                        AppSize.s14,
+                                        FontWeight.w400,
+                                        ColorManager.tabBarColor,
+                                      )),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Divider(
+                        color: Color(0xff364363),
+                      ),
+                      Text(
                         'Request Date',
                         style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.lightGreyText,
+                          color: ColorManager.tabBarColor,
                         ),
                       ),
                       Text(
@@ -153,11 +225,13 @@ class OrderDetailsPage extends HookWidget {
                           color: ColorManager.white,
                         ),
                       ),
-                      Divider(color: Color(0xff364363),),
+                      Divider(
+                        color: Color(0xff364363),
+                      ),
                       Text(
                         'Approximate Arrival Time',
                         style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.lightGreyText,
+                          color: ColorManager.tabBarColor,
                         ),
                       ),
                       Text(
@@ -166,11 +240,13 @@ class OrderDetailsPage extends HookWidget {
                           color: ColorManager.white,
                         ),
                       ),
-                      Divider(color: Color(0xff364363),),
+                      Divider(
+                        color: Color(0xff364363),
+                      ),
                       Text(
                         'Your address:',
                         style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.lightGreyText,
+                          color: ColorManager.tabBarColor,
                         ),
                       ),
                       Text(
@@ -178,51 +254,6 @@ class OrderDetailsPage extends HookWidget {
                         style: context.textTheme.titleSmall!.copyWith(
                           color: ColorManager.white,
                         ),
-                      ),
-                      Divider(color: Color(0xff364363),),
-                      Row(
-                        children: [
-                          Container(
-                            width: AppSize.s40,
-                            height: AppSize.s40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: AssetImage(ImageAssets.handyman),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: AppSize.s10,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Osman Yancigil",
-                                  style: getTextStyle(AppSize.s20,
-                                      FontWeight.w400, Colors.white)),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    ImageAssets.location,
-                                    height: AppSize.s15,
-                                  ),
-                                  Text(
-                                    " 35 km ",
-                                    style: getTextStyle(AppSize.s14,
-                                        FontWeight.w400, ColorManager.white),
-                                  ),
-                                  Text("(Approx. 40 min)",
-                                      style: getTextStyle(
-                                          AppSize.s14,
-                                          FontWeight.w400,
-                                          ColorManager.lightGreyText)),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
                       ),
                     ],
                   ),
@@ -236,7 +267,8 @@ class OrderDetailsPage extends HookWidget {
                 children: [
                   Text(
                     'Request Details',
-                    style: getTextStyle(FontSizeManager.s24, FontWeight.w500, Colors.black),
+                    style: getTextStyle(
+                        FontSizeManager.s24, FontWeight.w500, Colors.black),
                   ),
                   Text(
                     'Lorem ipsum odor amet, consectetuer adipiscing elit. Per maximus odio felis lacinia magna, fermentum placerat. In leo mollis posuere consectetur donec nostra.',
@@ -276,7 +308,9 @@ class OrderDetailsPage extends HookWidget {
                 ],
               ),
             ),
-            SizedBox(height: AppSize.s30,)
+            SizedBox(
+              height: AppSize.s30,
+            )
           ],
         ),
       ),
@@ -360,8 +394,7 @@ class AnimatedSteps extends HookWidget {
           ...List.generate(4, (index) {
             if (9 == index) {
               return AnimatedBuilder(
-                animation:
-                    Listenable.merge([widthAnimation, heightAnimation]),
+                animation: Listenable.merge([widthAnimation, heightAnimation]),
                 builder: (context, child) {
                   return Container(
                     width: widthAnimation.value,
