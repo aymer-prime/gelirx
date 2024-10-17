@@ -205,7 +205,7 @@ class MasterPage extends StatelessWidget {
                         style: getTextStyle(
                             AppSize.s16,
                             FontWeight.w300,
-                            ColorManager.lightGreyText)),
+                            Colors.white.withOpacity(0.7))),
                   ],
                 ),
               ),
@@ -216,3 +216,4 @@ class MasterPage extends StatelessWidget {
     );
   }
 }
+
