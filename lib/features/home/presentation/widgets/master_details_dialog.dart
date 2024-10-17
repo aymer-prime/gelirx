@@ -29,11 +29,11 @@ class MasterDetailsDialog extends StatelessWidget {
           Navigator.of(context).pop();
         },
         child: SizedBox(
-          height: 300 + 32,
+          height: 210,
           child: Stack(
             children: [
               Positioned.fill(
-                bottom: 32,
+                bottom: 0,
                 left: 0,
                 right: 0,
                 child: Container(
@@ -44,163 +44,189 @@ class MasterDetailsDialog extends StatelessWidget {
                         masterId: master.id,
                       ));
                     },
-                    child: Container(
-                      padding: const EdgeInsets.all(AppPadding.p15),
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: AppPadding.p32,
-                      ),
-                      decoration: BoxDecoration(
-                        color: ColorManager.blueColor,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 10,
-                            offset: Offset(0, 4),
+                    child: Stack(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(
+                            AppPadding.p20,
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Flexible(
-                            child: Stack(
-                              children: [
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                      AppSize.s16,
-                                    ),
-                                    child: Image.asset(
-                                      ImageAssets.tesisat,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                          decoration: BoxDecoration(
+                            color: ColorManager.white,
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 10,
+                                spreadRadius: 1,
+                                color: Color.fromARGB(
+                                    (255 * 0.3).floor(), 0, 0, 0),
+                              )
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              Flexible(
+                                flex: 4,
+                                child: Stack(
                                   children: [
-                                    IconButton(
-                                      onPressed: () {},
-                                      style: IconButton.styleFrom(
-                                        shape: const CircleBorder(),
-                                        backgroundColor: ColorManager.white,
-                                      ),
-                                      icon: const Icon(
-                                        FontAwesomeIcons.heart,
-                                        size: 16,
+                                    SizedBox(
+                                      height: double.infinity,
+                                      child: ClipRRect(
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(16),
+                                          bottomLeft: Radius.circular(16),
+                                        ),
+                                        child: Image.asset(
+                                          ImageAssets.handyman,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                    IconButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      style: IconButton.styleFrom(
-                                        shape: const CircleBorder(),
-                                        backgroundColor: ColorManager.white,
-                                      ),
-                                      icon: const Icon(
-                                        FontAwesomeIcons.xmark,
-                                        size: 16,
+                                    Positioned(
+                                      bottom: 10,
+                                      left: 10,
+                                      height: 30,
+                                      width: 30,
+                                      child: IconButton(
+                                        onPressed: () {},
+                                        style: IconButton.styleFrom(
+                                          shape: const CircleBorder(),
+                                          backgroundColor: ColorManager.white,
+                                        ),
+                                        icon: const Icon(
+                                          FontAwesomeIcons.heart,
+                                          size: 14,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: AppSize.s10),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Osman Yancıgil, Id:${master.id}',
-                                style: getRegularStyle(
-                                  color: ColorManager.white,
-                                  fontSize: FontSizeManager.s20,
-                                ),
                               ),
-                              const SizedBox(height: AppSize.s10),
-                              Text(
-                                'Petek Temizliği, Ev Temizliği, Evden Eve Nakliyat',
-                                style: context.textTheme.bodyMedium!.copyWith(
-                                  color: ColorManager.lightGreyText,
-                                ),
-                              ),
-                              const SizedBox(height: AppSize.s12),
-                              Row(
-                                children: [
-                                  Row(
+                              Flexible(
+                                flex: 7,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(AppPadding.p15),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      SvgPicture.asset(
-                                        ImageAssets.star,
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: ' 4.1 ',
-                                              style: context
-                                                  .textTheme.bodyMedium!
-                                                  .copyWith(
-                                                color: ColorManager.white,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: '(27)',
-                                              style: context
-                                                  .textTheme.bodyMedium!
-                                                  .copyWith(
-                                                color:
-                                                    ColorManager.lightGreyText,
-                                              ),
-                                            ),
-                                          ],
+                                      Text(
+                                        'Osman Yılmaz',
+                                        style: context.textTheme.bodyLarge!
+                                            .copyWith(
+                                          color: ColorManager.black,
+                                          fontSize: FontSizeManager.s20,
                                         ),
-                                      )
+                                      ),
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                            ImageAssets.star,
+                                          ),
+                                          RichText(
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: ' 4.1   ',
+                                                  style: context
+                                                      .textTheme.bodyLarge!
+                                                      .copyWith(
+                                                    color: ColorManager.black,
+                                                    fontSize:
+                                                        FontSizeManager.s14,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text: '(27 Reviews)',
+                                                  style: getLightStyle(
+                                                    color: ColorManager
+                                                        .lightGreyText,
+                                                    fontSize:
+                                                        FontSizeManager.s14,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(height: AppSize.s6),
+                                      Text(
+                                        'Radiator Cleaning, House Cleaning, House to House Transportation',
+                                        style: getRegularStyle(
+                                          color: ColorManager.textSubtitleColor,
+                                          fontSize: FontSizeManager.s13,
+                                        ),
+                                      ),
+                                      const SizedBox(height: AppSize.s6),
+                                      Row(
+                                        children: [
+                                          SvgPicture.asset(
+                                            ImageAssets.location,
+                                            color: ColorManager.black,
+                                            height: AppSize.s14,
+                                          ),
+                                          RichText(
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: '35 Km ',
+                                                  style: getRegularStyle(
+                                                    color: ColorManager.black,
+                                                    fontSize:
+                                                        FontSizeManager.s14,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text: '(Yaklaşık 40 dk)',
+                                                  style: getLightStyle(
+                                                    color: ColorManager
+                                                        .lightGreyText,
+                                                    fontSize:
+                                                        FontSizeManager.s13,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ],
                                   ),
-                                  SizedBox(width: AppSize.s30),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.location_on_outlined,
-                                        color: ColorManager.white,
-                                        size: AppSize.s14,
-                                      ),
-                                      RichText(
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: '35 Km ',
-                                              style: context
-                                                  .textTheme.bodyMedium!
-                                                  .copyWith(
-                                                color: ColorManager.white,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: '(Yaklaşık 40 dk)',
-                                              style: context
-                                                  .textTheme.bodyMedium!
-                                                  .copyWith(
-                                                color:
-                                                    ColorManager.lightGreyText,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
+                                ),
+                              )
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          height: 30,
+                          width: 30,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 4,
+                                  spreadRadius: 1,
+                                  color: Color.fromARGB(
+                                      (255 * 0.3).floor(), 0, 0, 0),
+                                )
+                              ],
+                            ),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Icon(
+                                FontAwesomeIcons.xmark,
+                                size: 14,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

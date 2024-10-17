@@ -368,11 +368,11 @@ class SearchFilterWidget extends StatelessWidget {
             height: AppSize.s55,
             decoration: ShapeDecoration(
               color: ColorManager.white,
-              shadows: const [
+              shadows: [
                 BoxShadow(
                   blurRadius: 10,
                   spreadRadius: 0,
-                  color: Color.fromARGB(30, 0, 0, 0),
+                  color: Color.fromARGB((255 * 0.15).floor(), 0, 0, 0),
                 )
               ],
               shape: StadiumBorder(
