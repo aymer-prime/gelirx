@@ -16,6 +16,7 @@ import 'package:gelirx/features/favorite/presentation/pages/favorite_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_expandable_page.dart';
 import 'package:gelirx/features/main/presentation/widgets/drawer_tile.dart';
 import 'package:gelirx/features/main/presentation/widgets/nav_bar.dart';
+import 'package:gelirx/features/messages/presentation/pages/messages_page.dart';
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';
 
 @RoutePage()
@@ -65,7 +66,7 @@ class _AlternateMainPageState extends State<AlternateMainPage>
         navKey: homeNavKey,
       ),
       NavModel(
-        page: const BookingPage(),
+        page: const MessagesPage(),
         navKey: searchNavKey,
       ),
       NavModel(
