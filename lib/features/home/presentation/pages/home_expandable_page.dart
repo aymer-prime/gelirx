@@ -63,7 +63,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
   void initState() {
     titleAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     );
     titleFadeAnimation = Tween<double>(
       begin: 1.0,
@@ -172,71 +172,87 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                   right: 0,
                   child: Column(
                     children: [
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: AppPadding.p24),
+                        child: SearchFilterWidget(),
+                      ),
+                      const SizedBox(height: AppSize.s15),
+                      state.categories.isEmpty
+                          ? const AllCategoriesLoadingPlaceholder()
+                          : Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p24),
+                              child: AllCategoriesWidgets(
+                                categories: state.categories,
+                              ),
+                            ),
+                      const Divider(
+                        height: 0,
+                        color: Color(0xfff0f2f8),
+                        thickness: 3,
+                      ),
+                      const SizedBox(height: AppSize.s15),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: AppPadding.p24,
-                        ),
-                        child: Column(
-                          children: [
-                            const SearchFilterWidget(),
-                            const SizedBox(height: AppSize.s15),
-                            state.categories.isEmpty
-                                ? const AllCategoriesLoadingPlaceholder()
-                                : AllCategoriesWidgets(
-                                    categories: state.categories,
+                            horizontal: AppPadding.p24),
+                        child: SizedBox(
+                          height: _bottomHeight.normalize(
+                                  _maxHeight * 0.08, _halfHeight) *
+                              60, //(_bottomHeight <= _maxHeight * 0.2) ? 0 : 80,
+                          child: AnimatedBuilder(
+                              animation: Listenable.merge(
+                                [
+                                  titleFadeAnimation,
+                                  //titleTransitionAnimation,
+                                ],
+                              ),
+                              builder: (_, child) {
+                                return Transform.translate(
+                                  offset: Offset(
+                                    0,
+                                    _bottomHeight.normalize(
+                                          _halfHeight,
+                                          _maxHeight * 0.08,
+                                        ) *
+                                        100,
                                   ),
-                            SizedBox(
-                              height: _bottomHeight.normalize(
-                                      _maxHeight * 0.08, _halfHeight) *
-                                  60, //(_bottomHeight <= _maxHeight * 0.2) ? 0 : 80,
-                              child: AnimatedBuilder(
-                                  animation: Listenable.merge(
-                                    [
-                                      titleFadeAnimation,
-                                      //titleTransitionAnimation,
-                                    ],
-                                  ),
-                                  builder: (_, child) {
-                                    return Transform.translate(
-                                      offset: Offset(
-                                          _bottomHeight.normalize(
-                                                      _maxWidth, 0) *
-                                                  _maxWidth +
-                                              16,
-                                          0),
-                                      child: FadeTransition(
-                                        opacity: titleFadeAnimation,
-                                        child: RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: 'Discover ',
-                                                style: context
-                                                    .textTheme.displaySmall!
-                                                    .copyWith(
-                                                  color: ColorManager.joyColor,
-                                                  fontSize: FontSizeManager.s22,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text:
-                                                    'the best, highest quality services near you',
-                                                style: context
-                                                    .textTheme.titleSmall!
-                                                    .copyWith(
-                                                  color: ColorManager
-                                                      .textTitleColor,
-                                                  fontSize: FontSizeManager.s21,
-                                                ),
-                                              ),
-                                            ],
+                                  // offset: Offset(
+                                  //   _bottomHeight.normalize(_maxWidth, 0) *
+                                  //           _maxWidth +
+                                  //       16,
+                                  //   0,
+                                  // ),
+                                  child: FadeTransition(
+                                    opacity: titleFadeAnimation,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'Discover ',
+                                            style: context
+                                                .textTheme.displaySmall!
+                                                .copyWith(
+                                              color: ColorManager.joyColor,
+                                              fontSize: FontSizeManager.s22,
+                                            ),
                                           ),
-                                        ),
+                                          TextSpan(
+                                            text:
+                                                'the best, highest quality services near you',
+                                            style: context.textTheme.titleSmall!
+                                                .copyWith(
+                                              color:
+                                                  ColorManager.textTitleColor,
+                                              fontSize: FontSizeManager.s21,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    );
-                                  }),
-                            ),
-                          ],
+                                    ),
+                                  ),
+                                );
+                              }),
                         ),
                       ),
                       const SizedBox(height: AppSize.s8),
@@ -250,7 +266,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                             margin: _bottomHeight <= _maxHeight * 0.2
                                 ? EdgeInsets.zero
                                 : const EdgeInsets.symmetric(
-                                    horizontal: AppPadding.p16,
+                                    horizontal: AppPadding.p24,
                                   ),
                             child: AnimatedBuilder(
                                 animation:
@@ -297,7 +313,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                       return Container(
                         height: _bottomHeight,
                         padding: const EdgeInsets.symmetric(
-                          horizontal: AppPadding.p16,
+                          horizontal: AppPadding.p24,
                         ),
                         color: ColorManager.white,
                         child: SingleChildScrollView(
