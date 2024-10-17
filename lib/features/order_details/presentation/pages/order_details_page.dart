@@ -37,21 +37,21 @@ class OrderDetailsPage extends HookWidget {
 
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 0),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.close_rounded,
-                      size: AppSize.s22,
-                    ),
-                  ),
-                ),
-                Spacer(),
+                // Padding(
+                //   padding: EdgeInsets.symmetric(horizontal: 0),
+                //   child: IconButton(
+                //     onPressed: () {
+                //       Navigator.pop(context);
+                //     },
+                //     icon: const Icon(
+                //       Icons.close_rounded,
+                //       size: AppSize.s22,
+                //     ),
+                //   ),
+                // ),
+                // Spacer(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: AppPadding.p16.w),
                   child: Container(
@@ -68,7 +68,7 @@ class OrderDetailsPage extends HookWidget {
                 ),
               ],
             ),
-            SizedBox(height: AppSize.s40.h),
+            SizedBox(height: AppSize.s4.h),
             Container(
               decoration: BoxDecoration(
                   color: ColorManager.joyColor, shape: BoxShape.circle),
@@ -77,7 +77,7 @@ class OrderDetailsPage extends HookWidget {
                 height: AppSize.s150.h,
               ),
             ),
-            SizedBox(height: AppSize.s40.h),
+            SizedBox(height: AppSize.s20.h),
             Column(
               children: [
                 Text(
@@ -88,13 +88,42 @@ class OrderDetailsPage extends HookWidget {
                   'This process takes at most 1 minute.',
                     style: getTextStyle(AppSize.s14, FontWeight.w300, ColorManager.lightGreyText)
                 ),
-                SizedBox(height: AppSize.s30.h),
+                SizedBox(height: AppSize.s20.h),
+
                 Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: AppSize.s16),
                     child: SizedBox(
                         height: 20, child: AnimatedSteps(activeStep: 0))),
                 SizedBox(height: AppSize.s16.h),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: AppSize.s16),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:  Color(0xfff0f2f8),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(AppSize.s10)),
+                            minimumSize: const Size(AppSize.s170, AppSize.s45),
+                          ),
+                          onPressed: (){},
+                          child: Text("Return to Home Page", style: getTextStyle(AppSize.s14, FontWeight.w500, Colors.black),),
+                        ),
+
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:  Color(0xfff0f2f8),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(AppSize.s10)),
+                            minimumSize: const Size(AppSize.s170, AppSize.s45),
+                          ),
+                          onPressed: (){},
+                          child: Text("All My Requests", style: getTextStyle(AppSize.s14, FontWeight.w500, Colors.black),),
+                        )
+                      ]),
+                ),
               ],
             ),
             Padding(
@@ -109,7 +138,33 @@ class OrderDetailsPage extends HookWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Address:',
+                        'Request Date',
+                        style: context.textTheme.titleSmall!.copyWith(
+                          color: ColorManager.lightGreyText,
+                        ),
+                      ),
+                      Text(
+                        'October 16, 2024 - 17:40',
+                        style: context.textTheme.titleSmall!.copyWith(
+                          color: ColorManager.white,
+                        ),
+                      ),
+                      Divider(color: Color(0xff364363),),
+                      Text(
+                        'Approximate Arrival Time',
+                        style: context.textTheme.titleSmall!.copyWith(
+                          color: ColorManager.lightGreyText,
+                        ),
+                      ),
+                      Text(
+                        'October 16, 2024 - 18:40',
+                        style: context.textTheme.titleSmall!.copyWith(
+                          color: ColorManager.white,
+                        ),
+                      ),
+                      Divider(color: Color(0xff364363),),
+                      Text(
+                        'Your address:',
                         style: context.textTheme.titleSmall!.copyWith(
                           color: ColorManager.lightGreyText,
                         ),
@@ -120,13 +175,19 @@ class OrderDetailsPage extends HookWidget {
                           color: ColorManager.white,
                         ),
                       ),
-                      Divider(),
+                      Divider(color: Color(0xff364363),),
                       Row(
                         children: [
-                          CircleAvatar(
-                            maxRadius: AppSize.s25,
-                            minRadius: AppSize.s25,
-                            backgroundImage: AssetImage(ImageAssets.handyman),
+                          Container(
+                            width: AppSize.s40,
+                            height: AppSize.s40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                image: AssetImage(ImageAssets.handyman),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                           SizedBox(
                             width: AppSize.s10,
@@ -170,11 +231,8 @@ class OrderDetailsPage extends HookWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Explanation',
-                    style: getRegularStyle(
-                      color: ColorManager.lightGreyText,
-                      fontSize: FontSizeManager.s12_8,
-                    ),
+                    'Request Details',
+                    style: getTextStyle(FontSizeManager.s24, FontWeight.w500, Colors.black),
                   ),
                   Text(
                     'Lorem ipsum odor amet, consectetuer adipiscing elit. Per maximus odio felis lacinia magna, fermentum placerat. In leo mollis posuere consectetur donec nostra.',
@@ -214,6 +272,7 @@ class OrderDetailsPage extends HookWidget {
                 ],
               ),
             ),
+            SizedBox(height: AppSize.s30,)
           ],
         ),
       ),
@@ -247,86 +306,84 @@ class AnimatedSteps extends HookWidget {
 
     const stepCount = 4;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Stack(children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 1.0),
-          child: Row(
-            children: [
-              ...List.generate(stepCount, (index) {
-                return Container(
-                  height: 4,
-                  width: stepWidth,
-                  decoration: BoxDecoration(
-                    color: index > activeStep + 1
-                        ? Colors.grey
-                        : ColorManager.joyColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                );
-              }).separateWith(SizedBox(
-                width: 2,
-              )),
-            ],
-          ),
-        ),
-        Positioned(
-          left: -2.0,
-          top: -0.7,
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: (2 * width / 5) + ((2) * 2),
-            ),
-            child: AnimatedBuilder(
-              animation: Listenable.merge([widthAnimation, heightAnimation]),
-              builder: (context, child) {
-                return Container(
-                  width: widthAnimation.value,
-                  height: heightAnimation.value,
-                  decoration: BoxDecoration(
-                    color: ColorManager.joyColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-        Row(
+    return Stack(children: [
+      Padding(
+        padding: const EdgeInsets.only(top: 1.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ...List.generate(4, (index) {
-              if (9 == index) {
-                return AnimatedBuilder(
-                  animation:
-                      Listenable.merge([widthAnimation, heightAnimation]),
-                  builder: (context, child) {
-                    return Container(
-                      width: widthAnimation.value,
-                      height: heightAnimation.value,
-                      decoration: BoxDecoration(
-                        color: ColorManager.joyColor,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    );
-                  },
-                );
-              } else {
-                return Container(
-                  height: 4,
-                  //width: stepWidth,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                );
-              }
+            ...List.generate(stepCount, (index) {
+              return Container(
+                height: 4,
+                width: stepWidth,
+                decoration: BoxDecoration(
+                  color: index > activeStep + 1
+                      ? Colors.grey
+                      : ColorManager.joyColor,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              );
             }).separateWith(SizedBox(
               width: 2,
             )),
           ],
         ),
-      ]),
-    );
+      ),
+      Positioned(
+        left: -2.0,
+        top: -0.7,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: (2 * width / 5) + width / 16,
+          ),
+          child: AnimatedBuilder(
+            animation: Listenable.merge([widthAnimation, heightAnimation]),
+            builder: (context, child) {
+              return Container(
+                width: widthAnimation.value,
+                height: heightAnimation.value,
+                decoration: BoxDecoration(
+                  color: ColorManager.joyColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+      Row(
+        children: [
+          ...List.generate(4, (index) {
+            if (9 == index) {
+              return AnimatedBuilder(
+                animation:
+                    Listenable.merge([widthAnimation, heightAnimation]),
+                builder: (context, child) {
+                  return Container(
+                    width: widthAnimation.value,
+                    height: heightAnimation.value,
+                    decoration: BoxDecoration(
+                      color: ColorManager.joyColor,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  );
+                },
+              );
+            } else {
+              return Container(
+                height: 4,
+                //width: stepWidth,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              );
+            }
+          }).separateWith(SizedBox(
+            width: 2,
+          )),
+        ],
+      ),
+    ]);
   }
 }
