@@ -17,7 +17,7 @@ class MainPage extends HookWidget {
 
   final List<Widget> pages = const [
     HomePage(),
-    BookingPage(),
+    BookingHistoryPage(),
     NotificationsPage(),
     ProfilePage(),
   ];

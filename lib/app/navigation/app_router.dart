@@ -41,9 +41,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: HomeRoute.page,
         ),
-        AutoRoute(
-          page: BookingRoute.page,
-        ),
+
         AutoRoute(
           page: AuthRoute.page,
         ),
@@ -82,6 +80,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: BookingDetailsRoute.page,
+        ),
+      AutoRoute(
+          page: BookingHistoryRoute.page,
         ),
         AutoRoute(
           page: MasterRoute.page,

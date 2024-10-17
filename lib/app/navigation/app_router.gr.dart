@@ -94,20 +94,20 @@ class BookingDetailsRouteArgs {
 }
 
 /// generated route for
-/// [BookingPage]
-class BookingRoute extends PageRouteInfo<void> {
-  const BookingRoute({List<PageRouteInfo>? children})
+/// [BookingHistoryPage]
+class BookingHistoryRoute extends PageRouteInfo<void> {
+  const BookingHistoryRoute({List<PageRouteInfo>? children})
       : super(
-          BookingRoute.name,
+          BookingHistoryRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'BookingRoute';
+  static const String name = 'BookingHistoryRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const BookingPage();
+      return const BookingHistoryPage();
     },
   );
 }
