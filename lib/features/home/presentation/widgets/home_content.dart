@@ -125,10 +125,10 @@ class HomeContent extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            SizedBox(
-                              // flex: 7,
-                              // fit: FlexFit.tight,
-                              height: 130,
+                            Flexible(
+                              flex: 6,
+                              fit: FlexFit.tight,
+                              //height: 130,
                               child: ClipRRect(
                                 borderRadius:
                                     BorderRadius.circular(AppSize.s10),
@@ -140,7 +140,7 @@ class HomeContent extends StatelessWidget {
                             ),
                             //const SizedBox(height: AppSize.s10),
                             Flexible(
-                              //flex: 3,
+                              flex: 4,
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                   top: AppPadding.p8,
