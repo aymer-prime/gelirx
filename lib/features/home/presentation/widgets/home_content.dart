@@ -12,6 +12,7 @@ import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
+import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
@@ -39,53 +40,48 @@ class HomeContent extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        categories.isEmpty
-            ? const AllCategoriesLoadingPlaceholder()
-            : AllCategoriesWidgets(
-                categories: categories,
-              ),
-        filters.isNotEmpty
-            ? Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: AppPadding.p8,
-                ),
-                child: Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          context.read<HomeBloc>().add(
-                                const HomeEvent.clearFilters(),
-                              );
-                        },
-                        style: IconButton.styleFrom(
-                          backgroundColor: ColorManager.white,
-                        ),
-                        icon: Icon(
-                          Icons.close_rounded,
-                          size: AppSize.s24,
-                          color: ColorManager.textTitleColor,
-                        ),
-                      ),
-                      ...filters.map(
-                        (filter) => Container(
-                          padding: const EdgeInsets.all(AppPadding.p12),
-                          margin: const EdgeInsets.all(AppMargin.m4),
-                          decoration: BoxDecoration(
-                            color: ColorManager.white,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s20,
-                            ),
-                          ),
-                          child: Text(
-                            filter.name,
-                            style: context.textTheme.labelMedium,
-                          ),
-                        ),
-                      ),
-                    ]),
-              )
-            : const SizedBox(height: AppSize.s0),
+        // filters.isNotEmpty
+        //     ? Padding(
+        //         padding: const EdgeInsets.symmetric(
+        //           vertical: AppPadding.p8,
+        //         ),
+        //         child: Wrap(
+        //             crossAxisAlignment: WrapCrossAlignment.center,
+        //             children: [
+        //               IconButton(
+        //                 onPressed: () {
+        //                   context.read<HomeBloc>().add(
+        //                         const HomeEvent.clearFilters(),
+        //                       );
+        //                 },
+        //                 style: IconButton.styleFrom(
+        //                   backgroundColor: ColorManager.white,
+        //                 ),
+        //                 icon: Icon(
+        //                   Icons.close_rounded,
+        //                   size: AppSize.s24,
+        //                   color: ColorManager.textTitleColor,
+        //                 ),
+        //               ),
+        //               ...filters.map(
+        //                 (filter) => Container(
+        //                   padding: const EdgeInsets.all(AppPadding.p12),
+        //                   margin: const EdgeInsets.all(AppMargin.m4),
+        //                   decoration: BoxDecoration(
+        //                     color: ColorManager.white,
+        //                     borderRadius: BorderRadius.circular(
+        //                       AppSize.s20,
+        //                     ),
+        //                   ),
+        //                   child: Text(
+        //                     filter.name,
+        //                     style: context.textTheme.labelMedium,
+        //                   ),
+        //                 ),
+        //               ),
+        //             ]),
+        //       )
+        //     : const SizedBox(height: AppSize.s0),
         (categories.isEmpty || services.isEmpty)
             ? Column(
                 children: [
@@ -97,15 +93,21 @@ class HomeContent extends StatelessWidget {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Popular services'),
-                  const SizedBox(height: AppSize.s10),
+                  Text(
+                    'Trending services',
+                    style: getRegularStyle(
+                      color: ColorManager.black,
+                      fontSize: FontSizeManager.s20,
+                    ),
+                  ),
+                  const SizedBox(height: AppSize.s20),
                   GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      mainAxisSpacing: AppSize.s16,
-                      crossAxisSpacing: AppSize.s16,
-                      childAspectRatio: 0.7,
+                      mainAxisSpacing: AppSize.s15,
+                      crossAxisSpacing: AppSize.s15,
+                      childAspectRatio: 0.9,
                     ),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: topCategories.length,
@@ -116,20 +118,20 @@ class HomeContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                             AppSize.s20,
                           ),
-                          border: Border.all(
-                              color: ColorManager.lightGrey, width: AppSize.s1),
+                          // border: Border.all(
+                          //   color: ColorManager.lightGrey,
+                          //   width: AppSize.s1,
+                          // ),
                         ),
                         child: Column(
                           children: [
                             SizedBox(
                               // flex: 7,
                               // fit: FlexFit.tight,
-                              height: 180,
+                              height: 130,
                               child: ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(AppSize.s20),
-                                  topRight: Radius.circular(AppSize.s20),
-                                ),
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s10),
                                 child: CachedNetworkImage(
                                   imageUrl: topCategories[index].img.photo,
                                   fit: BoxFit.cover,
@@ -140,9 +142,9 @@ class HomeContent extends StatelessWidget {
                             Flexible(
                               //flex: 3,
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: AppPadding.p10,
-                                  horizontal: AppPadding.p15,
+                                padding: const EdgeInsets.only(
+                                  top: AppPadding.p8,
+                                  bottom: AppPadding.p10,
                                 ),
                                 child: Column(
                                   mainAxisAlignment:
@@ -152,28 +154,27 @@ class HomeContent extends StatelessWidget {
                                     Text(
                                       topCategories[index].name,
                                       overflow: TextOverflow.ellipsis,
-                                      style: context.textTheme.bodyMedium!
-                                          .copyWith(
+                                      style: getRegularStyle(
                                         color: ColorManager.black,
+                                        fontSize: FontSizeManager.s15,
                                       ),
                                     ),
                                     Row(
                                       children: [
-                                        const Icon(
-                                          FontAwesomeIcons.solidUser,
-                                          size: AppSize.s10,
-                                        ),
+                                        // const Icon(
+                                        //   FontAwesomeIcons.solidUser,
+                                        //   size: AppSize.s10,
+                                        // ),
                                         const SizedBox(
                                           width: AppSize.s2,
                                         ),
                                         Text(
                                           '12.927 Professionals',
-                                          style: context.textTheme.labelSmall!
-                                              .copyWith(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: FontSizeManager.s11,
-                                                  color: ColorManager
-                                                      .textSubtitleColor),
+                                          style: getLightStyle(
+                                            color:
+                                                ColorManager.textSubtitleColor,
+                                            fontSize: FontSizeManager.s13,
+                                          ),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ],
@@ -239,7 +240,7 @@ class AllServicesLoadingPlaceholder extends StatelessWidget {
                   child: Row(
                     children: [
                       ...List.generate(
-                        3,
+                        2,
                         (index) => Flexible(
                           child: Column(
                             children: [
@@ -441,7 +442,7 @@ class AllCategoriesLoadingPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSize.s100,
+      height: AppSize.s60,
       decoration: BoxDecoration(
         color: ColorManager.white,
         borderRadius: BorderRadius.circular(
@@ -458,7 +459,7 @@ class AllCategoriesLoadingPlaceholder extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ...List.generate(4, (index) {
+              ...List.generate(6, (index) {
                 return Flexible(
                   child: Column(
                     children: [

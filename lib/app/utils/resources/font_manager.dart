@@ -20,12 +20,14 @@ class FontSizeManager {
   static double s11 = 11.0;
   static double s12 = 12.0;
   static double s12_8 = 12.8;
+  static double s13 = 13;
   static double s14 = 14.0;
   static double s15 = 15.0;
   static double s16 = 16.0;
   static double s17 = 17.0;
   static double s18 = 18.0;
   static double s20 = 20.0;
+  static double s21 = 21.0;
   static double s22 = 22.0;
   static double s24 = 24.0;
   static double s26 = 26.0;

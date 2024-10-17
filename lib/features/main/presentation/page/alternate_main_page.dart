@@ -93,113 +93,113 @@ class _AlternateMainPageState extends State<AlternateMainPage>
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        centerTitle: true,
-        leadingWidth: AppSize.s64,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              AppStrings.welcomeSubtitle,
-              style: context.textTheme.labelSmall!.copyWith(
-                fontWeight: FontWeight.w300,
-                color: ColorManager.welcomeTextColor,
-                fontSize: FontSizeManager.s10,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.location_on,
-                  color: ColorManager.joyColor,
-                ),
-                Text(
-                  'Business Bay, Silver Tower',
-                  style: context.textTheme.labelMedium?.copyWith(
-                      fontSize: FontSizeManager.s12,
-                      fontWeight: FontWeight.normal),
-                ),
-                const Icon(Icons.arrow_drop_down)
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          Padding(
-            padding:
-                const EdgeInsets.only(bottom: AppSize.s8, right: AppSize.s16),
-            child: Container(
-              width: AppSize.s50,
-              height: AppSize.s55,
-              decoration: BoxDecoration(
-                  borderRadius:
-                      const BorderRadius.all(Radius.circular(AppSize.s12)),
-                  color: ColorManager.lightGrey),
-              child: Padding(
-                padding: const EdgeInsets.all(AppSize.s6),
-                child: IconButton(
-                  icon: SvgPicture.asset(ImageAssets.bellIcon),
-                  onPressed: () {
-                    _scaffoldKey.currentState?.openDrawer();
-                  },
-                ),
-              ),
-            ),
-          ),
-          // Column(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     Text(
-          //       'BRONZE',
-          //       style: context.textTheme.labelLarge!.copyWith(
-          //         color: ColorManager.bronzeTire,
-          //         fontSize: FontSizeManager.s10,
-          //       ),
-          //     ),
-          //     Text(
-          //       '20 Tokens',
-          //       style: context.textTheme.labelSmall!.copyWith(
-          //         fontSize: FontSizeManager.s8,
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // Row(
-          //   children: [
-          //     const SizedBox(width: AppSize.s4),
-          //     SvgPicture.asset(
-          //       ImageAssets.tierIcon,
-          //       fit: BoxFit.cover,
-          //       colorFilter:
-          //           ColorFilter.mode(ColorManager.bronzeTire, BlendMode.srcIn),
-          //     ),
-          //     const SizedBox(width: AppSize.s16),
-          //   ],
-          // ),
-        ],
-        // leadingWidth: AppSize.s32,
-        leading: Padding(
-          padding: EdgeInsets.only(bottom: AppSize.s8, left: AppSize.s16),
-          child: Container(
-            width: AppSize.s55,
-            height: AppSize.s55,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
-                color: ColorManager.lightGrey),
-            child: Padding(
-              padding: const EdgeInsets.all(AppSize.s6),
-              child: IconButton(
-                icon: SvgPicture.asset(ImageAssets.menuIcon),
-                onPressed: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   leadingWidth: AppSize.s64,
+      //   title: Column(
+      //     crossAxisAlignment: CrossAxisAlignment.center,
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: [
+      //       Text(
+      //         AppStrings.welcomeSubtitle,
+      //         style: context.textTheme.labelSmall!.copyWith(
+      //           fontWeight: FontWeight.w300,
+      //           color: ColorManager.welcomeTextColor,
+      //           fontSize: FontSizeManager.s10,
+      //         ),
+      //       ),
+      //       Row(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           Icon(
+      //             Icons.location_on,
+      //             color: ColorManager.joyColor,
+      //           ),
+      //           Text(
+      //             'Business Bay, Silver Tower',
+      //             style: context.textTheme.labelMedium?.copyWith(
+      //                 fontSize: FontSizeManager.s12,
+      //                 fontWeight: FontWeight.normal),
+      //           ),
+      //           const Icon(Icons.arrow_drop_down)
+      //         ],
+      //       ),
+      //     ],
+      //   ),
+      //   actions: [
+      //     Padding(
+      //       padding:
+      //           const EdgeInsets.only(bottom: AppSize.s8, right: AppSize.s16),
+      //       child: Container(
+      //         width: AppSize.s50,
+      //         height: AppSize.s55,
+      //         decoration: BoxDecoration(
+      //             borderRadius:
+      //                 const BorderRadius.all(Radius.circular(AppSize.s12)),
+      //             color: ColorManager.lightGrey),
+      //         child: Padding(
+      //           padding: const EdgeInsets.all(AppSize.s6),
+      //           child: IconButton(
+      //             icon: SvgPicture.asset(ImageAssets.bellIcon),
+      //             onPressed: () {
+      //               _scaffoldKey.currentState?.openDrawer();
+      //             },
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //     // Column(
+      //     //   mainAxisAlignment: MainAxisAlignment.center,
+      //     //   children: [
+      //     //     Text(
+      //     //       'BRONZE',
+      //     //       style: context.textTheme.labelLarge!.copyWith(
+      //     //         color: ColorManager.bronzeTire,
+      //     //         fontSize: FontSizeManager.s10,
+      //     //       ),
+      //     //     ),
+      //     //     Text(
+      //     //       '20 Tokens',
+      //     //       style: context.textTheme.labelSmall!.copyWith(
+      //     //         fontSize: FontSizeManager.s8,
+      //     //       ),
+      //     //     ),
+      //     //   ],
+      //     // ),
+      //     // Row(
+      //     //   children: [
+      //     //     const SizedBox(width: AppSize.s4),
+      //     //     SvgPicture.asset(
+      //     //       ImageAssets.tierIcon,
+      //     //       fit: BoxFit.cover,
+      //     //       colorFilter:
+      //     //           ColorFilter.mode(ColorManager.bronzeTire, BlendMode.srcIn),
+      //     //     ),
+      //     //     const SizedBox(width: AppSize.s16),
+      //     //   ],
+      //     // ),
+      //   ],
+      //   // leadingWidth: AppSize.s32,
+      //   leading: Padding(
+      //     padding: EdgeInsets.only(bottom: AppSize.s8, left: AppSize.s16),
+      //     child: Container(
+      //       width: AppSize.s55,
+      //       height: AppSize.s55,
+      //       decoration: BoxDecoration(
+      //           borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+      //           color: ColorManager.lightGrey),
+      //       child: Padding(
+      //         padding: const EdgeInsets.all(AppSize.s6),
+      //         child: IconButton(
+      //           icon: SvgPicture.asset(ImageAssets.menuIcon),
+      //           onPressed: () {
+      //             _scaffoldKey.currentState?.openDrawer();
+      //           },
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
       drawer: const AppDrawer(),
       body: BlocListener<AuthStatusBloc, AuthStatusState>(
         listener: (context, state) {

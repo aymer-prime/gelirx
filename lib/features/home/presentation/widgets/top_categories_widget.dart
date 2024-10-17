@@ -22,7 +22,7 @@ class AllCategoriesWidgets extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: AppSize.s90,
+          height: AppSize.s60,
           decoration: BoxDecoration(
             color: ColorManager.white,
             borderRadius: BorderRadius.circular(
@@ -34,9 +34,9 @@ class AllCategoriesWidgets extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
             itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8),
+              padding: const EdgeInsets.only(right: AppPadding.p20),
               child: AspectRatio(
-                aspectRatio: 0.65,
+                aspectRatio: 0.75,
                 child: CategoryItem(
                   category: categories[index],
                   onTap: () {

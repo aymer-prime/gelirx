@@ -21,29 +21,29 @@ class CategoryItem extends StatelessWidget {
       onTap: () {
         onTap();
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(AppPadding.p12),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: ColorManager.joyColor,
-              // border: Border.all(
-              //   color: ColorManager.lightGrey, //Color(0xffe0e2ea),
-              // ),
-            ),
-            child: CachedNetworkImage(
+      child: Container(
+        padding: const EdgeInsets.only(
+          left: AppPadding.p5,
+          right: AppPadding.p5,
+          bottom: AppPadding.p10,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CachedNetworkImage(
               imageUrl: category.img.icon,
-              color: ColorManager.white,
+              color: ColorManager.textSubtitleColor,
+              height: 24,
             ),
-          ),
-          Text(
-            category.name,
-            style: context.textTheme.labelSmall,
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
+            const SizedBox(height: AppSize.s5),
+            Text(
+              category.name,
+              style: context.textTheme.labelSmall,
+              overflow: TextOverflow.fade,
+              maxLines: 1,
+            )
+          ],
+        ),
       ),
     );
   }

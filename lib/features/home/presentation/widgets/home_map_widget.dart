@@ -123,7 +123,7 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
           ),
           children: [
             Opacity(
-              opacity: 0.75,
+              opacity: 0.65,
               child: openStreetMapTileLayer,
             ),
             MarkerLayer(
