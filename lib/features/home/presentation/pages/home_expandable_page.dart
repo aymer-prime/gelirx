@@ -34,7 +34,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
     with SingleTickerProviderStateMixin {
   final DraggableScrollableController _controller =
       DraggableScrollableController();
-  final minSize = 0.08;
+  final minSize = 0.05;
   final maxSize = 1.0;
   late double _bottomHeight;
   late double _maxHeight;
@@ -201,7 +201,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                             horizontal: AppPadding.p24),
                         child: SizedBox(
                           height: _bottomHeight.normalize(
-                                  _maxHeight * 0.08, _halfHeight) *
+                                  _maxHeight * 0.05, _halfHeight) *
                               70, //(_bottomHeight <= _maxHeight * 0.2) ? 0 : 80,
                           child: AnimatedBuilder(
                               animation: Listenable.merge(
@@ -216,7 +216,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                     Positioned(
                                       bottom: _bottomHeight.normalize(
                                             _halfHeight,
-                                            _maxHeight * 0.08,
+                                            _maxHeight * 0.05,
                                           ) *
                                           100,
                                       left: 0,
@@ -313,7 +313,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                     expand: true,
                     snap: true,
                     snapSizes: const [
-                      0.08,
+                      0.05,
                       0.5,
                     ],
                     snapAnimationDuration: const Duration(milliseconds: 300),
@@ -342,13 +342,19 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                     ),
                                   ),
                                 ),
-                                HomeContent(
-                                  categories: state.categories,
-                                  topCategories: state.services
-                                      .expand((obj) => obj.subSkill)
-                                      .toList(),
-                                  services: state.services,
-                                  filters: state.catFilterIndexes,
+                                Opacity(
+                                  opacity:
+                                      MasterDialogScreen.instance().isShowing()
+                                          ? 0.0
+                                          : 1,
+                                  child: HomeContent(
+                                    categories: state.categories,
+                                    topCategories: state.services
+                                        .expand((obj) => obj.subSkill)
+                                        .toList(),
+                                    services: state.services,
+                                    filters: state.catFilterIndexes,
+                                  ),
                                 )
                               ],
                             )),

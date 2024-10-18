@@ -61,21 +61,24 @@ class MasterDialogScreen {
         return Column(
           children: [
             Spacer(),
-            StreamBuilder<Master>(
-              stream: _master.stream,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Animate(
-                    effects: const [MoveEffect(begin: Offset(0.0, 100))],
-                    child: MasterDialog(
-                      master: snapshot.data!,
-                      hide: hide,
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
-              },
+            TapRegion(
+              //onTapOutside: (_) => hide(),
+              child: StreamBuilder<Master>(
+                stream: _master.stream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Animate(
+                      effects: const [MoveEffect(begin: Offset(0.0, 100))],
+                      child: MasterDialog(
+                        master: snapshot.data!,
+                        hide: hide,
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
             ),
           ],
         );
