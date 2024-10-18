@@ -19,7 +19,27 @@ class BookingHistoryPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: ListView(
         children: [
-          SizedBox(height: AppSize.s30),
+          Padding(
+            padding: const EdgeInsets.only(top: AppSize.s10, left: AppSize.s15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: AppSize.s30,
+                    width: AppSize.s30,
+
+                    child: const Icon(FontAwesomeIcons.arrowLeft,
+                        size: AppSize.s18),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: AppSize.s10),
           Padding(
             padding: const EdgeInsets.only(left: AppSize.s24),
             child: Text("Past Requests (12)",
