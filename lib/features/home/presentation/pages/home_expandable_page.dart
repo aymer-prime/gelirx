@@ -190,18 +190,18 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                               ),
                             ),
                       const Divider(
-                        height: 0,
+                        height: AppSize.s3,
                         color: Color(0xfff0f2f8),
-                        thickness: 3,
+                        thickness: AppSize.s3,
                       ),
-                      const SizedBox(height: AppSize.s15),
+                      //const SizedBox(height: AppSize.s15),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p24),
                         child: SizedBox(
                           height: _bottomHeight.normalize(
                                   _maxHeight * 0.08, _halfHeight) *
-                              60, //(_bottomHeight <= _maxHeight * 0.2) ? 0 : 80,
+                              70, //(_bottomHeight <= _maxHeight * 0.2) ? 0 : 80,
                           child: AnimatedBuilder(
                               animation: Listenable.merge(
                                 [
@@ -210,54 +210,60 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                 ],
                               ),
                               builder: (_, child) {
-                                return Transform.translate(
-                                  offset: Offset(
-                                    0,
-                                    _bottomHeight.normalize(
-                                          _halfHeight,
-                                          _maxHeight * 0.08,
-                                        ) *
-                                        100,
-                                  ),
-                                  // offset: Offset(
-                                  //   _bottomHeight.normalize(_maxWidth, 0) *
-                                  //           _maxWidth +
-                                  //       16,
-                                  //   0,
-                                  // ),
-                                  child: FadeTransition(
-                                    opacity: titleFadeAnimation,
-                                    child: RichText(
-                                      text: TextSpan(
+                                return Stack(
+                                  children: [
+                                    Positioned(
+                                      bottom: _bottomHeight.normalize(
+                                            _halfHeight,
+                                            _maxHeight * 0.08,
+                                          ) *
+                                          100,
+                                      left: 0,
+                                      right: 0,
+                                      child: Column(
                                         children: [
-                                          TextSpan(
-                                            text: 'Discover ',
-                                            style: context
-                                                .textTheme.displaySmall!
-                                                .copyWith(
-                                              color: ColorManager.joyColor,
-                                              fontSize: FontSizeManager.s22,
+                                          const SizedBox(height: AppSize.s15),
+                                          FadeTransition(
+                                            opacity: titleFadeAnimation,
+                                            child: RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: 'Discover ',
+                                                    style: context
+                                                        .textTheme.displaySmall!
+                                                        .copyWith(
+                                                      color:
+                                                          ColorManager.joyColor,
+                                                      fontSize:
+                                                          FontSizeManager.s22,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text:
+                                                        'the best, highest quality services near you',
+                                                    style: context
+                                                        .textTheme.titleSmall!
+                                                        .copyWith(
+                                                      color: ColorManager
+                                                          .textTitleColor,
+                                                      fontSize:
+                                                          FontSizeManager.s21,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                          TextSpan(
-                                            text:
-                                                'the best, highest quality services near you',
-                                            style: context.textTheme.titleSmall!
-                                                .copyWith(
-                                              color:
-                                                  ColorManager.textTitleColor,
-                                              fontSize: FontSizeManager.s21,
-                                            ),
-                                          ),
+                                          const SizedBox(height: AppSize.s8),
                                         ],
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 );
                               }),
                         ),
                       ),
-                      const SizedBox(height: AppSize.s8),
                       state.userPosition.fold(
                         () => const Center(
                           child: CircularProgressIndicator(),
@@ -271,27 +277,27 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                     horizontal: AppPadding.p24,
                                   ),
                             child: AnimatedBuilder(
-                                animation:
-                                    Listenable.merge([mapRadiusAnimation]),
-                                builder: (context, child) {
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                      mapRadiusAnimation.value,
-                                    ),
-                                    child: HomeMap(
-                                      userPosition: userPosition,
-                                      onMasterTap: () {
-                                        _controller.animateTo(
-                                          minSize,
-                                          duration:
-                                              const Duration(milliseconds: 300),
-                                          curve: Curves.linear,
-                                        );
-                                        titleAnimationController.forward();
-                                      },
-                                    ),
-                                  );
-                                }),
+                              animation: Listenable.merge([mapRadiusAnimation]),
+                              builder: (context, child) {
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(
+                                    mapRadiusAnimation.value,
+                                  ),
+                                  child: HomeMap(
+                                    userPosition: userPosition,
+                                    onMasterTap: () {
+                                      _controller.animateTo(
+                                        minSize,
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        curve: Curves.linear,
+                                      );
+                                      titleAnimationController.forward();
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       ),

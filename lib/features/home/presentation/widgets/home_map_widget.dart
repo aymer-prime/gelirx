@@ -1,25 +1,17 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gelirx/app/extensions/List.dart';
-import 'package:gelirx/app/extensions/context.dart';
-import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
-import 'package:gelirx/app/utils/resources/font_manager.dart';
-import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/tile_provider.dart';
 import 'package:gelirx/features/home/presentation/widgets/master_details_dialog.dart';
-import 'package:gelirx/features/home/presentation/widgets/master_info_sheet.dart';
-import 'package:gelirx/features/master/presentation/page/master_page.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:lottie/lottie.dart' show Lottie;
@@ -146,80 +138,12 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                   rotate: true,
                   point: LatLng(master.latitude, master.longitude),
                   width: AppSize.s60.w,
-                  child: GestureDetector(
-                      onTap: () {
-                        widget.onMasterTap();
-                        context.read<HomeBloc>().add(
-                              HomeEvent.selectMaster(master.id),
-                            );
-                        showDialog(
-                          context: context,
-                          barrierColor: Colors.transparent,
-                          builder: (BuildContext context) {
-                            return MasterDetailsDialog(
-                              master: master,
-                            );
-                          },
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          Flexible(
-                            child: Container(
-                              //padding: const EdgeInsets.all(AppPadding.p3),
-                              decoration: ShapeDecoration(
-                                color: master.id ==
-                                        context
-                                            .read<HomeBloc>()
-                                            .state
-                                            .selectedMasterId
-                                    ? ColorManager.blueColor
-                                    : ColorManager.white,
-                                shape: const StadiumBorder(),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Flexible(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: CachedNetworkImageProvider(
-                                              master.categories.first.photo,
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: SvgPicture.asset(ImageAssets.star),
-                                  ),
-                                  Flexible(
-                                    child: Text(master.point),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SvgPicture.asset(
-                            ImageAssets.caretDown,
-                            height: 5,
-                            colorFilter: ColorFilter.mode(
-                              master.id ==
-                                      context
-                                          .read<HomeBloc>()
-                                          .state
-                                          .selectedMasterId
-                                  ? ColorManager.blueColor
-                                  : ColorManager.white,
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                        ],
-                      )
-                      //Image.asset(ImageAssets.masterMarker),
-                      ),
+                  child: MapBubbleMarker(
+                    master: master,
+                    onTap: () {
+                      widget.onMasterTap();
+                    },
+                  ),
                 );
               }).toList(),
             ),
@@ -251,5 +175,122 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
         );
       },
     );
+  }
+}
+
+class MapBubbleMarker extends StatelessWidget {
+  const MapBubbleMarker({
+    super.key,
+    required this.master,
+    required this.onTap,
+  });
+
+  final Master master;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {
+          onTap();
+          context.read<HomeBloc>().add(
+                HomeEvent.selectMaster(master.id),
+              );
+          showDialog(
+            context: context,
+            barrierColor: Colors.transparent,
+            builder: (BuildContext context) {
+              return MasterDetailsDialog(
+                master: master,
+              );
+            },
+          );
+        },
+        child: Column(
+          children: [
+            Flexible(
+              child: Container(
+                //padding: const EdgeInsets.all(AppPadding.p3),
+                decoration: ShapeDecoration(
+                  color: master.id ==
+                          context.read<HomeBloc>().state.selectedMasterId
+                      ? ColorManager.blueColor
+                      : ColorManager.white,
+                  shadows: [
+                    BoxShadow(
+                      blurRadius: 1,
+                      spreadRadius: 0,
+                      offset: Offset(1, 1),
+                      color: Color.fromARGB((255 * 0.2).floor(), 0, 0, 0),
+                    )
+                  ],
+                  shape: const StadiumBorder(),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Flexible(
+                      child: Container(
+                        padding: const EdgeInsets.all(AppPadding.p4),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorManager.joyColor,
+                          // image: DecorationImage(
+                          //   image: CachedNetworkImageProvider(
+                          //     master.categories.first.photo,
+                          //   ),
+                          // ),
+                        ),
+                        child: Icon(
+                          FontAwesomeIcons.wrench,
+                          size: 8,
+                          color: ColorManager.white,
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: SvgPicture.asset(ImageAssets.star),
+                    ),
+                    Flexible(
+                      child: Text(
+                          '${math.Random().nextDouble() * 5}'), //Text(master.point),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 6,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 2.0,
+                    child: SvgPicture.asset(
+                      ImageAssets.caretDown,
+                      height: 3.5,
+                      colorFilter: ColorFilter.mode(
+                        Color.fromARGB((255 * 0.2).floor(), 0, 0, 0),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  SvgPicture.asset(
+                    ImageAssets.caretDown,
+                    height: 3.5,
+                    colorFilter: ColorFilter.mode(
+                      master.id ==
+                              context.read<HomeBloc>().state.selectedMasterId
+                          ? ColorManager.blueColor
+                          : ColorManager.white,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
+        //Image.asset(ImageAssets.masterMarker),
+        );
   }
 }
