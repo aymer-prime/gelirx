@@ -127,7 +127,7 @@ class OrderDetailsPage extends HookWidget {
                           child: Text(
                             "Cancel Transaction",
                             style: getTextStyle(
-                                AppSize.s14, FontWeight.w500, Colors.black),
+                                AppSize.s14, FontWeight.w500, ColorManager.lightGreyText),
                           ),
                         ),
                       ),
