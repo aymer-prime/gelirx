@@ -11,6 +11,7 @@ import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:gelirx/features/home/presentation/widgets/dialogs/master_dialog_screen.dart';
 import 'package:gelirx/features/home/presentation/widgets/home_content.dart';
 import 'package:gelirx/features/home/presentation/widgets/home_map_widget.dart';
 import 'package:gelirx/features/home/presentation/widgets/top_categories_widget.dart';

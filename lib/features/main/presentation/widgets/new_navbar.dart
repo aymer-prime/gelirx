@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -48,7 +46,10 @@ class NewNavBar extends StatelessWidget {
                     children: [
                       NavItem(
                         label: AppStrings.home,
-                        icon: SvgPicture.asset(ImageAssets.navbarHome),
+                        icon: SvgPicture.asset(
+                          ImageAssets.navbarHome,
+                          color: ColorManager.welcomeTextColor,
+                        ),
                         activeIcon: SvgPicture.asset(
                           ImageAssets.navbarHome,
                           color: ColorManager.joyColor,
@@ -61,7 +62,7 @@ class NewNavBar extends StatelessWidget {
                         label: AppStrings.favorite,
                         icon: SvgPicture.asset(
                           ImageAssets.navbarFav,
-                          fit: BoxFit.cover,
+                          color: ColorManager.welcomeTextColor,
                         ),
                         activeIcon: SvgPicture.asset(
                           ImageAssets.navbarFav,
@@ -76,6 +77,7 @@ class NewNavBar extends StatelessWidget {
                         label: AppStrings.messages,
                         icon: SvgPicture.asset(
                           ImageAssets.navbarMessages,
+                          color: ColorManager.welcomeTextColor,
                         ),
                         activeIcon: SvgPicture.asset(
                           ImageAssets.navbarMessages,
@@ -87,7 +89,10 @@ class NewNavBar extends StatelessWidget {
                       ),
                       NavItem(
                         label: AppStrings.profile,
-                        icon: SvgPicture.asset(ImageAssets.navbarProfile),
+                        icon: SvgPicture.asset(
+                          ImageAssets.navbarProfile,
+                          color: ColorManager.welcomeTextColor,
+                        ),
                         activeIcon: SvgPicture.asset(
                           ImageAssets.navbarProfile,
                           color: ColorManager.joyColor,
@@ -96,7 +101,6 @@ class NewNavBar extends StatelessWidget {
                         onTap: () => onTap(3),
                         isCenterNavItem: false,
                       ),
-                      // SizedBox(width: AppSize.s80.w),
                     ],
                   ),
                 ),
@@ -189,7 +193,8 @@ class NavItem extends StatelessWidget {
               child: Text(
                 label,
                 maxLines: 1,
-                style: context.textTheme.labelSmall!.copyWith(
+                style: getRegularStyle(
+                  fontSize: FontSizeManager.s10,
                   color:
                       isSelected ? ColorManager.joyColor : ColorManager.black,
                 ),

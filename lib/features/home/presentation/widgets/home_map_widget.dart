@@ -11,6 +11,7 @@ import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/tile_provider.dart';
+import 'package:gelirx/features/home/presentation/widgets/dialogs/master_dialog_screen.dart';
 import 'package:gelirx/features/home/presentation/widgets/master_details_dialog.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
@@ -196,15 +197,17 @@ class MapBubbleMarker extends StatelessWidget {
           context.read<HomeBloc>().add(
                 HomeEvent.selectMaster(master.id),
               );
-          showDialog(
-            context: context,
-            barrierColor: Colors.transparent,
-            builder: (BuildContext context) {
-              return MasterDetailsDialog(
-                master: master,
-              );
-            },
-          );
+          MasterDialogScreen.instance()
+              .showMasterDialog(context: context, master: master);
+          // showDialog(
+          //   context: context,
+          //   barrierColor: Colors.transparent,
+          //   builder: (BuildContext context) {
+          //     return MasterDetailsDialog(
+          //       master: master,
+          //     );
+          //   },
+          // );
         },
         child: Column(
           children: [
