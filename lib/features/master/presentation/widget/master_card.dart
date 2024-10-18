@@ -56,7 +56,9 @@ class MasterCard extends StatelessWidget {
                 )
               ],
             ),
-
+            const SizedBox(
+              height: AppSize.s10,
+            ),
             Row(
               children: [
                 SvgPicture.asset(ImageAssets.check,
