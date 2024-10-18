@@ -8,14 +8,12 @@ import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
-import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
-import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/favorite/presentation/pages/favorite_page.dart';
 import 'package:gelirx/features/home/presentation/pages/home_expandable_page.dart';
 import 'package:gelirx/features/main/presentation/widgets/drawer_tile.dart';
-import 'package:gelirx/features/main/presentation/widgets/nav_bar.dart';
+import 'package:gelirx/features/main/presentation/widgets/new_navbar.dart';
 import 'package:gelirx/features/messages/presentation/pages/messages_page.dart';
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';
 
@@ -236,7 +234,7 @@ class _AlternateMainPageState extends State<AlternateMainPage>
                     child: MediaQuery.removePadding(
                       context: context,
                       removeBottom: true,
-                      child: NavBar(
+                      child: NewNavBar(
                         pageIndex: selectedTab,
                         onTap: (index) {
                           //todo uncomment this to add button

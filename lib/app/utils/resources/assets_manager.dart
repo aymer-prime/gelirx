@@ -40,6 +40,8 @@ class ImageAssets {
   static const String navbarBooking = '$imagePath/navbar/navbar_booking.svg';
   static const String navbarHome = '$imagePath/navbar/navbar_home.svg';
   static const String navbarAdd = '$imagePath/navbar/navbar_add.svg';
+  static const String navbarFav = '$imagePath/navbar/navbar_fav.svg';
+  static const String navbarMessages = '$imagePath/navbar/navbar_messages.svg';
   static const String navbarNotification =
       '$imagePath/navbar/navbar_notification.svg';
   static const String navbarDiscover = '$imagePath/navbar/navbar_discover.svg';

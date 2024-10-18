@@ -28,8 +28,9 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        return BottomAppBar(
-          height: AppSize.s90.h,
+        return 
+        BottomAppBar(
+          //height: AppSize.s90.h,
           //  shape: CircularNotchedRectangle(),
           //  notchMargin: 4,
           clipBehavior: Clip.antiAliasWithSaveLayer,
