@@ -7,6 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
+import 'package:gelirx/app/utils/resources/font_manager.dart';
+import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
@@ -141,6 +143,8 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                   width: AppSize.s60.w,
                   child: MapBubbleMarker(
                     master: master,
+                    isSelected: master.id ==
+                        context.read<HomeBloc>().state.selectedMasterId,
                     onTap: () {
                       widget.onMasterTap();
                     },
@@ -183,10 +187,12 @@ class MapBubbleMarker extends StatelessWidget {
   const MapBubbleMarker({
     super.key,
     required this.master,
+    required this.isSelected,
     required this.onTap,
   });
 
   final Master master;
+  final bool isSelected;
   final VoidCallback onTap;
 
   @override
@@ -213,7 +219,7 @@ class MapBubbleMarker extends StatelessWidget {
           children: [
             Flexible(
               child: Container(
-                //padding: const EdgeInsets.all(AppPadding.p3),
+                padding: const EdgeInsets.all(AppPadding.p4),
                 decoration: ShapeDecoration(
                   color: master.id ==
                           context.read<HomeBloc>().state.selectedMasterId
@@ -237,7 +243,9 @@ class MapBubbleMarker extends StatelessWidget {
                         padding: const EdgeInsets.all(AppPadding.p4),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: ColorManager.joyColor,
+                          color: isSelected
+                              ? ColorManager.white
+                              : ColorManager.joyColor,
                           // image: DecorationImage(
                           //   image: CachedNetworkImageProvider(
                           //     master.categories.first.photo,
@@ -247,7 +255,9 @@ class MapBubbleMarker extends StatelessWidget {
                         child: Icon(
                           FontAwesomeIcons.wrench,
                           size: 8,
-                          color: ColorManager.white,
+                          color: isSelected
+                              ? ColorManager.blueColor
+                              : ColorManager.white,
                         ),
                       ),
                     ),
@@ -256,7 +266,14 @@ class MapBubbleMarker extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                          '${math.Random().nextDouble() * 5}'), //Text(master.point),
+                        (math.Random().nextDouble() * 5).toStringAsFixed(1),
+                        style: getMediumStyle(
+                          color: isSelected
+                              ? ColorManager.white
+                              : ColorManager.blueColor,
+                          fontSize: FontSizeManager.s12,
+                        ),
+                      ), //Text(master.point),
                     ),
                   ],
                 ),
@@ -281,10 +298,7 @@ class MapBubbleMarker extends StatelessWidget {
                     ImageAssets.caretDown,
                     height: 3.5,
                     colorFilter: ColorFilter.mode(
-                      master.id ==
-                              context.read<HomeBloc>().state.selectedMasterId
-                          ? ColorManager.blueColor
-                          : ColorManager.white,
+                      isSelected ? ColorManager.blueColor : ColorManager.white,
                       BlendMode.srcIn,
                     ),
                   ),
