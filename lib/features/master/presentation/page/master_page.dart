@@ -29,13 +29,14 @@ class MasterPage extends StatelessWidget {
           CustomScrollView(
             slivers: [
               SliverAppBar(
-                expandedHeight: AppSize.s215,
+                expandedHeight: AppSize.s194,
                 floating: false,
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Image.asset(
                     ImageAssets.tesisat,
                     fit: BoxFit.cover,
+                    height: AppSize.s194,
                   ),
                 ),
                 actions: [
@@ -168,9 +169,7 @@ class MasterPage extends StatelessWidget {
                       ),
                       SizedBox(height: AppSize.s16),
                       Reviews(),
-                      SizedBox(
-                          height: AppSize
-                              .s60),
+                      const SizedBox(height: AppSize.s100),
                     ],
                   ),
                 ),
@@ -182,8 +181,12 @@ class MasterPage extends StatelessWidget {
             left: AppSize.s0,
             right: AppSize.s0,
             child: Container(
-              padding: const EdgeInsets.all(AppSize.s16),
-              color: Colors.white,
+              padding: const EdgeInsets.all(AppSize.s24),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                border: Border(top: BorderSide(width: AppSize.s1,color: Color(0xffe0e2ea)))
+              ),
+
               child: ElevatedButton(
                 onPressed: () {
                   context.router.push(BookingDetailsRoute(masterId: masterId));
@@ -192,7 +195,7 @@ class MasterPage extends StatelessWidget {
                   backgroundColor: ColorManager.joyColor,
                   padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppSize.s15),
+                    borderRadius: BorderRadius.circular(AppSize.s8),
                   ),
                 ),
                 child: Row(

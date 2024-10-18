@@ -11,13 +11,10 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/app/view/app.dart';
-import 'package:gelirx/features/auth/presentation/pages/auth_pageview_pages/otp_page.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
-
 import '../../../master/presentation/widget/master_card.dart';
-import '../../../master/presentation/widget/review_star_row.dart';
+
 
 @RoutePage()
 class BookingDetailsPage extends StatelessWidget {
@@ -47,11 +44,11 @@ class BookingDetailsPage extends StatelessWidget {
           },
           child: Stack(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(AppSize.s16),
-                child: ListView(
-                  children: [
-                    Row(
+              ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: AppSize.s10, left: AppSize.s15),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         GestureDetector(
@@ -68,84 +65,129 @@ class BookingDetailsPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: AppSize.s16,
-                    ),
-                    Text(
+                  ),
+                  const SizedBox(
+                    height: AppSize.s10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Text(
                       "Call a professional",
                       style: getTextStyle(
                           AppSize.s24, FontWeight.w500, ColorManager.black),
                     ),
-                    const SizedBox(
-                      height: AppSize.s20,
-                    ),
-                    MasterCard(),
-                    const SizedBox(height: AppSize.s32),
-                    Text(
+                  ),
+                  const SizedBox(
+                    height: AppSize.s20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: MasterCard(),
+                  ),
+                  const SizedBox(height: AppSize.s40),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Text(
                       'Please fill in the required information',
                       style: getTextStyle(FontSizeManager.s24, FontWeight.w500,
-                          ColorManager.joyColor),
+                          ColorManager.joyColor).copyWith(
+                        height: 1.1,
+                        letterSpacing: -0.1,
+                      ),
+
                     ),
-                    Text('* Which service do you request?',
+                  ),
+                  const SizedBox(height: AppSize.s20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Text('* Which service do you request?',
                         style: getTextStyle(FontSizeManager.s14, FontWeight.w500,
                             ColorManager.textSubtitleColor)),
-                    buildRadioOption("Radiator Cleaning", true),
-                    buildRadioOption("House Cleaning", false),
-                    buildRadioOption("House to House Transportation", false),
-                    const SizedBox(height: AppSize.s20),
-                    Divider(color: ColorManager.welcomeTextColor),
-                    const SizedBox(height: AppSize.s20),
-                    Text('* Explain the problem in detail',
+                  ),
+                  const SizedBox(height: AppSize.s10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: buildRadioOption("Radiator Cleaning", true),
+                  ),
+                  const SizedBox(height: AppSize.s5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: buildRadioOption("House Cleaning", false),
+                  ),
+                  const SizedBox(height: AppSize.s5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: buildRadioOption("House to House Transportation", false),
+                  ),
+                  const SizedBox(height: AppSize.s20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Divider(color: ColorManager.lightGreyText),
+                  ),
+                  const SizedBox(height: AppSize.s20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Text('* Explain the problem in detail',
                         style: getTextStyle(FontSizeManager.s14, FontWeight.w500,
                             ColorManager.textSubtitleColor)),
-                    const SizedBox(height: AppSize.s10),
-                    TextField(
+                  ),
+                  const SizedBox(height: AppSize.s10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: TextField(
                       maxLength: 750,
                       maxLengthEnforcement: MaxLengthEnforcement.enforced,
                       maxLines: null,
                       minLines: 4,
                       decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(AppSize.s10),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(AppSize.s8),
                           borderSide: BorderSide(color: const Color(0xffe0e2ea)),
                         ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(AppSize.s8),
+                            borderSide: BorderSide(color: const Color(0xffe0e2ea))),
                         fillColor: const Color(0xfff5f7fa),
                         counterText: '',
-                        hintStyle: getLightStyle(
-                          color: ColorManager.lightGreyText,
-                          fontSize: FontSizeManager.s12,
-                        ),
+                        hintStyle: getTextStyle(AppSize.s14, FontWeight.w300, const Color(0xfff5f7fa),),
                         hintText:
                             'Please explain the work to be done in full detail. Requests that are not explained properly or not given with all the details may be rejected by the masters.',
                       ),
                     ),
-                    const SizedBox(height: AppSize.s10),
-                    Divider(color: ColorManager.welcomeTextColor),
-                    Text('Upload photos of the problem',
+                  ),
+                  const SizedBox(height: AppSize.s20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Divider(color: ColorManager.lightGreyText),
+                  ),
+                  const SizedBox(height: AppSize.s20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Text('Upload photos of the problem',
                         style: getTextStyle(FontSizeManager.s14, FontWeight.w500,
                             ColorManager.textSubtitleColor)),
-                    RichText(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
                             text: '(Upload photos if necessery)',
                             style: getRegularStyle(
                               color: ColorManager.lightGreyText,
-                              fontSize: FontSizeManager.s12_8,
-                            ),
-                          ),
-                          TextSpan(
-                            text: '(* if necessary)',
-                            style: getRegularStyle(
-                              color: ColorManager.white,
                               fontSize: FontSizeManager.s11,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: AppSize.s10),
-                    Row(
+                  ),
+                  const SizedBox(height: AppSize.s10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: Row(
                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(
                         5,
@@ -186,23 +228,22 @@ class BookingDetailsPage extends StatelessWidget {
                         width: AppSize.s10,
                       )),
                     ),
-                    const SizedBox(height: AppSize.s100),
+                  ),
+                  const SizedBox(height: AppSize.s120),
 
-                  ],
-                ),
+                ],
               ),
               Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
+                bottom: AppSize.s0,
+                left: AppSize.s0,
+                right: AppSize.s0,
                 child: Container(
+                  padding: const EdgeInsets.all(AppSize.s24),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      top: BorderSide(width: 1.0, color: Color(0xffe0e2ea)),
+                      color: Colors.white,
+                      border: Border(top: BorderSide(width: AppSize.s1,color: Color(0xffe0e2ea)))
                   ),
-                  ),
-                  padding: EdgeInsets.all(AppSize.s15),
+
                   child: ElevatedButton(
                     onPressed: () {
                       context
@@ -213,21 +254,27 @@ class BookingDetailsPage extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorManager.joyColor,
+                      padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppSize.s8),
+                      ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Call Now',
+                        Text("Call Now",
                             style: getTextStyle(
                                 AppSize.s16, FontWeight.w600, Colors.white)),
-                        Text(' (40 min)',
+                        Text(" (40 min)",
                             style: getTextStyle(
-                                AppSize.s16, FontWeight.w300, Colors.white.withOpacity(0.7))),
+                                AppSize.s16,
+                                FontWeight.w300,
+                                Colors.white.withOpacity(0.7))),
                       ],
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

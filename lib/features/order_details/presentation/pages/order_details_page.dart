@@ -5,11 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/extensions/context.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/app/view/app.dart';
 
 @RoutePage()
 class OrderDetailsPage extends HookWidget {
@@ -38,21 +40,8 @@ class OrderDetailsPage extends HookWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // Padding(
-                //   padding: EdgeInsets.symmetric(horizontal: 0),
-                //   child: IconButton(
-                //     onPressed: () {
-                //       Navigator.pop(context);
-                //     },
-                //     icon: const Icon(
-                //       Icons.close_rounded,
-                //       size: AppSize.s22,
-                //     ),
-                //   ),
-                // ),
-                // Spacer(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppPadding.p16.w),
+                  padding: EdgeInsets.symmetric(horizontal: AppPadding.p24.w),
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border(
@@ -76,24 +65,29 @@ class OrderDetailsPage extends HookWidget {
                 height: AppSize.s150.h,
               ),
             ),
-            SizedBox(height: AppSize.s20.h),
+            SizedBox(height: AppSize.s25.h),
             Column(
               children: [
                 Text('Processing the request, please wait',
                     style: getTextStyle(AppSize.s18, FontWeight.w500,
-                        ColorManager.welcomeTextColor)),
+                        ColorManager.welcomeTextColor).copyWith(
+                      height: 1.25
+                    )),
+                SizedBox(height: AppSize.s5.h),
                 Text('This process takes at most 1 minute.',
                     style: getTextStyle(AppSize.s14, FontWeight.w300,
-                        ColorManager.lightGreyText)),
-                SizedBox(height: AppSize.s20.h),
+                        ColorManager.lightGreyText).copyWith(
+                        height: 1.25
+                    )),
+                SizedBox(height: AppSize.s30.h),
                 Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: AppSize.s16),
                     child: SizedBox(
-                        height: 20, child: AnimatedSteps(activeStep: 0))),
-                SizedBox(height: AppSize.s16.h),
+                        height: AppSize.s30, child: AnimatedSteps(activeStep: 0))),
+
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSize.s16),
+                  padding: EdgeInsets.symmetric(horizontal: AppSize.s24),
                   child: Row(children: [
                     Flexible(
                       child: SizedBox(
@@ -106,7 +100,9 @@ class OrderDetailsPage extends HookWidget {
                                     BorderRadius.circular(AppSize.s10)),
                             minimumSize: const Size(AppSize.s170, AppSize.s45),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            context.router.push(BookingHistoryRoute());
+                          },
                           child: Text(
                             "My Demands",
                             style: getTextStyle(
@@ -131,7 +127,7 @@ class OrderDetailsPage extends HookWidget {
                           child: Text(
                             "Cancel Transaction",
                             style: getTextStyle(
-                                AppSize.s14, FontWeight.w500, Colors.black),
+                                AppSize.s14, FontWeight.w500, ColorManager.lightGreyText),
                           ),
                         ),
                       ),
@@ -140,8 +136,9 @@ class OrderDetailsPage extends HookWidget {
                 ),
               ],
             ),
+            SizedBox(height: AppSize.s20,),
             Padding(
-              padding: const EdgeInsets.all(AppPadding.p16),
+              padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
               child: Container(
                 decoration: BoxDecoration(
                     color: ColorManager.blueColor,
@@ -215,95 +212,80 @@ class OrderDetailsPage extends HookWidget {
                       ),
                       Text(
                         'Request Date',
-                        style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.tabBarColor,
-                        ),
+                          style: getTextStyle(AppSize.s14, FontWeight.w400,ColorManager.tabBarColor,)
                       ),
                       Text(
                         'October 16, 2024 - 17:40',
-                        style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.white,
-                        ),
+                          style: getTextStyle(AppSize.s14, FontWeight.w400, ColorManager.white)
                       ),
                       Divider(
                         color: Color(0xff364363),
                       ),
                       Text(
                         'Approximate Arrival Time',
-                        style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.tabBarColor,
-                        ),
+                          style: getTextStyle(AppSize.s14, FontWeight.w400,ColorManager.tabBarColor,)
                       ),
                       Text(
                         'October 16, 2024 - 18:40',
-                        style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.white,
-                        ),
+                          style: getTextStyle(AppSize.s14, FontWeight.w400, ColorManager.white)
                       ),
                       Divider(
                         color: Color(0xff364363),
                       ),
                       Text(
                         'Your address:',
-                        style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.tabBarColor,
-                        ),
+                          style: getTextStyle(AppSize.s14, FontWeight.w400,ColorManager.tabBarColor,)
                       ),
                       Text(
                         'Business Bay, Silver Tower 9 floor 904, Dubai',
-                        style: context.textTheme.titleSmall!.copyWith(
-                          color: ColorManager.white,
-                        ),
+                        style: getTextStyle(AppSize.s14, FontWeight.w400, ColorManager.white)
                       ),
                     ],
                   ),
                 ),
               ),
             ),
+            SizedBox(height: AppSize.s30,),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppPadding.p20.w),
+              padding: EdgeInsets.symmetric(horizontal: AppPadding.p24.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Request Details',
                     style: getTextStyle(
-                        FontSizeManager.s24, FontWeight.w500, Colors.black),
+                        FontSizeManager.s24, FontWeight.w500, Colors.black).copyWith(
+                      height: 1.1
+                    ),
                   ),
+                  SizedBox(height: AppSize.s15,),
                   Text(
                     'Lorem ipsum odor amet, consectetuer adipiscing elit. Per maximus odio felis lacinia magna, fermentum placerat. In leo mollis posuere consectetur donec nostra.',
-                    style: getLightStyle(
-                      color: ColorManager.welcomeTextColor,
-                      fontSize: FontSizeManager.s14,
+                    style: getTextStyle(AppSize.s14, FontWeight.w300, ColorManager.welcomeTextColor).copyWith(
+                        height: 1.25
                     ),
                   ),
                   const SizedBox(height: AppSize.s20),
-                  Text(
-                    'Photos',
-                    style: getRegularStyle(
-                      color: ColorManager.lightGreyText,
-                      fontSize: FontSizeManager.s12_8,
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.s8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(
                       5,
-                      (index) => Container(
-                        width: 68,
-                        height: 76,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                            AppSize.s10,
-                          ),
-                          child: Image.asset(
-                            ImageAssets.tesisat,
-                            fit: BoxFit.cover,
+                      (index) => Flexible(
+
+                        child: AspectRatio(
+                          aspectRatio: 0.858,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s10,
+                            ),
+                            child: Image.asset(
+                              ImageAssets.tesisat,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                    ).separateWith(SizedBox(width: AppSize.s10,)),
                   ),
                 ],
               ),

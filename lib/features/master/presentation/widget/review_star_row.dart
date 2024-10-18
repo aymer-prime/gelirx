@@ -17,8 +17,8 @@ class Reviews extends StatelessWidget {
         Text("Reviews", style: getTextStyle(AppSize.s14, FontWeight.w300, ColorManager.black),),
         Stack(
           children: [
-            Divider(thickness: 1,),
-            SizedBox(width: AppSize.s72, child: Divider(thickness: 1,color: ColorManager.black)),
+            Divider(thickness: 3, color: Color(0xfff0f2f8)),
+            SizedBox(width: AppSize.s72, child: Divider(thickness: 2,color: ColorManager.welcomeTextColor)),
           ],
         ),
         Row(
@@ -149,7 +149,7 @@ class CustomLinearProgressIndicator extends StatelessWidget {
           width: width,
           height: AppSize.s6,
           decoration: BoxDecoration(
-            color: Colors.grey[300],
+            color: Color(0xfff0f2f8),
             borderRadius: BorderRadius.circular(10),
           ),
         ),
@@ -181,7 +181,7 @@ class Stars extends StatelessWidget {
           children: List.generate(5, (index) {
             return Icon(
               FontAwesomeIcons.solidStar,
-              color: ColorManager.lightGrey,
+              color: Color(0xffe0e2ea),
               size: starSize,
             );
           }),
