@@ -6,8 +6,6 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
-import 'package:gelirx/app/view/app.dart';
-import 'package:gelirx/features/master/presentation/widget/review_star_row.dart';
 
 @RoutePage()
 class BookingHistoryPage extends StatelessWidget {
