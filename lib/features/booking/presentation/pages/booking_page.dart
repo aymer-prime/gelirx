@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/List.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/home/presentation/widgets/dialogs/master_dialog_screen.dart';
 
 @RoutePage()
 class BookingHistoryPage extends StatelessWidget {
@@ -24,7 +26,8 @@ class BookingHistoryPage extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    MasterDialogScreen.instance().hide();
+                    context.router.replace(AlternateMainRoute());
                   },
                   child: Container(
                     height: AppSize.s30,
