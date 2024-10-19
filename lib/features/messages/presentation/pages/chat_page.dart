@@ -58,6 +58,7 @@ class _ChatPageState extends State<ChatPage> {
                 child: ListView(
                   controller: _controller,
                   children: [
+                    SizedBox(height: AppSize.s0),
                     MasterChatBubble(),
                     UserChatBubble(),
                     MasterChatBubble(),
