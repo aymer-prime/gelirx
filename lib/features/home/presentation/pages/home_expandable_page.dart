@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/extensions/double_extensions.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
@@ -175,11 +176,20 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                   right: 0,
                   child: Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p24,
                             vertical: AppPadding.p15),
-                        child: SearchFilterWidget(),
+                        child: SearchFilterWidget(
+                          isExpanded: _bottomHeight < _halfHeight * 0.9,
+                          retractSize: () {
+                            _controller.animateTo(
+                              0.5,
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          },
+                        ),
                       ),
                       state.categories.isEmpty
                           ? const AllCategoriesLoadingPlaceholder()
@@ -313,7 +323,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                     expand: true,
                     snap: true,
                     snapSizes: const [
-                      0.05,
+                      0.15,
                       0.5,
                     ],
                     snapAnimationDuration: const Duration(milliseconds: 300),
@@ -370,8 +380,12 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
 }
 
 class SearchFilterWidget extends StatelessWidget {
+  final bool isExpanded;
+  final VoidCallback retractSize;
   const SearchFilterWidget({
     super.key,
+    required this.isExpanded,
+    required this.retractSize,
   });
 
   @override
@@ -410,18 +424,30 @@ class SearchFilterWidget extends StatelessWidget {
                       const OutlineInputBorder(borderSide: BorderSide.none),
                   prefixIconConstraints:
                       const BoxConstraints(maxWidth: 40, minHeight: 0),
-                  prefixIcon: SizedBox(
-                    width: 30,
-                    child: SvgPicture.asset(
-                      ImageAssets.searchIcon,
-                      fit: BoxFit.scaleDown,
-                      height: 20,
-                      colorFilter: ColorFilter.mode(
-                        ColorManager.textTitleColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
+                  prefixIcon: isExpanded
+                      ? GestureDetector(
+                          onTap: retractSize,
+                          child: SizedBox(
+                            width: 40,
+                            child: Icon(
+                              FontAwesomeIcons.arrowLeft,
+                              size: 20,
+                              color: ColorManager.textSubtitleColor,
+                            ),
+                          ),
+                        )
+                      : SizedBox(
+                          width: 30,
+                          child: SvgPicture.asset(
+                            ImageAssets.searchIcon,
+                            fit: BoxFit.scaleDown,
+                            height: 20,
+                            colorFilter: ColorFilter.mode(
+                              ColorManager.textTitleColor,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
                 ),
               ),
             ),
