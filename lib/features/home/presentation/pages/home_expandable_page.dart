@@ -122,6 +122,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                   child: SizedBox(
                     height: AppSize.s32,
                     child: FloatingActionButton.extended(
+                      heroTag: "home_FAB",
                       shape: const StadiumBorder(),
                       backgroundColor: ColorManager.black,
                       foregroundColor: Colors.black,

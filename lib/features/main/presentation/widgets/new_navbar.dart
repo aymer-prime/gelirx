@@ -112,6 +112,7 @@ class NewNavBar extends StatelessWidget {
                     width: 70,
                     height: 62,
                     child: FloatingActionButton(
+                      heroTag: "navbar_FAB",
                       elevation: 0.0,
                       backgroundColor: ColorManager.blueColor,
                       shape: RoundedRectangleBorder(
