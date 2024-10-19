@@ -43,7 +43,7 @@ class FavoritePage extends StatelessWidget {
                   children: List.generate(
                     12,
                     (index) => Container(
-                      height: 145,
+                      height: 135,
                       color: Colors.transparent,
                       child: GestureDetector(
                         onTap: () {},
@@ -103,8 +103,7 @@ class FavoritePage extends StatelessWidget {
                               Flexible(
                                 flex: 7,
                                 child: Padding(
-                                  padding:
-                                      const EdgeInsets.all(AppPadding.p15),
+                                  padding: const EdgeInsets.all(AppPadding.p15),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -138,7 +137,7 @@ class FavoritePage extends StatelessWidget {
                                                   text: '(27 Reviews)',
                                                   style: getLightStyle(
                                                     color: ColorManager
-                                                        .lightGreyText,
+                                                        .tabBarColor,
                                                     fontSize:
                                                         FontSizeManager.s14,
                                                   ),
@@ -152,9 +151,10 @@ class FavoritePage extends StatelessWidget {
                                       Text(
                                         'Radiator Cleaning, House Cleaning, House to House Transportation',
                                         style: getRegularStyle(
-                                          color:
-                                              ColorManager.textSubtitleColor,
+                                          color: ColorManager.textSubtitleColor,
                                           fontSize: FontSizeManager.s13,
+                                        ).copyWith(
+                                          height: 1.25,
                                         ),
                                       ),
                                     ],

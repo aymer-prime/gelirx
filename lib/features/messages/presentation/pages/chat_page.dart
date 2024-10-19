@@ -98,6 +98,7 @@ class _ChatPageState extends State<ChatPage> {
                             FocusManager.instance.primaryFocus?.unfocus(),
                         textAlignVertical: TextAlignVertical.center,
                         decoration: InputDecoration(
+                          hintText: 'Send message . . .',
                           fillColor: ColorManager.white,
                           border: const OutlineInputBorder(
                             borderSide: BorderSide.none,

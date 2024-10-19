@@ -31,7 +31,6 @@ class BookingHistoryPage extends StatelessWidget {
                   child: Container(
                     height: AppSize.s30,
                     width: AppSize.s30,
-
                     child: const Icon(FontAwesomeIcons.arrowLeft,
                         size: AppSize.s18),
                   ),
@@ -43,8 +42,8 @@ class BookingHistoryPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: AppSize.s24),
             child: Text("Past Requests (12)",
-                style:
-                    getTextStyle(AppSize.s30, FontWeight.w500, Colors.black).copyWith(height: 1.1, letterSpacing: -0.1)),
+                style: getTextStyle(AppSize.s30, FontWeight.w500, Colors.black)
+                    .copyWith(height: 1.1, letterSpacing: -0.1)),
           ),
           SizedBox(height: AppSize.s30),
           BookingHistoryCard(
@@ -55,7 +54,9 @@ class BookingHistoryPage extends StatelessWidget {
             rating: 4.1,
             totalInteractions: 24,
           ),
-          SizedBox(height: AppSize.s20,),
+          SizedBox(
+            height: AppSize.s20,
+          ),
           BookingHistoryCard(
             name: 'Osman Yancigil',
             serviceName: 'Radiator Cleaning',
@@ -64,7 +65,9 @@ class BookingHistoryPage extends StatelessWidget {
             rating: 4.1,
             totalInteractions: 24,
           ),
-          SizedBox(height: AppSize.s20,),
+          SizedBox(
+            height: AppSize.s20,
+          ),
           BookingHistoryCard(
             name: 'Osman Yancigil',
             serviceName: 'Radiator Cleaning',
@@ -73,7 +76,9 @@ class BookingHistoryPage extends StatelessWidget {
             rating: 4.1,
             totalInteractions: 24,
           ),
-          SizedBox(height: AppSize.s20,),
+          SizedBox(
+            height: AppSize.s20,
+          ),
         ],
       ),
     );
@@ -100,18 +105,25 @@ class BookingHistoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:   AppSize.s24),
+      padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
       child: AspectRatio(
         aspectRatio: 1.2,
         child: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            boxShadow: [BoxShadow(blurRadius: AppSize.s10,spreadRadius: 1,color: Color.fromARGB(51, 0, 0, 0))],
-              borderRadius: BorderRadius.circular(15) // Adjust the radius as needed
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: AppSize.s10,
+                    spreadRadius: 1,
+                    color: Color.fromARGB(51, 0, 0, 0))
+              ],
+              borderRadius:
+                  BorderRadius.circular(15) // Adjust the radius as needed
               ),
           child: Stack(
             children: [
-              Positioned.fill(child: Image.asset(ImageAssets.tesisat,fit: BoxFit.cover)),
+              Positioned.fill(
+                  child: Image.asset(ImageAssets.tesisat, fit: BoxFit.cover)),
               Positioned(
                 bottom: 0,
                 left: 0,
@@ -119,7 +131,8 @@ class BookingHistoryCard extends StatelessWidget {
                 child: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical:AppSize.s10, horizontal: AppSize.s15),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: AppSize.s10, horizontal: AppSize.s15),
                     child: Column(
                       children: [
                         Row(
@@ -136,48 +149,64 @@ class BookingHistoryCard extends StatelessWidget {
                               children: [
                                 Text(name,
                                     style: getTextStyle(AppSize.s16,
-                                        FontWeight.w400, Colors.black).copyWith(letterSpacing: -0.1,height: 1.1)),
+                                            FontWeight.w400, Colors.black)
+                                        .copyWith(
+                                            letterSpacing: -0.1, height: 1.1)),
                                 Text(serviceName,
                                     style: getTextStyle(AppSize.s13,
-                                        FontWeight.w300, Colors.black).copyWith(letterSpacing: -0.1,height: 1.1)),
+                                            FontWeight.w300, Colors.black)
+                                        .copyWith(
+                                            letterSpacing: -0.1, height: 1.1)),
                                 Text(date,
-                                    style: getTextStyle(AppSize.s13,
-                                        FontWeight.w300, ColorManager.tabBarColor).copyWith(letterSpacing: -0.1,height: 1.1)),
+                                    style: getTextStyle(
+                                            AppSize.s13,
+                                            FontWeight.w300,
+                                            ColorManager.tabBarColor)
+                                        .copyWith(
+                                            letterSpacing: -0.1, height: 1.1)),
                                 Container(
                                   padding: EdgeInsets.all(AppSize.s8),
                                   decoration: BoxDecoration(
-                                      color: status == "Completed"  ?  ColorManager.greenColor : Color(0xffffc000),
+                                      color: status == "Completed"
+                                          ? ColorManager.greenColor
+                                          : Color(0xffffc000),
                                       borderRadius:
                                           BorderRadius.circular(AppSize.s8)),
                                   child: Text(status,
                                       style: getTextStyle(AppSize.s14,
                                           FontWeight.w500, ColorManager.white)),
                                 )
-                              ].separateWith(SizedBox(height: AppSize.s5,)),
+                              ].separateWith(SizedBox(
+                                height: AppSize.s5,
+                              )),
                             ),
                             SizedBox(width: AppSize.s10),
-                           Row(
-                             crossAxisAlignment: CrossAxisAlignment.center,
-                             children: [
-                               Icon(
-                                 FontAwesomeIcons.solidStar,
-                                 color: ColorManager.ratingColor,
-                                 size: AppSize.s15,
-                               ),
-                               SizedBox(width: AppSize.s5),
-                               Text(
-                                 rating.toString(),
-                                 style: getTextStyle(AppSize.s14, FontWeight.w400,
-                                     ColorManager.textSubtitleColor),
-                               ),
-                               SizedBox(width: AppSize.s5),
-                               Text(
-                                 "(24)",
-                                 style: getTextStyle(AppSize.s14, FontWeight.w300,
-                                     ColorManager.textSubtitleColor),
-                               ),
-                             ],
-                           )
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.solidStar,
+                                  color: ColorManager.ratingColor,
+                                  size: AppSize.s15,
+                                ),
+                                SizedBox(width: AppSize.s5),
+                                Text(
+                                  rating.toString(),
+                                  style: getTextStyle(
+                                      AppSize.s14,
+                                      FontWeight.w400,
+                                      ColorManager.textSubtitleColor),
+                                ),
+                                SizedBox(width: AppSize.s5),
+                                Text(
+                                  "(24)",
+                                  style: getTextStyle(
+                                      AppSize.s14,
+                                      FontWeight.w300,
+                                      ColorManager.textSubtitleColor),
+                                ),
+                              ],
+                            )
                           ],
                         )
                       ],
@@ -189,14 +218,15 @@ class BookingHistoryCard extends StatelessWidget {
                 top: AppSize.s10,
                 right: AppSize.s10,
                 child: Container(
-                width: AppSize.s40,
-                height: AppSize.s40,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: ColorManager.lightGrey,
+                  width: AppSize.s40,
+                  height: AppSize.s40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: ColorManager.lightGrey,
+                  ),
+                  child: Icon(FontAwesomeIcons.heart, size: AppSize.s18),
                 ),
-                child: Icon(FontAwesomeIcons.heart, size: AppSize.s18),
-              ),)
+              )
             ],
           ),
         ),
