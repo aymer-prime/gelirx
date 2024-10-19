@@ -23,6 +23,8 @@ class ImageAssets {
   static const String check = '$imagePath/misc/check.svg';
   static const String location = '$imagePath/misc/location.svg';
   static const String timer = '$imagePath/misc/timer.gif';
+  static const String masterProfilePhoto = '$imagePath/misc/masterProfilePhoto.png';
+
   //drawer
   static const String calender = '$imagePath/drawer/calender.png';
   static const String wallet = '$imagePath/drawer/wallet.png';
