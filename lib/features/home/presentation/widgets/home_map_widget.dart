@@ -14,7 +14,6 @@ import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/tile_provider.dart';
 import 'package:gelirx/features/home/presentation/widgets/dialogs/master_dialog_screen.dart';
-import 'package:gelirx/features/home/presentation/widgets/master_details_dialog.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:lottie/lottie.dart' show Lottie;
@@ -229,7 +228,7 @@ class MapBubbleMarker extends StatelessWidget {
                     BoxShadow(
                       blurRadius: 1,
                       spreadRadius: 0,
-                      offset: Offset(1, 1),
+                      offset: const Offset(1, 1),
                       color: Color.fromARGB((255 * 0.2).floor(), 0, 0, 0),
                     )
                   ],

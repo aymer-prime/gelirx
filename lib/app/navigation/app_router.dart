@@ -14,6 +14,7 @@ import 'package:gelirx/features/auth/presentation/pages/auth_page.dart';
 import 'package:gelirx/features/main/presentation/page/alternate_main_page.dart';
 import 'package:gelirx/features/main/presentation/page/old/main_page.dart';
 import 'package:gelirx/features/main/presentation/page/master_main_page.dart';
+import 'package:gelirx/features/messages/presentation/pages/chat_page.dart';
 import 'package:gelirx/features/onboarding/presentation/onboarding_page.dart';
 import 'package:gelirx/features/order_details/presentation/pages/order_details_page.dart';
 import 'package:gelirx/features/splash/splash_screen.dart';
@@ -86,6 +87,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: MasterRoute.page,
+        ),
+        AutoRoute(
+          page: ChatRoute.page,
         )
       ];
 }

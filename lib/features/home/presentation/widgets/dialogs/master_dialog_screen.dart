@@ -216,6 +216,8 @@ class MasterDialog extends StatelessWidget {
                           const SizedBox(height: AppSize.s6),
                           Text(
                             'Radiator Cleaning, House Cleaning, House to House Transportation',
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
                             style: getRegularStyle(
                               color: ColorManager.textSubtitleColor,
                               fontSize: FontSizeManager.s13,
@@ -263,20 +265,20 @@ class MasterDialog extends StatelessWidget {
               right: 10,
               height: 30,
               width: 30,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: ColorManager.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 4,
-                      spreadRadius: 1,
-                      color: Color.fromARGB((255 * 0.3).floor(), 0, 0, 0),
-                    )
-                  ],
-                ),
-                child: GestureDetector(
-                  onTap: hide,
+              child: GestureDetector(
+                onTap: hide,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: ColorManager.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 4,
+                        spreadRadius: 1,
+                        color: Color.fromARGB((255 * 0.3).floor(), 0, 0, 0),
+                      )
+                    ],
+                  ),
                   child: const Icon(
                     FontAwesomeIcons.xmark,
                     size: 14,
