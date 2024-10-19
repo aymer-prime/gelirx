@@ -1,5 +1,8 @@
+import 'package:another_flushbar/flushbar.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gelirx/app/extensions/List.dart';
+import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
@@ -43,7 +46,9 @@ class MessagesPage extends StatelessWidget {
                       height: 70,
                       color: Colors.transparent,
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.router.push(const ChatRoute());
+                        },
                         child: Row(
                           children: [
                             AspectRatio(
