@@ -7,6 +7,7 @@ import 'package:gelirx/app/utils/resources/theme_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
+import 'package:gelirx/features/messages/presentation/bloc/chat_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/app_constants.dart';
@@ -66,6 +67,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             ..add(
               const AuthStatusEvent.authCheckRequested(),
             ),
+        ),
+        BlocProvider<ChatBloc>(
+          create: (_) => getIt<ChatBloc>()..add( const ChatEvent.fetchChats()),
         ),
       ],
       child: const _Starter(),
