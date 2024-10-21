@@ -42,126 +42,130 @@ class FavoritePage extends StatelessWidget {
                 child: Column(
                   children: List.generate(
                     12,
-                    (index) => Container(
-                      height: 135,
-                      color: Colors.transparent,
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: ColorManager.white,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 10,
-                                spreadRadius: 1,
-                                color: Color.fromARGB(
-                                    (255 * 0.2).floor(), 0, 0, 0),
-                              )
-                            ],
-                          ),
-                          child: Row(
-                            children: [
-                              Flexible(
-                                flex: 4,
-                                child: Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: double.infinity,
-                                      child: ClipRRect(
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(16),
-                                          bottomLeft: Radius.circular(16),
-                                        ),
-                                        child: Image.asset(
-                                          ImageAssets.handyman,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 10,
-                                      left: 10,
-                                      height: 30,
-                                      width: 30,
-                                      child: IconButton(
-                                        onPressed: () {},
-                                        style: IconButton.styleFrom(
-                                          shape: const CircleBorder(),
-                                          backgroundColor: ColorManager.white,
-                                        ),
-                                        icon: Icon(
-                                          FontAwesomeIcons.solidHeart,
-                                          color: ColorManager.joyColor,
-                                          size: 14,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Flexible(
-                                flex: 7,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(AppPadding.p15),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Osman Yılmaz',
-                                        style: getMediumStyle(
-                                          color: ColorManager.black,
-                                          fontSize: FontSizeManager.s20,
-                                        ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          SvgPicture.asset(
-                                            ImageAssets.star,
-                                          ),
-                                          RichText(
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: ' 4.1   ',
-                                                  style: context
-                                                      .textTheme.bodyLarge!
-                                                      .copyWith(
-                                                    color: ColorManager.black,
-                                                    fontSize:
-                                                        FontSizeManager.s14,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: '(27 Reviews)',
-                                                  style: getLightStyle(
-                                                    color: ColorManager
-                                                        .tabBarColor,
-                                                    fontSize:
-                                                        FontSizeManager.s14,
-                                                  ),
-                                                ),
-                                              ],
+                    (index) => IntrinsicHeight(
+                      child: Container(
+                        // constraints: const BoxConstraints(
+                        //   maxHeight: 135,
+                        // ),
+                        color: Colors.transparent,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  spreadRadius: 1,
+                                  color: Color.fromARGB(
+                                      (255 * 0.2).floor(), 0, 0, 0),
+                                )
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppPadding.p15),
+                              child: Row(
+                                children: [
+                                  Flexible(
+                                    flex: 4,
+                                    child: Stack(
+                                      children: [
+                                        SizedBox(
+                                          height: double.infinity,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                              AppSize.s16,
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(height: AppSize.s6),
-                                      Text(
-                                        'Radiator Cleaning, House Cleaning, House to House Transportation',
-                                        style: getRegularStyle(
-                                          color: ColorManager.textSubtitleColor,
-                                          fontSize: FontSizeManager.s13,
-                                        ).copyWith(
-                                          height: 1.25,
+                                            child: Image.asset(
+                                              ImageAssets.handyman,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        Positioned(
+                                          bottom: 10,
+                                          left: 10,
+                                          height: 30,
+                                          width: 30,
+                                          child: IconButton(
+                                            onPressed: () {},
+                                            style: IconButton.styleFrom(
+                                              shape: const CircleBorder(),
+                                              backgroundColor: ColorManager.white,
+                                            ),
+                                            icon: Icon(
+                                              FontAwesomeIcons.solidHeart,
+                                              color: ColorManager.joyColor,
+                                              size: 14,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
+                                  const SizedBox(width: AppSize.s15),
+                                  Flexible(
+                                    flex: 7,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Osman Yılmaz',
+                                          style: getMediumStyle(
+                                            color: ColorManager.black,
+                                            fontSize: FontSizeManager.s20,
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              ImageAssets.star,
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                children: [
+                                                  TextSpan(
+                                                    text: ' 4.1   ',
+                                                    style: context
+                                                        .textTheme.bodyLarge!
+                                                        .copyWith(
+                                                      color: ColorManager.black,
+                                                      fontSize:
+                                                          FontSizeManager.s14,
+                                                    ),
+                                                  ),
+                                                  TextSpan(
+                                                    text: '(27 Reviews)',
+                                                    style: getLightStyle(
+                                                      color: ColorManager
+                                                          .tabBarColor,
+                                                      fontSize:
+                                                          FontSizeManager.s14,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        const SizedBox(height: AppSize.s6),
+                                        Text(
+                                          'Radiator Cleaning, House Cleaning, House to House Transportation.',
+                                          style: getRegularStyle(
+                                            color: ColorManager.textSubtitleColor,
+                                            fontSize: FontSizeManager.s13,
+                                          ).copyWith(
+                                            height: 1.25,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
