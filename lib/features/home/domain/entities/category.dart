@@ -18,5 +18,6 @@ abstract class Img with _$Img {
   const factory Img({
     required String icon,
     required String photo,
+    @Default(false) bool isIconLocal,
   }) = _Img;
 }

@@ -3,7 +3,7 @@ part of 'home_bloc.dart';
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState({
-    int? selectedCategory,
+    String? selectedCategory,
     required Option<String> currentOrderId,
     String? selectedMasterId,
     required bool isLoading,

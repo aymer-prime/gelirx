@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
@@ -30,18 +30,23 @@ class CategoryItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CachedNetworkImage(
-              imageUrl: category.img.icon,
-              color: ColorManager.textSubtitleColor,
-              height: 24,
-            ),
+            category.img.isIconLocal
+                ? SvgPicture.asset(
+                    category.img.icon,
+                    height: 24,
+                  )
+                : CachedNetworkImage(
+                    imageUrl: category.img.icon,
+                    color: ColorManager.textSubtitleColor,
+                    height: 24,
+                  ),
             const SizedBox(height: AppSize.s5),
             Text(
               category.name,
               style: context.textTheme.labelSmall,
               overflow: TextOverflow.fade,
               maxLines: 1,
-            )
+            ),
           ],
         ),
       ),

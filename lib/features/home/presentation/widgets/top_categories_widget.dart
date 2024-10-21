@@ -12,44 +12,52 @@ import 'package:gelirx/features/home/presentation/widgets/category_item.dart';
 
 class AllCategoriesWidgets extends StatelessWidget {
   final List<Category> categories;
+  final String selectedCategory;
   const AllCategoriesWidgets({
     super.key,
     required this.categories,
+    required this.selectedCategory,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: AppSize.s60,
-          decoration: BoxDecoration(
-            color: ColorManager.white,
-            borderRadius: BorderRadius.circular(
-              AppSize.s20.r,
-            ),
-          ),
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(right: AppPadding.p20),
-              child: AspectRatio(
-                aspectRatio: 0.75,
-                child: CategoryItem(
-                  category: categories[index],
-                  onTap: () {
-                    context.read<HomeBloc>().add(
-                          HomeEvent.setFilters(categories[index]),
-                        );
-                  },
-                ),
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.horizontal,
+      itemCount: categories.length,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(right: AppPadding.p20),
+        child: Stack(
+          children: [
+            AspectRatio(
+              aspectRatio: 0.6,
+              child: Stack(
+                children: [
+                  CategoryItem(
+                    category: categories[index],
+                    onTap: () {
+                      context.read<HomeBloc>().add(
+                            HomeEvent.setFilters(categories[index]),
+                          );
+                    },
+                  ),
+                ],
               ),
             ),
-          ),
+            if(selectedCategory==categories[index].id)
+            const Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Divider(
+                height: 0,
+                color: Colors.black,
+                thickness: AppSize.s3,
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

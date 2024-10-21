@@ -43,6 +43,8 @@ import '../../features/navigation/domain/usecases/navigation_usecase.dart'
     as _i603;
 import '../../features/navigation/presentation/bloc/navigation_bloc.dart'
     as _i162;
+import '../../features/shared/data/shared_repository.dart' as _i493;
+import '../../features/shared/domain/i_shared_repository.dart' as _i243;
 import '../local_services/local_services.dart' as _i902;
 import '../local_services/notifiaction_handler.dart' as _i468;
 import '../navigation/app_router.dart' as _i630;
@@ -80,6 +82,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
     gh.lazySingleton<_i92.IBookingRepository>(() => _i678.BookingRepository());
+    gh.lazySingleton<_i243.ISharedRepository>(
+        () => _i493.SharedRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i782.INavigationRepository>(
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(

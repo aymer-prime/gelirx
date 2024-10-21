@@ -44,9 +44,6 @@ class FavoritePage extends StatelessWidget {
                     12,
                     (index) => IntrinsicHeight(
                       child: Container(
-                        // constraints: const BoxConstraints(
-                        //   maxHeight: 135,
-                        // ),
                         color: Colors.transparent,
                         child: GestureDetector(
                           onTap: () {},
@@ -92,7 +89,8 @@ class FavoritePage extends StatelessWidget {
                                             onPressed: () {},
                                             style: IconButton.styleFrom(
                                               shape: const CircleBorder(),
-                                              backgroundColor: ColorManager.white,
+                                              backgroundColor:
+                                                  ColorManager.white,
                                             ),
                                             icon: Icon(
                                               FontAwesomeIcons.solidHeart,
@@ -154,7 +152,8 @@ class FavoritePage extends StatelessWidget {
                                         Text(
                                           'Radiator Cleaning, House Cleaning, House to House Transportation.',
                                           style: getRegularStyle(
-                                            color: ColorManager.textSubtitleColor,
+                                            color:
+                                                ColorManager.textSubtitleColor,
                                             fontSize: FontSizeManager.s13,
                                           ).copyWith(
                                             height: 1.25,

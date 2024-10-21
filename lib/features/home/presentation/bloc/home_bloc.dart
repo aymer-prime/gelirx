@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/app/extensions/List.dart';
+import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/features/home/domain/entities/category.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/domain/i_home_repository.dart';
@@ -40,22 +41,36 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       // );
       var categories = await _iHomeRepository.getCategories();
       categories.fold(
-          (l) => emit(
-                state.copyWith(
-                  isLoading: false,
-                  categories: [],
-                ),
-              ), (categories) {
-        emit(
+        (l) => emit(
           state.copyWith(
             isLoading: false,
-            categories: categories,
+            categories: [],
           ),
-        );
-        add(
-          const _GetServices(),
-        );
-      });
+        ),
+        (categories) {
+          const Category allCategory = Category(
+            id: '-1',
+            name: 'All',
+            description: '',
+            link: '',
+            img: Img(
+              icon: ImageAssets.locationPin,
+              photo: '',
+              isIconLocal: true,
+            ),
+          );
+          emit(
+            state.copyWith(
+              isLoading: false,
+              selectedCategory: allCategory.id,
+              categories: [allCategory, ...categories],
+            ),
+          );
+          add(
+            const _GetServices(),
+          );
+        },
+      );
     });
     on<_GetSubCategories>((event, emit) async {
       var catId = state.categories[event.catIndex].id;

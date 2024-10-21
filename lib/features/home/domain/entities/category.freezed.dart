@@ -236,6 +236,7 @@ abstract class _Category implements Category {
 mixin _$Img {
   String get icon => throw _privateConstructorUsedError;
   String get photo => throw _privateConstructorUsedError;
+  bool get isIconLocal => throw _privateConstructorUsedError;
 
   /// Create a copy of Img
   /// with the given fields replaced by the non-null parameter values.
@@ -248,7 +249,7 @@ abstract class $ImgCopyWith<$Res> {
   factory $ImgCopyWith(Img value, $Res Function(Img) then) =
       _$ImgCopyWithImpl<$Res, Img>;
   @useResult
-  $Res call({String icon, String photo});
+  $Res call({String icon, String photo, bool isIconLocal});
 }
 
 /// @nodoc
@@ -267,6 +268,7 @@ class _$ImgCopyWithImpl<$Res, $Val extends Img> implements $ImgCopyWith<$Res> {
   $Res call({
     Object? icon = null,
     Object? photo = null,
+    Object? isIconLocal = null,
   }) {
     return _then(_value.copyWith(
       icon: null == icon
@@ -277,6 +279,10 @@ class _$ImgCopyWithImpl<$Res, $Val extends Img> implements $ImgCopyWith<$Res> {
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String,
+      isIconLocal: null == isIconLocal
+          ? _value.isIconLocal
+          : isIconLocal // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -287,7 +293,7 @@ abstract class _$$ImgImplCopyWith<$Res> implements $ImgCopyWith<$Res> {
       __$$ImgImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String icon, String photo});
+  $Res call({String icon, String photo, bool isIconLocal});
 }
 
 /// @nodoc
@@ -303,6 +309,7 @@ class __$$ImgImplCopyWithImpl<$Res> extends _$ImgCopyWithImpl<$Res, _$ImgImpl>
   $Res call({
     Object? icon = null,
     Object? photo = null,
+    Object? isIconLocal = null,
   }) {
     return _then(_$ImgImpl(
       icon: null == icon
@@ -313,6 +320,10 @@ class __$$ImgImplCopyWithImpl<$Res> extends _$ImgCopyWithImpl<$Res, _$ImgImpl>
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
               as String,
+      isIconLocal: null == isIconLocal
+          ? _value.isIconLocal
+          : isIconLocal // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -320,16 +331,20 @@ class __$$ImgImplCopyWithImpl<$Res> extends _$ImgCopyWithImpl<$Res, _$ImgImpl>
 /// @nodoc
 
 class _$ImgImpl implements _Img {
-  const _$ImgImpl({required this.icon, required this.photo});
+  const _$ImgImpl(
+      {required this.icon, required this.photo, this.isIconLocal = false});
 
   @override
   final String icon;
   @override
   final String photo;
+  @override
+  @JsonKey()
+  final bool isIconLocal;
 
   @override
   String toString() {
-    return 'Img(icon: $icon, photo: $photo)';
+    return 'Img(icon: $icon, photo: $photo, isIconLocal: $isIconLocal)';
   }
 
   @override
@@ -338,11 +353,13 @@ class _$ImgImpl implements _Img {
         (other.runtimeType == runtimeType &&
             other is _$ImgImpl &&
             (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.photo, photo) || other.photo == photo));
+            (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.isIconLocal, isIconLocal) ||
+                other.isIconLocal == isIconLocal));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, icon, photo);
+  int get hashCode => Object.hash(runtimeType, icon, photo, isIconLocal);
 
   /// Create a copy of Img
   /// with the given fields replaced by the non-null parameter values.
@@ -355,12 +372,16 @@ class _$ImgImpl implements _Img {
 
 abstract class _Img implements Img {
   const factory _Img(
-      {required final String icon, required final String photo}) = _$ImgImpl;
+      {required final String icon,
+      required final String photo,
+      final bool isIconLocal}) = _$ImgImpl;
 
   @override
   String get icon;
   @override
   String get photo;
+  @override
+  bool get isIconLocal;
 
   /// Create a copy of Img
   /// with the given fields replaced by the non-null parameter values.

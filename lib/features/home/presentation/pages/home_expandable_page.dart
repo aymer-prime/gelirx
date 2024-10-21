@@ -194,18 +194,32 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                       ),
                       state.categories.isEmpty
                           ? const AllCategoriesLoadingPlaceholder()
-                          : Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: AppPadding.p24),
-                              child: AllCategoriesWidgets(
-                                categories: state.categories,
+                          : SizedBox(
+                              height: AppSize.s60,
+                              child: Stack(
+                                children: [
+                                  const Positioned(
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: Divider(
+                                      height: 0,
+                                      color: Color(0xfff0f2f8),
+                                      thickness: AppSize.s2,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: AppPadding.p24),
+                                    child: AllCategoriesWidgets(
+                                      categories: state.categories,
+                                      selectedCategory:
+                                          state.selectedCategory ?? '-1',
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                      const Divider(
-                        height: AppSize.s3,
-                        color: Color(0xfff0f2f8),
-                        thickness: AppSize.s3,
-                      ),
                       //const SizedBox(height: AppSize.s15),
                       Padding(
                         padding: const EdgeInsets.symmetric(

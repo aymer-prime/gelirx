@@ -2163,7 +2163,7 @@ abstract class _CallMaster implements HomeEvent {
 
 /// @nodoc
 mixin _$HomeState {
-  int? get selectedCategory => throw _privateConstructorUsedError;
+  String? get selectedCategory => throw _privateConstructorUsedError;
   Option<String> get currentOrderId => throw _privateConstructorUsedError;
   String? get selectedMasterId => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
@@ -2187,7 +2187,7 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call(
-      {int? selectedCategory,
+      {String? selectedCategory,
       Option<String> currentOrderId,
       String? selectedMasterId,
       bool isLoading,
@@ -2229,7 +2229,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       selectedCategory: freezed == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       currentOrderId: null == currentOrderId
           ? _value.currentOrderId
           : currentOrderId // ignore: cast_nullable_to_non_nullable
@@ -2279,7 +2279,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? selectedCategory,
+      {String? selectedCategory,
       Option<String> currentOrderId,
       String? selectedMasterId,
       bool isLoading,
@@ -2319,7 +2319,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
       selectedCategory: freezed == selectedCategory
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       currentOrderId: null == currentOrderId
           ? _value.currentOrderId
           : currentOrderId // ignore: cast_nullable_to_non_nullable
@@ -2381,7 +2381,7 @@ class _$HomeStateImpl implements _HomeState {
         _catFilterIndexes = catFilterIndexes;
 
   @override
-  final int? selectedCategory;
+  final String? selectedCategory;
   @override
   final Option<String> currentOrderId;
   @override
@@ -2486,7 +2486,7 @@ class _$HomeStateImpl implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {final int? selectedCategory,
+      {final String? selectedCategory,
       required final Option<String> currentOrderId,
       final String? selectedMasterId,
       required final bool isLoading,
@@ -2498,7 +2498,7 @@ abstract class _HomeState implements HomeState {
       required final List<Category> catFilterIndexes}) = _$HomeStateImpl;
 
   @override
-  int? get selectedCategory;
+  String? get selectedCategory;
   @override
   Option<String> get currentOrderId;
   @override
