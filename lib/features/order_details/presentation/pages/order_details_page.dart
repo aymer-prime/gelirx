@@ -114,14 +114,14 @@ class OrderDetailsPage extends HookWidget {
                                       as Map<String, dynamic>;
 
                                   String status = documentData['status'] ?? "";
-                                  if (status == OrderStatus.waitingForMasterResponse.name) {
+                                  if (status == 1) {
                                     return AnimatedSteps(activeStep: 0);
-                                  } else if (status == OrderStatus.masterAccept.name) {
+                                  } else if (status == 2) {
                                     return AnimatedSteps(activeStep: 1);
-                                  } else if (status == OrderStatus.masterOnWay.name) {
+                                  } else if (status == 3) {
                                     return AnimatedSteps(activeStep: 2);
                                   }
-                                  else if (status == OrderStatus.done.name) {
+                                  else if (status == 4) {
                                     return AnimatedSteps(activeStep: 3);
                                   }
                                   return AnimatedSteps(activeStep: 0);
