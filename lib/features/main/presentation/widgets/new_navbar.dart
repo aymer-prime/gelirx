@@ -75,9 +75,26 @@ class NewNavBar extends StatelessWidget {
                       Spacer(),
                       NavItem(
                         label: AppStrings.messages,
-                        icon: SvgPicture.asset(
-                          ImageAssets.navbarMessages,
-                          color: ColorManager.welcomeTextColor,
+                        icon: Badge(
+                          backgroundColor: ColorManager.white,
+                          offset: const Offset(0, -2),
+                          largeSize: AppSize.s10,
+                          padding: const EdgeInsets.all(AppPadding.p2),
+                          label: Center(
+                            child: Container(
+                              width: AppSize.s8,
+                              height: AppSize.s8,
+                              padding: EdgeInsets.zero,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: ColorManager.joyColor,
+                              ),
+                            ),
+                          ),
+                          child: SvgPicture.asset(
+                            ImageAssets.navbarMessages,
+                            color: ColorManager.welcomeTextColor,
+                          ),
                         ),
                         activeIcon: SvgPicture.asset(
                           ImageAssets.navbarMessages,
@@ -187,7 +204,10 @@ class NavItem extends StatelessWidget {
                     color: isCenterNavItem
                         ? ColorManager.joyColor
                         : ColorManager.white),
-                child: isSelected ? activeIcon : icon,
+                child: SizedBox(
+                  width: 24,
+                  child: isSelected ? activeIcon : icon,
+                ),
               ),
             ),
             Flexible(
