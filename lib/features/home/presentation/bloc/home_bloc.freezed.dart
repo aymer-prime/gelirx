@@ -2164,6 +2164,7 @@ abstract class _CallMaster implements HomeEvent {
 /// @nodoc
 mixin _$HomeState {
   int? get selectedCategory => throw _privateConstructorUsedError;
+  Option<String> get currentOrderId => throw _privateConstructorUsedError;
   String? get selectedMasterId => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   Option<Position> get userPosition => throw _privateConstructorUsedError;
@@ -2187,6 +2188,7 @@ abstract class $HomeStateCopyWith<$Res> {
   @useResult
   $Res call(
       {int? selectedCategory,
+      Option<String> currentOrderId,
       String? selectedMasterId,
       bool isLoading,
       Option<Position> userPosition,
@@ -2213,6 +2215,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? selectedCategory = freezed,
+    Object? currentOrderId = null,
     Object? selectedMasterId = freezed,
     Object? isLoading = null,
     Object? userPosition = null,
@@ -2227,6 +2230,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
               as int?,
+      currentOrderId: null == currentOrderId
+          ? _value.currentOrderId
+          : currentOrderId // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
       selectedMasterId: freezed == selectedMasterId
           ? _value.selectedMasterId
           : selectedMasterId // ignore: cast_nullable_to_non_nullable
@@ -2273,6 +2280,7 @@ abstract class _$$HomeStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? selectedCategory,
+      Option<String> currentOrderId,
       String? selectedMasterId,
       bool isLoading,
       Option<Position> userPosition,
@@ -2297,6 +2305,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedCategory = freezed,
+    Object? currentOrderId = null,
     Object? selectedMasterId = freezed,
     Object? isLoading = null,
     Object? userPosition = null,
@@ -2311,6 +2320,10 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.selectedCategory
           : selectedCategory // ignore: cast_nullable_to_non_nullable
               as int?,
+      currentOrderId: null == currentOrderId
+          ? _value.currentOrderId
+          : currentOrderId // ignore: cast_nullable_to_non_nullable
+              as Option<String>,
       selectedMasterId: freezed == selectedMasterId
           ? _value.selectedMasterId
           : selectedMasterId // ignore: cast_nullable_to_non_nullable
@@ -2352,6 +2365,7 @@ class __$$HomeStateImplCopyWithImpl<$Res>
 class _$HomeStateImpl implements _HomeState {
   const _$HomeStateImpl(
       {this.selectedCategory,
+      required this.currentOrderId,
       this.selectedMasterId,
       required this.isLoading,
       required this.userPosition,
@@ -2368,6 +2382,8 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   final int? selectedCategory;
+  @override
+  final Option<String> currentOrderId;
   @override
   final String? selectedMasterId;
   @override
@@ -2417,7 +2433,7 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(selectedCategory: $selectedCategory, selectedMasterId: $selectedMasterId, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories, services: $services, masters: $masters, catFilterIndexes: $catFilterIndexes)';
+    return 'HomeState(selectedCategory: $selectedCategory, currentOrderId: $currentOrderId, selectedMasterId: $selectedMasterId, isLoading: $isLoading, userPosition: $userPosition, categories: $categories, subCategories: $subCategories, services: $services, masters: $masters, catFilterIndexes: $catFilterIndexes)';
   }
 
   @override
@@ -2427,6 +2443,8 @@ class _$HomeStateImpl implements _HomeState {
             other is _$HomeStateImpl &&
             (identical(other.selectedCategory, selectedCategory) ||
                 other.selectedCategory == selectedCategory) &&
+            (identical(other.currentOrderId, currentOrderId) ||
+                other.currentOrderId == currentOrderId) &&
             (identical(other.selectedMasterId, selectedMasterId) ||
                 other.selectedMasterId == selectedMasterId) &&
             (identical(other.isLoading, isLoading) ||
@@ -2447,6 +2465,7 @@ class _$HomeStateImpl implements _HomeState {
   int get hashCode => Object.hash(
       runtimeType,
       selectedCategory,
+      currentOrderId,
       selectedMasterId,
       isLoading,
       userPosition,
@@ -2468,6 +2487,7 @@ class _$HomeStateImpl implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final int? selectedCategory,
+      required final Option<String> currentOrderId,
       final String? selectedMasterId,
       required final bool isLoading,
       required final Option<Position> userPosition,
@@ -2479,6 +2499,8 @@ abstract class _HomeState implements HomeState {
 
   @override
   int? get selectedCategory;
+  @override
+  Option<String> get currentOrderId;
   @override
   String? get selectedMasterId;
   @override
