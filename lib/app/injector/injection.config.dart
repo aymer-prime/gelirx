@@ -37,6 +37,8 @@ import '../../features/booking/domain/usecases/booking_usecase.dart' as _i216;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
+import '../../features/messages/domain/i_chat_repository.dart' as _i235;
+import '../../features/messages/presentation/bloc/chat_bloc.dart' as _i16;
 import '../../features/navigation/data/navigation_repository.dart' as _i490;
 import '../../features/navigation/domain/i_navigation_repository.dart' as _i782;
 import '../../features/navigation/domain/usecases/navigation_usecase.dart'
@@ -76,6 +78,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
     gh.lazySingleton<_i905.FirebaseUserMapper>(
         () => _i905.FirebaseUserMapper());
+    gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
     gh.factory<_i468.NotificationHandler>(
         () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
