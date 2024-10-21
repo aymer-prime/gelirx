@@ -39,7 +39,6 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
   final maxSize = 1.0;
   late double _bottomHeight;
   late double _maxHeight;
-  late double _maxWidth;
   late double _halfHeight;
   late ScrollController scrollCtrl;
   late AnimationController titleAnimationController;
@@ -55,10 +54,9 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
     //     ).appBarMaxHeight ??
     //     0;
     var safeAreaHight = MediaQuery.of(context).padding;
-    _maxHeight = MediaQuery.of(context).size.height -
+    _maxHeight = context.screenSize.height -
         safeAreaHight.top -
         safeAreaHight.bottom;
-    _maxWidth = MediaQuery.of(context).size.width;
     _halfHeight = _maxHeight / 2;
     _bottomHeight = _halfHeight;
   }
@@ -482,7 +480,7 @@ class SearchFilterWidget extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                context.router.push(const OrderDetailsRoute());
+                context.router.push(const BookingHistoryRoute());
               },
               child: SvgPicture.asset(
                 ImageAssets.filterIcon,
