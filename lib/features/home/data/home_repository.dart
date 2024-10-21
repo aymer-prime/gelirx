@@ -164,7 +164,7 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<Either<ApiException, Unit>> callMaster(
+  Future<Either<ApiException, String>> callMaster(
     LatLng userPosition,
     String address,
     String description,
@@ -191,7 +191,7 @@ class HomeRepository implements IHomeRepository {
         ),
         data: data,
       );
-      return right(unit);
+      return right(response["booking_id"]);
     } on ApiException catch (e) {
       return left(e);
     } catch (e) {

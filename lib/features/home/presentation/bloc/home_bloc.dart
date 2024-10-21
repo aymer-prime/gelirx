@@ -207,7 +207,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             ),
             (r) {
               emit(
-                state.copyWith(isLoading: false),
+                state.copyWith(isLoading: false, currentOrderId: some(r)),
               );
               event.onSuccess();
             },

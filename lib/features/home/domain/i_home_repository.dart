@@ -16,7 +16,7 @@ abstract class IHomeRepository {
     String description,
     String categoryId,
   );
-  Future<Either<ApiException, Unit>> callMaster(
+  Future<Either<ApiException, String>> callMaster(
     LatLng centerPosition,
     String address,
     String description,
