@@ -106,187 +106,187 @@ class MasterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 210,
-      width: double.infinity,
-      child: GestureDetector(
-        onTap: () {
-          context.router.push(MasterRoute(
-            masterId: master.id,
-          ));
-        },
-        child: Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.all(
-                AppPadding.p20,
-              ),
-              decoration: BoxDecoration(
-                color: ColorManager.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                    color: Color.fromARGB((255 * 0.3).floor(), 0, 0, 0),
-                  )
-                ],
-              ),
-              child: Row(
-                children: [
-                  Flexible(
-                    flex: 4,
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: double.infinity,
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              bottomLeft: Radius.circular(16),
-                            ),
-                            child: Image.asset(
-                              ImageAssets.handyman,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 10,
-                          left: 10,
-                          height: 30,
-                          width: 30,
-                          child: IconButton(
-                            onPressed: () {},
-                            style: IconButton.styleFrom(
-                              shape: const CircleBorder(),
-                              backgroundColor: ColorManager.white,
-                            ),
-                            icon: const Icon(
-                              FontAwesomeIcons.heart,
-                              size: 14,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Flexible(
-                    flex: 7,
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppPadding.p15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Osman Yılmaz, ID:${master.id}',
-                            style: context.textTheme.bodyLarge!.copyWith(
-                              color: ColorManager.black,
-                              fontSize: FontSizeManager.s20,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                ImageAssets.star,
-                              ),
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: ' 4.1   ',
-                                      style:
-                                          context.textTheme.bodyLarge!.copyWith(
-                                        color: ColorManager.black,
-                                        fontSize: FontSizeManager.s14,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: '(27 Reviews)',
-                                      style: getLightStyle(
-                                        color: ColorManager.lightGreyText,
-                                        fontSize: FontSizeManager.s14,
-                                      ),
-                                    ),
-                                  ],
+    return IntrinsicHeight(
+      child: SizedBox(
+        width: double.infinity,
+        child: GestureDetector(
+          onTap: () {
+            context.router.push(MasterRoute(
+              masterId: master.id,
+            ));
+          },
+          child: Stack(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(
+                  AppMargin.m20,
+                ),
+                decoration: BoxDecoration(
+                  color: ColorManager.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 10,
+                      spreadRadius: 1,
+                      color: Color.fromARGB((255 * 0.3).floor(), 0, 0, 0),
+                    )
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(AppPadding.p15),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 4,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: double.infinity,
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s16),
+                                child: Image.asset(
+                                  ImageAssets.handyman,
+                                  fit: BoxFit.cover,
                                 ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: AppSize.s6),
-                          Text(
-                            'Radiator Cleaning, House Cleaning, House to House Transportation',
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: getRegularStyle(
-                              color: ColorManager.textSubtitleColor,
-                              fontSize: FontSizeManager.s13,
-                            ),
-                          ),
-                          const SizedBox(height: AppSize.s6),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                ImageAssets.location,
-                                color: ColorManager.black,
-                                height: AppSize.s14,
                               ),
-                              RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: '35 Km ',
-                                      style: getRegularStyle(
-                                        color: ColorManager.black,
-                                        fontSize: FontSizeManager.s14,
-                                      ),
-                                    ),
-                                    TextSpan(
-                                      text: '(Yaklaşık 40 dk)',
-                                      style: getLightStyle(
-                                        color: ColorManager.lightGreyText,
-                                        fontSize: FontSizeManager.s13,
-                                      ),
-                                    ),
-                                  ],
+                            ),
+                            Positioned(
+                              bottom: 10,
+                              left: 10,
+                              height: 30,
+                              width: 30,
+                              child: IconButton(
+                                onPressed: () {},
+                                style: IconButton.styleFrom(
+                                  shape: const CircleBorder(),
+                                  backgroundColor: ColorManager.white,
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
+                                icon: const Icon(
+                                  FontAwesomeIcons.heart,
+                                  size: 14,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Positioned(
-              top: 10,
-              right: 10,
-              height: 30,
-              width: 30,
-              child: GestureDetector(
-                onTap: hide,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ColorManager.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 4,
-                        spreadRadius: 1,
-                        color: Color.fromARGB((255 * 0.3).floor(), 0, 0, 0),
+                      const SizedBox(width: AppSize.s15),
+                      Flexible(
+                        flex: 6,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Osman Yılmaz, ID:${master.id}',
+                              style: context.textTheme.bodyLarge!.copyWith(
+                                color: ColorManager.black,
+                                fontSize: FontSizeManager.s20,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  ImageAssets.star,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: ' 4.1   ',
+                                        style: context.textTheme.bodyLarge!
+                                            .copyWith(
+                                          color: ColorManager.black,
+                                          fontSize: FontSizeManager.s14,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: '(27 Reviews)',
+                                        style: getLightStyle(
+                                          color: ColorManager.lightGreyText,
+                                          fontSize: FontSizeManager.s14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: AppSize.s6),
+                            Text(
+                              'Radiator Cleaning, House Cleaning, House to House Transportation',
+                              maxLines: 6,
+                              overflow: TextOverflow.ellipsis,
+                              style: getRegularStyle(
+                                color: ColorManager.textSubtitleColor,
+                                fontSize: FontSizeManager.s13,
+                              ),
+                            ),
+                            const SizedBox(height: AppSize.s6),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  ImageAssets.location,
+                                  color: ColorManager.black,
+                                  height: AppSize.s14,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: '35 Km ',
+                                        style: getRegularStyle(
+                                          color: ColorManager.black,
+                                          fontSize: FontSizeManager.s14,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: '(Yaklaşık 40 dk)',
+                                        style: getLightStyle(
+                                          color: ColorManager.lightGreyText,
+                                          fontSize: FontSizeManager.s13,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       )
                     ],
                   ),
-                  child: const Icon(
-                    FontAwesomeIcons.xmark,
-                    size: 14,
+                ),
+              ),
+              Positioned(
+                top: 10,
+                right: 10,
+                height: 30,
+                width: 30,
+                child: GestureDetector(
+                  onTap: hide,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 4,
+                          spreadRadius: 1,
+                          color: Color.fromARGB((255 * 0.3).floor(), 0, 0, 0),
+                        )
+                      ],
+                    ),
+                    child: const Icon(
+                      FontAwesomeIcons.xmark,
+                      size: 14,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
