@@ -1,42 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
+import 'package:gelirx/app/network/api_exception.dart';
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ChatRepository {
+import '../domain/i_chat_repository.dart';
+
+@LazySingleton(as: IChatRepository)
+class ChatRepository implements IChatRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<List<QueryDocumentSnapshot>> getChats(String userId, int masterId) {
-    // Stream to listen to documents where master_id matches
-    Stream<QuerySnapshot> masterStream = _firestore.collection('booking')
-        .where('master_id', isEqualTo: 39)
-        .where('status', isGreaterThan: 0)
-        .snapshots();
+  @override
+  Future<Either<ApiException, Stream<QuerySnapshot<Object?>>>> getChats() async {
+    try {
+      Stream<QuerySnapshot> combinedStream = _firestore.collection('booking')
+          .where(Filter.or(
+          Filter('master_id', isEqualTo: "39"),
+          Filter('user_id', isEqualTo: "39")
+      ))
+          .where('status', isGreaterThan: 0)
+          .snapshots();
 
-    // Stream to listen to documents where user_id matches
-    Stream<QuerySnapshot> userStream = _firestore.collection('booking')
-        .where('user_id', isEqualTo: 39)
-        .where('status', isGreaterThan: 0)
-        .snapshots();
-
-    // Combine both streams into one using Rx.combineLatest2
-    return Rx.combineLatest2(
-      masterStream,
-      userStream,
-          (QuerySnapshot masterSnapshot, QuerySnapshot userSnapshot) {
-        // Combine the documents from both streams
-        List<QueryDocumentSnapshot> combinedDocs = [...masterSnapshot.docs, ...userSnapshot.docs];
-
-        // Remove duplicate documents based on ID
-        final uniqueDocs = combinedDocs.fold<List<QueryDocumentSnapshot>>([], (acc, doc) {
-          if (!acc.any((d) => d.id == doc.id)) {
-            acc.add(doc);
-          }
-          return acc;
-        });
-        return uniqueDocs;
-      },
-    );
+      return right(combinedStream);
+    } catch (e) {
+      return Left(ApiException.defaultException("0", e.toString()));
+    }
   }
 }
+
+
+
+
+
+
+
 
 
   // @override

@@ -5,12 +5,12 @@ class ChatState with _$ChatState {
   const factory ChatState({
     required bool isLoading,
     String? error,
-    Stream<QuerySnapshot>? chatStream, // Hold the stream of chat snapshots
+    required Stream<QuerySnapshot<Object?>> chatStream,  // Use correct type here
   }) = _ChatState;
 
   factory ChatState.initial() => ChatState(
     isLoading: false,
     error: null,
-    chatStream: null,
+    chatStream: Stream.empty(),  // Provide an empty stream initially
   );
 }

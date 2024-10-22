@@ -32,3 +32,4 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     );
   }
 }
+

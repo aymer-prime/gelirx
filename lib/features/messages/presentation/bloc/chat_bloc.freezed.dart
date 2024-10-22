@@ -173,7 +173,7 @@ abstract class FetchChats implements ChatEvent {
 mixin _$ChatState {
   bool get isLoading => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
-  Stream<QuerySnapshot<Object?>>? get chatStream =>
+  Stream<QuerySnapshot<Object?>> get chatStream =>
       throw _privateConstructorUsedError;
 
   /// Create a copy of ChatState
@@ -191,7 +191,7 @@ abstract class $ChatStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       String? error,
-      Stream<QuerySnapshot<Object?>>? chatStream});
+      Stream<QuerySnapshot<Object?>> chatStream});
 }
 
 /// @nodoc
@@ -211,7 +211,7 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   $Res call({
     Object? isLoading = null,
     Object? error = freezed,
-    Object? chatStream = freezed,
+    Object? chatStream = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -222,10 +222,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      chatStream: freezed == chatStream
+      chatStream: null == chatStream
           ? _value.chatStream
           : chatStream // ignore: cast_nullable_to_non_nullable
-              as Stream<QuerySnapshot<Object?>>?,
+              as Stream<QuerySnapshot<Object?>>,
     ) as $Val);
   }
 }
@@ -241,7 +241,7 @@ abstract class _$$ChatStateImplCopyWith<$Res>
   $Res call(
       {bool isLoading,
       String? error,
-      Stream<QuerySnapshot<Object?>>? chatStream});
+      Stream<QuerySnapshot<Object?>> chatStream});
 }
 
 /// @nodoc
@@ -259,7 +259,7 @@ class __$$ChatStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? error = freezed,
-    Object? chatStream = freezed,
+    Object? chatStream = null,
   }) {
     return _then(_$ChatStateImpl(
       isLoading: null == isLoading
@@ -270,10 +270,10 @@ class __$$ChatStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      chatStream: freezed == chatStream
+      chatStream: null == chatStream
           ? _value.chatStream
           : chatStream // ignore: cast_nullable_to_non_nullable
-              as Stream<QuerySnapshot<Object?>>?,
+              as Stream<QuerySnapshot<Object?>>,
     ));
   }
 }
@@ -281,14 +281,15 @@ class __$$ChatStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChatStateImpl implements _ChatState {
-  const _$ChatStateImpl({required this.isLoading, this.error, this.chatStream});
+  const _$ChatStateImpl(
+      {required this.isLoading, this.error, required this.chatStream});
 
   @override
   final bool isLoading;
   @override
   final String? error;
   @override
-  final Stream<QuerySnapshot<Object?>>? chatStream;
+  final Stream<QuerySnapshot<Object?>> chatStream;
 
   @override
   String toString() {
@@ -321,16 +322,17 @@ class _$ChatStateImpl implements _ChatState {
 
 abstract class _ChatState implements ChatState {
   const factory _ChatState(
-      {required final bool isLoading,
-      final String? error,
-      final Stream<QuerySnapshot<Object?>>? chatStream}) = _$ChatStateImpl;
+          {required final bool isLoading,
+          final String? error,
+          required final Stream<QuerySnapshot<Object?>> chatStream}) =
+      _$ChatStateImpl;
 
   @override
   bool get isLoading;
   @override
   String? get error;
   @override
-  Stream<QuerySnapshot<Object?>>? get chatStream;
+  Stream<QuerySnapshot<Object?>> get chatStream;
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
