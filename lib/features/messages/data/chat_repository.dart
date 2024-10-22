@@ -1,29 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:gelirx/app/network/api_exception.dart';
+import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/i_chat_repository.dart';
 
 @LazySingleton(as: IChatRepository)
 class ChatRepository implements IChatRepository {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore ;
+  final SharedPreferences _preferences ;
+  ChatRepository(this._preferences, this._firestore);
+
 
   @override
-  Future<Either<ApiException, Stream<QuerySnapshot<Object?>>>> getChats() async {
+  Stream<Either<ApiException, dynamic>> getChats() async* {
     try {
-      Stream<QuerySnapshot> combinedStream = _firestore.collection('booking')
+      final userId = _preferences.get(Constants.userIdKey);
+          yield* _firestore.collection('booking')
           .where(Filter.or(
-          Filter('master_id', isEqualTo: "39"),
-          Filter('user_id', isEqualTo: "39")
-      ))
+          Filter('master_id', isEqualTo: userId),
+          Filter('user_id', isEqualTo: userId)
+           ))
           .where('status', isGreaterThan: 0)
-          .snapshots();
-
-      return right(combinedStream);
+          .snapshots()
+          .map(
+              (snapshot) => right<ApiException,dynamic>(
+            snapshot.docs
+                .map((doc) => doc,
+          )));
     } catch (e) {
-      return Left(ApiException.defaultException("0", e.toString()));
+      yield Left(ApiException.defaultException("0", e.toString()));
     }
   }
 }

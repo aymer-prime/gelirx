@@ -19,32 +19,38 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchChats,
+    required TResult Function(Either<ApiException, dynamic> chats) getChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchChats,
+    TResult? Function(Either<ApiException, dynamic> chats)? getChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchChats,
+    TResult Function(Either<ApiException, dynamic> chats)? getChat,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchChats value) fetchChats,
+    required TResult Function(GetChat value) getChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchChats value)? fetchChats,
+    TResult? Function(GetChat value)? getChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchChats value)? fetchChats,
+    TResult Function(GetChat value)? getChat,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -112,6 +118,7 @@ class _$FetchChatsImpl implements FetchChats {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchChats,
+    required TResult Function(Either<ApiException, dynamic> chats) getChat,
   }) {
     return fetchChats();
   }
@@ -120,6 +127,7 @@ class _$FetchChatsImpl implements FetchChats {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchChats,
+    TResult? Function(Either<ApiException, dynamic> chats)? getChat,
   }) {
     return fetchChats?.call();
   }
@@ -128,6 +136,7 @@ class _$FetchChatsImpl implements FetchChats {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchChats,
+    TResult Function(Either<ApiException, dynamic> chats)? getChat,
     required TResult orElse(),
   }) {
     if (fetchChats != null) {
@@ -140,6 +149,7 @@ class _$FetchChatsImpl implements FetchChats {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchChats value) fetchChats,
+    required TResult Function(GetChat value) getChat,
   }) {
     return fetchChats(this);
   }
@@ -148,6 +158,7 @@ class _$FetchChatsImpl implements FetchChats {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchChats value)? fetchChats,
+    TResult? Function(GetChat value)? getChat,
   }) {
     return fetchChats?.call(this);
   }
@@ -156,6 +167,7 @@ class _$FetchChatsImpl implements FetchChats {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchChats value)? fetchChats,
+    TResult Function(GetChat value)? getChat,
     required TResult orElse(),
   }) {
     if (fetchChats != null) {
@@ -170,11 +182,151 @@ abstract class FetchChats implements ChatEvent {
 }
 
 /// @nodoc
+abstract class _$$GetChatImplCopyWith<$Res> {
+  factory _$$GetChatImplCopyWith(
+          _$GetChatImpl value, $Res Function(_$GetChatImpl) then) =
+      __$$GetChatImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Either<ApiException, dynamic> chats});
+}
+
+/// @nodoc
+class __$$GetChatImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$GetChatImpl>
+    implements _$$GetChatImplCopyWith<$Res> {
+  __$$GetChatImplCopyWithImpl(
+      _$GetChatImpl _value, $Res Function(_$GetChatImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ChatEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? chats = null,
+  }) {
+    return _then(_$GetChatImpl(
+      null == chats
+          ? _value.chats
+          : chats // ignore: cast_nullable_to_non_nullable
+              as Either<ApiException, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetChatImpl implements GetChat {
+  const _$GetChatImpl(this.chats);
+
+  @override
+  final Either<ApiException, dynamic> chats;
+
+  @override
+  String toString() {
+    return 'ChatEvent.getChat(chats: $chats)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetChatImpl &&
+            (identical(other.chats, chats) || other.chats == chats));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, chats);
+
+  /// Create a copy of ChatEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetChatImplCopyWith<_$GetChatImpl> get copyWith =>
+      __$$GetChatImplCopyWithImpl<_$GetChatImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchChats,
+    required TResult Function(Either<ApiException, dynamic> chats) getChat,
+  }) {
+    return getChat(chats);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchChats,
+    TResult? Function(Either<ApiException, dynamic> chats)? getChat,
+  }) {
+    return getChat?.call(chats);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchChats,
+    TResult Function(Either<ApiException, dynamic> chats)? getChat,
+    required TResult orElse(),
+  }) {
+    if (getChat != null) {
+      return getChat(chats);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchChats value) fetchChats,
+    required TResult Function(GetChat value) getChat,
+  }) {
+    return getChat(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchChats value)? fetchChats,
+    TResult? Function(GetChat value)? getChat,
+  }) {
+    return getChat?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchChats value)? fetchChats,
+    TResult Function(GetChat value)? getChat,
+    required TResult orElse(),
+  }) {
+    if (getChat != null) {
+      return getChat(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetChat implements ChatEvent {
+  const factory GetChat(final Either<ApiException, dynamic> chats) =
+      _$GetChatImpl;
+
+  Either<ApiException, dynamic> get chats;
+
+  /// Create a copy of ChatEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetChatImplCopyWith<_$GetChatImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ChatState {
   bool get isLoading => throw _privateConstructorUsedError;
+  dynamic get chats => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
-  Stream<QuerySnapshot<Object?>> get chatStream =>
-      throw _privateConstructorUsedError;
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -188,10 +340,7 @@ abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
       _$ChatStateCopyWithImpl<$Res, ChatState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      String? error,
-      Stream<QuerySnapshot<Object?>> chatStream});
+  $Res call({bool isLoading, dynamic chats, String? error});
 }
 
 /// @nodoc
@@ -210,22 +359,22 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? chats = freezed,
     Object? error = freezed,
-    Object? chatStream = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      chats: freezed == chats
+          ? _value.chats
+          : chats // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      chatStream: null == chatStream
-          ? _value.chatStream
-          : chatStream // ignore: cast_nullable_to_non_nullable
-              as Stream<QuerySnapshot<Object?>>,
     ) as $Val);
   }
 }
@@ -238,10 +387,7 @@ abstract class _$$ChatStateImplCopyWith<$Res>
       __$$ChatStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      String? error,
-      Stream<QuerySnapshot<Object?>> chatStream});
+  $Res call({bool isLoading, dynamic chats, String? error});
 }
 
 /// @nodoc
@@ -258,22 +404,22 @@ class __$$ChatStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? chats = freezed,
     Object? error = freezed,
-    Object? chatStream = null,
   }) {
     return _then(_$ChatStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      chats: freezed == chats
+          ? _value.chats
+          : chats // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
-      chatStream: null == chatStream
-          ? _value.chatStream
-          : chatStream // ignore: cast_nullable_to_non_nullable
-              as Stream<QuerySnapshot<Object?>>,
     ));
   }
 }
@@ -282,18 +428,18 @@ class __$$ChatStateImplCopyWithImpl<$Res>
 
 class _$ChatStateImpl implements _ChatState {
   const _$ChatStateImpl(
-      {required this.isLoading, this.error, required this.chatStream});
+      {required this.isLoading, required this.chats, this.error});
 
   @override
   final bool isLoading;
   @override
-  final String? error;
+  final dynamic chats;
   @override
-  final Stream<QuerySnapshot<Object?>> chatStream;
+  final String? error;
 
   @override
   String toString() {
-    return 'ChatState(isLoading: $isLoading, error: $error, chatStream: $chatStream)';
+    return 'ChatState(isLoading: $isLoading, chats: $chats, error: $error)';
   }
 
   @override
@@ -303,13 +449,13 @@ class _$ChatStateImpl implements _ChatState {
             other is _$ChatStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.error, error) || other.error == error) &&
-            (identical(other.chatStream, chatStream) ||
-                other.chatStream == chatStream));
+            const DeepCollectionEquality().equals(other.chats, chats) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, error, chatStream);
+  int get hashCode => Object.hash(runtimeType, isLoading,
+      const DeepCollectionEquality().hash(chats), error);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -322,17 +468,16 @@ class _$ChatStateImpl implements _ChatState {
 
 abstract class _ChatState implements ChatState {
   const factory _ChatState(
-          {required final bool isLoading,
-          final String? error,
-          required final Stream<QuerySnapshot<Object?>> chatStream}) =
-      _$ChatStateImpl;
+      {required final bool isLoading,
+      required final dynamic chats,
+      final String? error}) = _$ChatStateImpl;
 
   @override
   bool get isLoading;
   @override
-  String? get error;
+  dynamic get chats;
   @override
-  Stream<QuerySnapshot<Object?>> get chatStream;
+  String? get error;
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
