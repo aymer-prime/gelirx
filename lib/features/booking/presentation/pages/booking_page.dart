@@ -11,6 +11,7 @@ import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/booking/presentation/bloc/booking_bloc.dart';
 import 'package:gelirx/features/home/presentation/widgets/dialogs/master_dialog_screen.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class BookingHistoryPage extends StatelessWidget {
@@ -20,103 +21,125 @@ class BookingHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: BlocProvider(
-        create: (context) => getIt<BookingBloc>()
-          ..add(
-            const BookingEvent.getBookings('39'),
-          ),
-        child: BlocBuilder<BookingBloc, BookingState>(
-          builder: (context, state) {
-            return state.maybeMap(
-              orElse: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              loadSuccess: (successResult) => Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: AppSize.s10, left: AppSize.s15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            MasterDialogScreen.instance().hide();
-                            context.router.replace(AlternateMainRoute());
-                          },
-                          child: const SizedBox(
-                            height: AppSize.s30,
-                            width: AppSize.s30,
-                            child: Icon(FontAwesomeIcons.arrowLeft,
-                                size: AppSize.s18),
+      body: SafeArea(
+        child: BlocProvider(
+          create: (context) => getIt<BookingBloc>()
+            ..add(
+              const BookingEvent.getBookings('39'),
+            ),
+          child: BlocBuilder<BookingBloc, BookingState>(
+            builder: (context, state) {
+              return state.maybeMap(
+                orElse: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                loadSuccess: (successResult) => Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: AppSize.s10, left: AppSize.s15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              MasterDialogScreen.instance().hide();
+                              context.router
+                                  .replace(const AlternateMainRoute());
+                            },
+                            child: const SizedBox(
+                              height: AppSize.s30,
+                              width: AppSize.s30,
+                              child: Icon(FontAwesomeIcons.arrowLeft,
+                                  size: AppSize.s18),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: AppSize.s10),
-                  Padding(
-                    padding: const EdgeInsets.only(left: AppSize.s24),
-                    child: Text(
-                      "Past Requests (12)",
-                      style: getTextStyle(
-                              AppSize.s30, FontWeight.w500, Colors.black)
-                          .copyWith(
-                        height: 1.1,
-                        letterSpacing: -0.1,
+                          Padding(
+                            padding: const EdgeInsets.only(left: AppSize.s24),
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Past Requests ',
+                                    style: getTextStyle(AppSize.s24,
+                                            FontWeight.w500, Colors.black)
+                                        .copyWith(
+                                      height: 1.1,
+                                      letterSpacing: -0.1,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: "(${successResult.bookings.length})",
+                                    style: getTextStyle(
+                                            AppSize.s24,
+                                            FontWeight.w500,
+                                            ColorManager.joyColor)
+                                        .copyWith(
+                                      height: 1.1,
+                                      letterSpacing: -0.1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  const SizedBox(height: AppSize.s30),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    itemCount: successResult.bookings.length,
-                    itemBuilder: (context, index) {
-                      var booking = successResult.bookings[index];
-                      return BookingHistoryCard(
-                        name: 'Osman Yancigil',
-                        serviceName: 'Radiator Cleaning',
-                        date: booking.sendingDate.toString(),
-                        status: booking.status,
-                        rating: 4.1,
-                        totalInteractions: 24,
-                      );
-                    },
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: AppSize.s20),
-                  ),
-                  const SizedBox(height: AppSize.s20),
-                ],
-              ),
-              loadFailed: (failure) {
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(failure.apiException.toString()),
-                      const SizedBox(height: AppSize.s20),
-                      ElevatedButton(
-                        onPressed: () {
-                          print('object');
-                          context.read<BookingBloc>().add(
-                                const BookingEvent.getBookings('39'),
-                              );
+                    const SizedBox(height: AppSize.s30),
+                    Expanded(
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        itemCount: successResult.bookings.length,
+                        itemBuilder: (context, index) {
+                          var booking = successResult.bookings[index];
+                          return BookingHistoryCard(
+                            name: 'Osman Yancigil',
+                            serviceName: 'Radiator Cleaning',
+                            date: DateFormat('dd.MM.yyyy hh:mm')
+                                .format(booking.sendingDate),
+                            status: booking.status,
+                            rating: 4.1,
+                            totalInteractions: 24,
+                          );
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30.0,
-                            vertical: 16.0,
+                        separatorBuilder: (context, index) =>
+                            const SizedBox(height: AppSize.s20),
+                      ),
+                    ),
+                    const SizedBox(height: AppSize.s20),
+                  ],
+                ),
+                loadFailed: (failure) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(failure.apiException.toString()),
+                        const SizedBox(height: AppSize.s20),
+                        ElevatedButton(
+                          onPressed: () {
+                            print('object');
+                            context.read<BookingBloc>().add(
+                                  const BookingEvent.getBookings('39'),
+                                );
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30.0,
+                              vertical: 16.0,
+                            ),
+                            child: Text('Try Again'),
                           ),
-                          child: Text('Try Again'),
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            );
-          },
+                        )
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -202,21 +225,10 @@ class BookingHistoryCard extends StatelessWidget {
                                             ColorManager.tabBarColor)
                                         .copyWith(
                                             letterSpacing: -0.1, height: 1.1)),
-                                Container(
-                                  padding: EdgeInsets.all(AppSize.s8),
-                                  decoration: BoxDecoration(
-                                      color: status == "Completed"
-                                          ? ColorManager.greenColor
-                                          : Color(0xffffc000),
-                                      borderRadius:
-                                          BorderRadius.circular(AppSize.s8)),
-                                  child: Text(status,
-                                      style: getTextStyle(AppSize.s14,
-                                          FontWeight.w500, ColorManager.white)),
-                                )
-                              ].separateWith(SizedBox(
-                                height: AppSize.s5,
-                              )),
+                                StatusContainer(status: status)
+                              ].separateWith(
+                                const SizedBox(height: AppSize.s5),
+                              ),
                             ),
                             SizedBox(width: AppSize.s10),
                             Row(
@@ -262,7 +274,7 @@ class BookingHistoryCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: ColorManager.lightGrey,
                   ),
-                  child: Icon(FontAwesomeIcons.heart, size: AppSize.s18),
+                  child: const Icon(FontAwesomeIcons.heart, size: AppSize.s18),
                 ),
               )
             ],
@@ -270,6 +282,57 @@ class BookingHistoryCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class StatusContainer extends StatelessWidget {
+  const StatusContainer({
+    super.key,
+    required this.status,
+  });
+
+  final String status;
+
+  @override
+  Widget build(BuildContext context) {
+    switch (status) {
+      case '0':
+        return Container(
+          padding: const EdgeInsets.all(AppSize.s8),
+          decoration: BoxDecoration(
+              color: Color(0xffffc000),
+              borderRadius: BorderRadius.circular(AppSize.s8)),
+          child: Text(
+            'On Hold',
+            style:
+                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
+          ),
+        );
+      case '1':
+        return Container(
+          padding: const EdgeInsets.all(AppSize.s8),
+          decoration: BoxDecoration(
+              color: Color(0xff00a575),
+              borderRadius: BorderRadius.circular(AppSize.s8)),
+          child: Text(
+            'Completed',
+            style:
+                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
+          ),
+        );
+      default:
+        return Container(
+          padding: const EdgeInsets.all(AppSize.s8),
+          decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.circular(AppSize.s8)),
+          child: Text(
+            'Canceled',
+            style:
+                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
+          ),
+        );
+    }
   }
 }
 

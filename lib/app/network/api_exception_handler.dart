@@ -18,8 +18,10 @@ class ApiExceptionHandler {
         return ApiException.badRequest(errors ?? {});
 
       default:
-        //i.get<Logger>().severe(e);
-        return ApiException.defaultException(e.response?.statusCode.toString() ?? "", e.response?.statusMessage ?? 'unknown');
+        return ApiException.defaultException(
+          e.response?.statusCode.toString() ?? "",
+          '${e.response?.statusMessage ?? 'unknown'}, Error: ${e.error}',
+        );
     }
   }
 }

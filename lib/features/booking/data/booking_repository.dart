@@ -32,10 +32,11 @@ class BookingRepository implements IBookingRepository {
           'master_id': userId,
         },
       );
-      final List<dynamic> responseData = response;
-      final List<Booking> resultList = responseData
+      final BookingResponseDto responseData =
+          BookingResponseDto.fromJson(response);
+      final List<Booking> resultList = responseData.bookings
           .map(
-            (e) => BookingDto.fromJson(e).toDomain(),
+            (e) => e.toDomain(),
           )
           .toList();
       return right(resultList);

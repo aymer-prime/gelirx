@@ -107,8 +107,9 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i902.LocalService>(),
           gh<_i464.RemoteService>(),
         ));
-    gh.lazySingleton<_i216.BookingUsecase>(
-        () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));
+    gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
+    gh.factory<_i802.BookingBloc>(
+        () => _i802.BookingBloc(gh<_i92.IBookingRepository>()));
     gh.factory<_i663.AuthStatusBloc>(
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
     gh.factory<_i446.UserVerificationBloc>(
