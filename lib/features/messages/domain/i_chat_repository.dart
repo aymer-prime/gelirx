@@ -5,5 +5,5 @@ import 'package:dartz/dartz.dart';
 import '../../../app/network/api_exception.dart';
 
 abstract class IChatRepository {
-  Future<Either<ApiException, Stream<QuerySnapshot<Object?>>>> getChats();
+  Stream<Either<ApiException, dynamic>> getChats();
 }

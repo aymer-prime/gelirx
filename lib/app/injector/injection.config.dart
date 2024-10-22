@@ -79,7 +79,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
     gh.lazySingleton<_i905.FirebaseUserMapper>(
         () => _i905.FirebaseUserMapper());
-    gh.lazySingleton<_i235.IChatRepository>(() => _i756.ChatRepository());
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
     gh.factory<_i468.NotificationHandler>(
         () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
@@ -92,6 +91,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
+    gh.lazySingleton<_i235.IChatRepository>(() => _i756.ChatRepository(
+          gh<_i460.SharedPreferences>(),
+          gh<_i974.FirebaseFirestore>(),
+        ));
     gh.lazySingleton<_i603.NavigationUsecase>(
         () => _i603.NavigationUsecase(gh<_i782.INavigationRepository>()));
     gh.factory<_i162.NavigationBloc>(

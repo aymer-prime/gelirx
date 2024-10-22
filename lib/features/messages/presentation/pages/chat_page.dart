@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
@@ -7,6 +8,7 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/messages/presentation/bloc/chat_bloc.dart';
 import 'package:intl/intl.dart';
 
 @RoutePage()
@@ -20,15 +22,17 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final ScrollController _controller = ScrollController();
   bool _needsScroll = true;
+
   @override
   void initState() {
     if (_needsScroll) {
       WidgetsBinding.instance.addPostFrameCallback(
-        (_) => _controller.animateTo(
-          _controller.position.maxScrollExtent,
-          curve: Curves.easeInOut,
-          duration: const Duration(milliseconds: 500),
-        ),
+            (_) =>
+            _controller.animateTo(
+              _controller.position.maxScrollExtent,
+              curve: Curves.easeInOut,
+              duration: const Duration(milliseconds: 500),
+            ),
       );
       _needsScroll = false;
     }
@@ -40,77 +44,74 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       backgroundColor: ColorManager.white,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
+        child: BlocBuilder<ChatBloc, ChatState>(
+          builder: (context, state) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ChatHeader(),
-                const Divider(height: 0),
-              ],
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p24),
-                child: ListView(
-                  controller: _controller,
+                Column(
                   children: [
-                    SizedBox(height: AppSize.s0),
-                    MasterChatBubble(),
-                    UserChatBubble(),
-                    MasterChatBubble(),
-                    UserChatBubble(),
-                    MasterChatBubble(),
-                    UserChatBubble(),
-                    MasterChatBubble(),
-                    UserChatBubble(),
-                    MasterChatBubble(),
-                    UserChatBubble(),
-                    SizedBox(height: AppSize.s0),
-                  ].separateWith(
-                    SizedBox(height: AppSize.s30),
+                    ChatHeader(),
+                    const Divider(height: 0),
+                  ],
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.p24),
+                    child: ListView.builder(
+                      itemCount: state.chats[3]["messages"].length ?? 0,
+                      itemBuilder: (context, index) {
+                     final chatDoc = state.chats[index]; // Now this should work
+                     final chatData = chatDoc.data() as Map<String, dynamic>;
+                        return state.chats[3]["sender_id"] == "39"
+                            ? UserChatBubble()
+                            :  MasterChatBubble();
+                      },
+                      controller: _controller,
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Column(
-              children: [
-                const Divider(height: 0),
-                Padding(
-                  padding: const EdgeInsets.all(AppPadding.p15),
-                  child: Container(
-                    height: AppSize.s50,
-                    decoration: ShapeDecoration(
-                      color: ColorManager.white,
-                      shape: StadiumBorder(
-                        side: BorderSide(
-                          color: ColorManager.textfieldBorderColor,
-                          width: 1,
+                Column(
+                  children: [
+                    const Divider(height: 0),
+                    Padding(
+                      padding: const EdgeInsets.all(AppPadding.p15),
+                      child: Container(
+                        height: AppSize.s50,
+                        decoration: ShapeDecoration(
+                          color: ColorManager.white,
+                          shape: StadiumBorder(
+                            side: BorderSide(
+                              color: ColorManager.textfieldBorderColor,
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        child: ClipOval(
+                          child: TextField(
+                            onTapOutside: (_) =>
+                                FocusManager.instance.primaryFocus?.unfocus(),
+                            textAlignVertical: TextAlignVertical.center,
+                            decoration: InputDecoration(
+                              hintText: 'Send message . . .',
+                              fillColor: ColorManager.white,
+                              border: const OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    child: ClipOval(
-                      child: TextField(
-                        onTapOutside: (_) =>
-                            FocusManager.instance.primaryFocus?.unfocus(),
-                        textAlignVertical: TextAlignVertical.center,
-                        decoration: InputDecoration(
-                          hintText: 'Send message . . .',
-                          fillColor: ColorManager.white,
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
