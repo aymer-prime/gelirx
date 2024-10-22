@@ -27,12 +27,11 @@ class _ChatPageState extends State<ChatPage> {
   void initState() {
     if (_needsScroll) {
       WidgetsBinding.instance.addPostFrameCallback(
-            (_) =>
-            _controller.animateTo(
-              _controller.position.maxScrollExtent,
-              curve: Curves.easeInOut,
-              duration: const Duration(milliseconds: 500),
-            ),
+        (_) => _controller.animateTo(
+          _controller.position.maxScrollExtent,
+          curve: Curves.easeInOut,
+          duration: const Duration(milliseconds: 500),
+        ),
       );
       _needsScroll = false;
     }
@@ -46,29 +45,35 @@ class _ChatPageState extends State<ChatPage> {
       body: SafeArea(
         child: BlocBuilder<ChatBloc, ChatState>(
           builder: (context, state) {
+            final chatDoc = state.chats[state.selectedChatIndex];
+            final chatData = chatDoc.data() as Map<String, dynamic>;
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
+                const Column(
                   children: [
                     ChatHeader(),
-                    const Divider(height: 0),
+                    Divider(height: 0),
                   ],
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: AppPadding.p24),
-                    child: ListView.builder(
-                      itemCount: state.chats[3]["messages"].length ?? 0,
-                      itemBuilder: (context, index) {
-                     final chatDoc = state.chats[index]; // Now this should work
-                     final chatData = chatDoc.data() as Map<String, dynamic>;
-                        return state.chats[3]["sender_id"] == "39"
-                            ? UserChatBubble()
-                            :  MasterChatBubble();
-                      },
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppPadding.p24),
+                    child: ListView.separated(
                       controller: _controller,
+                      itemCount: chatData["messages"].length ?? 0,
+                      itemBuilder: (context, index) {
+                        return chatData["sender_id"] == "39"
+                            ? UserChatBubble(
+                                message: chatData["messages"][index],
+                              )
+                            : MasterChatBubble(
+                                message: chatData["messages"][index]['content'],
+                              );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: AppSize.s30),
                     ),
                   ),
                 ),
@@ -119,8 +124,10 @@ class _ChatPageState extends State<ChatPage> {
 }
 
 class MasterChatBubble extends StatelessWidget {
+  final String message;
   const MasterChatBubble({
     super.key,
+    required this.message,
   });
 
   @override
@@ -161,7 +168,7 @@ class MasterChatBubble extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                        message,
                         style: getRegularStyle(
                           color: ColorManager.black,
                           fontSize: FontSizeManager.s14,
@@ -192,8 +199,10 @@ class MasterChatBubble extends StatelessWidget {
 }
 
 class UserChatBubble extends StatelessWidget {
+  final String message;
   const UserChatBubble({
     super.key,
+    required this.message,
   });
 
   @override
@@ -218,7 +227,7 @@ class UserChatBubble extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                  message,
                   style: getRegularStyle(
                     color: ColorManager.white,
                     fontSize: FontSizeManager.s14,

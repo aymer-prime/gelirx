@@ -30,16 +30,20 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         add(GetChat(chats));
       });
     });
+
     on<GetChat>((event, emit) async {
       event.chats.fold(
         (failure) {
           emit(state.copyWith(isLoading: false, error: "khffhk"));
         },
         (chats) {
-          // Assuming you want to emit the data as part of the state
           emit(state.copyWith(isLoading: false, chats: chats.toList()));
         },
       );
+    });
+
+    on<SelectChat>((event, emit) async {
+      emit(state.copyWith(selectedChatIndex: event.index));
     });
   }
 }

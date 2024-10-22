@@ -9,27 +9,23 @@ import '../domain/i_chat_repository.dart';
 
 @LazySingleton(as: IChatRepository)
 class ChatRepository implements IChatRepository {
-  final FirebaseFirestore _firestore ;
-  final SharedPreferences _preferences ;
+  final FirebaseFirestore _firestore;
+  final SharedPreferences _preferences;
   ChatRepository(this._preferences, this._firestore);
-
 
   @override
   Stream<Either<ApiException, dynamic>> getChats() async* {
     try {
       final userId = _preferences.get(Constants.userIdKey);
-          yield* _firestore.collection('booking')
-          .where(Filter.or(
-          Filter('master_id', isEqualTo: userId),
-          Filter('user_id', isEqualTo: userId)
-           ))
+      yield* _firestore
+          .collection('booking')
+          .where(Filter.or(Filter('master_id', isEqualTo: userId),
+              Filter('user_id', isEqualTo: userId)))
           .where('status', isGreaterThan: 0)
           .snapshots()
-          .map(
-              (snapshot) => right<ApiException,dynamic>(
-            snapshot.docs
-                .map((doc) => doc,
-          )));
+          .map((snapshot) => right<ApiException, dynamic>(snapshot.docs.map(
+                (doc) => doc,
+              )));
     } catch (e) {
       yield Left(ApiException.defaultException("0", e.toString()));
     }

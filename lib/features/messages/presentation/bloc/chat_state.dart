@@ -6,11 +6,13 @@ class ChatState with _$ChatState {
     required bool isLoading,
     required dynamic chats,
     String? error,
+    required int selectedChatIndex,
   }) = _ChatState;
 
-  factory ChatState.initial() => ChatState(
-    isLoading: false,
-    error: null,
-    chats: []
-  );
+  factory ChatState.initial() => const ChatState(
+        isLoading: false,
+        error: null,
+        chats: [],
+        selectedChatIndex: 0,
+      );
 }

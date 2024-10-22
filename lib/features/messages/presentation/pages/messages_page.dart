@@ -1,9 +1,6 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
@@ -20,119 +17,133 @@ class MessagesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: AppSize.s24),
-          Padding(
-            padding: const EdgeInsets.only(left: AppPadding.p24),
-            child: Text(
-              'Messages',
-              style: getRegularStyle(
-                color: ColorManager.black,
-                fontSize: FontSizeManager.s30,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: AppPadding.p24),
+              child: Text(
+                'Messages',
+                style: getRegularStyle(
+                  color: ColorManager.black,
+                  fontSize: FontSizeManager.s30,
+                ),
               ),
             ),
-          ),
-          BlocBuilder<ChatBloc, ChatState>(
-            builder: (context, state) {
-              if (state.isLoading) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              if (state.error != null) {
-                return Center(child: Text('Error: ${state.error}'));
-              }
-              return Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 24,
-                    right: 24,
-                    top: 30,
-                  ),
-                  child: ListView.builder(
-                  itemCount: state.chats.length ?? 0,
-                     itemBuilder:  (_,index) {
-                    final chatDoc = state.chats[index]; // Now this should work
-                    final chatData = chatDoc.data() as Map<String, dynamic>;
-                    return Container(
-                      height: 70,
-                      color: Colors.transparent,
-                      child: GestureDetector(
-                        onTap: () {
-                          // Add your chat route navigation
-                          context.router.push(const ChatRoute());
-                        },
-                        child: Row(
-                          children: [
-                            AspectRatio(
-                              aspectRatio: 1,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(16),
-                                child: Image.asset(
-                                  ImageAssets.handyman,
-                                  fit: BoxFit.cover,
+            BlocBuilder<ChatBloc, ChatState>(
+              builder: (context, state) {
+                if (state.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (state.error != null) {
+                  return Center(child: Text('Error: ${state.error}'));
+                }
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      top: 30,
+                    ),
+                    child: ListView.separated(
+                      itemCount: state.chats.length ?? 0,
+                      itemBuilder: (_, index) {
+                        final chatDoc = state.chats[index];
+                        final chatData = chatDoc.data() as Map<String, dynamic>;
+                        return Container(
+                          height: 70,
+                          color: Colors.transparent,
+                          child: GestureDetector(
+                            onTap: () {
+                              context
+                                  .read<ChatBloc>()
+                                  .add(ChatEvent.selectChat(index));
+                              context.router.push(const ChatRoute());
+                            },
+                            child: Row(
+                              children: [
+                                AspectRatio(
+                                  aspectRatio: 1,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(16),
+                                    child: Image.asset(
+                                      ImageAssets.handyman,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            const SizedBox(width: 15),
-                            Flexible(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                const SizedBox(width: 15),
+                                Flexible(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        chatData['name'] ?? 'Unknown',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16,
-                                        ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            chatData['name'] ?? 'Osman Yilmaz',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Text(
+                                            chatData['time'] ?? '15:08',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w300,
+                                              fontSize: 13,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Text(
-                                        chatData['time'] ?? '',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 13,
+                                        chatData['services'] ??
+                                            'Radiator Cleaning, House Cleaning, House to House Transportation',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
                                           color: Colors.grey,
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 6),
+                                      Text(
+                                        (((chatData['messages']?.isEmpty ??
+                                                        true) ||
+                                                    chatData['messages'] ==
+                                                        null)
+                                                ? 'No messages'
+                                                : chatData['messages']
+                                                    .first['content']) ??
+                                            'No messages',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 13,
                                         ),
                                       ),
                                     ],
                                   ),
-                                  Text(
-                                    chatData['services'] ?? 'No services',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  Text(
-                                    chatData['message'] ?? 'No message',
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                                        ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: AppSize.s20),
+                    ),
                   ),
-              );
-
-              return const Center(child: Text('No chat stream available.'));
-            },
-          ),
-        ],
+                );
+                //return const Center(child: Text('No chat stream available.'));
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
