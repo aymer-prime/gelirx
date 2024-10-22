@@ -40,121 +40,117 @@ class MessagesPage extends StatelessWidget {
               if (state.isLoading) {
                 return const Center(child: CircularProgressIndicator());
               }
-
               if (state.error != null) {
                 return Center(child: Text('Error: ${state.error}'));
               }
+              return StreamBuilder<QuerySnapshot>(
+                stream: state.chatStream, // The stream from the BLoC state
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
 
-              if (state.chatStream != null) {
-                return StreamBuilder<QuerySnapshot>(
-                  stream: state.chatStream, // The stream from the BLoC state
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
+                  if (snapshot.hasError) {
+                    print(snapshot.error);
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  }
 
-                    if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
-                    }
+                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return const Center(child: Text('No chats available.'));
+                  }
 
-                    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                      return const Center(child: Text('No chats available.'));
-                    }
+                  final chatDocs = snapshot.data!.docs;
 
-                    final chatDocs = snapshot.data!.docs;
-
-                    return Expanded(
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 24,
-                            right: 24,
-                            top: 30,
-                          ),
-                          child: Column(
-                            children: List.generate(
-                              chatDocs.length,
-                                  (index) {
-                                final chatData = chatDocs[index].data() as Map<String, dynamic>;
-
-                                return Container(
-                                  height: 70,
-                                  color: Colors.transparent,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      // Add your chat route navigation
-                                      context.router.push(const ChatRoute());
-                                    },
-                                    child: Row(
-                                      children: [
-                                        AspectRatio(
-                                          aspectRatio: 1,
-                                          child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(16),
-                                            child: Image.asset(
-                                              ImageAssets.handyman,
-                                              fit: BoxFit.cover,
+                  return Expanded(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 24,
+                          right: 24,
+                          top: 30,
+                        ),
+                        child: Column(
+                          children: List.generate(
+                            chatDocs.length,
+                                (index) {
+                              final chatData = chatDocs[index].data() as Map<String, dynamic>;
+                              return Container(
+                                height: 70,
+                                color: Colors.transparent,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    // Add your chat route navigation
+                                    context.router.push(const ChatRoute());
+                                  },
+                                  child: Row(
+                                    children: [
+                                      AspectRatio(
+                                        aspectRatio: 1,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(16),
+                                          child: Image.asset(
+                                            ImageAssets.handyman,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 15),
+                                      Flexible(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  chatData['name'] ?? 'Unknown',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  chatData['time'] ?? '',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w300,
+                                                    fontSize: 13,
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ),
+                                            Text(
+                                              chatData['services'] ?? 'No services',
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 6),
+                                            Text(
+                                              chatData['message'] ?? 'No message',
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                color: Colors.grey.shade600,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        const SizedBox(width: 15),
-                                        Flexible(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    chatData['name'] ?? 'Unknown',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    chatData['time'] ?? '',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w300,
-                                                      fontSize: 13,
-                                                      color: Colors.grey,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Text(
-                                                chatData['services'] ?? 'No services',
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 13,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 6),
-                                              Text(
-                                                chatData['message'] ?? 'No message',
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                  color: Colors.grey.shade600,
-                                                  fontSize: 13,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                );
-                              },
-                            ).separateWith(const SizedBox(height: 20)),
-                          ),
+                                ),
+                              );
+                            },
+                          ).separateWith(const SizedBox(height: 20)),
                         ),
                       ),
-                    );
-                  },
-                );
-              }
+                    ),
+                  );
+                },
+              );
 
               return const Center(child: Text('No chat stream available.'));
             },

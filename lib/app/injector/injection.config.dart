@@ -37,6 +37,7 @@ import '../../features/booking/presentation/bloc/booking_bloc.dart' as _i802;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
+import '../../features/messages/data/chat_repository.dart' as _i756;
 import '../../features/messages/domain/i_chat_repository.dart' as _i235;
 import '../../features/messages/presentation/bloc/chat_bloc.dart' as _i16;
 import '../../features/navigation/data/navigation_repository.dart' as _i490;
@@ -78,7 +79,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
     gh.lazySingleton<_i905.FirebaseUserMapper>(
         () => _i905.FirebaseUserMapper());
-    gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
+    gh.lazySingleton<_i235.IChatRepository>(() => _i756.ChatRepository());
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
     gh.factory<_i468.NotificationHandler>(
         () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
@@ -106,8 +107,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i902.LocalService>(),
           gh<_i464.RemoteService>(),
         ));
-    gh.factory<_i802.BookingBloc>(
-        () => _i802.BookingBloc(gh<_i92.IBookingRepository>()));
+    gh.lazySingleton<_i216.BookingUsecase>(
+        () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));
     gh.factory<_i663.AuthStatusBloc>(
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
     gh.factory<_i446.UserVerificationBloc>(
