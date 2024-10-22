@@ -38,54 +38,59 @@ class ProfilePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    SizedBox(
-                      height: AppSize.s6,
-                    ),
-                    Text(
-                      AppStrings.profile,
-                      style:
-                      getTextStyle(AppSize.s30, FontWeight.w500, Colors.black),
-                    ),
-                    const SizedBox(height: AppSize.s30),
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: ColorManager.welcomeTextColor,
-                          maxRadius: AppSize.s25,
-                          minRadius: AppSize.s25,
-                          child: Text(
-                            "HE",
-                            style: getTextStyle(
-                                AppSize.s18, FontWeight.w400, Colors.white),
-                          ),
-                        ),
-                        const SizedBox(width: AppSize.s15),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Osman Yilmaz",
-                              style: getTextStyle(AppSize.s16, FontWeight.w500,
-                                  ColorManager.welcomeTextColor)
-                                  .copyWith(height: 1.25),
+                      SizedBox(
+                        height: AppSize.s6,
+                      ),
+                      Text(
+                        AppStrings.profile,
+                        style: getTextStyle(
+                            AppSize.s30, FontWeight.w500, Colors.black),
+                      ),
+                      const SizedBox(height: AppSize.s30),
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: ColorManager.welcomeTextColor,
+                            maxRadius: AppSize.s25,
+                            minRadius: AppSize.s25,
+                            child: Text(
+                              "HE",
+                              style: getTextStyle(
+                                  AppSize.s18, FontWeight.w400, Colors.white),
                             ),
-                            Text(
-                              "Total 12 Orders",
-                              style: getTextStyle(AppSize.s14, FontWeight.w300,
-                                  ColorManager.tabBarColor)
-                                  .copyWith(height: 1.25),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: AppSize.s25.h),
-                    Divider(
-                      height: 0,
-                      color: Color(0xffe0e2ea),
-                    ),
-                    SizedBox(height: AppSize.s25.h),
-                  ],),
+                          ),
+                          const SizedBox(width: AppSize.s15),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Osman Yilmaz",
+                                style: getTextStyle(
+                                        AppSize.s16,
+                                        FontWeight.w500,
+                                        ColorManager.welcomeTextColor)
+                                    .copyWith(height: 1.25),
+                              ),
+                              Text(
+                                "Total 12 Orders",
+                                style: getTextStyle(
+                                        AppSize.s14,
+                                        FontWeight.w300,
+                                        ColorManager.tabBarColor)
+                                    .copyWith(height: 1.25),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(height: AppSize.s25.h),
+                      Divider(
+                        height: 0,
+                        color: Color(0xffe0e2ea),
+                      ),
+                      SizedBox(height: AppSize.s25.h),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: AppSize.s24),
@@ -95,7 +100,8 @@ class ProfilePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(AppSize.s15),
                         boxShadow: [
                           BoxShadow(
-                              blurRadius: 10, color: Color.fromARGB(51, 0, 0, 0))
+                              blurRadius: 10,
+                              color: Color.fromARGB(51, 0, 0, 0))
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.all(AppSize.s15),
@@ -130,101 +136,107 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
-                child: Column(
-                  children: [
-                  SizedBox(
-                    height: AppSize.s15,
-                  ),
-                  _buildInfoRow(
-                      ImageAssets.navbarProfile, "Personal Information"),
-                  _buildInfoRow(
-                      ImageAssets.navbarProfile, "Personal Information"),
-                  _buildInfoRow(
-                      ImageAssets.navbarProfile, "Personal Information"),
-                  _buildInfoRow(
-                      ImageAssets.navbarProfile, "Personal Information"),
-                  _buildInfoRow(
-                      ImageAssets.navbarProfile, "Personal Information"),
-                    SizedBox(
-                      height: AppSize.s15,
-                    ),
-                  Divider(
-                    color: Color(0xffe0e2ea),
-                    height: 0,
-                  ),
-                  SizedBox(
-                    height: AppSize.s30,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        padding:
-                        const EdgeInsets.symmetric(vertical: AppSize.s15),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(AppSize.s8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: AppSize.s15,
+                      ),
+                      _buildInfoRow(ImageAssets.navbarProfile, "My Demands",
+                          () {
+                        context.router.push(const BookingHistoryRoute());
+                      }),
+                      _buildInfoRow(ImageAssets.navbarProfile,
+                          "Personal Information", () {}),
+                      _buildInfoRow(ImageAssets.navbarProfile,
+                          "Personal Information", () {}),
+                      _buildInfoRow(ImageAssets.navbarProfile,
+                          "Personal Information", () {}),
+                      _buildInfoRow(ImageAssets.navbarProfile,
+                          "Personal Information", () {}),
+                      SizedBox(
+                        height: AppSize.s15,
+                      ),
+                      Divider(
+                        color: Color(0xffe0e2ea),
+                        height: 0,
+                      ),
+                      SizedBox(
+                        height: AppSize.s30,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: AppSize.s15),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(AppSize.s8),
+                            ),
+                          ),
+                          child: Text("Log Out",
+                              style: getTextStyle(
+                                  AppSize.s16, FontWeight.w600, Colors.black)),
                         ),
                       ),
-                      child: Text("Log Out",
+                      SizedBox(
+                        height: AppSize.s30,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "Hizmet Şartları",
+                            style: getTextStyle(AppSize.s12, FontWeight.w600,
+                                    ColorManager.black)
+                                .copyWith(decoration: TextDecoration.underline),
+                          ),
+                          Text(
+                            "•",
+                            style: getTextStyle(AppSize.s12, FontWeight.w600,
+                                ColorManager.black),
+                          ),
+                          Text(
+                            "Gizlilik Politikası",
+                            style: getTextStyle(AppSize.s12, FontWeight.w600,
+                                    ColorManager.black)
+                                .copyWith(decoration: TextDecoration.underline),
+                          ),
+                          Text(
+                            "•",
+                            style: getTextStyle(AppSize.s12, FontWeight.w600,
+                                ColorManager.black),
+                          ),
+                          Text(
+                            "Gizlilik Tercihleriniz",
+                            style: getTextStyle(AppSize.s12, FontWeight.w600,
+                                    ColorManager.black)
+                                .copyWith(decoration: TextDecoration.underline),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: AppSize.s30,
+                      ),
+                      Center(
+                        heightFactor: 0,
+                        child: Text(
+                          "© 2024 Aymer Prime Digital Media CO. L.L.C.\nTüm hakları saklıdır.",
                           style: getTextStyle(
-                              AppSize.s16, FontWeight.w600, Colors.black)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: AppSize.s30,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Hizmet Şartları",
-                        style: getTextStyle(
-                            AppSize.s12, FontWeight.w600, ColorManager.black).copyWith(decoration: TextDecoration.underline),
+                              AppSize.s12, FontWeight.w400, Color(0xff828e95)),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                      Text(
-                        "•",
-                        style: getTextStyle(
-                            AppSize.s12, FontWeight.w600, ColorManager.black),
+                      SizedBox(
+                        height: AppSize.s100,
                       ),
-                      Text(
-                        "Gizlilik Politikası",
-                        style: getTextStyle(
-                            AppSize.s12, FontWeight.w600, ColorManager.black).copyWith(decoration: TextDecoration.underline),
-                      ),
-                      Text(
-                        "•",
-                        style: getTextStyle(
-                            AppSize.s12, FontWeight.w600, ColorManager.black),
-                      ),
-                      Text(
-                        "Gizlilik Tercihleriniz",
-                        style: getTextStyle(
-                            AppSize.s12, FontWeight.w600, ColorManager.black).copyWith(decoration: TextDecoration.underline),
-                      )
                     ],
                   ),
-                  SizedBox(
-                    height: AppSize.s30,
-                  ),
-                  Center(
-                    heightFactor: 0,
-                    child: Text(
-                      "© 2024 Aymer Prime Digital Media CO. L.L.C.\nTüm hakları saklıdır.",
-                      style: getTextStyle(
-                          AppSize.s12, FontWeight.w400, Color(0xff828e95)),textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: AppSize.s100,
-                  ),
-                ],),
-              )
+                )
                 // Container(
                 //   padding: const EdgeInsets.all(
                 //     AppPadding.p16,
@@ -332,29 +344,32 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(String icon, String title) {
+  Widget _buildInfoRow(String icon, String title, VoidCallback onTap) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSize.s15),
-      child: Row(
-        children: [
-          SvgPicture.asset(
-            icon,
-            width: AppSize.s25,
-          ),
-          SizedBox(
-            width: AppSize.s15,
-          ),
-          Text(
-            title,
-            style: getTextStyle(AppSize.s15, FontWeight.w300, Colors.black),
-          ),
-          Spacer(),
-          Icon(
-            FontAwesomeIcons.chevronRight,
-            size: AppSize.s14,
-            color: ColorManager.welcomeTextColor,
-          )
-        ],
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              icon,
+              width: AppSize.s25,
+            ),
+            SizedBox(
+              width: AppSize.s15,
+            ),
+            Text(
+              title,
+              style: getTextStyle(AppSize.s15, FontWeight.w300, Colors.black),
+            ),
+            Spacer(),
+            Icon(
+              FontAwesomeIcons.chevronRight,
+              size: AppSize.s14,
+              color: ColorManager.welcomeTextColor,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -33,7 +33,7 @@ import '../../features/auth/presentation/bloc/user_verification/user_verificatio
     as _i446;
 import '../../features/booking/data/booking_repository.dart' as _i678;
 import '../../features/booking/domain/i_booking_repository.dart' as _i92;
-import '../../features/booking/domain/usecases/booking_usecase.dart' as _i216;
+import '../../features/booking/presentation/bloc/booking_bloc.dart' as _i802;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
@@ -84,9 +84,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
-    gh.lazySingleton<_i92.IBookingRepository>(() => _i678.BookingRepository());
     gh.lazySingleton<_i243.ISharedRepository>(
         () => _i493.SharedRepository(gh<_i464.RemoteService>()));
+    gh.lazySingleton<_i92.IBookingRepository>(
+        () => _i678.BookingRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i782.INavigationRepository>(
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
@@ -109,7 +110,6 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i902.LocalService>(),
           gh<_i464.RemoteService>(),
         ));
-    gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
     gh.lazySingleton<_i216.BookingUsecase>(
         () => _i216.BookingUsecase(gh<_i92.IBookingRepository>()));
     gh.factory<_i663.AuthStatusBloc>(
