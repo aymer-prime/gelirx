@@ -20,21 +20,21 @@ mixin _$AuthStatusEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() authCheckRequested,
     required TResult Function() signedOut,
-    required TResult Function(UserInfo user) signedIn,
+    required TResult Function(UserEntity user) signedIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authCheckRequested,
     TResult? Function()? signedOut,
-    TResult? Function(UserInfo user)? signedIn,
+    TResult? Function(UserEntity user)? signedIn,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
-    TResult Function(UserInfo user)? signedIn,
+    TResult Function(UserEntity user)? signedIn,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
   TResult when<TResult extends Object?>({
     required TResult Function() authCheckRequested,
     required TResult Function() signedOut,
-    required TResult Function(UserInfo user) signedIn,
+    required TResult Function(UserEntity user) signedIn,
   }) {
     return authCheckRequested();
   }
@@ -136,7 +136,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authCheckRequested,
     TResult? Function()? signedOut,
-    TResult? Function(UserInfo user)? signedIn,
+    TResult? Function(UserEntity user)? signedIn,
   }) {
     return authCheckRequested?.call();
   }
@@ -146,7 +146,7 @@ class _$AuthCheckRequestedImpl implements AuthCheckRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
-    TResult Function(UserInfo user)? signedIn,
+    TResult Function(UserEntity user)? signedIn,
     required TResult orElse(),
   }) {
     if (authCheckRequested != null) {
@@ -237,7 +237,7 @@ class _$SignedOutImpl implements SignedOut {
   TResult when<TResult extends Object?>({
     required TResult Function() authCheckRequested,
     required TResult Function() signedOut,
-    required TResult Function(UserInfo user) signedIn,
+    required TResult Function(UserEntity user) signedIn,
   }) {
     return signedOut();
   }
@@ -247,7 +247,7 @@ class _$SignedOutImpl implements SignedOut {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authCheckRequested,
     TResult? Function()? signedOut,
-    TResult? Function(UserInfo user)? signedIn,
+    TResult? Function(UserEntity user)? signedIn,
   }) {
     return signedOut?.call();
   }
@@ -257,7 +257,7 @@ class _$SignedOutImpl implements SignedOut {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
-    TResult Function(UserInfo user)? signedIn,
+    TResult Function(UserEntity user)? signedIn,
     required TResult orElse(),
   }) {
     if (signedOut != null) {
@@ -311,9 +311,9 @@ abstract class _$$SignedInImplCopyWith<$Res> {
           _$SignedInImpl value, $Res Function(_$SignedInImpl) then) =
       __$$SignedInImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserInfo user});
+  $Res call({UserEntity user});
 
-  $UserInfoCopyWith<$Res> get user;
+  $UserEntityCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -335,7 +335,7 @@ class __$$SignedInImplCopyWithImpl<$Res>
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as UserEntity,
     ));
   }
 
@@ -343,8 +343,8 @@ class __$$SignedInImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserInfoCopyWith<$Res> get user {
-    return $UserInfoCopyWith<$Res>(_value.user, (value) {
+  $UserEntityCopyWith<$Res> get user {
+    return $UserEntityCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -356,7 +356,7 @@ class _$SignedInImpl implements SignedIn {
   const _$SignedInImpl(this.user);
 
   @override
-  final UserInfo user;
+  final UserEntity user;
 
   @override
   String toString() {
@@ -387,7 +387,7 @@ class _$SignedInImpl implements SignedIn {
   TResult when<TResult extends Object?>({
     required TResult Function() authCheckRequested,
     required TResult Function() signedOut,
-    required TResult Function(UserInfo user) signedIn,
+    required TResult Function(UserEntity user) signedIn,
   }) {
     return signedIn(user);
   }
@@ -397,7 +397,7 @@ class _$SignedInImpl implements SignedIn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? authCheckRequested,
     TResult? Function()? signedOut,
-    TResult? Function(UserInfo user)? signedIn,
+    TResult? Function(UserEntity user)? signedIn,
   }) {
     return signedIn?.call(user);
   }
@@ -407,7 +407,7 @@ class _$SignedInImpl implements SignedIn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? authCheckRequested,
     TResult Function()? signedOut,
-    TResult Function(UserInfo user)? signedIn,
+    TResult Function(UserEntity user)? signedIn,
     required TResult orElse(),
   }) {
     if (signedIn != null) {
@@ -452,9 +452,9 @@ class _$SignedInImpl implements SignedIn {
 }
 
 abstract class SignedIn implements AuthStatusEvent {
-  const factory SignedIn(final UserInfo user) = _$SignedInImpl;
+  const factory SignedIn(final UserEntity user) = _$SignedInImpl;
 
-  UserInfo get user;
+  UserEntity get user;
 
   /// Create a copy of AuthStatusEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -468,21 +468,21 @@ mixin _$AuthStatusState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
-    required TResult Function(UserInfo user) authenticated,
+    required TResult Function(UserEntity user) authenticated,
     required TResult Function() unAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
-    TResult? Function(UserInfo user)? authenticated,
+    TResult? Function(UserEntity user)? authenticated,
     TResult? Function()? unAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
-    TResult Function(UserInfo user)? authenticated,
+    TResult Function(UserEntity user)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) =>
@@ -574,7 +574,7 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
-    required TResult Function(UserInfo user) authenticated,
+    required TResult Function(UserEntity user) authenticated,
     required TResult Function() unAuthenticated,
   }) {
     return initialState();
@@ -584,7 +584,7 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
-    TResult? Function(UserInfo user)? authenticated,
+    TResult? Function(UserEntity user)? authenticated,
     TResult? Function()? unAuthenticated,
   }) {
     return initialState?.call();
@@ -594,7 +594,7 @@ class _$InitialStateImpl implements InitialState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
-    TResult Function(UserInfo user)? authenticated,
+    TResult Function(UserEntity user)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) {
@@ -649,9 +649,9 @@ abstract class _$$AuthenticatedImplCopyWith<$Res> {
           _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
       __$$AuthenticatedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserInfo user});
+  $Res call({UserEntity user});
 
-  $UserInfoCopyWith<$Res> get user;
+  $UserEntityCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -673,7 +673,7 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserInfo,
+              as UserEntity,
     ));
   }
 
@@ -681,8 +681,8 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserInfoCopyWith<$Res> get user {
-    return $UserInfoCopyWith<$Res>(_value.user, (value) {
+  $UserEntityCopyWith<$Res> get user {
+    return $UserEntityCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
   }
@@ -694,7 +694,7 @@ class _$AuthenticatedImpl implements Authenticated {
   const _$AuthenticatedImpl(this.user);
 
   @override
-  final UserInfo user;
+  final UserEntity user;
 
   @override
   String toString() {
@@ -724,7 +724,7 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
-    required TResult Function(UserInfo user) authenticated,
+    required TResult Function(UserEntity user) authenticated,
     required TResult Function() unAuthenticated,
   }) {
     return authenticated(user);
@@ -734,7 +734,7 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
-    TResult? Function(UserInfo user)? authenticated,
+    TResult? Function(UserEntity user)? authenticated,
     TResult? Function()? unAuthenticated,
   }) {
     return authenticated?.call(user);
@@ -744,7 +744,7 @@ class _$AuthenticatedImpl implements Authenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
-    TResult Function(UserInfo user)? authenticated,
+    TResult Function(UserEntity user)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) {
@@ -790,9 +790,9 @@ class _$AuthenticatedImpl implements Authenticated {
 }
 
 abstract class Authenticated implements AuthStatusState {
-  const factory Authenticated(final UserInfo user) = _$AuthenticatedImpl;
+  const factory Authenticated(final UserEntity user) = _$AuthenticatedImpl;
 
-  UserInfo get user;
+  UserEntity get user;
 
   /// Create a copy of AuthStatusState
   /// with the given fields replaced by the non-null parameter values.
@@ -843,7 +843,7 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initialState,
-    required TResult Function(UserInfo user) authenticated,
+    required TResult Function(UserEntity user) authenticated,
     required TResult Function() unAuthenticated,
   }) {
     return unAuthenticated();
@@ -853,7 +853,7 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initialState,
-    TResult? Function(UserInfo user)? authenticated,
+    TResult? Function(UserEntity user)? authenticated,
     TResult? Function()? unAuthenticated,
   }) {
     return unAuthenticated?.call();
@@ -863,7 +863,7 @@ class _$UnAuthenticatedImpl implements UnAuthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initialState,
-    TResult Function(UserInfo user)? authenticated,
+    TResult Function(UserEntity user)? authenticated,
     TResult Function()? unAuthenticated,
     required TResult orElse(),
   }) {
