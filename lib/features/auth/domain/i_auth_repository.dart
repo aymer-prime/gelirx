@@ -13,7 +13,7 @@ abstract class IAuthRepository {
   // Future<Either<ApiException, UserEntity>> signInWithApple();
   Future<Either<ApiException, String>> signInWithPhoneNumber(
       String phoneNumber);
-  Future<Either<ApiException, UserEntity>> verifyPhoneNumber(
+  Future<Either<ApiException, Unit>> verifyPhoneNumber(
       String verificationId, String smsCode);
   Future<Either<ApiException, Unit>> registerMasterInfo(
     String firstName,
@@ -30,5 +30,6 @@ abstract class IAuthRepository {
   Future<Either<ApiException, bool>> checkPhoneNumber(String phoneNumber);
   Future<Either<ApiException, Unit>> userLogin();
   Option<UserEntity> getSignedInUser();
+  Future<Either<ApiException, UserInfo>> getUserInfo();
   Future<void> signOut();
 }

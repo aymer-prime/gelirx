@@ -95,12 +95,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           isLoading: false,
           authFailureOrSuccessOption: some(left(failure)),
         )),
-        (user) async {
-          print("user {$user}");
+        (_) async {
+          //print("user {$user}");
           if (state.isRegister) {
             emit(state.copyWith(
               isLoading: false,
-              user: some(user),
+              //user: some(user),
               authFailureOrSuccessOption: some(right(unit)),
             ));
           } else {
@@ -113,7 +113,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               (_) {
                 emit(state.copyWith(
                   isLoading: false,
-                  user: some(user),
+                  //user: some(user),
                   authFailureOrSuccessOption: some(right(unit)),
                 ));
               },

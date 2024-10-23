@@ -20,7 +20,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 import '../../features/auth/data/auth_repository.dart' as _i726;
-import '../../features/auth/data/mappers/firebase_user_maper.dart' as _i905;
 import '../../features/auth/domain/i_auth_repository.dart' as _i1026;
 import '../../features/auth/domain/usecases/sign_in_with_social_media.dart'
     as _i309;
@@ -77,8 +76,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i892.FirebaseMessaging>(
         () => injectableModules.firebaseMessaging);
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
-    gh.lazySingleton<_i905.FirebaseUserMapper>(
-        () => _i905.FirebaseUserMapper());
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
     gh.factory<_i468.NotificationHandler>(
         () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
@@ -96,6 +93,11 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i460.SharedPreferences>(),
           gh<_i974.FirebaseFirestore>(),
         ));
+    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
+          gh<_i59.FirebaseAuth>(),
+          gh<_i902.LocalService>(),
+          gh<_i464.RemoteService>(),
+        ));
     gh.lazySingleton<_i603.NavigationUsecase>(
         () => _i603.NavigationUsecase(gh<_i782.INavigationRepository>()));
     gh.factory<_i162.NavigationBloc>(
@@ -103,12 +105,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i317.IHomeRepository>(() => _i65.HomeRepository(
           gh<_i464.RemoteService>(),
           gh<_i902.LocalService>(),
-        ));
-    gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
-          gh<_i59.FirebaseAuth>(),
-          gh<_i905.FirebaseUserMapper>(),
-          gh<_i902.LocalService>(),
-          gh<_i464.RemoteService>(),
         ));
     gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
     gh.factory<_i802.BookingBloc>(

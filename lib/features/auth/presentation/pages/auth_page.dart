@@ -83,9 +83,10 @@ class AuthPage extends HookWidget {
                       state.user.fold(
                         () {},
                         (a) {
-                          context.read<AuthStatusBloc>().add(
-                                AuthStatusEvent.signedIn(a),
-                              );
+                          //todo replace with userInfo
+                          // context.read<AuthStatusBloc>().add(
+                          //       AuthStatusEvent.signedIn(a),
+                          //     );
                         },
                       );
                       context.router.replace(

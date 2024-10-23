@@ -115,15 +115,18 @@ class _ChatPageState extends State<ChatPage> {
                               hintText: 'Send message . . .',
                               fillColor: ColorManager.white,
                               suffixIcon: _messageController.text.length > 0
-                              ? IconButton(
-                                 onPressed: () {
-                                   context
-                                       .read<ChatBloc>()
-                                       .add(ChatEvent.sendMessage(chatDoc.id, _messageController.text));
-                                 setState(() {});
+                                  ? IconButton(
+                                      onPressed: () {
+                                        context.read<ChatBloc>().add(
+                                            ChatEvent.sendMessage(chatDoc.id,
+                                                _messageController.text));
+                                        setState(() {});
                                       },
-                                 icon: Icon(Icons.message, color: Colors.black))
-                                 : null,
+                                      icon: const Icon(
+                                        Icons.message,
+                                        color: Colors.black,
+                                      ))
+                                  : null,
                               focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                               ),
@@ -180,7 +183,28 @@ class MasterChatBubble extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  Stack(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(AppPadding.p8),
+                        decoration: BoxDecoration(
+                          color: ColorManager.background,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(AppPadding.p8),
+                        decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(AppSize.s4),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   Flexible(
                     flex: 4,
                     child: Container(
@@ -239,8 +263,10 @@ class UserChatBubble extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Flexible(flex: 1, fit: FlexFit.tight, child: SizedBox()),
+            const Flexible(flex: 1, fit: FlexFit.tight, child: SizedBox()),
             Flexible(
               flex: 4,
               child: Container(
@@ -262,7 +288,25 @@ class UserChatBubble extends StatelessWidget {
                 ),
               ),
             ),
-
+            Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(AppPadding.p8),
+                  decoration: BoxDecoration(
+                    color: ColorManager.blueColor,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(AppPadding.p8),
+                  decoration: BoxDecoration(
+                    color: ColorManager.white,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(AppSize.s4),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
         SizedBox(height: AppSize.s5),

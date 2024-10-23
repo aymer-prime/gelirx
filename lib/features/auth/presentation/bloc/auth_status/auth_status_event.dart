@@ -4,5 +4,5 @@ part of 'auth_status_bloc.dart';
 class AuthStatusEvent with _$AuthStatusEvent {
   const factory AuthStatusEvent.authCheckRequested() = AuthCheckRequested;
   const factory AuthStatusEvent.signedOut() = SignedOut;
-  const factory AuthStatusEvent.signedIn(UserEntity user) = SignedIn;
+  const factory AuthStatusEvent.signedIn(UserInfo user) = SignedIn;
 }

@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:gelirx/features/auth/data/dtos/auth_dtos.dart';
+import 'package:gelirx/features/auth/data/mappers/auth_mapers.dart';
 import 'package:path/path.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/network/api_exception.dart';
@@ -12,7 +14,6 @@ import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:gelirx/features/auth/data/mappers/firebase_user_maper.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../domain/entities/user_entity.dart';
 import '../domain/i_auth_repository.dart';
 
@@ -22,7 +23,6 @@ class AuthRepository implements IAuthRepository {
   // final GoogleSignIn googleSignIn;
   // final FacebookAuth facebookAuth;
   //final FirebaseAuth phoneAuth;
-  final FirebaseUserMapper firebaseUserMapper;
   final LocalService _localService;
   final RemoteService _remoteService;
 
@@ -31,7 +31,6 @@ class AuthRepository implements IAuthRepository {
     // this.googleSignIn,
     // this.facebookAuth,
     //this.phoneAuth,
-    this.firebaseUserMapper,
     this._localService,
     this._remoteService,
   );
@@ -189,7 +188,7 @@ class AuthRepository implements IAuthRepository {
 
   // Verify Phone Number with SMS Code
   @override
-  Future<Either<ApiException, UserEntity>> verifyPhoneNumber(
+  Future<Either<ApiException, Unit>> verifyPhoneNumber(
       String verificationId, String smsCode) async {
     try {
       final PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -213,10 +212,7 @@ class AuthRepository implements IAuthRepository {
       } else {
         print('No user is signed in.');
       }
-      return right(UserEntity(
-        id: user.uid,
-        phoneNumber: user.phoneNumber,
-      ));
+      return right(unit);
     } on FirebaseAuthException catch (e) {
       return left(ApiException.defaultException(e.code, e.message ?? ""));
     } on ApiException catch (apiE) {
@@ -257,13 +253,14 @@ class AuthRepository implements IAuthRepository {
         ),
         data: data,
       );
-      if (response != null) {
-        String token = response['token'];
-        String userId = response['user_id'];
-        await _localService.save(Constants.isMasterKey, '1');
-        await _localService.save(Constants.tokenKey, token);
-        await _localService.save(Constants.userIdKey, userId);
-      }
+
+      final userEntityDto = UserEntityDto.fromJson(response);
+      String token = userEntityDto.token;
+      String userId = userEntityDto.userId.toString();
+      //int isMaster = userEntityDto.isMaster;
+      await _localService.save(Constants.isMasterKey, '1');
+      await _localService.save(Constants.tokenKey, token);
+      await _localService.save(Constants.userIdKey, userId);
 
       return right(unit);
     } on ApiException catch (e) {
@@ -351,36 +348,6 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Option<UserEntity> getSignedInUser() {
-    final authToken = _localService.get(Constants.tokenKey);
-    final userId = _localService.get(Constants.userIdKey);
-    if (authToken != null && userId != null) {
-      try {
-        //todo get the user data from the backend using the token
-        return optionOf(firebaseUserMapper.toDomain(firebaseAuth.currentUser));
-      } catch (e) {
-        return none();
-      }
-    } else {
-      return none();
-    }
-  }
-
-  @override
-  Future<List<void>> signOut() async {
-    await _localService.delete(Constants.tokenKey);
-    await _localService.delete(Constants.userIdKey);
-    await _localService.delete(Constants.isMasterKey);
-    await _localService.delete(Constants.showOnboarding);
-    return Future.wait([
-      //firebaseAuth.signOut(),
-      //googleSignIn.signOut(),
-      //facebookAuth.logOut(),
-      firebaseAuth.signOut(),
-    ]);
-  }
-
-  @override
   Future<Either<ApiException, Unit>> registerUserInfo(
       String firstName, String surName) async {
     try {
@@ -403,9 +370,10 @@ class AuthRepository implements IAuthRepository {
         data: data,
       );
       if (response != null) {
-        String token = response['token'];
-        String userId = response['user_id'];
-        int isMaster = response['master'];
+        final userEntityDto = UserEntityDto.fromJson(response);
+        String token = userEntityDto.token;
+        String userId = userEntityDto.userId.toString();
+        int isMaster = userEntityDto.isMaster;
         await _localService.save(Constants.isMasterKey, isMaster.toString());
         await _localService.save(Constants.tokenKey, token);
         await _localService.save(Constants.userIdKey, userId);
@@ -467,14 +435,13 @@ class AuthRepository implements IAuthRepository {
         ),
         data: data,
       );
-      if (response != null) {
-        String token = response['token'];
-        String userId = response['user_id'];
-        int isMaster = response['master'];
-        await _localService.save(Constants.isMasterKey, isMaster.toString());
-        await _localService.save(Constants.tokenKey, token);
-        await _localService.save(Constants.userIdKey, userId);
-      }
+      final userEntityDto = UserEntityDto.fromJson(response);
+      String token = userEntityDto.token;
+      String userId = userEntityDto.userId.toString();
+      int isMaster = userEntityDto.isMaster;
+      await _localService.save(Constants.isMasterKey, isMaster.toString());
+      await _localService.save(Constants.tokenKey, token);
+      await _localService.save(Constants.userIdKey, userId);
 
       return right(unit);
     } on ApiException catch (e) {
@@ -484,5 +451,62 @@ class AuthRepository implements IAuthRepository {
         ApiException.defaultException('-1', e.toString()),
       );
     }
+  }
+
+  @override
+  Future<Either<ApiException, UserInfo>> getUserInfo() async {
+    try {
+      final id = _localService.get(Constants.userIdKey);
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}master/info.php',
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        ),
+        data: {
+          'lang': 'tr',
+          'user_id': id,
+        },
+      );
+      final userInfo = UserInfoDto.fromJson(response).toDomain();
+      return right(userInfo);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
+    }
+  }
+
+  @override
+  Option<UserEntity> getSignedInUser() {
+    final authToken = _localService.get(Constants.tokenKey);
+    final userId = _localService.get(Constants.userIdKey);
+    if (authToken != null && userId != null) {
+      try {
+        //todo get the user data from the backend using the token
+        return none();
+      } catch (e) {
+        return none();
+      }
+    } else {
+      return none();
+    }
+  }
+
+  @override
+  Future<List<void>> signOut() async {
+    await _localService.delete(Constants.tokenKey);
+    await _localService.delete(Constants.userIdKey);
+    await _localService.delete(Constants.isMasterKey);
+    await _localService.delete(Constants.showOnboarding);
+    return Future.wait([
+      //firebaseAuth.signOut(),
+      //googleSignIn.signOut(),
+      //facebookAuth.logOut(),
+      firebaseAuth.signOut(),
+    ]);
   }
 }

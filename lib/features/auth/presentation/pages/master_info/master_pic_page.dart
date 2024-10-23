@@ -160,11 +160,12 @@ class MasterPicPage extends StatelessWidget {
                                     context.read<MasterVerificationBloc>().add(
                                       MasterVerificationEvent.registerUserImage(
                                           () {
-                                        context.read<AuthStatusBloc>().add(
-                                              AuthStatusEvent.signedIn(
-                                                UserEntity(id: ''),
-                                              ),
-                                            );
+                                        //todo replace with userInfo
+                                        // context.read<AuthStatusBloc>().add(
+                                        //       AuthStatusEvent.signedIn(
+                                        //         UserEntity(id: ''),
+                                        //       ),
+                                        //     );
                                         context.router.replace(
                                             const AlternateMainRoute());
                                       }),
@@ -183,11 +184,12 @@ class MasterPicPage extends StatelessWidget {
                                 height: AppSize.s48.h,
                                 child: OutlinedButton(
                                   onPressed: () {
-                                    context.read<AuthStatusBloc>().add(
-                                          AuthStatusEvent.signedIn(
-                                            UserEntity(id: ''),
-                                          ),
-                                        );
+                                    //todo replace with userInfo
+                                    // context.read<AuthStatusBloc>().add(
+                                    //       AuthStatusEvent.signedIn(
+
+                                    //       ),
+                                    //     );
                                     context.router
                                         .replace(const AlternateMainRoute());
                                   },

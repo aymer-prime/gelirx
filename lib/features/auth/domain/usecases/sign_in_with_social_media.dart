@@ -30,7 +30,7 @@ class SignInUseCase {
     return await repository.signInWithPhoneNumber(phoneNumber);
   }
 
-  Future<Either<ApiException, UserEntity>> otpVerification(
+  Future<Either<ApiException, Unit>> otpVerification(
       String verificationId, String otp) async {
     return await repository.verifyPhoneNumber(verificationId, otp);
   }

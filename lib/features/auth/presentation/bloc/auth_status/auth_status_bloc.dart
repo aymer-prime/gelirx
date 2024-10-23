@@ -12,10 +12,10 @@ part 'auth_status_bloc.freezed.dart';
 class AuthStatusBloc extends Bloc<AuthStatusEvent, AuthStatusState> {
   IAuthRepository _iAuthRepository;
   AuthStatusBloc(this._iAuthRepository) : super(const InitialState()) {
-    on<AuthCheckRequested>((event, emit) {
-      final userOption = _iAuthRepository.getSignedInUser();
+    on<AuthCheckRequested>((event, emit) async{
+      final userOption = await _iAuthRepository.getUserInfo();
       userOption.fold(
-        () => emit(const AuthStatusState.unAuthenticated()),
+        (failure) => emit(const AuthStatusState.unAuthenticated()),
         (user) => emit(AuthStatusState.authenticated(user)),
       );
     });
@@ -25,7 +25,6 @@ class AuthStatusBloc extends Bloc<AuthStatusEvent, AuthStatusState> {
     on<SignedOut>((event, emit) async {
       await _iAuthRepository.signOut();
       emit(const AuthStatusState.unAuthenticated());
-      
     });
   }
 }
