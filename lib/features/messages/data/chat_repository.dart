@@ -4,7 +4,7 @@ import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:uuid/v4.dart';
 import '../domain/i_chat_repository.dart';
 
 @LazySingleton(as: IChatRepository)
@@ -28,6 +28,24 @@ class ChatRepository implements IChatRepository {
               )));
     } catch (e) {
       yield Left(ApiException.defaultException("0", e.toString()));
+    }
+  }
+
+  Future<Either<ApiException, void>> sendMessage(
+      String bookingId, String message) async {
+    final newMessage = {
+      'sender_id': _preferences.get(Constants.userIdKey),
+      'content': message,
+      'date': Timestamp.now(),
+      'message_id': UuidV4().generate()
+    };
+    try {
+      await _firestore.collection('booking').doc(bookingId).update({
+        'messages': FieldValue.arrayUnion([newMessage]),
+      });
+      return right(null);
+    } catch (e) {
+      return left(ApiException.defaultException("0", e.toString()));
     }
   }
 }

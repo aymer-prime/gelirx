@@ -21,6 +21,7 @@ mixin _$ChatEvent {
     required TResult Function() fetchChats,
     required TResult Function(Either<ApiException, dynamic> chats) getChat,
     required TResult Function(int index) selectChat,
+    required TResult Function(String bookingId, String message) sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$ChatEvent {
     TResult? Function()? fetchChats,
     TResult? Function(Either<ApiException, dynamic> chats)? getChat,
     TResult? Function(int index)? selectChat,
+    TResult? Function(String bookingId, String message)? sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$ChatEvent {
     TResult Function()? fetchChats,
     TResult Function(Either<ApiException, dynamic> chats)? getChat,
     TResult Function(int index)? selectChat,
+    TResult Function(String bookingId, String message)? sendMessage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$ChatEvent {
     required TResult Function(FetchChats value) fetchChats,
     required TResult Function(GetChat value) getChat,
     required TResult Function(SelectChat value) selectChat,
+    required TResult Function(SendMessage value) sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$ChatEvent {
     TResult? Function(FetchChats value)? fetchChats,
     TResult? Function(GetChat value)? getChat,
     TResult? Function(SelectChat value)? selectChat,
+    TResult? Function(SendMessage value)? sendMessage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$ChatEvent {
     TResult Function(FetchChats value)? fetchChats,
     TResult Function(GetChat value)? getChat,
     TResult Function(SelectChat value)? selectChat,
+    TResult Function(SendMessage value)? sendMessage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,6 +132,7 @@ class _$FetchChatsImpl implements FetchChats {
     required TResult Function() fetchChats,
     required TResult Function(Either<ApiException, dynamic> chats) getChat,
     required TResult Function(int index) selectChat,
+    required TResult Function(String bookingId, String message) sendMessage,
   }) {
     return fetchChats();
   }
@@ -136,6 +143,7 @@ class _$FetchChatsImpl implements FetchChats {
     TResult? Function()? fetchChats,
     TResult? Function(Either<ApiException, dynamic> chats)? getChat,
     TResult? Function(int index)? selectChat,
+    TResult? Function(String bookingId, String message)? sendMessage,
   }) {
     return fetchChats?.call();
   }
@@ -146,6 +154,7 @@ class _$FetchChatsImpl implements FetchChats {
     TResult Function()? fetchChats,
     TResult Function(Either<ApiException, dynamic> chats)? getChat,
     TResult Function(int index)? selectChat,
+    TResult Function(String bookingId, String message)? sendMessage,
     required TResult orElse(),
   }) {
     if (fetchChats != null) {
@@ -160,6 +169,7 @@ class _$FetchChatsImpl implements FetchChats {
     required TResult Function(FetchChats value) fetchChats,
     required TResult Function(GetChat value) getChat,
     required TResult Function(SelectChat value) selectChat,
+    required TResult Function(SendMessage value) sendMessage,
   }) {
     return fetchChats(this);
   }
@@ -170,6 +180,7 @@ class _$FetchChatsImpl implements FetchChats {
     TResult? Function(FetchChats value)? fetchChats,
     TResult? Function(GetChat value)? getChat,
     TResult? Function(SelectChat value)? selectChat,
+    TResult? Function(SendMessage value)? sendMessage,
   }) {
     return fetchChats?.call(this);
   }
@@ -180,6 +191,7 @@ class _$FetchChatsImpl implements FetchChats {
     TResult Function(FetchChats value)? fetchChats,
     TResult Function(GetChat value)? getChat,
     TResult Function(SelectChat value)? selectChat,
+    TResult Function(SendMessage value)? sendMessage,
     required TResult orElse(),
   }) {
     if (fetchChats != null) {
@@ -264,6 +276,7 @@ class _$GetChatImpl implements GetChat {
     required TResult Function() fetchChats,
     required TResult Function(Either<ApiException, dynamic> chats) getChat,
     required TResult Function(int index) selectChat,
+    required TResult Function(String bookingId, String message) sendMessage,
   }) {
     return getChat(chats);
   }
@@ -274,6 +287,7 @@ class _$GetChatImpl implements GetChat {
     TResult? Function()? fetchChats,
     TResult? Function(Either<ApiException, dynamic> chats)? getChat,
     TResult? Function(int index)? selectChat,
+    TResult? Function(String bookingId, String message)? sendMessage,
   }) {
     return getChat?.call(chats);
   }
@@ -284,6 +298,7 @@ class _$GetChatImpl implements GetChat {
     TResult Function()? fetchChats,
     TResult Function(Either<ApiException, dynamic> chats)? getChat,
     TResult Function(int index)? selectChat,
+    TResult Function(String bookingId, String message)? sendMessage,
     required TResult orElse(),
   }) {
     if (getChat != null) {
@@ -298,6 +313,7 @@ class _$GetChatImpl implements GetChat {
     required TResult Function(FetchChats value) fetchChats,
     required TResult Function(GetChat value) getChat,
     required TResult Function(SelectChat value) selectChat,
+    required TResult Function(SendMessage value) sendMessage,
   }) {
     return getChat(this);
   }
@@ -308,6 +324,7 @@ class _$GetChatImpl implements GetChat {
     TResult? Function(FetchChats value)? fetchChats,
     TResult? Function(GetChat value)? getChat,
     TResult? Function(SelectChat value)? selectChat,
+    TResult? Function(SendMessage value)? sendMessage,
   }) {
     return getChat?.call(this);
   }
@@ -318,6 +335,7 @@ class _$GetChatImpl implements GetChat {
     TResult Function(FetchChats value)? fetchChats,
     TResult Function(GetChat value)? getChat,
     TResult Function(SelectChat value)? selectChat,
+    TResult Function(SendMessage value)? sendMessage,
     required TResult orElse(),
   }) {
     if (getChat != null) {
@@ -411,6 +429,7 @@ class _$SelectChatImpl implements SelectChat {
     required TResult Function() fetchChats,
     required TResult Function(Either<ApiException, dynamic> chats) getChat,
     required TResult Function(int index) selectChat,
+    required TResult Function(String bookingId, String message) sendMessage,
   }) {
     return selectChat(index);
   }
@@ -421,6 +440,7 @@ class _$SelectChatImpl implements SelectChat {
     TResult? Function()? fetchChats,
     TResult? Function(Either<ApiException, dynamic> chats)? getChat,
     TResult? Function(int index)? selectChat,
+    TResult? Function(String bookingId, String message)? sendMessage,
   }) {
     return selectChat?.call(index);
   }
@@ -431,6 +451,7 @@ class _$SelectChatImpl implements SelectChat {
     TResult Function()? fetchChats,
     TResult Function(Either<ApiException, dynamic> chats)? getChat,
     TResult Function(int index)? selectChat,
+    TResult Function(String bookingId, String message)? sendMessage,
     required TResult orElse(),
   }) {
     if (selectChat != null) {
@@ -445,6 +466,7 @@ class _$SelectChatImpl implements SelectChat {
     required TResult Function(FetchChats value) fetchChats,
     required TResult Function(GetChat value) getChat,
     required TResult Function(SelectChat value) selectChat,
+    required TResult Function(SendMessage value) sendMessage,
   }) {
     return selectChat(this);
   }
@@ -455,6 +477,7 @@ class _$SelectChatImpl implements SelectChat {
     TResult? Function(FetchChats value)? fetchChats,
     TResult? Function(GetChat value)? getChat,
     TResult? Function(SelectChat value)? selectChat,
+    TResult? Function(SendMessage value)? sendMessage,
   }) {
     return selectChat?.call(this);
   }
@@ -465,6 +488,7 @@ class _$SelectChatImpl implements SelectChat {
     TResult Function(FetchChats value)? fetchChats,
     TResult Function(GetChat value)? getChat,
     TResult Function(SelectChat value)? selectChat,
+    TResult Function(SendMessage value)? sendMessage,
     required TResult orElse(),
   }) {
     if (selectChat != null) {
@@ -483,6 +507,169 @@ abstract class SelectChat implements ChatEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectChatImplCopyWith<_$SelectChatImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SendMessageImplCopyWith<$Res> {
+  factory _$$SendMessageImplCopyWith(
+          _$SendMessageImpl value, $Res Function(_$SendMessageImpl) then) =
+      __$$SendMessageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String bookingId, String message});
+}
+
+/// @nodoc
+class __$$SendMessageImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$SendMessageImpl>
+    implements _$$SendMessageImplCopyWith<$Res> {
+  __$$SendMessageImplCopyWithImpl(
+      _$SendMessageImpl _value, $Res Function(_$SendMessageImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ChatEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bookingId = null,
+    Object? message = null,
+  }) {
+    return _then(_$SendMessageImpl(
+      null == bookingId
+          ? _value.bookingId
+          : bookingId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SendMessageImpl implements SendMessage {
+  const _$SendMessageImpl(this.bookingId, this.message);
+
+  @override
+  final String bookingId;
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'ChatEvent.sendMessage(bookingId: $bookingId, message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SendMessageImpl &&
+            (identical(other.bookingId, bookingId) ||
+                other.bookingId == bookingId) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, bookingId, message);
+
+  /// Create a copy of ChatEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SendMessageImplCopyWith<_$SendMessageImpl> get copyWith =>
+      __$$SendMessageImplCopyWithImpl<_$SendMessageImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchChats,
+    required TResult Function(Either<ApiException, dynamic> chats) getChat,
+    required TResult Function(int index) selectChat,
+    required TResult Function(String bookingId, String message) sendMessage,
+  }) {
+    return sendMessage(bookingId, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchChats,
+    TResult? Function(Either<ApiException, dynamic> chats)? getChat,
+    TResult? Function(int index)? selectChat,
+    TResult? Function(String bookingId, String message)? sendMessage,
+  }) {
+    return sendMessage?.call(bookingId, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchChats,
+    TResult Function(Either<ApiException, dynamic> chats)? getChat,
+    TResult Function(int index)? selectChat,
+    TResult Function(String bookingId, String message)? sendMessage,
+    required TResult orElse(),
+  }) {
+    if (sendMessage != null) {
+      return sendMessage(bookingId, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchChats value) fetchChats,
+    required TResult Function(GetChat value) getChat,
+    required TResult Function(SelectChat value) selectChat,
+    required TResult Function(SendMessage value) sendMessage,
+  }) {
+    return sendMessage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchChats value)? fetchChats,
+    TResult? Function(GetChat value)? getChat,
+    TResult? Function(SelectChat value)? selectChat,
+    TResult? Function(SendMessage value)? sendMessage,
+  }) {
+    return sendMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchChats value)? fetchChats,
+    TResult Function(GetChat value)? getChat,
+    TResult Function(SelectChat value)? selectChat,
+    TResult Function(SendMessage value)? sendMessage,
+    required TResult orElse(),
+  }) {
+    if (sendMessage != null) {
+      return sendMessage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SendMessage implements ChatEvent {
+  const factory SendMessage(final String bookingId, final String message) =
+      _$SendMessageImpl;
+
+  String get bookingId;
+  String get message;
+
+  /// Create a copy of ChatEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SendMessageImplCopyWith<_$SendMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

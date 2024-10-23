@@ -6,4 +6,5 @@ class ChatEvent with _$ChatEvent {
   const factory ChatEvent.getChat(Either<ApiException, dynamic> chats) =
       GetChat;
   const factory ChatEvent.selectChat(int index) = SelectChat;
+  const factory ChatEvent.sendMessage(String bookingId, String message) = SendMessage;
 }

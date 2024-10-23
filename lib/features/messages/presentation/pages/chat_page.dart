@@ -21,10 +21,14 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final ScrollController _controller = ScrollController();
+  final TextEditingController _messageController = TextEditingController();
   bool _needsScroll = true;
 
   @override
   void initState() {
+    _messageController.addListener(() {
+      setState(() {});
+    });
     if (_needsScroll) {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => _controller.animateTo(
@@ -36,6 +40,12 @@ class _ChatPageState extends State<ChatPage> {
       _needsScroll = false;
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -54,6 +64,7 @@ class _ChatPageState extends State<ChatPage> {
                   children: [
                     ChatHeader(),
                     Divider(height: 0),
+                    SizedBox(height: AppSize.s10)
                   ],
                 ),
                 Expanded(
@@ -64,12 +75,13 @@ class _ChatPageState extends State<ChatPage> {
                       controller: _controller,
                       itemCount: chatData["messages"].length ?? 0,
                       itemBuilder: (context, index) {
-                        return chatData["sender_id"] == "39"
+                        final messages = chatData["messages"];
+                        return messages[index]["sender_id"] == "39"
                             ? UserChatBubble(
-                                message: chatData["messages"][index],
+                                message: messages[index],
                               )
                             : MasterChatBubble(
-                                message: chatData["messages"][index]['content'],
+                                message: messages[index],
                               );
                       },
                       separatorBuilder: (context, index) =>
@@ -95,12 +107,26 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                         child: ClipOval(
                           child: TextField(
+                            controller: _messageController,
                             onTapOutside: (_) =>
                                 FocusManager.instance.primaryFocus?.unfocus(),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               hintText: 'Send message . . .',
                               fillColor: ColorManager.white,
+                              suffixIcon: _messageController.text.length > 0
+                              ? IconButton(
+                                 onPressed: () {
+                                   context
+                                       .read<ChatBloc>()
+                                       .add(ChatEvent.sendMessage(chatDoc.id, _messageController.text));
+                                 setState(() {});
+                                      },
+                                 icon: Icon(Icons.message, color: Colors.black))
+                                 : null,
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
                               border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                               ),
@@ -124,7 +150,7 @@ class _ChatPageState extends State<ChatPage> {
 }
 
 class MasterChatBubble extends StatelessWidget {
-  final String message;
+  final dynamic message;
   const MasterChatBubble({
     super.key,
     required this.message,
@@ -168,7 +194,7 @@ class MasterChatBubble extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        message,
+                        message['content'],
                         style: getRegularStyle(
                           color: ColorManager.black,
                           fontSize: FontSizeManager.s14,
@@ -183,7 +209,8 @@ class MasterChatBubble extends StatelessWidget {
               SizedBox(
                 height: AppSize.s16,
                 child: Text(
-                  DateFormat('dd MMMM - hh:mm').format(DateTime.now()),
+                  message['content'],
+                  // DateFormat('dd MMMM - hh:mm').format(date),
                   style: getLightStyle(
                     color: ColorManager.tabBarColor,
                     fontSize: FontSizeManager.s13,
@@ -199,7 +226,7 @@ class MasterChatBubble extends StatelessWidget {
 }
 
 class UserChatBubble extends StatelessWidget {
-  final String message;
+  final dynamic message;
   const UserChatBubble({
     super.key,
     required this.message,
@@ -227,7 +254,7 @@ class UserChatBubble extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  message,
+                  message['content'],
                   style: getRegularStyle(
                     color: ColorManager.white,
                     fontSize: FontSizeManager.s14,
@@ -235,6 +262,7 @@ class UserChatBubble extends StatelessWidget {
                 ),
               ),
             ),
+
           ],
         ),
         SizedBox(height: AppSize.s5),
