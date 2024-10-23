@@ -172,7 +172,7 @@ class BookingHistoryCard extends StatelessWidget {
         child: Container(
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                     blurRadius: AppSize.s10,
                     spreadRadius: 1,
@@ -199,7 +199,7 @@ class BookingHistoryCard extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               backgroundImage: AssetImage(ImageAssets.handyman),
                               maxRadius: AppSize.s25,
                               minRadius: AppSize.s25,
@@ -296,7 +296,7 @@ class StatusContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (status) {
-      case '0':
+      case '1':
         return Container(
           padding: const EdgeInsets.all(AppSize.s8),
           decoration: BoxDecoration(
@@ -308,7 +308,31 @@ class StatusContainer extends StatelessWidget {
                 getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
           ),
         );
-      case '1':
+      case '2':
+        return Container(
+          padding: const EdgeInsets.all(AppSize.s8),
+          decoration: BoxDecoration(
+              color: Colors.orange,
+              borderRadius: BorderRadius.circular(AppSize.s8)),
+          child: Text(
+            'Accepted',
+            style:
+                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
+          ),
+        );
+      case '3':
+        return Container(
+          padding: const EdgeInsets.all(AppSize.s8),
+          decoration: BoxDecoration(
+              color: Colors.orange,
+              borderRadius: BorderRadius.circular(AppSize.s8)),
+          child: Text(
+            'On Way',
+            style:
+                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
+          ),
+        );
+      case '4':
         return Container(
           padding: const EdgeInsets.all(AppSize.s8),
           decoration: BoxDecoration(
@@ -327,7 +351,7 @@ class StatusContainer extends StatelessWidget {
               color: Colors.red,
               borderRadius: BorderRadius.circular(AppSize.s8)),
           child: Text(
-            'Canceled',
+            'Declined',
             style:
                 getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
           ),
