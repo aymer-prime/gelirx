@@ -2,14 +2,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
-import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/booking/domain/entities/booking_entity.dart';
 import 'package:gelirx/features/booking/presentation/bloc/booking_bloc.dart';
+import 'package:gelirx/features/booking/presentation/widgets/booking_history_card.dart';
+import 'package:gelirx/features/booking/presentation/widgets/booking_history_placeholder.dart';
 import 'package:gelirx/features/home/presentation/widgets/dialogs/master_dialog_screen.dart';
 import 'package:intl/intl.dart';
 
@@ -30,85 +31,9 @@ class BookingHistoryPage extends StatelessWidget {
           child: BlocBuilder<BookingBloc, BookingState>(
             builder: (context, state) {
               return state.maybeMap(
-                orElse: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                loadSuccess: (successResult) => Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: AppSize.s10, left: AppSize.s15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              MasterDialogScreen.instance().hide();
-                              context.router
-                                  .replace(const AlternateMainRoute());
-                            },
-                            child: const SizedBox(
-                              height: AppSize.s30,
-                              width: AppSize.s30,
-                              child: Icon(FontAwesomeIcons.arrowLeft,
-                                  size: AppSize.s18),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: AppSize.s24),
-                            child: RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'Past Requests ',
-                                    style: getTextStyle(AppSize.s24,
-                                            FontWeight.w500, Colors.black)
-                                        .copyWith(
-                                      height: 1.1,
-                                      letterSpacing: -0.1,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: "(${successResult.bookings.length})",
-                                    style: getTextStyle(
-                                            AppSize.s24,
-                                            FontWeight.w500,
-                                            ColorManager.joyColor)
-                                        .copyWith(
-                                      height: 1.1,
-                                      letterSpacing: -0.1,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: AppSize.s30),
-                    Expanded(
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: successResult.bookings.length,
-                        itemBuilder: (context, index) {
-                          var booking = successResult.bookings[index];
-                          return BookingHistoryCard(
-                            name: 'Osman Yancigil',
-                            serviceName: 'Radiator Cleaning',
-                            date: DateFormat('dd.MM.yyyy hh:mm')
-                                .format(booking.sendingDate),
-                            status: booking.status,
-                            rating: 4.1,
-                            totalInteractions: 24,
-                          );
-                        },
-                        separatorBuilder: (context, index) =>
-                            const SizedBox(height: AppSize.s20),
-                      ),
-                    ),
-                    const SizedBox(height: AppSize.s20),
-                  ],
+                orElse: () => const BookingHistoryPlaceholder(),
+                loadSuccess: (successResult) => BookingHistoryContent(
+                  bookings: successResult.bookings,
                 ),
                 loadFailed: (failure) {
                   return Padding(
@@ -146,217 +71,84 @@ class BookingHistoryPage extends StatelessWidget {
   }
 }
 
-class BookingHistoryCard extends StatelessWidget {
-  final String name;
-  final String serviceName;
-  final String date;
-  final String status;
-  final double rating;
-  final int totalInteractions;
-
-  const BookingHistoryCard(
-      {super.key,
-      required this.name,
-      required this.serviceName,
-      required this.date,
-      required this.status,
-      required this.rating,
-      required this.totalInteractions});
+class BookingHistoryContent extends StatelessWidget {
+  final List<Booking> bookings;
+  const BookingHistoryContent({super.key, required this.bookings});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
-      child: AspectRatio(
-        aspectRatio: 1.2,
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                    blurRadius: AppSize.s10,
-                    spreadRadius: 1,
-                    color: Color.fromARGB(51, 0, 0, 0))
-              ],
-              borderRadius:
-                  BorderRadius.circular(15) // Adjust the radius as needed
-              ),
-          child: Stack(
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: AppSize.s10, left: AppSize.s15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Positioned.fill(
-                  child: Image.asset(ImageAssets.tesisat, fit: BoxFit.cover)),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: AppSize.s10, horizontal: AppSize.s15),
-                    child: Column(
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage(ImageAssets.handyman),
-                              maxRadius: AppSize.s25,
-                              minRadius: AppSize.s25,
-                            ),
-                            SizedBox(width: AppSize.s12),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(name,
-                                    style: getTextStyle(AppSize.s16,
-                                            FontWeight.w400, Colors.black)
-                                        .copyWith(
-                                            letterSpacing: -0.1, height: 1.1)),
-                                Text(serviceName,
-                                    style: getTextStyle(AppSize.s13,
-                                            FontWeight.w300, Colors.black)
-                                        .copyWith(
-                                            letterSpacing: -0.1, height: 1.1)),
-                                Text(date,
-                                    style: getTextStyle(
-                                            AppSize.s13,
-                                            FontWeight.w300,
-                                            ColorManager.tabBarColor)
-                                        .copyWith(
-                                            letterSpacing: -0.1, height: 1.1)),
-                                StatusContainer(status: status)
-                              ].separateWith(
-                                const SizedBox(height: AppSize.s5),
-                              ),
-                            ),
-                            SizedBox(width: AppSize.s10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.solidStar,
-                                  color: ColorManager.ratingColor,
-                                  size: AppSize.s15,
-                                ),
-                                SizedBox(width: AppSize.s5),
-                                Text(
-                                  rating.toString(),
-                                  style: getTextStyle(
-                                      AppSize.s14,
-                                      FontWeight.w400,
-                                      ColorManager.textSubtitleColor),
-                                ),
-                                SizedBox(width: AppSize.s5),
-                                Text(
-                                  "(24)",
-                                  style: getTextStyle(
-                                      AppSize.s14,
-                                      FontWeight.w300,
-                                      ColorManager.textSubtitleColor),
-                                ),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
-                    ),
+              GestureDetector(
+                onTap: () {
+                  MasterDialogScreen.instance().hide();
+                  context.router.replace(const AlternateMainRoute());
+                },
+                child: const SizedBox(
+                  height: AppSize.s30,
+                  width: AppSize.s30,
+                  child: Icon(FontAwesomeIcons.arrowLeft, size: AppSize.s18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: AppSize.s24),
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Past Requests ',
+                        style: getTextStyle(
+                                AppSize.s24, FontWeight.w500, Colors.black)
+                            .copyWith(
+                          height: 1.1,
+                          letterSpacing: -0.1,
+                        ),
+                      ),
+                      TextSpan(
+                        text: "(${bookings.length})",
+                        style: getTextStyle(AppSize.s24, FontWeight.w500,
+                                ColorManager.joyColor)
+                            .copyWith(
+                          height: 1.1,
+                          letterSpacing: -0.1,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Positioned(
-                top: AppSize.s10,
-                right: AppSize.s10,
-                child: Container(
-                  width: AppSize.s40,
-                  height: AppSize.s40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: ColorManager.lightGrey,
-                  ),
-                  child: const Icon(FontAwesomeIcons.heart, size: AppSize.s18),
-                ),
-              )
             ],
           ),
         ),
-      ),
+        const SizedBox(height: AppSize.s30),
+        Expanded(
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemCount: bookings.length,
+            itemBuilder: (context, index) {
+              var booking = bookings[index];
+              return BookingHistoryCard(
+                name: 'Osman Yancigil',
+                serviceName: 'Radiator Cleaning',
+                date:
+                    DateFormat('dd.MM.yyyy hh:mm').format(booking.sendingDate),
+                status: booking.status,
+                rating: 4.1,
+                totalInteractions: 24,
+              );
+            },
+            separatorBuilder: (context, index) =>
+                const SizedBox(height: AppSize.s20),
+          ),
+        ),
+        const SizedBox(height: AppSize.s20),
+      ],
     );
-  }
-}
-
-class StatusContainer extends StatelessWidget {
-  const StatusContainer({
-    super.key,
-    required this.status,
-  });
-
-  final String status;
-
-  @override
-  Widget build(BuildContext context) {
-    switch (status) {
-      case '1':
-        return Container(
-          padding: const EdgeInsets.all(AppSize.s8),
-          decoration: BoxDecoration(
-              color: Color(0xffffc000),
-              borderRadius: BorderRadius.circular(AppSize.s8)),
-          child: Text(
-            'On Hold',
-            style:
-                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
-          ),
-        );
-      case '2':
-        return Container(
-          padding: const EdgeInsets.all(AppSize.s8),
-          decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: BorderRadius.circular(AppSize.s8)),
-          child: Text(
-            'Accepted',
-            style:
-                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
-          ),
-        );
-      case '3':
-        return Container(
-          padding: const EdgeInsets.all(AppSize.s8),
-          decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: BorderRadius.circular(AppSize.s8)),
-          child: Text(
-            'On Way',
-            style:
-                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
-          ),
-        );
-      case '4':
-        return Container(
-          padding: const EdgeInsets.all(AppSize.s8),
-          decoration: BoxDecoration(
-              color: Color(0xff00a575),
-              borderRadius: BorderRadius.circular(AppSize.s8)),
-          child: Text(
-            'Completed',
-            style:
-                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
-          ),
-        );
-      default:
-        return Container(
-          padding: const EdgeInsets.all(AppSize.s8),
-          decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(AppSize.s8)),
-          child: Text(
-            'Declined',
-            style:
-                getTextStyle(AppSize.s14, FontWeight.w500, ColorManager.white),
-          ),
-        );
-    }
   }
 }
 

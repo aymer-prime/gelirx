@@ -170,6 +170,25 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MasterActiveServicePage]
+class MasterActiveServiceRoute extends PageRouteInfo<void> {
+  const MasterActiveServiceRoute({List<PageRouteInfo>? children})
+      : super(
+          MasterActiveServiceRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MasterActiveServiceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MasterActiveServicePage();
+    },
+  );
+}
+
+/// generated route for
 /// [MasterDashboardPage]
 class MasterDashboardRoute extends PageRouteInfo<void> {
   const MasterDashboardRoute({List<PageRouteInfo>? children})

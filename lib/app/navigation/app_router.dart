@@ -7,13 +7,13 @@ import 'package:gelirx/features/auth/presentation/pages/master_info/master_form_
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_info_wrapper.dart';
 import 'package:gelirx/features/auth/presentation/pages/user_info/user_info_page.dart';
 import 'package:gelirx/features/home/presentation/pages/booking_details_page.dart';
-import 'package:gelirx/features/home/presentation/pages/old/home_page_old.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/old/home_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/auth_page.dart';
 import 'package:gelirx/features/main/presentation/page/alternate_main_page.dart';
 import 'package:gelirx/features/main/presentation/page/old/main_page.dart';
 import 'package:gelirx/features/main/presentation/page/master_main_page.dart';
+import 'package:gelirx/features/master_dashboard/presentation/pages/master_active_service_page.dart';
 import 'package:gelirx/features/messages/presentation/pages/chat_page.dart';
 import 'package:gelirx/features/onboarding/presentation/onboarding_page.dart';
 import 'package:gelirx/features/order_details/presentation/pages/order_details_page.dart';
@@ -90,6 +90,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: ChatRoute.page,
+        ),
+        AutoRoute(
+          page: MasterActiveServiceRoute.page,
         )
       ];
 }

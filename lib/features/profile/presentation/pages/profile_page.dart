@@ -140,9 +140,11 @@ class ProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: AppSize.s15,
-                      ),
+                      const SizedBox(height: AppSize.s15),
+                      _buildInfoRow(
+                          ImageAssets.navbarProfile, "Master Dashboard", () {
+                        context.router.push(const MasterDashboardRoute());
+                      }),
                       _buildInfoRow(ImageAssets.navbarProfile, "My Demands",
                           () {
                         context.router.push(const BookingHistoryRoute());
@@ -153,18 +155,12 @@ class ProfilePage extends StatelessWidget {
                           "Personal Information", () {}),
                       _buildInfoRow(ImageAssets.navbarProfile,
                           "Personal Information", () {}),
-                      _buildInfoRow(ImageAssets.navbarProfile,
-                          "Personal Information", () {}),
-                      SizedBox(
-                        height: AppSize.s15,
-                      ),
-                      Divider(
+                      const SizedBox(height: AppSize.s15),
+                      const Divider(
                         color: Color(0xffe0e2ea),
                         height: 0,
                       ),
-                      SizedBox(
-                        height: AppSize.s30,
-                      ),
+                      const SizedBox(height: AppSize.s30),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
