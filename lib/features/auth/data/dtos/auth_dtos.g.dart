@@ -42,7 +42,7 @@ Map<String, dynamic> _$$UserInfoDtoImplToJson(_$UserInfoDtoImpl instance) =>
 _$UserEntityDtoImpl _$$UserEntityDtoImplFromJson(Map json) =>
     _$UserEntityDtoImpl(
       isMaster: (json['master'] as num).toInt(),
-      userId: (json['user_id'] as num).toInt(),
+      userId: json['user_id'] as String,
       token: json['token'] as String,
     );
 

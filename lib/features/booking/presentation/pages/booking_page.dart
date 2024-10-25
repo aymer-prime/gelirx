@@ -35,33 +35,34 @@ class BookingHistoryPage extends StatelessWidget {
                 loadSuccess: (successResult) => BookingHistoryContent(
                   bookings: successResult.bookings,
                 ),
-                loadFailed: (failure) {
-                  return Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(failure.apiException.toString()),
-                        const SizedBox(height: AppSize.s20),
-                        ElevatedButton(
-                          onPressed: () {
-                            print('object');
-                            context.read<BookingBloc>().add(
-                                  const BookingEvent.getBookings('39'),
-                                );
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 30.0,
-                              vertical: 16.0,
-                            ),
-                            child: Text('Try Again'),
+                loadFailed: (failure) => Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        failure.apiException.toString(),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: AppSize.s20),
+                      ElevatedButton(
+                        onPressed: () {
+                          print('object');
+                          context.read<BookingBloc>().add(
+                                const BookingEvent.getBookings('39'),
+                              );
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 30.0,
+                            vertical: 16.0,
                           ),
-                        )
-                      ],
-                    ),
-                  );
-                },
+                          child: Text('Try Again'),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               );
             },
           ),
@@ -127,26 +128,30 @@ class BookingHistoryContent extends StatelessWidget {
         ),
         const SizedBox(height: AppSize.s30),
         Expanded(
-          child: ListView.separated(
+          child: ListView.builder(
             shrinkWrap: true,
             itemCount: bookings.length,
             itemBuilder: (context, index) {
               var booking = bookings[index];
-              return BookingHistoryCard(
-                name: 'Osman Yancigil',
-                serviceName: 'Radiator Cleaning',
-                date:
-                    DateFormat('dd.MM.yyyy hh:mm').format(booking.sendingDate),
-                status: booking.status,
-                rating: 4.1,
-                totalInteractions: 24,
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSize.s24,
+                  vertical: AppPadding.p12,
+                ),
+                child: BookingHistoryCard(
+                  name: 'Osman Yancigil',
+                  serviceName: 'Radiator Cleaning',
+                  date: DateFormat('dd.MM.yyyy hh:mm')
+                      .format(booking.sendingDate),
+                  status: booking.status,
+                  rating: 4.1,
+                  totalInteractions: 24,
+                ),
               );
             },
-            separatorBuilder: (context, index) =>
-                const SizedBox(height: AppSize.s20),
           ),
         ),
-        const SizedBox(height: AppSize.s20),
+        //const SizedBox(height: AppSize.s20),
       ],
     );
   }

@@ -33,6 +33,7 @@ import '../../features/auth/presentation/bloc/user_verification/user_verificatio
 import '../../features/booking/data/booking_repository.dart' as _i678;
 import '../../features/booking/domain/i_booking_repository.dart' as _i92;
 import '../../features/booking/presentation/bloc/booking_bloc.dart' as _i802;
+import '../../features/favorite/presentation/bloc/favorite_bloc.dart' as _i1020;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
@@ -45,7 +46,9 @@ import '../../features/navigation/domain/usecases/navigation_usecase.dart'
     as _i603;
 import '../../features/navigation/presentation/bloc/navigation_bloc.dart'
     as _i162;
+import '../../features/shared/data/favorite_repository.dart' as _i516;
 import '../../features/shared/data/shared_repository.dart' as _i493;
+import '../../features/shared/domain/i_favorite_repository.dart' as _i287;
 import '../../features/shared/domain/i_shared_repository.dart' as _i243;
 import '../local_services/local_services.dart' as _i902;
 import '../local_services/notifiaction_handler.dart' as _i468;
@@ -89,6 +92,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
+    gh.lazySingleton<_i287.IFavoriteRepository>(
+        () => _i516.FavoriteRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i235.IChatRepository>(() => _i756.ChatRepository(
           gh<_i460.SharedPreferences>(),
           gh<_i974.FirebaseFirestore>(),
@@ -106,6 +111,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i464.RemoteService>(),
           gh<_i902.LocalService>(),
         ));
+    gh.factory<_i1020.FavoriteBloc>(
+        () => _i1020.FavoriteBloc(gh<_i287.IFavoriteRepository>()));
     gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
     gh.factory<_i802.BookingBloc>(
         () => _i802.BookingBloc(gh<_i92.IBookingRepository>()));

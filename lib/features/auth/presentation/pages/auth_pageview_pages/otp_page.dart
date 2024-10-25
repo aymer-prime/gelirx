@@ -10,7 +10,9 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/domain/entities/user_entity.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 
 import '../../widgets/step_indicator.dart';
@@ -73,7 +75,8 @@ class OtpPage extends HookWidget {
                 ),
                 const SizedBox(height: AppSize.s100),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: AppPadding.p16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -108,7 +111,8 @@ class OtpPage extends HookWidget {
                         height: AppSize.s48,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: ColorManager.lightgreybuttonColor,
+                              backgroundColor:
+                                  ColorManager.lightgreybuttonColor,
                               elevation: 0),
                           onPressed: () {
                             final otpCode =
@@ -122,6 +126,10 @@ class OtpPage extends HookWidget {
                                           .verificationId
                                           .getOrElse(() => ''),
                                       smsCode: otpCode,
+                                      onSuccess: (UserEntity user) {
+                                        context.read<AuthStatusBloc>().add(
+                                            AuthStatusEvent.signedIn(user));
+                                      },
                                     ),
                                   );
                             }

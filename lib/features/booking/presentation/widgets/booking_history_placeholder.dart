@@ -74,33 +74,16 @@ class BookingHistoryPlaceholder extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    Flexible(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            AppSize.s20,
+                    ...List.generate(
+                      6,
+                      (index) => Flexible(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s20,
+                            ),
+                            color: ColorManager.grey,
                           ),
-                          color: ColorManager.grey,
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            AppSize.s20,
-                          ),
-                          color: ColorManager.grey,
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            AppSize.s20,
-                          ),
-                          color: ColorManager.grey,
                         ),
                       ),
                     ),

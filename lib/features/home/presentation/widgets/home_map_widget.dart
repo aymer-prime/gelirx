@@ -5,11 +5,15 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
+import 'package:gelirx/features/favorite/domain/entities/favorite_entities.dart';
+import 'package:gelirx/features/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/home/presentation/misc/tile_provider.dart';
@@ -88,7 +92,6 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
         controller.dispose();
       }
     });
-
     controller.forward();
   }
 
@@ -142,6 +145,14 @@ class _HomeMapState extends State<HomeMap> with TickerProviderStateMixin {
                   width: AppSize.s60.w,
                   child: MapBubbleMarker(
                     master: master,
+                    isFavorite: context.read<FavoriteBloc>().state.maybeMap(
+                          orElse: () => false,
+                          loadSuccess: (value) =>
+                              value.favorites.firstWhereOrNull(
+                                (fav) => fav.id == master.id,
+                              ) !=
+                              null,
+                        ),
                     isSelected: master.id ==
                         context.read<HomeBloc>().state.selectedMasterId,
                     onTap: () {
@@ -187,11 +198,13 @@ class MapBubbleMarker extends StatelessWidget {
     super.key,
     required this.master,
     required this.isSelected,
+    required this.isFavorite,
     required this.onTap,
   });
 
   final Master master;
   final bool isSelected;
+  final bool isFavorite;
   final VoidCallback onTap;
 
   @override
@@ -202,17 +215,31 @@ class MapBubbleMarker extends StatelessWidget {
           context.read<HomeBloc>().add(
                 HomeEvent.selectMaster(master.id),
               );
-          MasterDialogScreen.instance()
-              .showMasterDialog(context: context, master: master);
-          // showDialog(
-          //   context: context,
-          //   barrierColor: Colors.transparent,
-          //   builder: (BuildContext context) {
-          //     return MasterDetailsDialog(
-          //       master: master,
-          //     );
-          //   },
-          // );
+          MasterDialogScreen.instance().showMasterDialog(
+            context: context,
+            master: master,
+            isFavorite: isFavorite,
+            toggleFavorite: (bool currentState) {
+              var user = context.read<AuthStatusBloc>().state.maybeMap(
+                    orElse: () => null,
+                    authenticated: (value) => value.user,
+                  );
+              if (currentState) {
+                var currentFavs = context.read<FavoriteBloc>().state.maybeMap(
+                      orElse: () => <Favorite>[],
+                      loadSuccess: (value) => value.favorites,
+                    );
+                context.read<FavoriteBloc>().add(
+                      FavoriteEvent.removeFavorite(
+                          master.id, user, currentFavs),
+                    );
+              } else {
+                context.read<FavoriteBloc>().add(
+                      FavoriteEvent.setFavorite(master.id, user),
+                    );
+              }
+            },
+          );
         },
         child: Column(
           children: [

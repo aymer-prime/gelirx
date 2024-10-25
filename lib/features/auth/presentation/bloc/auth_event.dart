@@ -14,5 +14,6 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.verifyPhoneNumber({
     required String verificationId,
     required String smsCode,
+    required Function(UserEntity user) onSuccess,
   }) = _VerifyPhoneNumber;
 }

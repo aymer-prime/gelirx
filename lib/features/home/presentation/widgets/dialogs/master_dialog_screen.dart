@@ -27,13 +27,31 @@ class MasterDialogScreen {
   void showMasterDialog({
     required BuildContext context,
     required Master master,
+    required bool isFavorite,
+    required Function(bool) toggleFavorite,
   }) {
-    if (_controller?.update(master) ?? false) {
+    if (_controller?.update(
+          MasterDialogObject(
+            master: master,
+            isFavorite: isFavorite,
+          ),
+        ) ??
+        false) {
       return;
     } else {
       _controller = _showMasterDialog(
         context: context,
         master: master,
+        isFavorite: isFavorite,
+        toggleFavorite: (Master currentMaster, bool currentState) {
+          toggleFavorite(currentState);
+          _controller?.update(
+            MasterDialogObject(
+              master: currentMaster,
+              isFavorite: !currentState,
+            ),
+          );
+        },
       );
     }
   }
@@ -50,9 +68,16 @@ class MasterDialogScreen {
   MasterDialogController _showMasterDialog({
     required BuildContext context,
     required Master master,
+    required bool isFavorite,
+    required Function(Master, bool) toggleFavorite,
   }) {
-    final _master = StreamController<Master>();
-    _master.add(master);
+    final _master = StreamController<MasterDialogObject>();
+    _master.add(
+      MasterDialogObject(
+        master: master,
+        isFavorite: isFavorite,
+      ),
+    );
     final state = Overlay.of(context);
     final overlay = OverlayEntry(
       builder: (context) {
@@ -61,15 +86,22 @@ class MasterDialogScreen {
             Spacer(),
             TapRegion(
               //onTapOutside: (_) => hide(),
-              child: StreamBuilder<Master>(
+              child: StreamBuilder<MasterDialogObject>(
                 stream: _master.stream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Animate(
                       effects: const [MoveEffect(begin: Offset(0.0, 100))],
                       child: MasterDialog(
-                        master: snapshot.data!,
+                        master: snapshot.data!.master,
                         hide: hide,
+                        isFavorite: snapshot.data!.isFavorite,
+                        toggleFavorite: () {
+                          toggleFavorite(
+                            snapshot.data!.master,
+                            snapshot.data!.isFavorite,
+                          );
+                        },
                       ),
                     );
                   } else {
@@ -89,8 +121,8 @@ class MasterDialogScreen {
         overlay.remove();
         return true;
       },
-      update: (master) {
-        _master.add(master);
+      update: (masterDialogObject) {
+        _master.add(masterDialogObject);
         return true;
       },
     );
@@ -99,8 +131,16 @@ class MasterDialogScreen {
 
 class MasterDialog extends StatelessWidget {
   final Master master;
+  final bool isFavorite;
   final VoidCallback hide;
-  const MasterDialog({super.key, required this.master, required this.hide});
+  final VoidCallback toggleFavorite;
+  const MasterDialog({
+    super.key,
+    required this.master,
+    required this.hide,
+    required this.isFavorite,
+    required this.toggleFavorite,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -155,15 +195,21 @@ class MasterDialog extends StatelessWidget {
                               height: 30,
                               width: 30,
                               child: IconButton(
-                                onPressed: () {},
+                                onPressed: toggleFavorite,
                                 style: IconButton.styleFrom(
                                   shape: const CircleBorder(),
                                   backgroundColor: ColorManager.white,
                                 ),
-                                icon: const Icon(
-                                  FontAwesomeIcons.heart,
-                                  size: 14,
-                                ),
+                                icon: isFavorite
+                                    ? Icon(
+                                        FontAwesomeIcons.solidHeart,
+                                        color: ColorManager.joyColor,
+                                        size: 14,
+                                      )
+                                    : const Icon(
+                                        FontAwesomeIcons.heart,
+                                        size: 14,
+                                      ),
                               ),
                             ),
                           ],

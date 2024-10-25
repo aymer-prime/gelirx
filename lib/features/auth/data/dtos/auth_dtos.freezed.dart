@@ -456,7 +456,7 @@ mixin _$UserEntityDto {
   @JsonKey(name: "master")
   int get isMaster => throw _privateConstructorUsedError;
   @JsonKey(name: "user_id")
-  int get userId => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   @JsonKey(name: "token")
   String get token => throw _privateConstructorUsedError;
 
@@ -478,7 +478,7 @@ abstract class $UserEntityDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "master") int isMaster,
-      @JsonKey(name: "user_id") int userId,
+      @JsonKey(name: "user_id") String userId,
       @JsonKey(name: "token") String token});
 }
 
@@ -509,7 +509,7 @@ class _$UserEntityDtoCopyWithImpl<$Res, $Val extends UserEntityDto>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -528,7 +528,7 @@ abstract class _$$UserEntityDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: "master") int isMaster,
-      @JsonKey(name: "user_id") int userId,
+      @JsonKey(name: "user_id") String userId,
       @JsonKey(name: "token") String token});
 }
 
@@ -557,7 +557,7 @@ class __$$UserEntityDtoImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -582,7 +582,7 @@ class _$UserEntityDtoImpl implements _UserEntityDto {
   final int isMaster;
   @override
   @JsonKey(name: "user_id")
-  final int userId;
+  final String userId;
   @override
   @JsonKey(name: "token")
   final String token;
@@ -626,7 +626,7 @@ class _$UserEntityDtoImpl implements _UserEntityDto {
 abstract class _UserEntityDto implements UserEntityDto {
   const factory _UserEntityDto(
           {@JsonKey(name: "master") required final int isMaster,
-          @JsonKey(name: "user_id") required final int userId,
+          @JsonKey(name: "user_id") required final String userId,
           @JsonKey(name: "token") required final String token}) =
       _$UserEntityDtoImpl;
 
@@ -638,7 +638,7 @@ abstract class _UserEntityDto implements UserEntityDto {
   int get isMaster;
   @override
   @JsonKey(name: "user_id")
-  int get userId;
+  String get userId;
   @override
   @JsonKey(name: "token")
   String get token;

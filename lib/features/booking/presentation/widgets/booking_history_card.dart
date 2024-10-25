@@ -26,120 +26,106 @@ class BookingHistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
-      child: AspectRatio(
-        aspectRatio: 1.2,
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                    blurRadius: AppSize.s10,
-                    spreadRadius: 1,
-                    color: Color.fromARGB(51, 0, 0, 0))
-              ],
-              borderRadius:
-                  BorderRadius.circular(15) // Adjust the radius as needed
-              ),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                  child: Image.asset(ImageAssets.tesisat, fit: BoxFit.cover)),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: AppSize.s10, horizontal: AppSize.s15),
-                    child: Column(
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const CircleAvatar(
-                              backgroundImage: AssetImage(ImageAssets.handyman),
-                              maxRadius: AppSize.s25,
-                              minRadius: AppSize.s25,
-                            ),
-                            SizedBox(width: AppSize.s12),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(name,
-                                    style: getTextStyle(AppSize.s16,
-                                            FontWeight.w400, Colors.black)
-                                        .copyWith(
-                                            letterSpacing: -0.1, height: 1.1)),
-                                Text(serviceName,
-                                    style: getTextStyle(AppSize.s13,
-                                            FontWeight.w300, Colors.black)
-                                        .copyWith(
-                                            letterSpacing: -0.1, height: 1.1)),
-                                Text(date,
-                                    style: getTextStyle(
-                                            AppSize.s13,
-                                            FontWeight.w300,
-                                            ColorManager.tabBarColor)
-                                        .copyWith(
-                                            letterSpacing: -0.1, height: 1.1)),
-                                StatusContainer(status: status)
-                              ].separateWith(
-                                const SizedBox(height: AppSize.s5),
-                              ),
-                            ),
-                            SizedBox(width: AppSize.s10),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.solidStar,
-                                  color: ColorManager.ratingColor,
-                                  size: AppSize.s15,
-                                ),
-                                SizedBox(width: AppSize.s5),
-                                Text(
-                                  rating.toString(),
-                                  style: getTextStyle(
-                                      AppSize.s14,
-                                      FontWeight.w400,
-                                      ColorManager.textSubtitleColor),
-                                ),
-                                SizedBox(width: AppSize.s5),
-                                Text(
-                                  "(24)",
-                                  style: getTextStyle(
-                                      AppSize.s14,
-                                      FontWeight.w300,
-                                      ColorManager.textSubtitleColor),
-                                ),
-                              ],
-                            )
-                          ],
-                        )
-                      ],
+    return IntrinsicHeight(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius:
+              BorderRadius.circular(15), // Adjust the radius as needed
+          boxShadow: const [
+            BoxShadow(
+                blurRadius: AppSize.s10,
+                spreadRadius: 1,
+                color: Color.fromARGB(51, 0, 0, 0))
+          ],
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  vertical: AppSize.s10, horizontal: AppSize.s15),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    flex: 2,
+                    child: SizedBox(
+                      height: double.infinity,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          AppSize.s16,
+                        ),
+                        child: Image.asset(
+                          ImageAssets.handyman,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              Positioned(
-                top: AppSize.s10,
-                right: AppSize.s10,
-                child: Container(
-                  width: AppSize.s40,
-                  height: AppSize.s40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: ColorManager.lightGrey,
+                  SizedBox(width: AppSize.s12),
+                  Flexible(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(name,
+                            style: getTextStyle(
+                                    AppSize.s16, FontWeight.w400, Colors.black)
+                                .copyWith(letterSpacing: -0.1, height: 1.1)),
+                        Text(serviceName,
+                            style: getTextStyle(
+                                    AppSize.s13, FontWeight.w300, Colors.black)
+                                .copyWith(letterSpacing: -0.1, height: 1.1)),
+                        Text(date,
+                            style: getTextStyle(AppSize.s13, FontWeight.w300,
+                                    ColorManager.tabBarColor)
+                                .copyWith(letterSpacing: -0.1, height: 1.1)),
+                        StatusContainer(status: status)
+                      ].separateWith(
+                        const SizedBox(height: AppSize.s5),
+                      ),
+                    ),
                   ),
-                  child: const Icon(FontAwesomeIcons.heart, size: AppSize.s18),
+                  const SizedBox(width: AppSize.s10),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.solidStar,
+                        color: ColorManager.ratingColor,
+                        size: AppSize.s15,
+                      ),
+                      const SizedBox(width: AppSize.s5),
+                      Text(
+                        rating.toString(),
+                        style: getTextStyle(AppSize.s14, FontWeight.w400,
+                            ColorManager.textSubtitleColor),
+                      ),
+                      const SizedBox(width: AppSize.s5),
+                      Text(
+                        "(24)",
+                        style: getTextStyle(AppSize.s14, FontWeight.w300,
+                            ColorManager.textSubtitleColor),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: AppSize.s10,
+              right: AppSize.s10,
+              child: Container(
+                width: AppSize.s40,
+                height: AppSize.s40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: ColorManager.lightGrey,
                 ),
-              )
-            ],
-          ),
+                child: const Icon(FontAwesomeIcons.heart, size: AppSize.s18),
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -110,12 +110,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 isLoading: false,
                 authFailureOrSuccessOption: some(left(failure)),
               )),
-              (_) {
+              (userEntity) {
                 emit(state.copyWith(
                   isLoading: false,
-                  //user: some(user),
+                  user: some(userEntity),
                   authFailureOrSuccessOption: some(right(unit)),
                 ));
+                event.onSuccess(userEntity);
               },
             );
           }

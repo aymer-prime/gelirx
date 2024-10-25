@@ -11,7 +11,6 @@ import 'package:gelirx/app/local_services/local_services.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/remote_service.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
-import 'package:gelirx/features/auth/data/mappers/firebase_user_maper.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import '../domain/entities/user_entity.dart';
@@ -417,7 +416,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<ApiException, Unit>> userLogin() async {
+  Future<Either<ApiException, UserEntity>> userLogin() async {
     try {
       var idToken = await firebaseAuth.currentUser!.getIdToken();
       var fcmToken = await FirebaseMessaging.instance.getToken();
@@ -437,13 +436,13 @@ class AuthRepository implements IAuthRepository {
       );
       final userEntityDto = UserEntityDto.fromJson(response);
       String token = userEntityDto.token;
-      String userId = userEntityDto.userId.toString();
+      String userId = userEntityDto.userId;
       int isMaster = userEntityDto.isMaster;
       await _localService.save(Constants.isMasterKey, isMaster.toString());
       await _localService.save(Constants.tokenKey, token);
       await _localService.save(Constants.userIdKey, userId);
 
-      return right(unit);
+      return right(userEntityDto.toDomain());
     } on ApiException catch (e) {
       return left(e);
     } catch (e) {
@@ -484,13 +483,15 @@ class AuthRepository implements IAuthRepository {
   Option<UserEntity> getSignedInUser() {
     final authToken = _localService.get(Constants.tokenKey);
     final userId = _localService.get(Constants.userIdKey);
-    if (authToken != null && userId != null) {
-      try {
-        //todo get the user data from the backend using the token
-        return none();
-      } catch (e) {
-        return none();
-      }
+    final isMaster = _localService.get(Constants.isMasterKey);
+    if (authToken != null && userId != null && isMaster != null) {
+      return some(
+        UserEntity(
+          userId: userId,
+          token: authToken,
+          isMaster: isMaster == '1',
+        ),
+      );
     } else {
       return none();
     }

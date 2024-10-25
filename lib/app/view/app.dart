@@ -6,6 +6,7 @@ import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/theme_manager.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
+import 'package:gelirx/features/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/messages/presentation/bloc/chat_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,14 +26,15 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       // App is back to foreground
       _checkForStoredNavigation();
     }
-
   }
+
   void _checkForStoredNavigation() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     String? navigateTo = sharedPreferences.getString(Constants.navigateToKey);
@@ -69,7 +71,17 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             ),
         ),
         BlocProvider<ChatBloc>(
-          create: (_) => getIt<ChatBloc>()..add( const ChatEvent.fetchChats()),
+          create: (_) => getIt<ChatBloc>()..add(const ChatEvent.fetchChats()),
+        ),
+        BlocProvider<FavoriteBloc>(
+          create: (context) {
+            var userEntity = context.read<AuthStatusBloc>().state.maybeMap(
+                  orElse: () => null,
+                  authenticated: (userEntity) => userEntity.user,
+                );
+            return getIt<FavoriteBloc>()
+              ..add(FavoriteEvent.getFavoriteMasters(userEntity));
+          },
         ),
       ],
       child: const _Starter(),

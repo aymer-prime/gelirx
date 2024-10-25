@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserEntity {
-  int get userId => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
   bool get isMaster => throw _privateConstructorUsedError;
 
@@ -33,7 +33,7 @@ abstract class $UserEntityCopyWith<$Res> {
           UserEntity value, $Res Function(UserEntity) then) =
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
-  $Res call({int userId, String token, bool isMaster});
+  $Res call({String userId, String token, bool isMaster});
 }
 
 /// @nodoc
@@ -59,7 +59,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int userId, String token, bool isMaster});
+  $Res call({String userId, String token, bool isMaster});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$UserEntityImplCopyWithImpl<$Res>
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -124,7 +124,7 @@ class _$UserEntityImpl implements _UserEntity {
       {required this.userId, required this.token, required this.isMaster});
 
   @override
-  final int userId;
+  final String userId;
   @override
   final String token;
   @override
@@ -160,12 +160,12 @@ class _$UserEntityImpl implements _UserEntity {
 
 abstract class _UserEntity implements UserEntity {
   const factory _UserEntity(
-      {required final int userId,
+      {required final String userId,
       required final String token,
       required final bool isMaster}) = _$UserEntityImpl;
 
   @override
-  int get userId;
+  String get userId;
   @override
   String get token;
   @override

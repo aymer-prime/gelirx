@@ -31,7 +31,7 @@ class UserInfoDto with _$UserInfoDto {
 class UserEntityDto with _$UserEntityDto {
   const factory UserEntityDto({
     @JsonKey(name: "master") required int isMaster,
-    @JsonKey(name: "user_id") required int userId,
+    @JsonKey(name: "user_id") required String userId,
     @JsonKey(name: "token") required String token,
   }) = _UserEntityDto;
 

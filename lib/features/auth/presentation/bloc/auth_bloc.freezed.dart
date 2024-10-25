@@ -23,7 +23,8 @@ mixin _$AuthEvent {
     required TResult Function(SocialMediaType type) socialMediaLogin,
     required TResult Function(String phoneNumber, VoidCallback onSuccess)
         phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)
         verifyPhoneNumber,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,7 +35,9 @@ mixin _$AuthEvent {
     TResult? Function(SocialMediaType type)? socialMediaLogin,
     TResult? Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult? Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,7 +47,9 @@ mixin _$AuthEvent {
     TResult Function(SocialMediaType type)? socialMediaLogin,
     TResult Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -172,7 +177,8 @@ class _$SetUserTypeImpl implements _SetUserType {
     required TResult Function(SocialMediaType type) socialMediaLogin,
     required TResult Function(String phoneNumber, VoidCallback onSuccess)
         phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)
         verifyPhoneNumber,
   }) {
     return setUserType(isMaster);
@@ -186,7 +192,9 @@ class _$SetUserTypeImpl implements _SetUserType {
     TResult? Function(SocialMediaType type)? socialMediaLogin,
     TResult? Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult? Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
   }) {
     return setUserType?.call(isMaster);
   }
@@ -199,7 +207,9 @@ class _$SetUserTypeImpl implements _SetUserType {
     TResult Function(SocialMediaType type)? socialMediaLogin,
     TResult Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
     required TResult orElse(),
   }) {
     if (setUserType != null) {
@@ -336,7 +346,8 @@ class _$SetRequestTimerImpl implements _SetRequestTimer {
     required TResult Function(SocialMediaType type) socialMediaLogin,
     required TResult Function(String phoneNumber, VoidCallback onSuccess)
         phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)
         verifyPhoneNumber,
   }) {
     return setRequestTimer(requestTime);
@@ -350,7 +361,9 @@ class _$SetRequestTimerImpl implements _SetRequestTimer {
     TResult? Function(SocialMediaType type)? socialMediaLogin,
     TResult? Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult? Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
   }) {
     return setRequestTimer?.call(requestTime);
   }
@@ -363,7 +376,9 @@ class _$SetRequestTimerImpl implements _SetRequestTimer {
     TResult Function(SocialMediaType type)? socialMediaLogin,
     TResult Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
     required TResult orElse(),
   }) {
     if (setRequestTimer != null) {
@@ -499,7 +514,8 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
     required TResult Function(SocialMediaType type) socialMediaLogin,
     required TResult Function(String phoneNumber, VoidCallback onSuccess)
         phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)
         verifyPhoneNumber,
   }) {
     return socialMediaLogin(type);
@@ -513,7 +529,9 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
     TResult? Function(SocialMediaType type)? socialMediaLogin,
     TResult? Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult? Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
   }) {
     return socialMediaLogin?.call(type);
   }
@@ -526,7 +544,9 @@ class _$SocialMediaLoginImpl implements _SocialMediaLogin {
     TResult Function(SocialMediaType type)? socialMediaLogin,
     TResult Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
     required TResult orElse(),
   }) {
     if (socialMediaLogin != null) {
@@ -674,7 +694,8 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
     required TResult Function(SocialMediaType type) socialMediaLogin,
     required TResult Function(String phoneNumber, VoidCallback onSuccess)
         phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)
         verifyPhoneNumber,
   }) {
     return phoneLoginRequested(phoneNumber, onSuccess);
@@ -688,7 +709,9 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
     TResult? Function(SocialMediaType type)? socialMediaLogin,
     TResult? Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult? Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
   }) {
     return phoneLoginRequested?.call(phoneNumber, onSuccess);
   }
@@ -701,7 +724,9 @@ class _$PhoneLoginRequestedImpl implements _PhoneLoginRequested {
     TResult Function(SocialMediaType type)? socialMediaLogin,
     TResult Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
     required TResult orElse(),
   }) {
     if (phoneLoginRequested != null) {
@@ -772,7 +797,10 @@ abstract class _$$VerifyPhoneNumberImplCopyWith<$Res> {
           $Res Function(_$VerifyPhoneNumberImpl) then) =
       __$$VerifyPhoneNumberImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String verificationId, String smsCode});
+  $Res call(
+      {String verificationId,
+      String smsCode,
+      dynamic Function(UserEntity) onSuccess});
 }
 
 /// @nodoc
@@ -790,6 +818,7 @@ class __$$VerifyPhoneNumberImplCopyWithImpl<$Res>
   $Res call({
     Object? verificationId = null,
     Object? smsCode = null,
+    Object? onSuccess = null,
   }) {
     return _then(_$VerifyPhoneNumberImpl(
       verificationId: null == verificationId
@@ -800,6 +829,10 @@ class __$$VerifyPhoneNumberImplCopyWithImpl<$Res>
           ? _value.smsCode
           : smsCode // ignore: cast_nullable_to_non_nullable
               as String,
+      onSuccess: null == onSuccess
+          ? _value.onSuccess
+          : onSuccess // ignore: cast_nullable_to_non_nullable
+              as dynamic Function(UserEntity),
     ));
   }
 }
@@ -808,16 +841,20 @@ class __$$VerifyPhoneNumberImplCopyWithImpl<$Res>
 
 class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
   const _$VerifyPhoneNumberImpl(
-      {required this.verificationId, required this.smsCode});
+      {required this.verificationId,
+      required this.smsCode,
+      required this.onSuccess});
 
   @override
   final String verificationId;
   @override
   final String smsCode;
+  @override
+  final dynamic Function(UserEntity) onSuccess;
 
   @override
   String toString() {
-    return 'AuthEvent.verifyPhoneNumber(verificationId: $verificationId, smsCode: $smsCode)';
+    return 'AuthEvent.verifyPhoneNumber(verificationId: $verificationId, smsCode: $smsCode, onSuccess: $onSuccess)';
   }
 
   @override
@@ -827,11 +864,14 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
             other is _$VerifyPhoneNumberImpl &&
             (identical(other.verificationId, verificationId) ||
                 other.verificationId == verificationId) &&
-            (identical(other.smsCode, smsCode) || other.smsCode == smsCode));
+            (identical(other.smsCode, smsCode) || other.smsCode == smsCode) &&
+            (identical(other.onSuccess, onSuccess) ||
+                other.onSuccess == onSuccess));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, verificationId, smsCode);
+  int get hashCode =>
+      Object.hash(runtimeType, verificationId, smsCode, onSuccess);
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -850,10 +890,11 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
     required TResult Function(SocialMediaType type) socialMediaLogin,
     required TResult Function(String phoneNumber, VoidCallback onSuccess)
         phoneLoginRequested,
-    required TResult Function(String verificationId, String smsCode)
+    required TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)
         verifyPhoneNumber,
   }) {
-    return verifyPhoneNumber(verificationId, smsCode);
+    return verifyPhoneNumber(verificationId, smsCode, onSuccess);
   }
 
   @override
@@ -864,9 +905,11 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
     TResult? Function(SocialMediaType type)? socialMediaLogin,
     TResult? Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult? Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult? Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
   }) {
-    return verifyPhoneNumber?.call(verificationId, smsCode);
+    return verifyPhoneNumber?.call(verificationId, smsCode, onSuccess);
   }
 
   @override
@@ -877,11 +920,13 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
     TResult Function(SocialMediaType type)? socialMediaLogin,
     TResult Function(String phoneNumber, VoidCallback onSuccess)?
         phoneLoginRequested,
-    TResult Function(String verificationId, String smsCode)? verifyPhoneNumber,
+    TResult Function(String verificationId, String smsCode,
+            dynamic Function(UserEntity) onSuccess)?
+        verifyPhoneNumber,
     required TResult orElse(),
   }) {
     if (verifyPhoneNumber != null) {
-      return verifyPhoneNumber(verificationId, smsCode);
+      return verifyPhoneNumber(verificationId, smsCode, onSuccess);
     }
     return orElse();
   }
@@ -929,11 +974,14 @@ class _$VerifyPhoneNumberImpl implements _VerifyPhoneNumber {
 
 abstract class _VerifyPhoneNumber implements AuthEvent {
   const factory _VerifyPhoneNumber(
-      {required final String verificationId,
-      required final String smsCode}) = _$VerifyPhoneNumberImpl;
+          {required final String verificationId,
+          required final String smsCode,
+          required final dynamic Function(UserEntity) onSuccess}) =
+      _$VerifyPhoneNumberImpl;
 
   String get verificationId;
   String get smsCode;
+  dynamic Function(UserEntity) get onSuccess;
 
   /// Create a copy of AuthEvent
   /// with the given fields replaced by the non-null parameter values.

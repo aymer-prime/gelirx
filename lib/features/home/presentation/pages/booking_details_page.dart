@@ -15,7 +15,6 @@ import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/shared/widgets/dialogs/loading_screen.dart';
 import '../../../master/presentation/widget/master_card.dart';
 
-
 @RoutePage()
 class BookingDetailsPage extends StatelessWidget {
   final String masterId;
@@ -47,7 +46,8 @@ class BookingDetailsPage extends StatelessWidget {
               ListView(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: AppSize.s10, left: AppSize.s15),
+                    padding: const EdgeInsets.only(
+                        top: AppSize.s10, left: AppSize.s15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -58,7 +58,6 @@ class BookingDetailsPage extends StatelessWidget {
                           child: Container(
                             height: AppSize.s30,
                             width: AppSize.s30,
-
                             child: const Icon(FontAwesomeIcons.arrowLeft,
                                 size: AppSize.s18),
                           ),
@@ -70,7 +69,8 @@ class BookingDetailsPage extends StatelessWidget {
                     height: AppSize.s10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Text(
                       "Call a professional",
                       style: getTextStyle(
@@ -81,59 +81,69 @@ class BookingDetailsPage extends StatelessWidget {
                     height: AppSize.s20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: MasterCard(),
                   ),
                   const SizedBox(height: AppSize.s40),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Text(
                       'Please fill in the required information',
                       style: getTextStyle(FontSizeManager.s24, FontWeight.w500,
-                          ColorManager.joyColor).copyWith(
+                              ColorManager.joyColor)
+                          .copyWith(
                         height: 1.1,
                         letterSpacing: -0.1,
                       ),
-
                     ),
                   ),
                   const SizedBox(height: AppSize.s20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Text('* Which service do you request?',
-                        style: getTextStyle(FontSizeManager.s14, FontWeight.w500,
-                            ColorManager.textSubtitleColor)),
+                        style: getTextStyle(FontSizeManager.s14,
+                            FontWeight.w500, ColorManager.textSubtitleColor)),
                   ),
                   const SizedBox(height: AppSize.s10),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: buildRadioOption("Radiator Cleaning", true),
                   ),
                   const SizedBox(height: AppSize.s5),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: buildRadioOption("House Cleaning", false),
                   ),
                   const SizedBox(height: AppSize.s5),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
-                    child: buildRadioOption("House to House Transportation", false),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    child: buildRadioOption(
+                        "House to House Transportation", false),
                   ),
                   const SizedBox(height: AppSize.s20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Divider(color: ColorManager.lightGreyText),
                   ),
                   const SizedBox(height: AppSize.s20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Text('* Explain the problem in detail',
-                        style: getTextStyle(FontSizeManager.s14, FontWeight.w500,
-                            ColorManager.textSubtitleColor)),
+                        style: getTextStyle(FontSizeManager.s14,
+                            FontWeight.w500, ColorManager.textSubtitleColor)),
                   ),
                   const SizedBox(height: AppSize.s10),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: TextField(
                       maxLength: 750,
                       maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -143,14 +153,20 @@ class BookingDetailsPage extends StatelessWidget {
                         contentPadding: EdgeInsets.all(AppSize.s10),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(AppSize.s8),
-                          borderSide: BorderSide(color: const Color(0xffe0e2ea)),
+                          borderSide:
+                              BorderSide(color: const Color(0xffe0e2ea)),
                         ),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(AppSize.s8),
-                            borderSide: BorderSide(color: const Color(0xffe0e2ea))),
+                            borderSide:
+                                BorderSide(color: const Color(0xffe0e2ea))),
                         fillColor: const Color(0xfff5f7fa),
                         counterText: '',
-                        hintStyle: getTextStyle(AppSize.s14, FontWeight.w300, const Color(0xfff5f7fa),),
+                        hintStyle: getTextStyle(
+                          AppSize.s14,
+                          FontWeight.w300,
+                          const Color(0xfff5f7fa),
+                        ),
                         hintText:
                             'Please explain the work to be done in full detail. Requests that are not explained properly or not given with all the details may be rejected by the masters.',
                       ),
@@ -158,18 +174,21 @@ class BookingDetailsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSize.s20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Divider(color: ColorManager.lightGreyText),
                   ),
                   const SizedBox(height: AppSize.s20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Text('Upload photos of the problem',
-                        style: getTextStyle(FontSizeManager.s14, FontWeight.w500,
-                            ColorManager.textSubtitleColor)),
+                        style: getTextStyle(FontSizeManager.s14,
+                            FontWeight.w500, ColorManager.textSubtitleColor)),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: RichText(
                       text: TextSpan(
                         children: [
@@ -186,7 +205,8 @@ class BookingDetailsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSize.s10),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s24),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s24),
                     child: Row(
                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: List.generate(
@@ -196,7 +216,7 @@ class BookingDetailsPage extends StatelessWidget {
                             height: AppSize.s62,
                             width: AppSize.s68,
                             decoration: BoxDecoration(
-                              color:  Colors.white,
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(AppSize.s5),
                               border:
                                   Border.all(color: ColorManager.lightGreyText),
@@ -230,7 +250,6 @@ class BookingDetailsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: AppSize.s120),
-
                 ],
               ),
               Positioned(
@@ -241,20 +260,21 @@ class BookingDetailsPage extends StatelessWidget {
                   padding: const EdgeInsets.all(AppSize.s24),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border(top: BorderSide(width: AppSize.s1,color: Color(0xffe0e2ea)))
-                  ),
-
+                      border: Border(
+                          top: BorderSide(
+                              width: AppSize.s1, color: Color(0xffe0e2ea)))),
                   child: ElevatedButton(
                     onPressed: () {
                       context
                           .read<HomeBloc>()
                           .add(HomeEvent.callMaster(masterId, () {
-                        context.router.push(const OrderDetailsRoute());
-                      }));
+                            context.router.push(const OrderDetailsRoute());
+                          }));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorManager.joyColor,
-                      padding: const EdgeInsets.symmetric(vertical: AppSize.s16),
+                      padding:
+                          const EdgeInsets.symmetric(vertical: AppSize.s16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppSize.s8),
                       ),
@@ -266,9 +286,7 @@ class BookingDetailsPage extends StatelessWidget {
                             style: getTextStyle(
                                 AppSize.s16, FontWeight.w600, Colors.white)),
                         Text(" (40 min)",
-                            style: getTextStyle(
-                                AppSize.s16,
-                                FontWeight.w300,
+                            style: getTextStyle(AppSize.s16, FontWeight.w300,
                                 Colors.white.withOpacity(0.7))),
                       ],
                     ),

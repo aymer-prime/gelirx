@@ -40,7 +40,7 @@ class SignInUseCase {
     return await repository.checkPhoneNumber(phoneNumber);
   }
 
-  Future<Either<ApiException, Unit>> userLogin() async {
+  Future<Either<ApiException, UserEntity>> userLogin() async {
     return await repository.userLogin();
   }
 }
