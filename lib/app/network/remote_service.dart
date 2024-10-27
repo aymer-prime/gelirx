@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/app/network/api_exception_handler.dart';
@@ -161,6 +163,43 @@ class RemoteService {
             '-200', result.data?['message'] ?? 'Unknown Exception');
       } else {
         return result.data?['result'];
+      }
+    } on DioException catch (e) {
+      //print('error: ${e.error}');
+      throw ApiExceptionHandler.handleException(e);
+    }
+  }
+
+  Future<dynamic> postString(
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    await _checkConnection();
+    try {
+      final result = await _dioClient.dio.post<String>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      var resultData = jsonDecode(result.data ?? '');
+      bool success = false;
+      if (resultData != null) {
+        success = resultData['success'];
+      }
+      if (!success) {
+        throw ApiException.defaultException(
+            '-200', resultData?['message'] ?? 'Unknown Exception');
+      } else {
+        return resultData?['result'];
       }
     } on DioException catch (e) {
       //print('error: ${e.error}');

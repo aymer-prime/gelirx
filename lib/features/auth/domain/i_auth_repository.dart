@@ -30,6 +30,5 @@ abstract class IAuthRepository {
   Future<Either<ApiException, bool>> checkPhoneNumber(String phoneNumber);
   Future<Either<ApiException, UserEntity>> userLogin();
   Option<UserEntity> getSignedInUser();
-  Future<Either<ApiException, UserInfo>> getUserInfo();
   Future<void> signOut();
 }

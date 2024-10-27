@@ -37,6 +37,7 @@ import '../../features/favorite/presentation/bloc/favorite_bloc.dart' as _i1020;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
 import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
+import '../../features/master/presentation/bloc/master_bloc.dart' as _i130;
 import '../../features/messages/data/chat_repository.dart' as _i756;
 import '../../features/messages/domain/i_chat_repository.dart' as _i235;
 import '../../features/messages/presentation/bloc/chat_bloc.dart' as _i16;
@@ -84,8 +85,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
-    gh.lazySingleton<_i243.ISharedRepository>(
-        () => _i493.SharedRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i92.IBookingRepository>(
         () => _i678.BookingRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i782.INavigationRepository>(
@@ -97,6 +96,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i235.IChatRepository>(() => _i756.ChatRepository(
           gh<_i460.SharedPreferences>(),
           gh<_i974.FirebaseFirestore>(),
+        ));
+    gh.lazySingleton<_i243.ISharedRepository>(() => _i493.SharedRepository(
+          gh<_i464.RemoteService>(),
+          gh<_i902.LocalService>(),
         ));
     gh.lazySingleton<_i1026.IAuthRepository>(() => _i726.AuthRepository(
           gh<_i59.FirebaseAuth>(),
@@ -120,6 +123,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
     gh.factory<_i446.UserVerificationBloc>(
         () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
+    gh.factory<_i130.MasterBloc>(
+        () => _i130.MasterBloc(gh<_i243.ISharedRepository>()));
     gh.lazySingleton<_i309.SignInUseCase>(
         () => _i309.SignInUseCase(gh<_i1026.IAuthRepository>()));
     gh.factory<_i202.HomeBloc>(

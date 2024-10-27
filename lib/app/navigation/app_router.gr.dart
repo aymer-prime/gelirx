@@ -269,13 +269,13 @@ class MasterMainRoute extends PageRouteInfo<void> {
 class MasterRoute extends PageRouteInfo<MasterRouteArgs> {
   MasterRoute({
     dynamic key,
-    required String masterId,
+    required Master master,
     List<PageRouteInfo>? children,
   }) : super(
           MasterRoute.name,
           args: MasterRouteArgs(
             key: key,
-            masterId: masterId,
+            master: master,
           ),
           initialChildren: children,
         );
@@ -288,7 +288,7 @@ class MasterRoute extends PageRouteInfo<MasterRouteArgs> {
       final args = data.argsAs<MasterRouteArgs>();
       return MasterPage(
         key: args.key,
-        masterId: args.masterId,
+        master: args.master,
       );
     },
   );
@@ -297,16 +297,16 @@ class MasterRoute extends PageRouteInfo<MasterRouteArgs> {
 class MasterRouteArgs {
   const MasterRouteArgs({
     this.key,
-    required this.masterId,
+    required this.master,
   });
 
   final dynamic key;
 
-  final String masterId;
+  final Master master;
 
   @override
   String toString() {
-    return 'MasterRouteArgs{key: $key, masterId: $masterId}';
+    return 'MasterRouteArgs{key: $key, master: $master}';
   }
 }
 
@@ -464,6 +464,52 @@ class OtpRouteArgs {
   @override
   String toString() {
     return 'OtpRouteArgs{key: $key, toPreviousPage: $toPreviousPage}';
+  }
+}
+
+/// generated route for
+/// [ServiceDetailsPage]
+class ServiceDetailsRoute extends PageRouteInfo<ServiceDetailsRouteArgs> {
+  ServiceDetailsRoute({
+    Key? key,
+    required Booking service,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ServiceDetailsRoute.name,
+          args: ServiceDetailsRouteArgs(
+            key: key,
+            service: service,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ServiceDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ServiceDetailsRouteArgs>();
+      return ServiceDetailsPage(
+        key: args.key,
+        service: args.service,
+      );
+    },
+  );
+}
+
+class ServiceDetailsRouteArgs {
+  const ServiceDetailsRouteArgs({
+    this.key,
+    required this.service,
+  });
+
+  final Key? key;
+
+  final Booking service;
+
+  @override
+  String toString() {
+    return 'ServiceDetailsRouteArgs{key: $key, service: $service}';
   }
 }
 

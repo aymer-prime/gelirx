@@ -27,6 +27,7 @@ mixin _$Booking {
   String get status => throw _privateConstructorUsedError;
   DateTime get sendingDate => throw _privateConstructorUsedError;
   DateTime get processDate => throw _privateConstructorUsedError;
+  Favorite get master => throw _privateConstructorUsedError;
 
   /// Create a copy of Booking
   /// with the given fields replaced by the non-null parameter values.
@@ -50,7 +51,10 @@ abstract class $BookingCopyWith<$Res> {
       String description,
       String status,
       DateTime sendingDate,
-      DateTime processDate});
+      DateTime processDate,
+      Favorite master});
+
+  $FavoriteCopyWith<$Res> get master;
 }
 
 /// @nodoc
@@ -79,6 +83,7 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
     Object? status = null,
     Object? sendingDate = null,
     Object? processDate = null,
+    Object? master = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -125,7 +130,21 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
           ? _value.processDate
           : processDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      master: null == master
+          ? _value.master
+          : master // ignore: cast_nullable_to_non_nullable
+              as Favorite,
     ) as $Val);
+  }
+
+  /// Create a copy of Booking
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FavoriteCopyWith<$Res> get master {
+    return $FavoriteCopyWith<$Res>(_value.master, (value) {
+      return _then(_value.copyWith(master: value) as $Val);
+    });
   }
 }
 
@@ -147,7 +166,11 @@ abstract class _$$BookingImplCopyWith<$Res> implements $BookingCopyWith<$Res> {
       String description,
       String status,
       DateTime sendingDate,
-      DateTime processDate});
+      DateTime processDate,
+      Favorite master});
+
+  @override
+  $FavoriteCopyWith<$Res> get master;
 }
 
 /// @nodoc
@@ -174,6 +197,7 @@ class __$$BookingImplCopyWithImpl<$Res>
     Object? status = null,
     Object? sendingDate = null,
     Object? processDate = null,
+    Object? master = null,
   }) {
     return _then(_$BookingImpl(
       id: null == id
@@ -220,6 +244,10 @@ class __$$BookingImplCopyWithImpl<$Res>
           ? _value.processDate
           : processDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      master: null == master
+          ? _value.master
+          : master // ignore: cast_nullable_to_non_nullable
+              as Favorite,
     ));
   }
 }
@@ -238,7 +266,8 @@ class _$BookingImpl implements _Booking {
       required this.description,
       required this.status,
       required this.sendingDate,
-      required this.processDate});
+      required this.processDate,
+      required this.master});
 
   @override
   final String id;
@@ -262,10 +291,12 @@ class _$BookingImpl implements _Booking {
   final DateTime sendingDate;
   @override
   final DateTime processDate;
+  @override
+  final Favorite master;
 
   @override
   String toString() {
-    return 'Booking(id: $id, userId: $userId, masterId: $masterId, categoryId: $categoryId, latitude: $latitude, longitude: $longitude, address: $address, description: $description, status: $status, sendingDate: $sendingDate, processDate: $processDate)';
+    return 'Booking(id: $id, userId: $userId, masterId: $masterId, categoryId: $categoryId, latitude: $latitude, longitude: $longitude, address: $address, description: $description, status: $status, sendingDate: $sendingDate, processDate: $processDate, master: $master)';
   }
 
   @override
@@ -290,7 +321,8 @@ class _$BookingImpl implements _Booking {
             (identical(other.sendingDate, sendingDate) ||
                 other.sendingDate == sendingDate) &&
             (identical(other.processDate, processDate) ||
-                other.processDate == processDate));
+                other.processDate == processDate) &&
+            (identical(other.master, master) || other.master == master));
   }
 
   @override
@@ -306,7 +338,8 @@ class _$BookingImpl implements _Booking {
       description,
       status,
       sendingDate,
-      processDate);
+      processDate,
+      master);
 
   /// Create a copy of Booking
   /// with the given fields replaced by the non-null parameter values.
@@ -329,7 +362,8 @@ abstract class _Booking implements Booking {
       required final String description,
       required final String status,
       required final DateTime sendingDate,
-      required final DateTime processDate}) = _$BookingImpl;
+      required final DateTime processDate,
+      required final Favorite master}) = _$BookingImpl;
 
   @override
   String get id;
@@ -353,6 +387,8 @@ abstract class _Booking implements Booking {
   DateTime get sendingDate;
   @override
   DateTime get processDate;
+  @override
+  Favorite get master;
 
   /// Create a copy of Booking
   /// with the given fields replaced by the non-null parameter values.

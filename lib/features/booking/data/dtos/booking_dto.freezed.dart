@@ -14,6 +14,375 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+BookingResultDto _$BookingResultDtoFromJson(Map<String, dynamic> json) {
+  return _BookingResultDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingResultDto {
+  @JsonKey(name: "bookings")
+  List<BookingResponseDto> get bookings => throw _privateConstructorUsedError;
+
+  /// Serializes this BookingResultDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of BookingResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $BookingResultDtoCopyWith<BookingResultDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingResultDtoCopyWith<$Res> {
+  factory $BookingResultDtoCopyWith(
+          BookingResultDto value, $Res Function(BookingResultDto) then) =
+      _$BookingResultDtoCopyWithImpl<$Res, BookingResultDto>;
+  @useResult
+  $Res call({@JsonKey(name: "bookings") List<BookingResponseDto> bookings});
+}
+
+/// @nodoc
+class _$BookingResultDtoCopyWithImpl<$Res, $Val extends BookingResultDto>
+    implements $BookingResultDtoCopyWith<$Res> {
+  _$BookingResultDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of BookingResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bookings = null,
+  }) {
+    return _then(_value.copyWith(
+      bookings: null == bookings
+          ? _value.bookings
+          : bookings // ignore: cast_nullable_to_non_nullable
+              as List<BookingResponseDto>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingResultDtoImplCopyWith<$Res>
+    implements $BookingResultDtoCopyWith<$Res> {
+  factory _$$BookingResultDtoImplCopyWith(_$BookingResultDtoImpl value,
+          $Res Function(_$BookingResultDtoImpl) then) =
+      __$$BookingResultDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: "bookings") List<BookingResponseDto> bookings});
+}
+
+/// @nodoc
+class __$$BookingResultDtoImplCopyWithImpl<$Res>
+    extends _$BookingResultDtoCopyWithImpl<$Res, _$BookingResultDtoImpl>
+    implements _$$BookingResultDtoImplCopyWith<$Res> {
+  __$$BookingResultDtoImplCopyWithImpl(_$BookingResultDtoImpl _value,
+      $Res Function(_$BookingResultDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BookingResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bookings = null,
+  }) {
+    return _then(_$BookingResultDtoImpl(
+      bookings: null == bookings
+          ? _value._bookings
+          : bookings // ignore: cast_nullable_to_non_nullable
+              as List<BookingResponseDto>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$BookingResultDtoImpl implements _BookingResultDto {
+  const _$BookingResultDtoImpl(
+      {@JsonKey(name: "bookings")
+      required final List<BookingResponseDto> bookings})
+      : _bookings = bookings;
+
+  factory _$BookingResultDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingResultDtoImplFromJson(json);
+
+  final List<BookingResponseDto> _bookings;
+  @override
+  @JsonKey(name: "bookings")
+  List<BookingResponseDto> get bookings {
+    if (_bookings is EqualUnmodifiableListView) return _bookings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookings);
+  }
+
+  @override
+  String toString() {
+    return 'BookingResultDto(bookings: $bookings)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingResultDtoImpl &&
+            const DeepCollectionEquality().equals(other._bookings, _bookings));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_bookings));
+
+  /// Create a copy of BookingResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingResultDtoImplCopyWith<_$BookingResultDtoImpl> get copyWith =>
+      __$$BookingResultDtoImplCopyWithImpl<_$BookingResultDtoImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingResultDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingResultDto implements BookingResultDto {
+  const factory _BookingResultDto(
+          {@JsonKey(name: "bookings")
+          required final List<BookingResponseDto> bookings}) =
+      _$BookingResultDtoImpl;
+
+  factory _BookingResultDto.fromJson(Map<String, dynamic> json) =
+      _$BookingResultDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: "bookings")
+  List<BookingResponseDto> get bookings;
+
+  /// Create a copy of BookingResultDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BookingResultDtoImplCopyWith<_$BookingResultDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+BookingResponseDto _$BookingResponseDtoFromJson(Map<String, dynamic> json) {
+  return _BookingResponseDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BookingResponseDto {
+  @JsonKey(name: "booking_info")
+  BookingDto get booking => throw _privateConstructorUsedError;
+  FavoriteDto get master => throw _privateConstructorUsedError;
+
+  /// Serializes this BookingResponseDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of BookingResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $BookingResponseDtoCopyWith<BookingResponseDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BookingResponseDtoCopyWith<$Res> {
+  factory $BookingResponseDtoCopyWith(
+          BookingResponseDto value, $Res Function(BookingResponseDto) then) =
+      _$BookingResponseDtoCopyWithImpl<$Res, BookingResponseDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "booking_info") BookingDto booking, FavoriteDto master});
+
+  $BookingDtoCopyWith<$Res> get booking;
+  $FavoriteDtoCopyWith<$Res> get master;
+}
+
+/// @nodoc
+class _$BookingResponseDtoCopyWithImpl<$Res, $Val extends BookingResponseDto>
+    implements $BookingResponseDtoCopyWith<$Res> {
+  _$BookingResponseDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of BookingResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? booking = null,
+    Object? master = null,
+  }) {
+    return _then(_value.copyWith(
+      booking: null == booking
+          ? _value.booking
+          : booking // ignore: cast_nullable_to_non_nullable
+              as BookingDto,
+      master: null == master
+          ? _value.master
+          : master // ignore: cast_nullable_to_non_nullable
+              as FavoriteDto,
+    ) as $Val);
+  }
+
+  /// Create a copy of BookingResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BookingDtoCopyWith<$Res> get booking {
+    return $BookingDtoCopyWith<$Res>(_value.booking, (value) {
+      return _then(_value.copyWith(booking: value) as $Val);
+    });
+  }
+
+  /// Create a copy of BookingResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FavoriteDtoCopyWith<$Res> get master {
+    return $FavoriteDtoCopyWith<$Res>(_value.master, (value) {
+      return _then(_value.copyWith(master: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$BookingResponseDtoImplCopyWith<$Res>
+    implements $BookingResponseDtoCopyWith<$Res> {
+  factory _$$BookingResponseDtoImplCopyWith(_$BookingResponseDtoImpl value,
+          $Res Function(_$BookingResponseDtoImpl) then) =
+      __$$BookingResponseDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "booking_info") BookingDto booking, FavoriteDto master});
+
+  @override
+  $BookingDtoCopyWith<$Res> get booking;
+  @override
+  $FavoriteDtoCopyWith<$Res> get master;
+}
+
+/// @nodoc
+class __$$BookingResponseDtoImplCopyWithImpl<$Res>
+    extends _$BookingResponseDtoCopyWithImpl<$Res, _$BookingResponseDtoImpl>
+    implements _$$BookingResponseDtoImplCopyWith<$Res> {
+  __$$BookingResponseDtoImplCopyWithImpl(_$BookingResponseDtoImpl _value,
+      $Res Function(_$BookingResponseDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BookingResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? booking = null,
+    Object? master = null,
+  }) {
+    return _then(_$BookingResponseDtoImpl(
+      booking: null == booking
+          ? _value.booking
+          : booking // ignore: cast_nullable_to_non_nullable
+              as BookingDto,
+      master: null == master
+          ? _value.master
+          : master // ignore: cast_nullable_to_non_nullable
+              as FavoriteDto,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable()
+class _$BookingResponseDtoImpl implements _BookingResponseDto {
+  const _$BookingResponseDtoImpl(
+      {@JsonKey(name: "booking_info") required this.booking,
+      required this.master});
+
+  factory _$BookingResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BookingResponseDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: "booking_info")
+  final BookingDto booking;
+  @override
+  final FavoriteDto master;
+
+  @override
+  String toString() {
+    return 'BookingResponseDto(booking: $booking, master: $master)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$BookingResponseDtoImpl &&
+            (identical(other.booking, booking) || other.booking == booking) &&
+            (identical(other.master, master) || other.master == master));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, booking, master);
+
+  /// Create a copy of BookingResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$BookingResponseDtoImplCopyWith<_$BookingResponseDtoImpl> get copyWith =>
+      __$$BookingResponseDtoImplCopyWithImpl<_$BookingResponseDtoImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$BookingResponseDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BookingResponseDto implements BookingResponseDto {
+  const factory _BookingResponseDto(
+      {@JsonKey(name: "booking_info") required final BookingDto booking,
+      required final FavoriteDto master}) = _$BookingResponseDtoImpl;
+
+  factory _BookingResponseDto.fromJson(Map<String, dynamic> json) =
+      _$BookingResponseDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: "booking_info")
+  BookingDto get booking;
+  @override
+  FavoriteDto get master;
+
+  /// Create a copy of BookingResponseDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$BookingResponseDtoImplCopyWith<_$BookingResponseDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 BookingDto _$BookingDtoFromJson(Map<String, dynamic> json) {
   return _BookingDto.fromJson(json);
 }
@@ -418,164 +787,5 @@ abstract class _BookingDto implements BookingDto {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BookingDtoImplCopyWith<_$BookingDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-BookingResponseDto _$BookingResponseDtoFromJson(Map<String, dynamic> json) {
-  return _BookingResponseDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$BookingResponseDto {
-  List<BookingDto> get bookings => throw _privateConstructorUsedError;
-
-  /// Serializes this BookingResponseDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BookingResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BookingResponseDtoCopyWith<BookingResponseDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $BookingResponseDtoCopyWith<$Res> {
-  factory $BookingResponseDtoCopyWith(
-          BookingResponseDto value, $Res Function(BookingResponseDto) then) =
-      _$BookingResponseDtoCopyWithImpl<$Res, BookingResponseDto>;
-  @useResult
-  $Res call({List<BookingDto> bookings});
-}
-
-/// @nodoc
-class _$BookingResponseDtoCopyWithImpl<$Res, $Val extends BookingResponseDto>
-    implements $BookingResponseDtoCopyWith<$Res> {
-  _$BookingResponseDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of BookingResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? bookings = null,
-  }) {
-    return _then(_value.copyWith(
-      bookings: null == bookings
-          ? _value.bookings
-          : bookings // ignore: cast_nullable_to_non_nullable
-              as List<BookingDto>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$BookingResponseDtoImplCopyWith<$Res>
-    implements $BookingResponseDtoCopyWith<$Res> {
-  factory _$$BookingResponseDtoImplCopyWith(_$BookingResponseDtoImpl value,
-          $Res Function(_$BookingResponseDtoImpl) then) =
-      __$$BookingResponseDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<BookingDto> bookings});
-}
-
-/// @nodoc
-class __$$BookingResponseDtoImplCopyWithImpl<$Res>
-    extends _$BookingResponseDtoCopyWithImpl<$Res, _$BookingResponseDtoImpl>
-    implements _$$BookingResponseDtoImplCopyWith<$Res> {
-  __$$BookingResponseDtoImplCopyWithImpl(_$BookingResponseDtoImpl _value,
-      $Res Function(_$BookingResponseDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of BookingResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? bookings = null,
-  }) {
-    return _then(_$BookingResponseDtoImpl(
-      bookings: null == bookings
-          ? _value._bookings
-          : bookings // ignore: cast_nullable_to_non_nullable
-              as List<BookingDto>,
-    ));
-  }
-}
-
-/// @nodoc
-
-@JsonSerializable()
-class _$BookingResponseDtoImpl implements _BookingResponseDto {
-  const _$BookingResponseDtoImpl({required final List<BookingDto> bookings})
-      : _bookings = bookings;
-
-  factory _$BookingResponseDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BookingResponseDtoImplFromJson(json);
-
-  final List<BookingDto> _bookings;
-  @override
-  List<BookingDto> get bookings {
-    if (_bookings is EqualUnmodifiableListView) return _bookings;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_bookings);
-  }
-
-  @override
-  String toString() {
-    return 'BookingResponseDto(bookings: $bookings)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BookingResponseDtoImpl &&
-            const DeepCollectionEquality().equals(other._bookings, _bookings));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_bookings));
-
-  /// Create a copy of BookingResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BookingResponseDtoImplCopyWith<_$BookingResponseDtoImpl> get copyWith =>
-      __$$BookingResponseDtoImplCopyWithImpl<_$BookingResponseDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$BookingResponseDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _BookingResponseDto implements BookingResponseDto {
-  const factory _BookingResponseDto(
-      {required final List<BookingDto> bookings}) = _$BookingResponseDtoImpl;
-
-  factory _BookingResponseDto.fromJson(Map<String, dynamic> json) =
-      _$BookingResponseDtoImpl.fromJson;
-
-  @override
-  List<BookingDto> get bookings;
-
-  /// Create a copy of BookingResponseDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BookingResponseDtoImplCopyWith<_$BookingResponseDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

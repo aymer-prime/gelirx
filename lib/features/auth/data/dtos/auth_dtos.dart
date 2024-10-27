@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gelirx/features/shared/domain/dtos/category/category_dto.dart';
+import 'package:gelirx/features/shared/data/dtos/category/category_dto.dart';
 
 part 'auth_dtos.freezed.dart';
 part 'auth_dtos.g.dart';

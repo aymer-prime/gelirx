@@ -1,6 +1,6 @@
 import 'package:gelirx/features/auth/data/dtos/auth_dtos.dart';
 import 'package:gelirx/features/auth/domain/entities/user_entity.dart';
-import 'package:gelirx/features/shared/domain/mappers/shared_mappers.dart';
+import 'package:gelirx/features/shared/data/mappers/shared_mappers.dart';
 
 extension UserInfoDtoX on UserInfoDto {
   UserInfo toDomain() {

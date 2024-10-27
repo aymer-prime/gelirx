@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gelirx/features/favorite/domain/entities/favorite_entities.dart';
 
 part 'booking_entity.freezed.dart';
 
@@ -16,5 +17,6 @@ abstract class Booking with _$Booking {
     required String status,
     required DateTime sendingDate,
     required DateTime processDate,
+    required Favorite master,
   }) = _Booking;
 }

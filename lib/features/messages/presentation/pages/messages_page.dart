@@ -41,102 +41,99 @@ class MessagesPage extends StatelessWidget {
                   return Center(child: Text('Error: ${state.error}'));
                 }
                 return Expanded(
-                  child: Padding(
+                  child: ListView.separated(
+                    itemCount: state.chats.length ?? 0,
                     padding: const EdgeInsets.only(
                       left: 24,
                       right: 24,
                       top: 30,
+                      bottom: 100,
                     ),
-                    child: ListView.separated(
-                      itemCount: state.chats.length ?? 0,
-                      itemBuilder: (_, index) {
-                        final chatDoc = state.chats[index];
-                        final chatData = chatDoc.data() as Map<String, dynamic>;
-                        return Container(
-                          height: 70,
-                          color: Colors.transparent,
-                          child: GestureDetector(
-                            onTap: () {
-                              context
-                                  .read<ChatBloc>()
-                                  .add(ChatEvent.selectChat(index));
-                              context.router.push(const ChatRoute());
-                            },
-                            child: Row(
-                              children: [
-                                AspectRatio(
-                                  aspectRatio: 1,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(16),
-                                    child: Image.asset(
-                                      ImageAssets.handyman,
-                                      fit: BoxFit.cover,
+                    itemBuilder: (_, index) {
+                      final chatDoc = state.chats[index];
+                      final chatData = chatDoc.data() as Map<String, dynamic>;
+                      return Container(
+                        height: 70,
+                        color: Colors.transparent,
+                        child: GestureDetector(
+                          onTap: () {
+                            context
+                                .read<ChatBloc>()
+                                .add(ChatEvent.selectChat(index));
+                            context.router.push(const ChatRoute());
+                          },
+                          child: Row(
+                            children: [
+                              AspectRatio(
+                                aspectRatio: 1,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Image.asset(
+                                    ImageAssets.handyman,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 15),
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          chatData['name'] ?? 'Osman Yilmaz',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        Text(
+                                          chatData['time'] ?? '15:08',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 13,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ),
+                                    Text(
+                                      chatData['services'] ??
+                                          'Radiator Cleaning, House Cleaning, House to House Transportation',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      (((chatData['messages']?.isEmpty ??
+                                                      true) ||
+                                                  chatData['messages'] == null)
+                                              ? 'No messages'
+                                              : chatData['messages']
+                                                  .first['content']) ??
+                                          'No messages',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 15),
-                                Flexible(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            chatData['name'] ?? 'Osman Yilmaz',
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          Text(
-                                            chatData['time'] ?? '15:08',
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: 13,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                        chatData['services'] ??
-                                            'Radiator Cleaning, House Cleaning, House to House Transportation',
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      Text(
-                                        (((chatData['messages']?.isEmpty ??
-                                                        true) ||
-                                                    chatData['messages'] ==
-                                                        null)
-                                                ? 'No messages'
-                                                : chatData['messages']
-                                                    .first['content']) ??
-                                            'No messages',
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          color: Colors.grey.shade600,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: AppSize.s20),
-                    ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: AppSize.s20),
                   ),
                 );
                 //return const Center(child: Text('No chat stream available.'));

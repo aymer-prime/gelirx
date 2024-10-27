@@ -8,16 +8,17 @@ import 'package:gelirx/app/utils/resources/assets_manager.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/home/domain/entities/master.dart';
 
 import '../widget/review_star_row.dart';
 
 @RoutePage()
 class MasterPage extends StatelessWidget {
   final double rating = 3.5;
-  final String masterId;
+  final Master master;
   const MasterPage({
     super.key,
-    required this.masterId,
+    required this.master,
   });
 
   @override
@@ -50,7 +51,7 @@ class MasterPage extends StatelessWidget {
                         width: AppSize.s40,
                         height: AppSize.s40,
                         decoration: BoxDecoration(
-                        shape: BoxShape.circle,
+                          shape: BoxShape.circle,
                           color: ColorManager.lightGrey,
                         ),
                         child: Icon(
@@ -111,23 +112,24 @@ class MasterPage extends StatelessWidget {
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text("Osman Yancigil",
                                             style: getTextStyle(AppSize.s20,
                                                 FontWeight.w400, Colors.white)),
                                         Text(
                                           "Radiator Cleaning, House Cleaning, House to House Transportation",
-                                          style: getTextStyle(AppSize.s14,
-                                              FontWeight.w400, ColorManager.lightGreyText),
+                                          style: getTextStyle(
+                                              AppSize.s14,
+                                              FontWeight.w400,
+                                              ColorManager.lightGreyText),
                                         ),
                                       ],
                                     ),
                                   )
                                 ],
                               ),
-
                               Row(
                                 children: [
                                   SvgPicture.asset(ImageAssets.check,
@@ -152,10 +154,8 @@ class MasterPage extends StatelessWidget {
                                     height: AppSize.s15,
                                   ),
                                   Text("35 km ",
-                                      style: getTextStyle(
-                                          AppSize.s14,
-                                          FontWeight.w400,
-                                          ColorManager.white)),
+                                      style: getTextStyle(AppSize.s14,
+                                          FontWeight.w400, ColorManager.white)),
                                   Text("(Approx. 40 min)",
                                       style: getTextStyle(
                                           AppSize.s14,
@@ -184,12 +184,14 @@ class MasterPage extends StatelessWidget {
               padding: const EdgeInsets.all(AppSize.s24),
               decoration: BoxDecoration(
                   color: Colors.white,
-                border: Border(top: BorderSide(width: AppSize.s1,color: Color(0xffe0e2ea)))
-              ),
-
+                  border: Border(
+                      top: BorderSide(
+                          width: AppSize.s1, color: Color(0xffe0e2ea)))),
               child: ElevatedButton(
                 onPressed: () {
-                  context.router.push(BookingDetailsRoute(masterId: masterId));
+                  context.router.push(BookingDetailsRoute(
+                    masterId: master.id,
+                  ));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorManager.joyColor,
@@ -205,9 +207,7 @@ class MasterPage extends StatelessWidget {
                         style: getTextStyle(
                             AppSize.s16, FontWeight.w600, Colors.white)),
                     Text(" (40 min)",
-                        style: getTextStyle(
-                            AppSize.s16,
-                            FontWeight.w300,
+                        style: getTextStyle(AppSize.s16, FontWeight.w300,
                             Colors.white.withOpacity(0.7))),
                   ],
                 ),
@@ -219,4 +219,3 @@ class MasterPage extends StatelessWidget {
     );
   }
 }
-

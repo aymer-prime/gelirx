@@ -41,7 +41,7 @@ class MasterDetailsDialog extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       context.router.push(MasterRoute(
-                        masterId: master.id,
+                        master: master,
                       ));
                     },
                     child: Stack(

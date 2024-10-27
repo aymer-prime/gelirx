@@ -6,6 +6,9 @@ import 'package:gelirx/features/auth/presentation/pages/master_info/master_skill
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_form_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/master_info/master_info_wrapper.dart';
 import 'package:gelirx/features/auth/presentation/pages/user_info/user_info_page.dart';
+import 'package:gelirx/features/booking/domain/entities/booking_entity.dart';
+import 'package:gelirx/features/booking/presentation/pages/service_details_page.dart';
+import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/home/presentation/pages/booking_details_page.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/old/home_page.dart';
@@ -42,7 +45,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: HomeRoute.page,
         ),
-
         AutoRoute(
           page: AuthRoute.page,
         ),
@@ -82,7 +84,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: BookingDetailsRoute.page,
         ),
-      AutoRoute(
+        AutoRoute(
           page: BookingHistoryRoute.page,
         ),
         AutoRoute(
@@ -93,6 +95,9 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: MasterActiveServiceRoute.page,
+        ),
+        AutoRoute(
+          page: ServiceDetailsRoute.page,
         )
       ];
 }

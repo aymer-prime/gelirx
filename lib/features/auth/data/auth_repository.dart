@@ -453,33 +453,6 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<ApiException, UserInfo>> getUserInfo() async {
-    try {
-      final id = _localService.get(Constants.userIdKey);
-      var response = await _remoteService.post(
-        '${Constants.baseUrl}master/info.php',
-        options: Options(
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        ),
-        data: {
-          'lang': 'tr',
-          'user_id': id,
-        },
-      );
-      final userInfo = UserInfoDto.fromJson(response).toDomain();
-      return right(userInfo);
-    } on ApiException catch (e) {
-      return left(e);
-    } catch (e) {
-      return left(
-        ApiException.defaultException('-1', e.toString()),
-      );
-    }
-  }
-
-  @override
   Option<UserEntity> getSignedInUser() {
     final authToken = _localService.get(Constants.tokenKey);
     final userId = _localService.get(Constants.userIdKey);

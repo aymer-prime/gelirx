@@ -11,34 +11,43 @@ class ReviewComment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           CircleAvatar(
+            CircleAvatar(
               maxRadius: AppSize.s18,
               minRadius: AppSize.s18,
-               backgroundImage: AssetImage(ImageAssets.handyman),
-           ),
-            SizedBox(width: AppSize.s10,),
+              backgroundImage: AssetImage(ImageAssets.handyman),
+            ),
+            SizedBox(
+              width: AppSize.s10,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stars(starSize: AppSize.s14),
-                Text("10 Ekim 2024",style: getTextStyle(
-                    AppSize.s13, FontWeight.w400, ColorManager.textSubtitleColor) )
+                Text("10 Ekim 2024",
+                    style: getTextStyle(AppSize.s13, FontWeight.w400,
+                        ColorManager.textSubtitleColor))
               ],
             ),
-            SizedBox(width: AppSize.s10,),
-            Text("Pınar A.",style: getTextStyle(
-                AppSize.s14, FontWeight.w400, ColorManager.welcomeTextColor) ),
-
+            SizedBox(
+              width: AppSize.s10,
+            ),
+            Text("Pınar A.",
+                style: getTextStyle(AppSize.s14, FontWeight.w400,
+                    ColorManager.welcomeTextColor)),
           ],
-          ),
-        SizedBox(width: AppSize.s10,),
-        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nibh, rutrum ut ullamcorper ullamcorper, tempor sit amet nibh. Praesent vitae ligula sagittis, sollicitudin nunc eu, sodales erat.",style: getTextStyle(
-            AppSize.s14, FontWeight.w300, ColorManager.welcomeTextColor) ),
+        ),
+        SizedBox(
+          width: AppSize.s10,
+        ),
+        Text(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc massa nibh, rutrum ut ullamcorper ullamcorper, tempor sit amet nibh. Praesent vitae ligula sagittis, sollicitudin nunc eu, sodales erat.",
+            style: getTextStyle(
+                AppSize.s14, FontWeight.w300, ColorManager.welcomeTextColor)),
       ],
     );
   }

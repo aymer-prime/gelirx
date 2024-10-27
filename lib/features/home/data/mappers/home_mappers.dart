@@ -1,6 +1,6 @@
 import 'package:gelirx/features/home/data/dto/master_dto.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
-import 'package:gelirx/features/shared/domain/mappers/shared_mappers.dart';
+import 'package:gelirx/features/shared/data/mappers/shared_mappers.dart';
 
 extension MasterDtoX on MasterDto {
   Master toDomain() {

@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BookingEvent {
-  String get userId => throw _privateConstructorUsedError;
+  UserEntity? get currentUser => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) getBookings,
+    required TResult Function(UserEntity? currentUser) getBookings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userId)? getBookings,
+    TResult? Function(UserEntity? currentUser)? getBookings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? getBookings,
+    TResult Function(UserEntity? currentUser)? getBookings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +63,9 @@ abstract class $BookingEventCopyWith<$Res> {
           BookingEvent value, $Res Function(BookingEvent) then) =
       _$BookingEventCopyWithImpl<$Res, BookingEvent>;
   @useResult
-  $Res call({String userId});
+  $Res call({UserEntity? currentUser});
+
+  $UserEntityCopyWith<$Res>? get currentUser;
 }
 
 /// @nodoc
@@ -81,14 +83,28 @@ class _$BookingEventCopyWithImpl<$Res, $Val extends BookingEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+      currentUser: freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
     ) as $Val);
+  }
+
+  /// Create a copy of BookingEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res>? get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+
+    return $UserEntityCopyWith<$Res>(_value.currentUser!, (value) {
+      return _then(_value.copyWith(currentUser: value) as $Val);
+    });
   }
 }
 
@@ -100,7 +116,10 @@ abstract class _$$GetBookingsImplCopyWith<$Res>
       __$$GetBookingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId});
+  $Res call({UserEntity? currentUser});
+
+  @override
+  $UserEntityCopyWith<$Res>? get currentUser;
 }
 
 /// @nodoc
@@ -116,13 +135,13 @@ class __$$GetBookingsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_$GetBookingsImpl(
-      null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+      freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
     ));
   }
 }
@@ -130,14 +149,14 @@ class __$$GetBookingsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetBookingsImpl implements _GetBookings {
-  const _$GetBookingsImpl(this.userId);
+  const _$GetBookingsImpl(this.currentUser);
 
   @override
-  final String userId;
+  final UserEntity? currentUser;
 
   @override
   String toString() {
-    return 'BookingEvent.getBookings(userId: $userId)';
+    return 'BookingEvent.getBookings(currentUser: $currentUser)';
   }
 
   @override
@@ -145,11 +164,12 @@ class _$GetBookingsImpl implements _GetBookings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetBookingsImpl &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.currentUser, currentUser) ||
+                other.currentUser == currentUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId);
+  int get hashCode => Object.hash(runtimeType, currentUser);
 
   /// Create a copy of BookingEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -162,27 +182,27 @@ class _$GetBookingsImpl implements _GetBookings {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) getBookings,
+    required TResult Function(UserEntity? currentUser) getBookings,
   }) {
-    return getBookings(userId);
+    return getBookings(currentUser);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userId)? getBookings,
+    TResult? Function(UserEntity? currentUser)? getBookings,
   }) {
-    return getBookings?.call(userId);
+    return getBookings?.call(currentUser);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? getBookings,
+    TResult Function(UserEntity? currentUser)? getBookings,
     required TResult orElse(),
   }) {
     if (getBookings != null) {
-      return getBookings(userId);
+      return getBookings(currentUser);
     }
     return orElse();
   }
@@ -217,10 +237,10 @@ class _$GetBookingsImpl implements _GetBookings {
 }
 
 abstract class _GetBookings implements BookingEvent {
-  const factory _GetBookings(final String userId) = _$GetBookingsImpl;
+  const factory _GetBookings(final UserEntity? currentUser) = _$GetBookingsImpl;
 
   @override
-  String get userId;
+  UserEntity? get currentUser;
 
   /// Create a copy of BookingEvent
   /// with the given fields replaced by the non-null parameter values.

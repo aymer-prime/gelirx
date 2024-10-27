@@ -7,11 +7,14 @@ import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/booking/domain/entities/booking_entity.dart';
 import 'package:gelirx/features/booking/presentation/bloc/booking_bloc.dart';
 import 'package:gelirx/features/booking/presentation/widgets/booking_history_card.dart';
 import 'package:gelirx/features/booking/presentation/widgets/booking_history_placeholder.dart';
 import 'package:gelirx/features/home/presentation/widgets/dialogs/master_dialog_screen.dart';
+import 'package:gelirx/features/master_dashboard/presentation/pages/master_active_service_page.dart';
 import 'package:intl/intl.dart';
 
 @RoutePage()
@@ -24,10 +27,16 @@ class BookingHistoryPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => getIt<BookingBloc>()
-            ..add(
-              const BookingEvent.getBookings('39'),
-            ),
+          create: (context) {
+            var currentUser = context.read<AuthStatusBloc>().state.maybeMap(
+                  orElse: () => null,
+                  authenticated: (value) => value.user,
+                );
+            return getIt<BookingBloc>()
+              ..add(
+                BookingEvent.getBookings(currentUser),
+              );
+          },
           child: BlocBuilder<BookingBloc, BookingState>(
             builder: (context, state) {
               return state.maybeMap(
@@ -37,30 +46,39 @@ class BookingHistoryPage extends StatelessWidget {
                 ),
                 loadFailed: (failure) => Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        failure.apiException.toString(),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: AppSize.s20),
-                      ElevatedButton(
-                        onPressed: () {
-                          print('object');
-                          context.read<BookingBloc>().add(
-                                const BookingEvent.getBookings('39'),
-                              );
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30.0,
-                            vertical: 16.0,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          failure.apiException.maybeMap(
+                            orElse: () => failure.apiException.toString(),
+                            defaultException: (unknown) => unknown.message,
                           ),
-                          child: Text('Try Again'),
+                          textAlign: TextAlign.center,
                         ),
-                      )
-                    ],
+                        const SizedBox(height: AppSize.s20),
+                        ElevatedButton(
+                          onPressed: () {
+                            var currentUser =
+                                context.read<AuthStatusBloc>().state.maybeMap(
+                                      orElse: () => null,
+                                      authenticated: (value) => value.user,
+                                    );
+                            context.read<BookingBloc>().add(
+                                  BookingEvent.getBookings(currentUser),
+                                );
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30.0,
+                              vertical: 16.0,
+                            ),
+                            child: Text('Try Again'),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -139,13 +157,21 @@ class BookingHistoryContent extends StatelessWidget {
                   vertical: AppPadding.p12,
                 ),
                 child: BookingHistoryCard(
-                  name: 'Osman Yancigil',
-                  serviceName: 'Radiator Cleaning',
+                  name: '${booking.master.name} ${booking.master.surname}',
+                  serviceName: booking.master.services.first.name,
                   date: DateFormat('dd.MM.yyyy hh:mm')
                       .format(booking.sendingDate),
                   status: booking.status,
-                  rating: 4.1,
-                  totalInteractions: 24,
+                  rating: booking.master.point.toDouble(),
+                  totalInteractions: booking.master.totalInteraction,
+                  image: booking.master.image,
+                  onTap: () {
+                    context.router.push(
+                      ServiceDetailsRoute(
+                        service: booking,
+                      ),
+                    );
+                  },
                 ),
               );
             },

@@ -18,7 +18,7 @@ class BookingRepository implements IBookingRepository {
   );
   @override
   Future<Either<ApiException, List<Booking>>> getUserBookings(
-      String userId) async {
+      String userId, String token) async {
     try {
       var response = await _remoteService.post(
         '${Constants.baseUrl}services/booking-history.php',
@@ -29,11 +29,11 @@ class BookingRepository implements IBookingRepository {
         ),
         data: {
           'lang': 'tr',
-          'master_id': userId,
+          'user_id': userId,
+          'token': token,
         },
       );
-      final BookingResponseDto responseData =
-          BookingResponseDto.fromJson(response);
+      final BookingResultDto responseData = BookingResultDto.fromJson(response);
       final List<Booking> resultList = responseData.bookings
           .map(
             (e) => e.toDomain(),

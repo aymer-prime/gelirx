@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gelirx/features/shared/domain/dtos/category/category_dto.dart';
+import 'package:gelirx/features/shared/data/dtos/category/category_dto.dart';
 
 part 'master_dto.freezed.dart';
 part 'master_dto.g.dart';
