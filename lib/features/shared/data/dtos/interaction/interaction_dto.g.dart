@@ -12,7 +12,7 @@ _$InteractionDtoImpl _$$InteractionDtoImplFromJson(Map json) =>
       userId: json['user_id'] as String,
       name: json['name'] as String,
       surname: json['surname'] as String,
-      comment: json['comment'] as String,
+      comment: json['comment'] as String?,
       point: json['point'] as String,
       serviceId: json['service_id'] as String,
       date: json['date'] as String,

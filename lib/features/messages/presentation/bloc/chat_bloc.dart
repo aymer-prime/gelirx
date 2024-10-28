@@ -21,7 +21,6 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   StreamSubscription<Either<ApiException, dynamic>>? _chatStreamSubscription;
 
   ChatBloc(this._chatRepository) : super(ChatState.initial()) {
-
     on<FetchChats>((event, emit) async {
       emit(state.copyWith(isLoading: true));
       await _chatStreamSubscription?.cancel();
@@ -46,13 +45,14 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     });
 
     on<SendMessage>((event, emit) async {
-      final result = await _chatRepository.sendMessage(event.bookingId, event.message);
+      final result =
+          await _chatRepository.sendMessage(event.bookingId, event.message);
 
       result.fold(
-            (failure) {
+        (failure) {
           emit(state.copyWith(error: "Failed to send message"));
         },
-            (success) {
+        (success) {
           // Optionally handle success state
           emit(state.copyWith(error: null));
         },

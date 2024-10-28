@@ -33,7 +33,7 @@ extension InteractionDtoX on InteractionDto {
       userId: userId,
       name: name,
       surname: surname,
-      comment: comment,
+      comment: comment ?? '',
       point: point,
       serviceId: serviceId,
       date: DateTime.parse(date),

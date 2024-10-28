@@ -1,78 +1,144 @@
 import 'package:flutter/Material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/features/master/presentation/widget/review_comment.dart';
+import 'package:gelirx/features/shared/domain/entities/interaction/interaction_entity.dart';
 
 import '../../../../app/utils/resources/color_manager.dart';
 import '../../../../app/utils/resources/styles_manager.dart';
 import '../../../../app/utils/resources/values_manager.dart';
 
 class Reviews extends StatelessWidget {
-  const Reviews({super.key});
+  final List<Interaction> interactions;
+  const Reviews({
+    super.key,
+    required this.interactions,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Reviews", style: getTextStyle(AppSize.s14, FontWeight.w300, ColorManager.black),),
+        Text(
+          "Reviews",
+          style: getTextStyle(AppSize.s14, FontWeight.w300, ColorManager.black),
+        ),
         Stack(
           children: [
             Divider(thickness: 3, color: Color(0xfff0f2f8)),
-            SizedBox(width: AppSize.s72, child: Divider(thickness: 2,color: ColorManager.welcomeTextColor)),
+            SizedBox(
+                width: AppSize.s72,
+                child: Divider(
+                    thickness: 2, color: ColorManager.welcomeTextColor)),
           ],
         ),
         Row(
           children: [
-            Text("4.7",
-                style: getTextStyle(AppSize.s20, FontWeight.w500,
-                    ColorManager.welcomeTextColor)),
+            Text(
+              calculateAveragePoints(interactions).toString(),
+              style: getTextStyle(
+                AppSize.s20,
+                FontWeight.w500,
+                ColorManager.welcomeTextColor,
+              ),
+            ),
             SizedBox(width: AppSize.s4),
-            Stars(starSize: AppSize.s18),
+            Stars(
+              starSize: AppSize.s18,
+              rating: calculateAveragePoints(interactions),
+            ),
             SizedBox(width: AppSize.s6),
-            Text("(17)",
+            Text("(${interactions.length})",
                 style: getTextStyle(
                     AppSize.s16, FontWeight.w300, ColorManager.tabBarColor)),
           ],
         ),
-        RatingRow(
-            number: 5,
-            starColor: ColorManager.fiveRatingColor,
-            percent: 0.88,
-            progressColor: ColorManager.fiveRatingColor,
-            totalReviews: 13),
-        RatingRow(
-            number: 4,
-            starColor: ColorManager.fourRatingColor,
-            percent: 0.06,
-            progressColor: ColorManager.fourRatingColor,
-            totalReviews: 2),
-        RatingRow(
-            number: 3,
-            starColor: ColorManager.threeRatingColor,
-            percent: 0.0,
-            progressColor: ColorManager.threeRatingColor,
-            totalReviews: 0),
-        RatingRow(
-            number: 2,
-            starColor: ColorManager.twoRatingColor,
-            percent: 0.0,
-            progressColor: ColorManager.twoRatingColor,
-            totalReviews: 0),
-        RatingRow(
-            number: 1,
-            starColor: ColorManager.oneRatingColor,
-            percent: 0.06,
-            progressColor: ColorManager.oneRatingColor,
-            totalReviews: 2),
+        InteractionRatingRows(
+          reviews: countPoints(interactions),
+          totalInteractions: interactions.length,
+        ),
         SizedBox(height: AppSize.s20),
-        ReviewComment(),
-        SizedBox(height: AppSize.s20),
-        ReviewComment(),
-        SizedBox(height: AppSize.s20),
-        ReviewComment(),
-        SizedBox(height: AppSize.s20),
+        ...List.generate(
+          interactions.length,
+          (index) => ReviewComment(
+            interaction: interactions[index],
+          ),
+        ).separateWith(
+          SizedBox(height: AppSize.s20),
+        ),
       ],
     );
+  }
+
+  Map<String, int> countPoints(List<Interaction> interactions) {
+    Map<String, int> pointCounts = {'1': 0, '2': 0, '3': 0, '4': 0, '5': 0};
+
+    for (var obj in interactions) {
+      if (pointCounts.containsKey(obj.point)) {
+        pointCounts[obj.point] = pointCounts[obj.point]! + 1;
+      }
+    }
+    return pointCounts;
+  }
+
+  double calculateAveragePoints(List<Interaction> interactions) {
+    if (interactions.isEmpty) return 0.0;
+
+    int totalPoints =
+        interactions.fold(0, (sum, obj) => sum + int.parse(obj.point));
+    return totalPoints / interactions.length;
+  }
+}
+
+class InteractionRatingRows extends StatelessWidget {
+  final Map<String, int> reviews;
+  final int totalInteractions;
+  const InteractionRatingRows({
+    super.key,
+    required this.reviews,
+    required this.totalInteractions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      RatingRow(
+        number: 5,
+        starColor: ColorManager.fiveRatingColor,
+        percent: (reviews['5']! * 100) / 10,
+        progressColor: ColorManager.fiveRatingColor,
+        totalReviews: reviews['5']!,
+      ),
+      RatingRow(
+        number: 4,
+        starColor: ColorManager.fourRatingColor,
+        percent: (reviews['4']! * 100) / totalInteractions,
+        progressColor: ColorManager.fourRatingColor,
+        totalReviews: reviews['4']!,
+      ),
+      RatingRow(
+        number: 3,
+        starColor: ColorManager.threeRatingColor,
+        percent: (reviews['3']! * 100) / totalInteractions,
+        progressColor: ColorManager.threeRatingColor,
+        totalReviews: reviews['3']!,
+      ),
+      RatingRow(
+        number: 2,
+        starColor: ColorManager.twoRatingColor,
+        percent: (reviews['2']! * 100) / totalInteractions,
+        progressColor: ColorManager.twoRatingColor,
+        totalReviews: reviews['2']!,
+      ),
+      RatingRow(
+        number: 1,
+        starColor: ColorManager.oneRatingColor,
+        percent: (reviews['1']! * 100) / totalInteractions,
+        progressColor: ColorManager.oneRatingColor,
+        totalReviews: reviews['1']!,
+      ),
+    ]);
   }
 }
 
@@ -109,17 +175,17 @@ class RatingRow extends StatelessWidget {
         SizedBox(width: AppSize.s6),
         CustomLinearProgressIndicator(
           width: MediaQuery.of(context).size.width - AppSize.s150,
-          percent: percent,
+          percent: percent / 100,
           progressColor: progressColor,
         ),
         SizedBox(width: AppSize.s6),
         Text(
-          "${(percent * 100).toStringAsFixed(0)}%",
+          "$percent%",
           style: getTextStyle(
               AppSize.s13, FontWeight.w500, ColorManager.welcomeTextColor),
         ),
         SizedBox(width: AppSize.s6),
-        if (totalReviews >0)
+        if (totalReviews > 0)
           Text(
             "($totalReviews)",
             style: getTextStyle(
@@ -166,11 +232,14 @@ class CustomLinearProgressIndicator extends StatelessWidget {
   }
 }
 
-
 class Stars extends StatelessWidget {
-  final double rating = 3.5;
+  final double rating;
   final double starSize;
-  const Stars({super.key, required this.starSize});
+  const Stars({
+    super.key,
+    required this.starSize,
+    required this.rating,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -186,19 +255,17 @@ class Stars extends StatelessWidget {
             );
           }),
         ),
-         Row(
+        Row(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(5, (index) {
             return ClipRect(
               child: Align(
                 alignment: Alignment.topLeft,
-                widthFactor: rating - index > 0
-                    ? (rating - index).clamp(0.0, 1.0)
-                    : 0.0,
+                widthFactor:
+                    rating - index > 0 ? (rating - index).clamp(0.0, 1.0) : 0.0,
                 child: Icon(
                   FontAwesomeIcons.solidStar,
-                  color: ColorManager
-                      .ratingColor,
+                  color: ColorManager.ratingColor,
                   size: starSize,
                 ),
               ),

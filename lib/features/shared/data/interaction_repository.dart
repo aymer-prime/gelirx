@@ -24,7 +24,7 @@ class InteractionRepository implements IInteractionsRepository {
       String masterId, String serviceId, int point, String comment) async {
     try {
       await _remoteService.post(
-        '${Constants.baseUrl}master/get-master-reviews.php',
+        '${Constants.baseUrl}user/add-review.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -55,7 +55,7 @@ class InteractionRepository implements IInteractionsRepository {
       String masterId) async {
     try {
       final response = await _remoteService.post(
-        '${Constants.baseUrl}master/get-master-reviews.php',
+        '${Constants.baseUrl}user/master/get-master-reviews.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -76,6 +76,7 @@ class InteractionRepository implements IInteractionsRepository {
     } on ApiException catch (e) {
       return left(e);
     } catch (e) {
+      print('#error: $e');
       return left(
         ApiException.defaultException('-1', e.toString()),
       );

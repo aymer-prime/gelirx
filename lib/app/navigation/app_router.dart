@@ -9,7 +9,7 @@ import 'package:gelirx/features/auth/presentation/pages/user_info/user_info_page
 import 'package:gelirx/features/booking/domain/entities/booking_entity.dart';
 import 'package:gelirx/features/booking/presentation/pages/service_details_page.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
-import 'package:gelirx/features/home/presentation/pages/booking_details_page.dart';
+import 'package:gelirx/features/order_details/presentation/pages/booking_details_page.dart';
 import 'package:gelirx/features/booking/presentation/pages/booking_page.dart';
 import 'package:gelirx/features/home/presentation/pages/old/home_page.dart';
 import 'package:gelirx/features/auth/presentation/pages/auth_page.dart';

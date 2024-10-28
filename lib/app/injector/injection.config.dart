@@ -47,9 +47,13 @@ import '../../features/navigation/domain/usecases/navigation_usecase.dart'
     as _i603;
 import '../../features/navigation/presentation/bloc/navigation_bloc.dart'
     as _i162;
+import '../../features/order_details/presentation/bloc/order_bloc.dart'
+    as _i838;
 import '../../features/shared/data/favorite_repository.dart' as _i516;
+import '../../features/shared/data/interaction_repository.dart' as _i100;
 import '../../features/shared/data/shared_repository.dart' as _i493;
 import '../../features/shared/domain/i_favorite_repository.dart' as _i287;
+import '../../features/shared/domain/i_interactions_repository.dart' as _i777;
 import '../../features/shared/domain/i_shared_repository.dart' as _i243;
 import '../local_services/local_services.dart' as _i902;
 import '../local_services/notifiaction_handler.dart' as _i468;
@@ -87,6 +91,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i464.RemoteService(gh<_i667.DioClient>()));
     gh.lazySingleton<_i92.IBookingRepository>(
         () => _i678.BookingRepository(gh<_i464.RemoteService>()));
+    gh.lazySingleton<_i777.IInteractionsRepository>(
+        () => _i100.InteractionRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i782.INavigationRepository>(
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
@@ -123,8 +129,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
     gh.factory<_i446.UserVerificationBloc>(
         () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
-    gh.factory<_i130.MasterBloc>(
-        () => _i130.MasterBloc(gh<_i243.ISharedRepository>()));
+    gh.factory<_i838.OrderBloc>(
+        () => _i838.OrderBloc(gh<_i243.ISharedRepository>()));
+    gh.factory<_i130.MasterBloc>(() => _i130.MasterBloc(
+          gh<_i243.ISharedRepository>(),
+          gh<_i777.IInteractionsRepository>(),
+        ));
     gh.lazySingleton<_i309.SignInUseCase>(
         () => _i309.SignInUseCase(gh<_i1026.IAuthRepository>()));
     gh.factory<_i202.HomeBloc>(

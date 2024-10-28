@@ -46,11 +46,11 @@ class SharedRepository implements ISharedRepository {
   }
 
   @override
-  Future<Either<ApiException, UserInfo>> getUserInfo() async {
+  Future<Either<ApiException, UserInfo>> getUserInfo(String userId) async {
     try {
-      final id = _localService.get(Constants.userIdKey);
+      //final id = _localService.get(Constants.userIdKey);
       var response = await _remoteService.post(
-        '${Constants.baseUrl}master/info.php',
+        '${Constants.baseUrl}user/master/info.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -58,7 +58,7 @@ class SharedRepository implements ISharedRepository {
         ),
         data: {
           'lang': 'tr',
-          'user_id': id,
+          'user_id': userId,
         },
       );
       final userInfo = UserInfoDto.fromJson(response).toDomain();

@@ -16,22 +16,23 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MasterEvent {
+  String get userId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getMasterInfo,
-    required TResult Function() getMasterInteractions,
+    required TResult Function(String userId) getMasterInfo,
+    required TResult Function(String userId) getMasterInteractions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getMasterInfo,
-    TResult? Function()? getMasterInteractions,
+    TResult? Function(String userId)? getMasterInfo,
+    TResult? Function(String userId)? getMasterInteractions,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getMasterInfo,
-    TResult Function()? getMasterInteractions,
+    TResult Function(String userId)? getMasterInfo,
+    TResult Function(String userId)? getMasterInteractions,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +56,12 @@ mixin _$MasterEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Create a copy of MasterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $MasterEventCopyWith<MasterEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -62,6 +69,8 @@ abstract class $MasterEventCopyWith<$Res> {
   factory $MasterEventCopyWith(
           MasterEvent value, $Res Function(MasterEvent) then) =
       _$MasterEventCopyWithImpl<$Res, MasterEvent>;
+  @useResult
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -76,13 +85,29 @@ class _$MasterEventCopyWithImpl<$Res, $Val extends MasterEvent>
 
   /// Create a copy of MasterEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$GetMasterInfoImplCopyWith<$Res> {
+abstract class _$$GetMasterInfoImplCopyWith<$Res>
+    implements $MasterEventCopyWith<$Res> {
   factory _$$GetMasterInfoImplCopyWith(
           _$GetMasterInfoImpl value, $Res Function(_$GetMasterInfoImpl) then) =
       __$$GetMasterInfoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -95,54 +120,79 @@ class __$$GetMasterInfoImplCopyWithImpl<$Res>
 
   /// Create a copy of MasterEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_$GetMasterInfoImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetMasterInfoImpl implements _GetMasterInfo {
-  const _$GetMasterInfoImpl();
+  const _$GetMasterInfoImpl(this.userId);
+
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'MasterEvent.getMasterInfo()';
+    return 'MasterEvent.getMasterInfo(userId: $userId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetMasterInfoImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GetMasterInfoImpl &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  /// Create a copy of MasterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetMasterInfoImplCopyWith<_$GetMasterInfoImpl> get copyWith =>
+      __$$GetMasterInfoImplCopyWithImpl<_$GetMasterInfoImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getMasterInfo,
-    required TResult Function() getMasterInteractions,
+    required TResult Function(String userId) getMasterInfo,
+    required TResult Function(String userId) getMasterInteractions,
   }) {
-    return getMasterInfo();
+    return getMasterInfo(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getMasterInfo,
-    TResult? Function()? getMasterInteractions,
+    TResult? Function(String userId)? getMasterInfo,
+    TResult? Function(String userId)? getMasterInteractions,
   }) {
-    return getMasterInfo?.call();
+    return getMasterInfo?.call(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getMasterInfo,
-    TResult Function()? getMasterInteractions,
+    TResult Function(String userId)? getMasterInfo,
+    TResult Function(String userId)? getMasterInteractions,
     required TResult orElse(),
   }) {
     if (getMasterInfo != null) {
-      return getMasterInfo();
+      return getMasterInfo(userId);
     }
     return orElse();
   }
@@ -181,15 +231,29 @@ class _$GetMasterInfoImpl implements _GetMasterInfo {
 }
 
 abstract class _GetMasterInfo implements MasterEvent {
-  const factory _GetMasterInfo() = _$GetMasterInfoImpl;
+  const factory _GetMasterInfo(final String userId) = _$GetMasterInfoImpl;
+
+  @override
+  String get userId;
+
+  /// Create a copy of MasterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetMasterInfoImplCopyWith<_$GetMasterInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GetMasterInteractionsImplCopyWith<$Res> {
+abstract class _$$GetMasterInteractionsImplCopyWith<$Res>
+    implements $MasterEventCopyWith<$Res> {
   factory _$$GetMasterInteractionsImplCopyWith(
           _$GetMasterInteractionsImpl value,
           $Res Function(_$GetMasterInteractionsImpl) then) =
       __$$GetMasterInteractionsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -202,55 +266,80 @@ class __$$GetMasterInteractionsImplCopyWithImpl<$Res>
 
   /// Create a copy of MasterEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_$GetMasterInteractionsImpl(
+      null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$GetMasterInteractionsImpl implements _GetMasterInteractions {
-  const _$GetMasterInteractionsImpl();
+  const _$GetMasterInteractionsImpl(this.userId);
+
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'MasterEvent.getMasterInteractions()';
+    return 'MasterEvent.getMasterInteractions(userId: $userId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetMasterInteractionsImpl);
+            other is _$GetMasterInteractionsImpl &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  /// Create a copy of MasterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetMasterInteractionsImplCopyWith<_$GetMasterInteractionsImpl>
+      get copyWith => __$$GetMasterInteractionsImplCopyWithImpl<
+          _$GetMasterInteractionsImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getMasterInfo,
-    required TResult Function() getMasterInteractions,
+    required TResult Function(String userId) getMasterInfo,
+    required TResult Function(String userId) getMasterInteractions,
   }) {
-    return getMasterInteractions();
+    return getMasterInteractions(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getMasterInfo,
-    TResult? Function()? getMasterInteractions,
+    TResult? Function(String userId)? getMasterInfo,
+    TResult? Function(String userId)? getMasterInteractions,
   }) {
-    return getMasterInteractions?.call();
+    return getMasterInteractions?.call(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getMasterInfo,
-    TResult Function()? getMasterInteractions,
+    TResult Function(String userId)? getMasterInfo,
+    TResult Function(String userId)? getMasterInteractions,
     required TResult orElse(),
   }) {
     if (getMasterInteractions != null) {
-      return getMasterInteractions();
+      return getMasterInteractions(userId);
     }
     return orElse();
   }
@@ -289,13 +378,26 @@ class _$GetMasterInteractionsImpl implements _GetMasterInteractions {
 }
 
 abstract class _GetMasterInteractions implements MasterEvent {
-  const factory _GetMasterInteractions() = _$GetMasterInteractionsImpl;
+  const factory _GetMasterInteractions(final String userId) =
+      _$GetMasterInteractionsImpl;
+
+  @override
+  String get userId;
+
+  /// Create a copy of MasterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetMasterInteractionsImplCopyWith<_$GetMasterInteractionsImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$MasterState {
-  Option<UserInfo> get masterInfo => throw _privateConstructorUsedError;
-  Option<Unit> get masterInteractions => throw _privateConstructorUsedError;
+  Option<Either<ApiException, UserInfo>> get masterInfo =>
+      throw _privateConstructorUsedError;
+  Option<Either<ApiException, List<Interaction>>> get masterInteractions =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of MasterState
   /// with the given fields replaced by the non-null parameter values.
@@ -310,7 +412,9 @@ abstract class $MasterStateCopyWith<$Res> {
           MasterState value, $Res Function(MasterState) then) =
       _$MasterStateCopyWithImpl<$Res, MasterState>;
   @useResult
-  $Res call({Option<UserInfo> masterInfo, Option<Unit> masterInteractions});
+  $Res call(
+      {Option<Either<ApiException, UserInfo>> masterInfo,
+      Option<Either<ApiException, List<Interaction>>> masterInteractions});
 }
 
 /// @nodoc
@@ -335,11 +439,11 @@ class _$MasterStateCopyWithImpl<$Res, $Val extends MasterState>
       masterInfo: null == masterInfo
           ? _value.masterInfo
           : masterInfo // ignore: cast_nullable_to_non_nullable
-              as Option<UserInfo>,
+              as Option<Either<ApiException, UserInfo>>,
       masterInteractions: null == masterInteractions
           ? _value.masterInteractions
           : masterInteractions // ignore: cast_nullable_to_non_nullable
-              as Option<Unit>,
+              as Option<Either<ApiException, List<Interaction>>>,
     ) as $Val);
   }
 }
@@ -352,7 +456,9 @@ abstract class _$$MasterStateImplCopyWith<$Res>
       __$$MasterStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Option<UserInfo> masterInfo, Option<Unit> masterInteractions});
+  $Res call(
+      {Option<Either<ApiException, UserInfo>> masterInfo,
+      Option<Either<ApiException, List<Interaction>>> masterInteractions});
 }
 
 /// @nodoc
@@ -375,11 +481,11 @@ class __$$MasterStateImplCopyWithImpl<$Res>
       masterInfo: null == masterInfo
           ? _value.masterInfo
           : masterInfo // ignore: cast_nullable_to_non_nullable
-              as Option<UserInfo>,
+              as Option<Either<ApiException, UserInfo>>,
       masterInteractions: null == masterInteractions
           ? _value.masterInteractions
           : masterInteractions // ignore: cast_nullable_to_non_nullable
-              as Option<Unit>,
+              as Option<Either<ApiException, List<Interaction>>>,
     ));
   }
 }
@@ -391,9 +497,9 @@ class _$MasterStateImpl implements _MasterState {
       {required this.masterInfo, required this.masterInteractions});
 
   @override
-  final Option<UserInfo> masterInfo;
+  final Option<Either<ApiException, UserInfo>> masterInfo;
   @override
-  final Option<Unit> masterInteractions;
+  final Option<Either<ApiException, List<Interaction>>> masterInteractions;
 
   @override
   String toString() {
@@ -425,13 +531,14 @@ class _$MasterStateImpl implements _MasterState {
 
 abstract class _MasterState implements MasterState {
   factory _MasterState(
-      {required final Option<UserInfo> masterInfo,
-      required final Option<Unit> masterInteractions}) = _$MasterStateImpl;
+      {required final Option<Either<ApiException, UserInfo>> masterInfo,
+      required final Option<Either<ApiException, List<Interaction>>>
+          masterInteractions}) = _$MasterStateImpl;
 
   @override
-  Option<UserInfo> get masterInfo;
+  Option<Either<ApiException, UserInfo>> get masterInfo;
   @override
-  Option<Unit> get masterInteractions;
+  Option<Either<ApiException, List<Interaction>>> get masterInteractions;
 
   /// Create a copy of MasterState
   /// with the given fields replaced by the non-null parameter values.

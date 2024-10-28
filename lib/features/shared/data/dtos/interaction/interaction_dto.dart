@@ -10,7 +10,7 @@ class InteractionDto with _$InteractionDto {
     @JsonKey(name: "user_id") required String userId,
     @JsonKey(name: "name") required String name,
     @JsonKey(name: "surname") required String surname,
-    @JsonKey(name: "comment") required String comment,
+    @JsonKey(name: "comment") required String? comment,
     @JsonKey(name: "point") required String point,
     @JsonKey(name: "service_id") required String serviceId,
     @JsonKey(name: "date") required String date,

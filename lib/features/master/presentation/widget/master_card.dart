@@ -14,8 +14,7 @@ class MasterCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: ColorManager.blueColor,
-          borderRadius:
-          const BorderRadius.all(Radius.circular(AppSize.s20))),
+          borderRadius: const BorderRadius.all(Radius.circular(AppSize.s20))),
       child: Padding(
         padding: const EdgeInsets.all(AppSize.s24),
         child: Column(
@@ -36,20 +35,18 @@ class MasterCard extends StatelessWidget {
                 const SizedBox(
                   width: AppSize.s10,
                 ),
-                 Expanded(
+                Expanded(
                   child: Column(
-                    crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Text("Osman Yancigil",
-                          style: getTextStyle(AppSize.s20,
-                              FontWeight.w400, Colors.white)),
+                          style: getTextStyle(
+                              AppSize.s20, FontWeight.w400, Colors.white)),
                       Text(
                         "Radiator Cleaning, House Cleaning, House to House Transportation",
-                        style: getTextStyle(AppSize.s14,
-                            FontWeight.w400, ColorManager.lightGreyText),
+                        style: getTextStyle(AppSize.s14, FontWeight.w400,
+                            ColorManager.lightGreyText),
                       ),
                     ],
                   ),
@@ -63,20 +60,16 @@ class MasterCard extends StatelessWidget {
               children: [
                 SvgPicture.asset(ImageAssets.check,
                     color: ColorManager.greenColor),
-                 Text(" 12",
+                Text(" 12",
                     style: getTextStyle(
-                        AppSize.s14,
-                        FontWeight.w600,
-                        ColorManager.greenColor)),
-                 Text(" Completed work",
+                        AppSize.s14, FontWeight.w600, ColorManager.greenColor)),
+                Text(" Completed work",
                     style: getTextStyle(
-                        AppSize.s14,
-                        FontWeight.w400,
-                        ColorManager.greenColor)),
+                        AppSize.s14, FontWeight.w400, ColorManager.greenColor)),
               ],
             ),
             const SizedBox(height: AppSize.s5),
-             Row(
+            Row(
               children: [
                 SvgPicture.asset(
                   ImageAssets.location,
@@ -84,13 +77,9 @@ class MasterCard extends StatelessWidget {
                 ),
                 Text("35 km ",
                     style: getTextStyle(
-                        AppSize.s14,
-                        FontWeight.w400,
-                        ColorManager.white)),
+                        AppSize.s14, FontWeight.w400, ColorManager.white)),
                 Text("(Approx. 40 min)",
-                    style: getTextStyle(
-                        AppSize.s14,
-                        FontWeight.w400,
+                    style: getTextStyle(AppSize.s14, FontWeight.w400,
                         ColorManager.lightGreyText)),
               ],
             ),

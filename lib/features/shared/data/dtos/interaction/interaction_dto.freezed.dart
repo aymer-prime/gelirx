@@ -29,7 +29,7 @@ mixin _$InteractionDto {
   @JsonKey(name: "surname")
   String get surname => throw _privateConstructorUsedError;
   @JsonKey(name: "comment")
-  String get comment => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
   @JsonKey(name: "point")
   String get point => throw _privateConstructorUsedError;
   @JsonKey(name: "service_id")
@@ -60,7 +60,7 @@ abstract class $InteractionDtoCopyWith<$Res> {
       @JsonKey(name: "user_id") String userId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "surname") String surname,
-      @JsonKey(name: "comment") String comment,
+      @JsonKey(name: "comment") String? comment,
       @JsonKey(name: "point") String point,
       @JsonKey(name: "service_id") String serviceId,
       @JsonKey(name: "date") String date,
@@ -86,7 +86,7 @@ class _$InteractionDtoCopyWithImpl<$Res, $Val extends InteractionDto>
     Object? userId = null,
     Object? name = null,
     Object? surname = null,
-    Object? comment = null,
+    Object? comment = freezed,
     Object? point = null,
     Object? serviceId = null,
     Object? date = null,
@@ -109,10 +109,10 @@ class _$InteractionDtoCopyWithImpl<$Res, $Val extends InteractionDto>
           ? _value.surname
           : surname // ignore: cast_nullable_to_non_nullable
               as String,
-      comment: null == comment
+      comment: freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       point: null == point
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ abstract class _$$InteractionDtoImplCopyWith<$Res>
       @JsonKey(name: "user_id") String userId,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "surname") String surname,
-      @JsonKey(name: "comment") String comment,
+      @JsonKey(name: "comment") String? comment,
       @JsonKey(name: "point") String point,
       @JsonKey(name: "service_id") String serviceId,
       @JsonKey(name: "date") String date,
@@ -170,7 +170,7 @@ class __$$InteractionDtoImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? name = null,
     Object? surname = null,
-    Object? comment = null,
+    Object? comment = freezed,
     Object? point = null,
     Object? serviceId = null,
     Object? date = null,
@@ -193,10 +193,10 @@ class __$$InteractionDtoImplCopyWithImpl<$Res>
           ? _value.surname
           : surname // ignore: cast_nullable_to_non_nullable
               as String,
-      comment: null == comment
+      comment: freezed == comment
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       point: null == point
           ? _value.point
           : point // ignore: cast_nullable_to_non_nullable
@@ -249,7 +249,7 @@ class _$InteractionDtoImpl implements _InteractionDto {
   final String surname;
   @override
   @JsonKey(name: "comment")
-  final String comment;
+  final String? comment;
   @override
   @JsonKey(name: "point")
   final String point;
@@ -328,7 +328,7 @@ abstract class _InteractionDto implements InteractionDto {
           @JsonKey(name: "user_id") required final String userId,
           @JsonKey(name: "name") required final String name,
           @JsonKey(name: "surname") required final String surname,
-          @JsonKey(name: "comment") required final String comment,
+          @JsonKey(name: "comment") required final String? comment,
           @JsonKey(name: "point") required final String point,
           @JsonKey(name: "service_id") required final String serviceId,
           @JsonKey(name: "date") required final String date,
@@ -352,7 +352,7 @@ abstract class _InteractionDto implements InteractionDto {
   String get surname;
   @override
   @JsonKey(name: "comment")
-  String get comment;
+  String? get comment;
   @override
   @JsonKey(name: "point")
   String get point;
