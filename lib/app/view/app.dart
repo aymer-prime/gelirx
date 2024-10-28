@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,6 +24,13 @@ class App extends StatefulWidget {
 class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   void initState() {
+    AwesomeNotifications().setListeners(
+        onActionReceivedMethod:         NotificationController.onActionReceivedMethod,
+        onNotificationCreatedMethod:    NotificationController.onNotificationCreatedMethod,
+        onNotificationDisplayedMethod:  NotificationController.onNotificationDisplayedMethod,
+        onDismissActionReceivedMethod:  NotificationController.onDismissActionReceivedMethod
+    );
+
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
@@ -106,5 +114,57 @@ class _Starter extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+
+@pragma('vm:entry-point')
+class NotificationController {
+  @pragma('vm:entry-point')
+  static Future<void> onNotificationCreatedMethod(ReceivedNotification receivedNotification) async {
+    debugPrint('=== NOTIFICATION CREATED ===');
+    debugPrint('id: ${receivedNotification.id}');
+    debugPrint('title: ${receivedNotification.title}');
+    debugPrint('body: ${receivedNotification.body}');
+    debugPrint('payload: ${receivedNotification.payload}');
+  }
+
+  @pragma('vm:entry-point')
+  static Future<void> onNotificationDisplayedMethod(ReceivedNotification receivedNotification) async {
+    debugPrint('=== NOTIFICATION DISPLAYED ===');
+    debugPrint('id: ${receivedNotification.id}');
+    debugPrint('title: ${receivedNotification.title}');
+    debugPrint('body: ${receivedNotification.body}');
+    debugPrint('payload: ${receivedNotification.payload}');
+  }
+
+  @pragma('vm:entry-point')
+  static Future<void> onDismissActionReceivedMethod(ReceivedAction receivedAction) async {
+    debugPrint('=== NOTIFICATION DISMISSED ===');
+    debugPrint('id: ${receivedAction.id}');
+    debugPrint('buttonKeyPressed: ${receivedAction.buttonKeyPressed}');
+  }
+
+  @pragma('vm:entry-point')
+  static Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {
+    debugPrint('=== ACTION RECEIVED ===');
+    debugPrint('id: ${receivedAction.id}');
+    debugPrint('buttonKeyPressed: ${receivedAction.buttonKeyPressed}');
+
+    try {
+      if (receivedAction.buttonKeyPressed == "SHOW") {
+        debugPrint("Call accepted - Navigating to dashboard");
+        // Make sure to run navigation on the main thread
+        await Future.delayed(Duration.zero, () async {
+          final appRouter = getIt<AppRouter>();
+          await appRouter.push(MasterDashboardRoute());
+        });
+
+        debugPrint("Navigation completed");
+      }
+    } catch (e, stackTrace) {
+      debugPrint('Error in onActionReceivedMethod: $e');
+      debugPrint('Stack trace: $stackTrace');
+    }
   }
 }
