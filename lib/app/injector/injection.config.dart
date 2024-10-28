@@ -48,8 +48,10 @@ import '../../features/navigation/domain/usecases/navigation_usecase.dart'
 import '../../features/navigation/presentation/bloc/navigation_bloc.dart'
     as _i162;
 import '../../features/shared/data/favorite_repository.dart' as _i516;
+import '../../features/shared/data/interaction_repository.dart' as _i100;
 import '../../features/shared/data/shared_repository.dart' as _i493;
 import '../../features/shared/domain/i_favorite_repository.dart' as _i287;
+import '../../features/shared/domain/i_interactions_repository.dart' as _i777;
 import '../../features/shared/domain/i_shared_repository.dart' as _i243;
 import '../local_services/local_services.dart' as _i902;
 import '../local_services/notifiaction_handler.dart' as _i468;
@@ -81,12 +83,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => injectableModules.firebaseMessaging);
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
-    gh.factory<_i468.NotificationHandler>(
-        () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
+    gh.factory<_i468.NotificationHandlerManager>(
+        () => _i468.NotificationHandlerManager(gh<_i892.FirebaseMessaging>()));
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
     gh.lazySingleton<_i92.IBookingRepository>(
         () => _i678.BookingRepository(gh<_i464.RemoteService>()));
+    gh.lazySingleton<_i777.IInteractionsRepository>(
+        () => _i100.InteractionRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i782.INavigationRepository>(
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(

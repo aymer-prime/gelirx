@@ -18,11 +18,15 @@ import 'app/navigation/app_router.dart';
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
 
+  final data = message.data;
+  final title = data['title'] ?? 'New Service';
+  final body = data['body'] ?? 'You Have new service open Gelrix and check it';
+
   NotificationService().showNotification(
-    1,
-    'main_channel',
-    'New Service',
-    'You Have new service open Gelrix and check it',
+    DateTime.now().millisecond,  // Generate unique ID
+    'basic_channel',
+    title,
+    body,
   );
 }
 void main() async {
@@ -42,8 +46,8 @@ void main() async {
 // Check for stored navigation key in case of app cold start
   _checkForStoredNavigation(sharedPreferences);
 
-  // final notificationHandler = getIt<NotificationHandler>();
-  // notificationHandler.listenToNotification();
+   final notificationHandler = getIt<NotificationHandlerManager>();
+   notificationHandler.listenToNotification();
 
   runApp(
     const App(),

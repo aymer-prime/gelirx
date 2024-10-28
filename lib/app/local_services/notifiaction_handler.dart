@@ -8,12 +8,13 @@ import '../navigation/app_router.dart';
 import '../utils/app_constants.dart';
 
 @injectable
-class NotificationHandler {
+class NotificationHandlerManager {
   final FirebaseMessaging messaging;
 
-  NotificationHandler(this.messaging);
+  NotificationHandlerManager(this.messaging);
 
   Future<void> listenToNotification() async {
+
     await messaging.requestPermission(
       alert: true,
       announcement: false,
@@ -23,6 +24,12 @@ class NotificationHandler {
       provisional: false,
       sound: true,
     );
+    await messaging.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
     await AwesomeNotifications().requestPermissionToSendNotifications(
         permissions: [
           NotificationPermission.Alert,
@@ -41,11 +48,15 @@ class NotificationHandler {
   }
 
   void _handleIncomingCall(RemoteMessage message) {
+    final data = message.data;
+    final title = data['title'] ?? 'New Service';
+    final body = data['body'] ?? 'You Have new service open Gelrix and check it';
+
     NotificationService().showNotification(
-      1,
-      'main_channel',
-      'New Service',
-      'You Have new service open Gelrix and check it',
+      DateTime.now().millisecond,  // Generate unique ID
+      'basic_channel',
+      title,
+      body,
     );
   }
 
@@ -76,20 +87,21 @@ class NotificationService {
           null,
           [
             NotificationChannel(
-              channelKey: 'basic_channel',
+              channelKey: 'high_importance_channel',
               channelName: 'Alerts',
               channelDescription: 'High priority notifications',
               enableLights: true,
               criticalAlerts: true,
               importance: NotificationImportance.Max,
               defaultRingtoneType: DefaultRingtoneType.Notification,
-              soundSource: 'resource://raw/notification_sound',
+              soundSource: 'resource://raw/res_ring',
               playSound: true,
               locked: true,
               defaultPrivacy: NotificationPrivacy.Public,
               vibrationPattern: highVibrationPattern,
               enableVibration: true,
               onlyAlertOnce: false,
+              channelShowBadge: true,
             )
           ],
           debug: true,
@@ -118,10 +130,11 @@ class NotificationService {
       await AwesomeNotifications().createNotification(
           content: NotificationContent(
             id: id,
-            channelKey: 'basic_channel',
+            channelKey: 'high_importance_channel',
             title: title,
             body: body,
-            category: NotificationCategory.Call,
+            customSound: 'resource://raw/res_ring',
+            category: NotificationCategory.Alarm,
             wakeUpScreen: true,
             fullScreenIntent: true,
             criticalAlert: true,
@@ -129,8 +142,9 @@ class NotificationService {
             displayOnBackground: true,
             autoDismissible: false,
             locked: true,
+            roundedBigPicture: true,
             backgroundColor: Colors.red,
-            notificationLayout: NotificationLayout.Default,
+            notificationLayout: NotificationLayout.BigPicture,
           ),
           actionButtons: [
             NotificationActionButton(
@@ -149,6 +163,23 @@ class NotificationService {
     }
   }
 
+  Future<void> requestPermission() async {
+    await AwesomeNotifications().isNotificationAllowed().then((allowed) async {
+      if (!allowed) {
+        await AwesomeNotifications().requestPermissionToSendNotifications(
+          permissions: [
+            NotificationPermission.Alert,
+            NotificationPermission.Sound,
+            NotificationPermission.Badge,
+            NotificationPermission.Vibration,
+            NotificationPermission.Light,
+            NotificationPermission.FullScreenIntent,
+            NotificationPermission.CriticalAlert,
+          ],
+        );
+      }
+    });
+  }
 }
 
 
