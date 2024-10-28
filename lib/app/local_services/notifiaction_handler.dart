@@ -1,87 +1,63 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_callkit_incoming/entities/android_params.dart';
-import 'package:flutter_callkit_incoming/entities/call_event.dart';
-import 'package:flutter_callkit_incoming/entities/call_kit_params.dart';
-import 'package:flutter_callkit_incoming/entities/ios_params.dart';
-import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
+import 'package:flutter/Material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uuid/uuid.dart';
-import 'package:uuid/v4.dart';
 import '../injector/injection.dart';
 import '../navigation/app_router.dart';
 import '../utils/app_constants.dart';
 
 @injectable
-class NotificationHandler {
+class NotificationHandlerManager {
   final FirebaseMessaging messaging;
 
-  NotificationHandler(this.messaging);
+  NotificationHandlerManager(this.messaging);
 
   Future<void> listenToNotification() async {
-    var push =  await FlutterCallkitIncoming.getDevicePushTokenVoIP();
-    print(" push = ${push}");
-    //await FlutterCallkitIncoming.requestFullIntentPermission();
-    NotificationSettings settings = await messaging.requestPermission(
+
+    await messaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,
-      carPlay: false,
-      criticalAlert: false,
+      carPlay: true,
+      criticalAlert: true,
       provisional: false,
       sound: true,
     );
+    await messaging.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+
+    await AwesomeNotifications().requestPermissionToSendNotifications(
+        permissions: [
+          NotificationPermission.Alert,
+          NotificationPermission.Sound,
+          NotificationPermission.Badge,
+          NotificationPermission.Vibration,
+          NotificationPermission.Light,
+          NotificationPermission.FullScreenIntent,
+          NotificationPermission.CriticalAlert,
+        ],
+    );
+
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       _handleIncomingCall(message);
     });
   }
 
   void _handleIncomingCall(RemoteMessage message) {
-    // Show the call
-    var id = Uuid().v4();
-    var params = CallKitParams(
-      id: id,
-      appName: "Gelirx",
-      duration: 30000,
-      nameCaller: "service name",
-      textAccept: "take",
-      textDecline: "decline",
-        android: AndroidParams(
-          isCustomNotification:
-          true, // Enables custom notification layout for Android
-          isShowLogo: true, // Show app logo in notification
-          ringtonePath: "ringtone_default", // Custom ringtone for Android
-          backgroundColor: "#E30A17", // Background color for the notification
-          backgroundUrl:
-          "https://example.com/background.jpg", // URL for background image
-          actionColor: "#4CAF50", // Color for action buttons
-        ),
-        ios: IOSParams(iconName: 'CallKitLogo',
-            handleType: 'generic',
-            supportsVideo: true,
-            maximumCallGroups: 2,
-            maximumCallsPerCallGroup: 1,
-            audioSessionMode: 'default',
-            audioSessionActive: true,
-            audioSessionPreferredSampleRate: 44100.0,
-            audioSessionPreferredIOBufferDuration: 0.005,
-            supportsDTMF: true,
-            supportsHolding: true,
-            supportsGrouping: false,
-            supportsUngrouping: false,
-            ringtonePath: 'system_ringtone_default')
+    final data = message.data;
+    final title = data['title'] ?? 'New Service';
+    final body = data['body'] ?? 'You Have new service open Gelrix and check it';
+
+    NotificationService().showNotification(
+      DateTime.now().millisecond,  // Generate unique ID
+      'basic_channel',
+      title,
+      body,
     );
-
-    FlutterCallkitIncoming.showCallkitIncoming(params);
-
-    // Listen for the call accept event
-    FlutterCallkitIncoming.onEvent.listen((event) async {
-      _navigateToDashboard(message);
-      if (event!.event == Event.actionCallEnded) {
-        // Navigate to the dashboard if needed
-
-      }
-    });
   }
 
   void _navigateToDashboard(RemoteMessage message) async {
@@ -96,4 +72,115 @@ class NotificationHandler {
     }
   }
 }
+
+class NotificationService {
+  static final NotificationService _notificationService = NotificationService._internal();
+
+  factory NotificationService() {
+    return _notificationService;
+  }
+  NotificationService._internal();
+
+  Future<void> initAwesomeNotification() async {
+    try {
+      await AwesomeNotifications().initialize(
+          null,
+          [
+            NotificationChannel(
+              channelKey: 'high_importance_channel',
+              channelName: 'Alerts',
+              channelDescription: 'High priority notifications',
+              enableLights: true,
+              criticalAlerts: true,
+              importance: NotificationImportance.Max,
+              defaultRingtoneType: DefaultRingtoneType.Notification,
+              soundSource: 'resource://raw/res_ring',
+              playSound: true,
+              locked: true,
+              defaultPrivacy: NotificationPrivacy.Public,
+              vibrationPattern: highVibrationPattern,
+              enableVibration: true,
+              onlyAlertOnce: false,
+              channelShowBadge: true,
+            )
+          ],
+          debug: true,
+      );
+
+      await AwesomeNotifications().requestPermissionToSendNotifications(
+          permissions: [
+            NotificationPermission.Alert,
+            NotificationPermission.Sound,
+            NotificationPermission.Badge,
+            NotificationPermission.Vibration,
+            NotificationPermission.Light,
+            NotificationPermission.FullScreenIntent,
+            NotificationPermission.CriticalAlert,
+          ]
+      );
+
+      debugPrint('Notifications initialized successfully');
+    } catch (e) {
+      debugPrint('Error initializing notifications: $e');
+    }
+  }
+
+  Future<void> showNotification(int id, String channelKey, String title, String body) async {
+    try {
+      await AwesomeNotifications().createNotification(
+          content: NotificationContent(
+            id: id,
+            channelKey: 'high_importance_channel',
+            title: title,
+            body: body,
+            customSound: 'resource://raw/res_ring',
+            category: NotificationCategory.Alarm,
+            wakeUpScreen: true,
+            fullScreenIntent: true,
+            criticalAlert: true,
+            displayOnForeground: true,
+            displayOnBackground: true,
+            autoDismissible: false,
+            locked: true,
+            roundedBigPicture: true,
+            backgroundColor: Colors.red,
+            notificationLayout: NotificationLayout.BigPicture,
+          ),
+          actionButtons: [
+            NotificationActionButton(
+              key: 'SHOW',
+              label: 'Show',
+              color: Colors.green,
+              autoDismissible: true,
+              enabled: true,
+              actionType: ActionType.Default,
+            ),
+          ],
+      );
+      debugPrint('Notification created successfully');
+    } catch (e) {
+      debugPrint('Error creating notification: $e');
+    }
+  }
+
+  Future<void> requestPermission() async {
+    await AwesomeNotifications().isNotificationAllowed().then((allowed) async {
+      if (!allowed) {
+        await AwesomeNotifications().requestPermissionToSendNotifications(
+          permissions: [
+            NotificationPermission.Alert,
+            NotificationPermission.Sound,
+            NotificationPermission.Badge,
+            NotificationPermission.Vibration,
+            NotificationPermission.Light,
+            NotificationPermission.FullScreenIntent,
+            NotificationPermission.CriticalAlert,
+          ],
+        );
+      }
+    });
+  }
+}
+
+
 

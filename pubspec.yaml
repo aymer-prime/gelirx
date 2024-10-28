@@ -83,6 +83,8 @@ dependencies:
   cloud_firestore: ^5.4.4
   flutter_animate: ^4.5.0
   photo_view: ^0.15.0
+  awesome_notifications: ^0.10.0
+  awesome_notifications_core: ^0.10.0
 
 
 
@@ -99,7 +101,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_launcher_icons: ^0.13.1
-  build_runner: ^2.4.12
+  build_runner: ^2.4.13
   freezed: ^2.5.7
   json_serializable: ^6.8.0
   bloc_test: ^9.1.7

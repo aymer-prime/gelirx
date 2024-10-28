@@ -85,8 +85,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => injectableModules.firebaseMessaging);
     gh.lazySingleton<_i361.Dio>(() => injectableModules.dio);
     gh.factory<_i667.DioClient>(() => _i667.DioClient(gh<_i361.Dio>()));
-    gh.factory<_i468.NotificationHandler>(
-        () => _i468.NotificationHandler(gh<_i892.FirebaseMessaging>()));
+    gh.factory<_i468.NotificationHandlerManager>(
+        () => _i468.NotificationHandlerManager(gh<_i892.FirebaseMessaging>()));
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
     gh.lazySingleton<_i92.IBookingRepository>(

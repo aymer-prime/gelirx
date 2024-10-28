@@ -2,84 +2,36 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_callkit_incoming/entities/android_params.dart';
-import 'package:flutter_callkit_incoming/entities/call_event.dart';
-import 'package:flutter_callkit_incoming/entities/call_kit_params.dart';
-import 'package:flutter_callkit_incoming/entities/entities.dart';
-import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
+
 import 'package:gelirx/app/injector/injection.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
 import 'package:gelirx/app/view/app.dart';
 import 'package:loggy/loggy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:uuid/v4.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+
 import 'app/local_services/notifiaction_handler.dart';
 import 'app/navigation/app_router.dart';
+
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  var id = UuidV4().generate();
-  var params = CallKitParams(
-      id: id,
-      appName: "Gelirx",
-      duration: 30000,
-      nameCaller: "service name",
-      textAccept: "take",
-      textDecline: "decline",
-      android: AndroidParams(
-        isCustomNotification:
-        true, // Enables custom notification layout for Android
-        isShowLogo: true, // Show app logo in notification
-        ringtonePath: "ringtone_default", // Custom ringtone for Android
-        backgroundColor: "#44498D", // Background color for the notification
-        backgroundUrl:
-        "https://example.com/background.jpg", // URL for background image
-        actionColor: "#4CAF50", // Color for action buttons
-        incomingCallNotificationChannelName: "Incoming Call",
-      ),
-      ios: IOSParams(iconName: 'CallKitLogo',
-          handleType: 'generic',
-          supportsVideo: true,
-          maximumCallGroups: 2,
-          maximumCallsPerCallGroup: 1,
-          audioSessionMode: 'default',
-          audioSessionActive: true,
-          audioSessionPreferredSampleRate: 44100.0,
-          audioSessionPreferredIOBufferDuration: 0.005,
-          supportsDTMF: true,
-          supportsHolding: true,
-          supportsGrouping: false,
-          supportsUngrouping: false,
-          ringtonePath: 'system_ringtone_default')
+
+  final data = message.data;
+  final title = data['title'] ?? 'New Service';
+  final body = data['body'] ?? 'You Have new service open Gelrix and check it';
+
+  NotificationService().showNotification(
+    DateTime.now().millisecond,  // Generate unique ID
+    'basic_channel',
+    title,
+    body,
   );
-//  await FlutterCallkitIncoming.requestFullIntentPermission();
-  FlutterCallkitIncoming.showCallkitIncoming(params);
-
-  String? navigateTo = message.data[Constants.navigateToKey];
-  if (navigateTo != null) {
-    final sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString(Constants.navigateToKey, navigateTo);
-  }
-  FlutterCallkitIncoming.onEvent.listen((event) async {
-    if (event!.event == Event.actionCallAccept) {
-      String? navigateTo = message.data[Constants.navigateToKey];
-      if (navigateTo != null && navigateTo == MasterDashboardRoute.name) {
-        String? navigateTo = message.data[Constants.navigateToKey];
-        if (navigateTo != null) {
-          final sharedPreferences = await SharedPreferences.getInstance();
-          await sharedPreferences.setString(
-              Constants.navigateToKey, navigateTo);
-        }
-        getIt<AppRouter>().push(MasterDashboardRoute());
-        Future.delayed(Duration(seconds: 5),() =>  FlutterCallkitIncoming.endAllCalls());
-
-      }
-    }
-  });
 }
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService().initAwesomeNotification();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   SystemChrome.setPreferredOrientations([
@@ -94,8 +46,8 @@ void main() async {
 // Check for stored navigation key in case of app cold start
   _checkForStoredNavigation(sharedPreferences);
 
-  final notificationHandler = getIt<NotificationHandler>();
-  notificationHandler.listenToNotification();
+   final notificationHandler = getIt<NotificationHandlerManager>();
+   notificationHandler.listenToNotification();
 
   runApp(
     const App(),
