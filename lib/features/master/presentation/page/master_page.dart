@@ -9,10 +9,13 @@ import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:gelirx/features/home/domain/entities/master.dart';
 import 'package:gelirx/features/master/presentation/bloc/master_bloc.dart';
 import 'package:gelirx/features/master/presentation/widget/master_info_card.dart';
 import 'package:gelirx/features/master/presentation/widget/master_interactions_placeholder.dart';
+import 'package:gelirx/features/shared/widgets/dialogs/generic_dialog.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../widget/review_star_row.dart';
@@ -196,9 +199,31 @@ class MasterPage extends StatelessWidget {
                                 width: AppSize.s1, color: Color(0xffe0e2ea)))),
                     child: ElevatedButton(
                       onPressed: () {
-                        context.router.push(BookingDetailsRoute(
-                          masterId: master.id,
-                        ));
+                        var currentUser =
+                            context.read<AuthStatusBloc>().state.maybeMap(
+                                  orElse: () => null,
+                                  authenticated: (value) => value.user,
+                                );
+                        if (currentUser == null) {
+                          showGenericDialog(
+                            context: context,
+                            title: 'You Are Not Logged in',
+                            content:
+                                'You Need To Login First before You Can Call Any Master!',
+                            optionsBuilder: () => {
+                              'LogIn': () {
+                                context.read<AuthBloc>().add(
+                                      const AuthEvent.setUserType(false),
+                                    );
+                                context.router.push(const AuthRoute());
+                              }
+                            },
+                          );
+                        } else {
+                          context.router.push(BookingDetailsRoute(
+                            masterId: master.id,
+                          ));
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorManager.joyColor,

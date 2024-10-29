@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-typedef DialogOptionBuilder<T> = Map<String, T?> Function();
+typedef DialogOptionBuilder = Map<String, VoidCallback> Function();
 
-Future<T?> showGenericDialog<T>({
+Future showGenericDialog({
   required BuildContext context,
   required String title,
   required String content,
@@ -20,7 +20,8 @@ Future<T?> showGenericDialog<T>({
           return TextButton(
             onPressed: () {
               if (value != null) {
-                Navigator.of(context).pop(value);
+                value();
+                Navigator.of(context).pop();
               } else {
                 Navigator.of(context).pop();
               }

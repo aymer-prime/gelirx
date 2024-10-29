@@ -136,6 +136,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         (masters) => emit(state.copyWith(masters: masters)),
       );
     });
+
     on<_SetFilters>((event, emit) async {
       var filters = [...state.catFilterIndexes];
       if (filters.firstWhereOrNull((p0) => p0.id == event.cat.id) == null) {
@@ -145,9 +146,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
       emit(state.copyWith(catFilterIndexes: filters));
     });
+
     on<_ClearFilters>((event, emit) async {
       emit(state.copyWith(catFilterIndexes: []));
     });
+
     on<_SelectSub>((event, emit) async {
       emit(state.copyWith(
         isLoading: true,
@@ -186,6 +189,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         },
       );
     });
+
     on<_UnselectSub>((event, emit) async {
       var selectedIndex =
           state.services.indexWhere((skill) => skill.skill.id == event.id);
@@ -228,6 +232,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             },
           );
         },
+      );
+    });
+    on<_SelectCategory>((event, emit) async {
+      var position = await determinePosition();
+      emit(
+        state.copyWith(selectedCategory: event.id),
+      );
+      add(
+        _GetMasters(
+          LatLng(position.latitude, position.longitude),
+        ),
       );
     });
   }

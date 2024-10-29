@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gelirx/app/extensions/context.dart';
 import 'package:gelirx/app/navigation/app_router.dart';
 import 'package:gelirx/app/utils/resources/assets_manager.dart';
@@ -17,9 +16,6 @@ import 'package:gelirx/features/main/presentation/widgets/drawer_tile.dart';
 import 'package:gelirx/features/main/presentation/widgets/new_navbar.dart';
 import 'package:gelirx/features/messages/presentation/pages/messages_page.dart';
 import 'package:gelirx/features/profile/presentation/pages/profile_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../app/injector/injection.dart';
 
 @RoutePage()
 class AlternateMainPage extends StatefulWidget {

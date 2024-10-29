@@ -161,27 +161,32 @@ class ProfilePage extends StatelessWidget {
                         height: 0,
                       ),
                       const SizedBox(height: AppSize.s30),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: AppSize.s15),
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(AppSize.s8),
+                      if (context.read<AuthStatusBloc>().state.mapOrNull(
+                              authenticated: (value) => value.user) !=
+                          null)
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              context.read<AuthStatusBloc>().add(
+                                    const AuthStatusEvent.signedOut(),
+                                  );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: AppSize.s15),
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(color: Colors.black),
+                                borderRadius: BorderRadius.circular(AppSize.s8),
+                              ),
                             ),
+                            child: Text("Log Out",
+                                style: getTextStyle(AppSize.s16,
+                                    FontWeight.w600, Colors.black)),
                           ),
-                          child: Text("Log Out",
-                              style: getTextStyle(
-                                  AppSize.s16, FontWeight.w600, Colors.black)),
                         ),
-                      ),
-                      SizedBox(
-                        height: AppSize.s30,
-                      ),
+                      const SizedBox(height: AppSize.s30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

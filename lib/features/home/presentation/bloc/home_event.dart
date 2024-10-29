@@ -13,6 +13,7 @@ class HomeEvent with _$HomeEvent {
   const factory HomeEvent.selectSub(String id, String subId) = _SelectSub;
   const factory HomeEvent.unselectSub(String id) = _UnselectSub;
   const factory HomeEvent.selectMaster(String id) = _SelectMaster;
+  const factory HomeEvent.selectCategory(String id) = _SelectCategory;
   const factory HomeEvent.callMaster(String id, VoidCallback onSuccess) =
       _CallMaster;
 }

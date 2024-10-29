@@ -213,6 +213,15 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                                       categories: state.categories,
                                       selectedCategory:
                                           state.selectedCategory ?? '-1',
+                                      onSelectCategory: () {
+                                        _controller.animateTo(
+                                          minSize,
+                                          duration:
+                                              const Duration(milliseconds: 300),
+                                          curve: Curves.linear,
+                                        );
+                                        titleAnimationController.forward();
+                                      },
                                     ),
                                   ),
                                 ],

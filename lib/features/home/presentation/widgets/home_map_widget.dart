@@ -292,7 +292,8 @@ class MapBubbleMarker extends StatelessWidget {
                     ),
                     Flexible(
                       child: Text(
-                        (math.Random().nextDouble() * 5).toStringAsFixed(1),
+                        master.point,
+                        //(math.Random().nextDouble() * 5).toStringAsFixed(1),
                         style: getMediumStyle(
                           color: isSelected
                               ? ColorManager.white

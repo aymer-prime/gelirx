@@ -9,6 +9,7 @@ import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/strings_manager.dart';
 import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
+import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'dart:ui' as ui;
 
 import '../../../auth/presentation/bloc/auth_bloc.dart';
@@ -138,8 +139,20 @@ class NewNavBar extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        if (state.user.isNone()) {
+                        var currentUser =
+                            context.read<AuthStatusBloc>().state.maybeMap(
+                                  orElse: () => null,
+                                  authenticated: (value) => value.user,
+                                );
+                        if (currentUser == null) {
+                          context.read<AuthBloc>().add(
+                                const AuthEvent.setUserType(true),
+                              );
                           context.router.push(const AuthRoute());
+                        } else if (currentUser.isMaster) {
+                          context.router.push(const MasterDashboardRoute());
+                        } else {
+                          context.router.push(const BookingHistoryRoute());
                         }
                       },
                       child: Column(
