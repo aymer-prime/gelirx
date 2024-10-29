@@ -47,6 +47,8 @@ import '../../features/navigation/domain/usecases/navigation_usecase.dart'
     as _i603;
 import '../../features/navigation/presentation/bloc/navigation_bloc.dart'
     as _i162;
+import '../../features/order_details/data/order_repository.dart' as _i674;
+import '../../features/order_details/domain/i_order_repository.dart' as _i955;
 import '../../features/order_details/presentation/bloc/order_bloc.dart'
     as _i838;
 import '../../features/shared/data/favorite_repository.dart' as _i516;
@@ -95,6 +97,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i100.InteractionRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i782.INavigationRepository>(
         () => _i490.NavigationRepository(gh<_i464.RemoteService>()));
+    gh.lazySingleton<_i955.IOrderRepository>(
+        () => _i674.OrderRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i287.IFavoriteRepository>(
@@ -125,12 +129,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
     gh.factory<_i802.BookingBloc>(
         () => _i802.BookingBloc(gh<_i92.IBookingRepository>()));
+    gh.factory<_i838.OrderBloc>(() => _i838.OrderBloc(
+          gh<_i243.ISharedRepository>(),
+          gh<_i955.IOrderRepository>(),
+        ));
     gh.factory<_i663.AuthStatusBloc>(
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
     gh.factory<_i446.UserVerificationBloc>(
         () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
-    gh.factory<_i838.OrderBloc>(
-        () => _i838.OrderBloc(gh<_i243.ISharedRepository>()));
     gh.factory<_i130.MasterBloc>(() => _i130.MasterBloc(
           gh<_i243.ISharedRepository>(),
           gh<_i777.IInteractionsRepository>(),

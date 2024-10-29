@@ -101,8 +101,7 @@ class MasterActiveServiceBody extends StatelessWidget {
                         AppSize.s12,
                       ),
                     ),
-                    child: const Text(
-                        'Business Bay, Silver Tower 9 floor 904, Dubai'),
+                    child: Text(service.address),
                   ),
                   const SizedBox(height: AppSize.s16),
                   Text(
@@ -185,7 +184,7 @@ class MasterActiveServiceBody extends StatelessWidget {
                             ),
                             backgroundColor: ColorManager.joyColor,
                           ),
-                          child: const Text('comment'),
+                          child: const Text('add review'),
                         ),
                       )
                     ],

@@ -28,36 +28,42 @@ class OrderRepository implements IOrderRepository {
       String address,
       Position location,
       List<File> images) async {
+    var imagesList = await Future.wait([
+      ...images.map((e) async {
+        String fileName = basename(e.path);
+        var multipart = await MultipartFile.fromFile(
+          e.path,
+          filename: fileName,
+          contentType: DioMediaType(
+            'image',
+            fileName.split('.').last,
+          ),
+        );
+        return multipart;
+      })
+    ]);
+    var data = {
+      'lang': 'tr',
+      'token': token,
+      'master_id': masterId,
+      'user_id': userId,
+      'category_id': categoryId,
+      'description': description,
+      'address': address,
+      'latitude': location.latitude,
+      'longitude': location.longitude,
+      'img': imagesList,
+    };
+    FormData formData = FormData.fromMap(data, ListFormat.multiCompatible);
     try {
       await _remoteService.post(
-        '${Constants.baseUrl}services/booking-history.php',
+        '${Constants.baseUrl}general/call-master.php',
         options: Options(
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         ),
-        data: {
-          'lang': 'tr',
-          'token': token,
-          'master_id': masterId,
-          'user_id': userId,
-          'category_id': categoryId,
-          'description': description,
-          'address': address,
-          'latitude': location.latitude,
-          'longitude': location.longitude,
-          'img[]': images.map((e) async {
-            String fileName = basename(e.path);
-            return await MultipartFile.fromFile(
-              e.path,
-              filename: fileName,
-              contentType: DioMediaType(
-                'image',
-                fileName.split('.').last,
-              ),
-            );
-          })
-        },
+        data: formData,
       );
       return right(unit);
     } on ApiException catch (e) {
