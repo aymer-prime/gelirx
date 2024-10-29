@@ -11,6 +11,7 @@ import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/font_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/booking/presentation/bloc/booking_bloc.dart';
+import 'package:gelirx/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../app/injector/injection.dart';
@@ -24,86 +25,112 @@ class MasterDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) {
-          var currentUser = context.read<AuthStatusBloc>().state.maybeMap(
-            orElse: () => null,
-            authenticated: (value) => value.user,
-          );
-          return getIt<BookingBloc>()
-            ..add(
-              BookingEvent.getBookings(currentUser: currentUser,shouldFilter: true, status: 1),
-            );
-        },
-        child: BlocBuilder<BookingBloc, BookingState>(
-          builder: (context, state) {
-            return state.when(
-                initial: () => Center(child: Text("Start fetching bookings...")),
-                loading: () => Center(child: CircularProgressIndicator()),
-                loadFailed: (error) => Center(child: Text("Error: ${error}")),
-                loadSuccess: (bookingsList) {
-                  // Display the list of bookings if loadSuccess state
-                  return Scaffold(
-                    backgroundColor: ColorManager.white,
-                    appBar: AppBar(
-                      title: Text( bookingsList.isNotEmpty ?
-                      "${bookingsList[0].master.name} ${bookingsList[0].master.surname}": ""),
-                      centerTitle: false,
-                      actions: [
-                        Container(
-                          height: 30,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppPadding.p8),
-                          //margin: const EdgeInsets.symmetric(horizontal: AppMargin.m4),
-                          decoration: BoxDecoration(
-                            color: ColorManager.confirmedColor,
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s12,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Available',
-                              style: context.textTheme.labelSmall!.copyWith(
-                                color: ColorManager.confirmedTextColor,
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) {
+              var currentUser = context.read<AuthStatusBloc>().state.maybeMap(
+                    orElse: () => null,
+                    authenticated: (value) => value.user,
+                  );
+              return getIt<BookingBloc>()
+                ..add(
+                  BookingEvent.getBookings(
+                      currentUser: currentUser, shouldFilter: true, status: 1),
+                );
+            },
+          ),
+          BlocProvider(
+            create: (context) {
+              var currentUser = context.read<AuthStatusBloc>().state.maybeMap(
+                    orElse: () => null,
+                    authenticated: (value) => value.user,
+                  );
+              return getIt<ProfileBloc>()
+                ..add(
+                  ProfileEvent.getUserInfo(currentUser),
+                );
+            },
+          ),
+        ],
+        child: BlocBuilder<ProfileBloc, ProfileState>(
+          builder: (context, profileState) {
+            return BlocBuilder<BookingBloc, BookingState>(
+              builder: (context, bookingState) {
+                return bookingState.when(
+                    initial: () =>
+                        Center(child: Text("Start fetching bookings...")),
+                    loading: () => Center(child: CircularProgressIndicator()),
+                    loadFailed: (error) =>
+                        Center(child: Text("Error: ${error}")),
+                    loadSuccess: (bookingsList) {
+                      return Scaffold(
+                        backgroundColor: ColorManager.white,
+                        appBar: AppBar(
+                          title: Text(profileState.maybeMap(
+                              orElse: () => "loading",
+                              loadSuccess: (userInfo) =>
+                                  "${userInfo.userInfo.name} ${userInfo.userInfo.surname}")),
+                          centerTitle: false,
+                          actions: [
+                            Container(
+                              height: 30,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p8),
+                              //margin: const EdgeInsets.symmetric(horizontal: AppMargin.m4),
+                              decoration: BoxDecoration(
+                                color: ColorManager.confirmedColor,
+                                borderRadius: BorderRadius.circular(
+                                  AppSize.s12,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Available',
+                                  style: context.textTheme.labelSmall!.copyWith(
+                                    color: ColorManager.confirmedTextColor,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: AppSize.s8),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Bronze',
-                              style: context.textTheme.labelLarge!.copyWith(
-                                color: ColorManager.bronzeTire,
-                                fontSize: FontSizeManager.s10,
-                              ),
+                            const SizedBox(width: AppSize.s8),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Bronze',
+                                  style: context.textTheme.labelLarge!.copyWith(
+                                    color: ColorManager.bronzeTire,
+                                    fontSize: FontSizeManager.s10,
+                                  ),
+                                ),
+                                Text(
+                                  profileState.maybeMap(
+                                      orElse: () => "loading",
+                                      loadSuccess: (userInfo) =>
+                                      "${userInfo.userInfo.coins}"),
+                                  style: context.textTheme.labelSmall!.copyWith(
+                                    fontSize: FontSizeManager.s8,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              '20 Tokens',
-                              style: context.textTheme.labelSmall!.copyWith(
-                                fontSize: FontSizeManager.s8,
-                              ),
+                            const SizedBox(width: AppSize.s4),
+                            SvgPicture.asset(
+                              ImageAssets.tierIcon,
+                              fit: BoxFit.cover,
+                              colorFilter: ColorFilter.mode(
+                                  ColorManager.bronzeTire, BlendMode.srcIn),
                             ),
+                            const SizedBox(width: AppSize.s4),
                           ],
                         ),
-                        const SizedBox(width: AppSize.s4),
-                        SvgPicture.asset(
-                          ImageAssets.tierIcon,
-                          fit: BoxFit.cover,
-                          colorFilter:
-                          ColorFilter.mode(
-                              ColorManager.bronzeTire, BlendMode.srcIn),
+                        body: MasterDashboardBody(
+                          bookingsList: bookingsList,
                         ),
-                        const SizedBox(width: AppSize.s4),
-                      ],
-                    ),
-                    body:  MasterDashboardBody(bookingsList: bookingsList,),
-      
-                  );
-                }
+                      );
+                    });
+              },
             );
           },
         ),
@@ -121,15 +148,15 @@ class MasterDashboardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView.builder(
-      padding: EdgeInsets.all(AppPadding.p24),
-      itemCount: bookingsList.length,
+    return ListView.builder(
+        padding: EdgeInsets.all(AppPadding.p24),
+        itemCount: bookingsList.length,
         itemBuilder: (context, index) => Column(
-          children: [
-            MasterBookingWidget(booking:bookingsList[index]),
-            SizedBox(height: AppSize.s16)
-          ],
-        ));
+              children: [
+                MasterBookingWidget(booking: bookingsList[index]),
+                SizedBox(height: AppSize.s16)
+              ],
+            ));
   }
 }
 
@@ -197,8 +224,8 @@ class MasterBookingWidget extends StatelessWidget {
                   AppSize.s12,
                 ),
               ),
-              child:  Text(
-              booking.description,
+              child: Text(
+                booking.description,
               ),
             ),
             const SizedBox(height: AppSize.s16),
@@ -219,8 +246,7 @@ class MasterBookingWidget extends StatelessWidget {
                   AppSize.s12,
                 ),
               ),
-              child:
-               Text(booking.address),
+              child: Text(booking.address),
             ),
             const SizedBox(height: AppSize.s16),
             Text(
@@ -230,31 +256,31 @@ class MasterBookingWidget extends StatelessWidget {
             const SizedBox(height: AppSize.s8),
             booking.bookingImages.isNotEmpty
                 ? Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(
-                booking.bookingImages.length,
-                    (index) => Flexible(
-                  child: AspectRatio(
-                    aspectRatio: 0.858,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        AppSize.s10,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(
+                      booking.bookingImages.length,
+                      (index) => Flexible(
+                        child: AspectRatio(
+                          aspectRatio: 0.858,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                              AppSize.s10,
+                            ),
+                            child: Image.network(
+                              booking.bookingImages[index],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Image.network(
-                        booking.bookingImages[index],
-                        fit: BoxFit.cover,
-                      ),
+                    ).separateWith(
+                      const SizedBox(width: AppSize.s10),
                     ),
-                  ),
-                ),
-              ).separateWith(
-                const SizedBox(width: AppSize.s10),
-              ),
-            )
+                  )
                 : Text(
-              'No photos available',
-              style: context.textTheme.labelSmall,
-            ),
+                    'No photos available',
+                    style: context.textTheme.labelSmall,
+                  ),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppPadding.p16,
@@ -277,8 +303,8 @@ class MasterBookingWidget extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
-                              AppSize.s8,
-                            )),
+                          AppSize.s8,
+                        )),
                         backgroundColor: ColorManager.joyColor,
                       ),
                       child: const Text('Accept'),

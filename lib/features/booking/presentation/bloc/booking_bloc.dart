@@ -1,12 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/features/auth/domain/entities/user_entity.dart';
 import 'package:gelirx/features/booking/domain/entities/booking_entity.dart';
 import 'package:gelirx/features/booking/domain/i_booking_repository.dart';
 import 'package:injectable/injectable.dart';
-
 part 'booking_event.dart';
 part 'booking_state.dart';
 part 'booking_bloc.freezed.dart';
