@@ -10,6 +10,7 @@ import 'package:gelirx/features/auth/presentation/bloc/auth_status/auth_status_b
 import 'package:gelirx/features/favorite/presentation/bloc/favorite_bloc.dart';
 import 'package:gelirx/features/home/presentation/bloc/home_bloc.dart';
 import 'package:gelirx/features/messages/presentation/bloc/chat_bloc.dart';
+import 'package:gelirx/features/profile/presentation/bloc/profile_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/app_constants.dart';
@@ -71,6 +72,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         ),
         BlocProvider<AuthBloc>(
           create: (_) => getIt<AuthBloc>(),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (_) => getIt<ProfileBloc>()
         ),
         BlocProvider<AuthStatusBloc>(
           create: (_) => getIt<AuthStatusBloc>()

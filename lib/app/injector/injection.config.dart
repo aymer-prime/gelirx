@@ -53,6 +53,7 @@ import '../../features/order_details/data/order_repository.dart' as _i674;
 import '../../features/order_details/domain/i_order_repository.dart' as _i955;
 import '../../features/order_details/presentation/bloc/order_bloc.dart'
     as _i838;
+import '../../features/profile/presentation/bloc/profile_bloc.dart' as _i469;
 import '../../features/shared/data/favorite_repository.dart' as _i516;
 import '../../features/shared/data/interaction_repository.dart' as _i100;
 import '../../features/shared/data/shared_repository.dart' as _i493;
@@ -141,6 +142,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
     gh.factory<_i446.UserVerificationBloc>(
         () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
+    gh.lazySingleton<_i469.ProfileBloc>(
+        () => _i469.ProfileBloc(gh<_i243.ISharedRepository>()));
     gh.factory<_i130.MasterBloc>(() => _i130.MasterBloc(
           gh<_i243.ISharedRepository>(),
           gh<_i777.IInteractionsRepository>(),
