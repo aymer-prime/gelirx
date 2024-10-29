@@ -431,6 +431,7 @@ class BookingDetailsPage extends HookWidget {
                                     descriptionController.text,
                                     addressController.text,
                                     () {
+                                      print('object');
                                       context.router
                                           .push(const OrderDetailsRoute());
                                     },

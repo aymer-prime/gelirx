@@ -8,7 +8,7 @@ class OrderState with _$OrderState {
     required int selectedService,
     required String problemDetails,
     required List<File> images,
-    required Option<Either<ApiException, UserInfo>> callFailureOrSuccessOption,
+    required Option<Either<ApiException, Unit>> callFailureOrSuccessOption,
   }) = _OrderState;
 
   factory OrderState.initial() => OrderState(

@@ -816,7 +816,7 @@ mixin _$OrderState {
   int get selectedService => throw _privateConstructorUsedError;
   String get problemDetails => throw _privateConstructorUsedError;
   List<File> get images => throw _privateConstructorUsedError;
-  Option<Either<ApiException, UserInfo>> get callFailureOrSuccessOption =>
+  Option<Either<ApiException, Unit>> get callFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
   /// Create a copy of OrderState
@@ -838,7 +838,7 @@ abstract class $OrderStateCopyWith<$Res> {
       int selectedService,
       String problemDetails,
       List<File> images,
-      Option<Either<ApiException, UserInfo>> callFailureOrSuccessOption});
+      Option<Either<ApiException, Unit>> callFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -887,7 +887,7 @@ class _$OrderStateCopyWithImpl<$Res, $Val extends OrderState>
       callFailureOrSuccessOption: null == callFailureOrSuccessOption
           ? _value.callFailureOrSuccessOption
           : callFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ApiException, UserInfo>>,
+              as Option<Either<ApiException, Unit>>,
     ) as $Val);
   }
 }
@@ -906,7 +906,7 @@ abstract class _$$OrderStateImplCopyWith<$Res>
       int selectedService,
       String problemDetails,
       List<File> images,
-      Option<Either<ApiException, UserInfo>> callFailureOrSuccessOption});
+      Option<Either<ApiException, Unit>> callFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -953,7 +953,7 @@ class __$$OrderStateImplCopyWithImpl<$Res>
       callFailureOrSuccessOption: null == callFailureOrSuccessOption
           ? _value.callFailureOrSuccessOption
           : callFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ApiException, UserInfo>>,
+              as Option<Either<ApiException, Unit>>,
     ));
   }
 }
@@ -987,7 +987,7 @@ class _$OrderStateImpl implements _OrderState {
   }
 
   @override
-  final Option<Either<ApiException, UserInfo>> callFailureOrSuccessOption;
+  final Option<Either<ApiException, Unit>> callFailureOrSuccessOption;
 
   @override
   String toString() {
@@ -1040,7 +1040,7 @@ abstract class _OrderState implements OrderState {
       required final int selectedService,
       required final String problemDetails,
       required final List<File> images,
-      required final Option<Either<ApiException, UserInfo>>
+      required final Option<Either<ApiException, Unit>>
           callFailureOrSuccessOption}) = _$OrderStateImpl;
 
   @override
@@ -1054,7 +1054,7 @@ abstract class _OrderState implements OrderState {
   @override
   List<File> get images;
   @override
-  Option<Either<ApiException, UserInfo>> get callFailureOrSuccessOption;
+  Option<Either<ApiException, Unit>> get callFailureOrSuccessOption;
 
   /// Create a copy of OrderState
   /// with the given fields replaced by the non-null parameter values.

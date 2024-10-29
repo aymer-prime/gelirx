@@ -87,7 +87,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           ),
         );
         if (categoryId != null) {
-          _iOrderRepository.callMaster(
+          var result = await _iOrderRepository.callMaster(
             event.user!.token,
             event.user!.userId,
             event.masterId,
@@ -97,6 +97,25 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
             location,
             state.images,
           );
+          result.fold(
+              (l) => emit(
+                    state.copyWith(
+                      isLoading: false,
+                      callFailureOrSuccessOption: some(
+                        left(l),
+                      ),
+                    ),
+                  ), (r) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                callFailureOrSuccessOption: some(
+                  right(r),
+                ),
+              ),
+            );
+            event.onSuccess();
+          });
         } else {
           emit(
             state.copyWith(
