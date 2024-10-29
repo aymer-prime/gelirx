@@ -34,7 +34,7 @@ class BookingHistoryPage extends StatelessWidget {
                 );
             return getIt<BookingBloc>()
               ..add(
-                BookingEvent.getBookings(currentUser),
+                BookingEvent.getBookings(currentUser: currentUser),
               );
           },
           child: BlocBuilder<BookingBloc, BookingState>(
@@ -66,7 +66,7 @@ class BookingHistoryPage extends StatelessWidget {
                                       authenticated: (value) => value.user,
                                     );
                             context.read<BookingBloc>().add(
-                                  BookingEvent.getBookings(currentUser),
+                                  BookingEvent.getBookings(currentUser: currentUser),
                                 );
                           },
                           child: const Padding(

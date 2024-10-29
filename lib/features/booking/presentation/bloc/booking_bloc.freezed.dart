@@ -17,19 +17,25 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BookingEvent {
   UserEntity? get currentUser => throw _privateConstructorUsedError;
+  bool get shouldFilter => throw _privateConstructorUsedError;
+  int? get status => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserEntity? currentUser) getBookings,
+    required TResult Function(
+            UserEntity? currentUser, bool shouldFilter, int? status)
+        getBookings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserEntity? currentUser)? getBookings,
+    TResult? Function(UserEntity? currentUser, bool shouldFilter, int? status)?
+        getBookings,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserEntity? currentUser)? getBookings,
+    TResult Function(UserEntity? currentUser, bool shouldFilter, int? status)?
+        getBookings,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +69,7 @@ abstract class $BookingEventCopyWith<$Res> {
           BookingEvent value, $Res Function(BookingEvent) then) =
       _$BookingEventCopyWithImpl<$Res, BookingEvent>;
   @useResult
-  $Res call({UserEntity? currentUser});
+  $Res call({UserEntity? currentUser, bool shouldFilter, int? status});
 
   $UserEntityCopyWith<$Res>? get currentUser;
 }
@@ -84,12 +90,22 @@ class _$BookingEventCopyWithImpl<$Res, $Val extends BookingEvent>
   @override
   $Res call({
     Object? currentUser = freezed,
+    Object? shouldFilter = null,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       currentUser: freezed == currentUser
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as UserEntity?,
+      shouldFilter: null == shouldFilter
+          ? _value.shouldFilter
+          : shouldFilter // ignore: cast_nullable_to_non_nullable
+              as bool,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 
@@ -116,7 +132,7 @@ abstract class _$$GetBookingsImplCopyWith<$Res>
       __$$GetBookingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserEntity? currentUser});
+  $Res call({UserEntity? currentUser, bool shouldFilter, int? status});
 
   @override
   $UserEntityCopyWith<$Res>? get currentUser;
@@ -136,12 +152,22 @@ class __$$GetBookingsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? currentUser = freezed,
+    Object? shouldFilter = null,
+    Object? status = freezed,
   }) {
     return _then(_$GetBookingsImpl(
-      freezed == currentUser
+      currentUser: freezed == currentUser
           ? _value.currentUser
           : currentUser // ignore: cast_nullable_to_non_nullable
               as UserEntity?,
+      shouldFilter: null == shouldFilter
+          ? _value.shouldFilter
+          : shouldFilter // ignore: cast_nullable_to_non_nullable
+              as bool,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -149,14 +175,20 @@ class __$$GetBookingsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetBookingsImpl implements _GetBookings {
-  const _$GetBookingsImpl(this.currentUser);
+  const _$GetBookingsImpl(
+      {this.currentUser, this.shouldFilter = false, this.status});
 
   @override
   final UserEntity? currentUser;
+  @override
+  @JsonKey()
+  final bool shouldFilter;
+  @override
+  final int? status;
 
   @override
   String toString() {
-    return 'BookingEvent.getBookings(currentUser: $currentUser)';
+    return 'BookingEvent.getBookings(currentUser: $currentUser, shouldFilter: $shouldFilter, status: $status)';
   }
 
   @override
@@ -165,11 +197,15 @@ class _$GetBookingsImpl implements _GetBookings {
         (other.runtimeType == runtimeType &&
             other is _$GetBookingsImpl &&
             (identical(other.currentUser, currentUser) ||
-                other.currentUser == currentUser));
+                other.currentUser == currentUser) &&
+            (identical(other.shouldFilter, shouldFilter) ||
+                other.shouldFilter == shouldFilter) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentUser);
+  int get hashCode =>
+      Object.hash(runtimeType, currentUser, shouldFilter, status);
 
   /// Create a copy of BookingEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -182,27 +218,31 @@ class _$GetBookingsImpl implements _GetBookings {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(UserEntity? currentUser) getBookings,
+    required TResult Function(
+            UserEntity? currentUser, bool shouldFilter, int? status)
+        getBookings,
   }) {
-    return getBookings(currentUser);
+    return getBookings(currentUser, shouldFilter, status);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserEntity? currentUser)? getBookings,
+    TResult? Function(UserEntity? currentUser, bool shouldFilter, int? status)?
+        getBookings,
   }) {
-    return getBookings?.call(currentUser);
+    return getBookings?.call(currentUser, shouldFilter, status);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserEntity? currentUser)? getBookings,
+    TResult Function(UserEntity? currentUser, bool shouldFilter, int? status)?
+        getBookings,
     required TResult orElse(),
   }) {
     if (getBookings != null) {
-      return getBookings(currentUser);
+      return getBookings(currentUser, shouldFilter, status);
     }
     return orElse();
   }
@@ -237,10 +277,17 @@ class _$GetBookingsImpl implements _GetBookings {
 }
 
 abstract class _GetBookings implements BookingEvent {
-  const factory _GetBookings(final UserEntity? currentUser) = _$GetBookingsImpl;
+  const factory _GetBookings(
+      {final UserEntity? currentUser,
+      final bool shouldFilter,
+      final int? status}) = _$GetBookingsImpl;
 
   @override
   UserEntity? get currentUser;
+  @override
+  bool get shouldFilter;
+  @override
+  int? get status;
 
   /// Create a copy of BookingEvent
   /// with the given fields replaced by the non-null parameter values.

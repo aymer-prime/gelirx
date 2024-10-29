@@ -407,6 +407,8 @@ mixin _$BookingDto {
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: "status")
   String get status => throw _privateConstructorUsedError;
+  @JsonKey(name: "booking_images")
+  List<String> get bookingImages => throw _privateConstructorUsedError;
   @JsonKey(name: "sending_date")
   String get sendingDate => throw _privateConstructorUsedError;
   @JsonKey(name: "process_date")
@@ -438,6 +440,7 @@ abstract class $BookingDtoCopyWith<$Res> {
       @JsonKey(name: "address") String address,
       @JsonKey(name: "description") String description,
       @JsonKey(name: "status") String status,
+      @JsonKey(name: "booking_images") List<String> bookingImages,
       @JsonKey(name: "sending_date") String sendingDate,
       @JsonKey(name: "process_date") String processDate});
 }
@@ -466,6 +469,7 @@ class _$BookingDtoCopyWithImpl<$Res, $Val extends BookingDto>
     Object? address = null,
     Object? description = null,
     Object? status = null,
+    Object? bookingImages = null,
     Object? sendingDate = null,
     Object? processDate = null,
   }) {
@@ -506,6 +510,10 @@ class _$BookingDtoCopyWithImpl<$Res, $Val extends BookingDto>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      bookingImages: null == bookingImages
+          ? _value.bookingImages
+          : bookingImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       sendingDate: null == sendingDate
           ? _value.sendingDate
           : sendingDate // ignore: cast_nullable_to_non_nullable
@@ -536,6 +544,7 @@ abstract class _$$BookingDtoImplCopyWith<$Res>
       @JsonKey(name: "address") String address,
       @JsonKey(name: "description") String description,
       @JsonKey(name: "status") String status,
+      @JsonKey(name: "booking_images") List<String> bookingImages,
       @JsonKey(name: "sending_date") String sendingDate,
       @JsonKey(name: "process_date") String processDate});
 }
@@ -562,6 +571,7 @@ class __$$BookingDtoImplCopyWithImpl<$Res>
     Object? address = null,
     Object? description = null,
     Object? status = null,
+    Object? bookingImages = null,
     Object? sendingDate = null,
     Object? processDate = null,
   }) {
@@ -602,6 +612,10 @@ class __$$BookingDtoImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      bookingImages: null == bookingImages
+          ? _value._bookingImages
+          : bookingImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       sendingDate: null == sendingDate
           ? _value.sendingDate
           : sendingDate // ignore: cast_nullable_to_non_nullable
@@ -628,8 +642,11 @@ class _$BookingDtoImpl implements _BookingDto {
       @JsonKey(name: "address") required this.address,
       @JsonKey(name: "description") required this.description,
       @JsonKey(name: "status") required this.status,
+      @JsonKey(name: "booking_images")
+      required final List<String> bookingImages,
       @JsonKey(name: "sending_date") required this.sendingDate,
-      @JsonKey(name: "process_date") required this.processDate});
+      @JsonKey(name: "process_date") required this.processDate})
+      : _bookingImages = bookingImages;
 
   factory _$BookingDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookingDtoImplFromJson(json);
@@ -661,6 +678,15 @@ class _$BookingDtoImpl implements _BookingDto {
   @override
   @JsonKey(name: "status")
   final String status;
+  final List<String> _bookingImages;
+  @override
+  @JsonKey(name: "booking_images")
+  List<String> get bookingImages {
+    if (_bookingImages is EqualUnmodifiableListView) return _bookingImages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookingImages);
+  }
+
   @override
   @JsonKey(name: "sending_date")
   final String sendingDate;
@@ -670,7 +696,7 @@ class _$BookingDtoImpl implements _BookingDto {
 
   @override
   String toString() {
-    return 'BookingDto(id: $id, userId: $userId, masterId: $masterId, categoryId: $categoryId, latitude: $latitude, longitude: $longitude, address: $address, description: $description, status: $status, sendingDate: $sendingDate, processDate: $processDate)';
+    return 'BookingDto(id: $id, userId: $userId, masterId: $masterId, categoryId: $categoryId, latitude: $latitude, longitude: $longitude, address: $address, description: $description, status: $status, bookingImages: $bookingImages, sendingDate: $sendingDate, processDate: $processDate)';
   }
 
   @override
@@ -692,6 +718,8 @@ class _$BookingDtoImpl implements _BookingDto {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other._bookingImages, _bookingImages) &&
             (identical(other.sendingDate, sendingDate) ||
                 other.sendingDate == sendingDate) &&
             (identical(other.processDate, processDate) ||
@@ -711,6 +739,7 @@ class _$BookingDtoImpl implements _BookingDto {
       address,
       description,
       status,
+      const DeepCollectionEquality().hash(_bookingImages),
       sendingDate,
       processDate);
 
@@ -741,6 +770,8 @@ abstract class _BookingDto implements BookingDto {
           @JsonKey(name: "address") required final String address,
           @JsonKey(name: "description") required final String description,
           @JsonKey(name: "status") required final String status,
+          @JsonKey(name: "booking_images")
+          required final List<String> bookingImages,
           @JsonKey(name: "sending_date") required final String sendingDate,
           @JsonKey(name: "process_date") required final String processDate}) =
       _$BookingDtoImpl;
@@ -775,6 +806,9 @@ abstract class _BookingDto implements BookingDto {
   @override
   @JsonKey(name: "status")
   String get status;
+  @override
+  @JsonKey(name: "booking_images")
+  List<String> get bookingImages;
   @override
   @JsonKey(name: "sending_date")
   String get sendingDate;

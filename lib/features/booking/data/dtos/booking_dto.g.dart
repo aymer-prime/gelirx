@@ -45,6 +45,9 @@ _$BookingDtoImpl _$$BookingDtoImplFromJson(Map json) => _$BookingDtoImpl(
       address: json['address'] as String,
       description: json['description'] as String,
       status: json['status'] as String,
+      bookingImages: (json['booking_images'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       sendingDate: json['sending_date'] as String,
       processDate: json['process_date'] as String,
     );
@@ -60,6 +63,7 @@ Map<String, dynamic> _$$BookingDtoImplToJson(_$BookingDtoImpl instance) =>
       'address': instance.address,
       'description': instance.description,
       'status': instance.status,
+      'booking_images': instance.bookingImages,
       'sending_date': instance.sendingDate,
       'process_date': instance.processDate,
     };

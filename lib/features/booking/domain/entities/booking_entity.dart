@@ -15,6 +15,7 @@ abstract class Booking with _$Booking {
     required String address,
     required String description,
     required String status,
+    required List<String> bookingImages,
     required DateTime sendingDate,
     required DateTime processDate,
     required Favorite master,
