@@ -71,6 +71,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: MasterDashboardRoute.page,
+
         ),
         AutoRoute(
           page: UserInfoRoute.page,

@@ -40,6 +40,7 @@ class BookingDto with _$BookingDto {
     @JsonKey(name: "address") required String address,
     @JsonKey(name: "description") required String description,
     @JsonKey(name: "status") required String status,
+    @JsonKey(name: "booking_images") required List<String> bookingImages,
     @JsonKey(name: "sending_date") required String sendingDate,
     @JsonKey(name: "process_date") required String processDate,
   }) = _BookingDto;

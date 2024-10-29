@@ -25,6 +25,7 @@ mixin _$Booking {
   String get address => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  List<String> get bookingImages => throw _privateConstructorUsedError;
   DateTime get sendingDate => throw _privateConstructorUsedError;
   DateTime get processDate => throw _privateConstructorUsedError;
   Favorite get master => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $BookingCopyWith<$Res> {
       String address,
       String description,
       String status,
+      List<String> bookingImages,
       DateTime sendingDate,
       DateTime processDate,
       Favorite master});
@@ -81,6 +83,7 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
     Object? address = null,
     Object? description = null,
     Object? status = null,
+    Object? bookingImages = null,
     Object? sendingDate = null,
     Object? processDate = null,
     Object? master = null,
@@ -122,6 +125,10 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      bookingImages: null == bookingImages
+          ? _value.bookingImages
+          : bookingImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       sendingDate: null == sendingDate
           ? _value.sendingDate
           : sendingDate // ignore: cast_nullable_to_non_nullable
@@ -165,6 +172,7 @@ abstract class _$$BookingImplCopyWith<$Res> implements $BookingCopyWith<$Res> {
       String address,
       String description,
       String status,
+      List<String> bookingImages,
       DateTime sendingDate,
       DateTime processDate,
       Favorite master});
@@ -195,6 +203,7 @@ class __$$BookingImplCopyWithImpl<$Res>
     Object? address = null,
     Object? description = null,
     Object? status = null,
+    Object? bookingImages = null,
     Object? sendingDate = null,
     Object? processDate = null,
     Object? master = null,
@@ -236,6 +245,10 @@ class __$$BookingImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      bookingImages: null == bookingImages
+          ? _value._bookingImages
+          : bookingImages // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       sendingDate: null == sendingDate
           ? _value.sendingDate
           : sendingDate // ignore: cast_nullable_to_non_nullable
@@ -265,9 +278,11 @@ class _$BookingImpl implements _Booking {
       required this.address,
       required this.description,
       required this.status,
+      required final List<String> bookingImages,
       required this.sendingDate,
       required this.processDate,
-      required this.master});
+      required this.master})
+      : _bookingImages = bookingImages;
 
   @override
   final String id;
@@ -287,6 +302,14 @@ class _$BookingImpl implements _Booking {
   final String description;
   @override
   final String status;
+  final List<String> _bookingImages;
+  @override
+  List<String> get bookingImages {
+    if (_bookingImages is EqualUnmodifiableListView) return _bookingImages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bookingImages);
+  }
+
   @override
   final DateTime sendingDate;
   @override
@@ -296,7 +319,7 @@ class _$BookingImpl implements _Booking {
 
   @override
   String toString() {
-    return 'Booking(id: $id, userId: $userId, masterId: $masterId, categoryId: $categoryId, latitude: $latitude, longitude: $longitude, address: $address, description: $description, status: $status, sendingDate: $sendingDate, processDate: $processDate, master: $master)';
+    return 'Booking(id: $id, userId: $userId, masterId: $masterId, categoryId: $categoryId, latitude: $latitude, longitude: $longitude, address: $address, description: $description, status: $status, bookingImages: $bookingImages, sendingDate: $sendingDate, processDate: $processDate, master: $master)';
   }
 
   @override
@@ -318,6 +341,8 @@ class _$BookingImpl implements _Booking {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other._bookingImages, _bookingImages) &&
             (identical(other.sendingDate, sendingDate) ||
                 other.sendingDate == sendingDate) &&
             (identical(other.processDate, processDate) ||
@@ -337,6 +362,7 @@ class _$BookingImpl implements _Booking {
       address,
       description,
       status,
+      const DeepCollectionEquality().hash(_bookingImages),
       sendingDate,
       processDate,
       master);
@@ -361,6 +387,7 @@ abstract class _Booking implements Booking {
       required final String address,
       required final String description,
       required final String status,
+      required final List<String> bookingImages,
       required final DateTime sendingDate,
       required final DateTime processDate,
       required final Favorite master}) = _$BookingImpl;
@@ -383,6 +410,8 @@ abstract class _Booking implements Booking {
   String get description;
   @override
   String get status;
+  @override
+  List<String> get bookingImages;
   @override
   DateTime get sendingDate;
   @override

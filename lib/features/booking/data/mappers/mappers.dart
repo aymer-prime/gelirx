@@ -14,6 +14,7 @@ extension BookingDtoX on BookingResponseDto {
       address: booking.address,
       description: booking.description,
       status: booking.status,
+      bookingImages: booking.bookingImages,
       sendingDate: DateTime.parse(booking.sendingDate),
       processDate: DateTime.parse(booking.processDate),
       master: master.toDomain(),

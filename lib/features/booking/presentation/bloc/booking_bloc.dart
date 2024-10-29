@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gelirx/app/network/api_exception.dart';
 import 'package:gelirx/features/auth/domain/entities/user_entity.dart';
@@ -21,8 +22,15 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
         var resultList =
             await _iBookingRepository.getUserBookings(user.userId, user.token);
         resultList.fold(
-          (apiException) => emit(BookingState.loadFailed(apiException)),
-          (bookingsList) => emit(BookingState.loadSuccess(bookingsList)),
+              (apiException) => emit(BookingState.loadFailed(apiException)),
+              (bookingsList) {
+            if (event.shouldFilter) {
+              bookingsList = bookingsList.where((booking) {
+                return booking.masterId == user.userId && booking.status == event.status.toString();
+              }).toList();
+            }
+            emit(BookingState.loadSuccess(bookingsList));
+          },
         );
       } else {
         emit(const BookingState.loadFailed(ApiException.unauthorized()));
