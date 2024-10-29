@@ -36,14 +36,14 @@ class Reviews extends StatelessWidget {
         Row(
           children: [
             Text(
-              calculateAveragePoints(interactions).toString(),
+              calculateAveragePoints(interactions).toStringAsFixed(2),
               style: getTextStyle(
                 AppSize.s20,
                 FontWeight.w500,
                 ColorManager.welcomeTextColor,
               ),
             ),
-            SizedBox(width: AppSize.s4),
+            const SizedBox(width: AppSize.s4),
             Stars(
               starSize: AppSize.s18,
               rating: calculateAveragePoints(interactions),
@@ -106,7 +106,7 @@ class InteractionRatingRows extends StatelessWidget {
       RatingRow(
         number: 5,
         starColor: ColorManager.fiveRatingColor,
-        percent: (reviews['5']! * 100) / 10,
+        percent: (reviews['5']! * 100) / totalInteractions,
         progressColor: ColorManager.fiveRatingColor,
         totalReviews: reviews['5']!,
       ),
@@ -178,9 +178,9 @@ class RatingRow extends StatelessWidget {
           percent: percent / 100,
           progressColor: progressColor,
         ),
-        SizedBox(width: AppSize.s6),
+        const SizedBox(width: AppSize.s6),
         Text(
-          "$percent%",
+          "${percent.toStringAsFixed(2)}%",
           style: getTextStyle(
               AppSize.s13, FontWeight.w500, ColorManager.welcomeTextColor),
         ),

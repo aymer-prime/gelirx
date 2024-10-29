@@ -54,9 +54,8 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
     //     ).appBarMaxHeight ??
     //     0;
     var safeAreaHight = MediaQuery.of(context).padding;
-    _maxHeight = context.screenSize.height -
-        safeAreaHight.top -
-        safeAreaHight.bottom;
+    _maxHeight =
+        context.screenSize.height - safeAreaHight.top - safeAreaHight.bottom;
     _halfHeight = _maxHeight / 2;
     _bottomHeight = _halfHeight;
   }
@@ -182,6 +181,7 @@ class _HomeExpandablePageState extends State<HomeExpandablePage>
                         child: SearchFilterWidget(
                           isExpanded: _bottomHeight < _halfHeight * 0.9,
                           retractSize: () {
+                            MasterDialogScreen.instance().hide();
                             _controller.animateTo(
                               0.5,
                               duration: const Duration(milliseconds: 300),

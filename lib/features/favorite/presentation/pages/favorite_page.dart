@@ -64,34 +64,41 @@ class FavoritePage extends StatelessWidget {
                   ),
             loadFailed: (failure) => Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    failure.apiException.toString(),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: AppSize.s20),
-                  ElevatedButton(
-                    onPressed: () {
-                      var userEntity =
-                          context.read<AuthStatusBloc>().state.maybeMap(
-                                orElse: () => null,
-                                authenticated: (userEntity) => userEntity.user,
-                              );
-                      context.read<FavoriteBloc>().add(
-                            FavoriteEvent.getFavoriteMasters(userEntity),
-                          );
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 30.0,
-                        vertical: 16.0,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      failure.apiException.maybeMap(
+                        orElse: () => failure.apiException.toString(),
+                        defaultException: (value) => value.message,
                       ),
-                      child: Text('Try Again'),
+                      textAlign: TextAlign.center,
                     ),
-                  )
-                ],
+                    const SizedBox(height: AppSize.s20),
+                    ElevatedButton(
+                      onPressed: () {
+                        var userEntity = context
+                            .read<AuthStatusBloc>()
+                            .state
+                            .maybeMap(
+                              orElse: () => null,
+                              authenticated: (userEntity) => userEntity.user,
+                            );
+                        context.read<FavoriteBloc>().add(
+                              FavoriteEvent.getFavoriteMasters(userEntity),
+                            );
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 30.0,
+                          vertical: 16.0,
+                        ),
+                        child: Text('Try Again'),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );

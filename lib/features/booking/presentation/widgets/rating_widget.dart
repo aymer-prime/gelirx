@@ -4,15 +4,14 @@ import 'package:gelirx/app/extensions/List.dart';
 import 'package:gelirx/app/utils/resources/color_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 
-class StarRatingWidget extends StatefulWidget {
-  const StarRatingWidget({super.key});
-
-  @override
-  _StarRatingWidgetState createState() => _StarRatingWidgetState();
-}
-
-class _StarRatingWidgetState extends State<StarRatingWidget> {
-  int _selectedStarIndex = -1;
+class StarRatingWidget extends StatelessWidget {
+  final int currentStarsCount;
+  final Function(int) setStarsCount;
+  const StarRatingWidget({
+    super.key,
+    required this.currentStarsCount,
+    required this.setStarsCount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +20,9 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
       children: List.generate(5, (index) {
         return GestureDetector(
           onTap: () {
-            setState(() {
-              _selectedStarIndex = index;
-            });
+            setStarsCount(index + 1);
           },
-          child: index <= _selectedStarIndex
+          child: index <= currentStarsCount - 1
               ? Icon(
                   FontAwesomeIcons.solidStar,
                   color: ColorManager.ratingColor,

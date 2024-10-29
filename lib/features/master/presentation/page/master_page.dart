@@ -189,7 +189,7 @@ class MasterPage extends StatelessWidget {
                   right: AppSize.s0,
                   child: Container(
                     padding: const EdgeInsets.all(AppSize.s24),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.white,
                         border: Border(
                             top: BorderSide(

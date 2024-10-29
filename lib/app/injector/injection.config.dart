@@ -33,6 +33,8 @@ import '../../features/auth/presentation/bloc/user_verification/user_verificatio
 import '../../features/booking/data/booking_repository.dart' as _i678;
 import '../../features/booking/domain/i_booking_repository.dart' as _i92;
 import '../../features/booking/presentation/bloc/booking_bloc.dart' as _i802;
+import '../../features/booking/presentation/bloc/service_interaction/service_interaction_bloc.dart'
+    as _i81;
 import '../../features/favorite/presentation/bloc/favorite_bloc.dart' as _i1020;
 import '../../features/home/data/home_repository.dart' as _i65;
 import '../../features/home/domain/i_home_repository.dart' as _i317;
@@ -107,6 +109,8 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i460.SharedPreferences>(),
           gh<_i974.FirebaseFirestore>(),
         ));
+    gh.factory<_i81.ServiceInteractionBloc>(
+        () => _i81.ServiceInteractionBloc(gh<_i777.IInteractionsRepository>()));
     gh.lazySingleton<_i243.ISharedRepository>(() => _i493.SharedRepository(
           gh<_i464.RemoteService>(),
           gh<_i902.LocalService>(),
