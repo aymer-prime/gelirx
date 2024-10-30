@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,6 +12,8 @@ import 'package:gelirx/app/utils/resources/styles_manager.dart';
 import 'package:gelirx/app/utils/resources/values_manager.dart';
 import 'package:gelirx/features/messages/presentation/bloc/chat_bloc.dart';
 import 'package:intl/intl.dart';
+
+import '../../../auth/domain/entities/user_entity.dart';
 
 @RoutePage()
 class ChatPage extends StatefulWidget {
@@ -57,14 +61,18 @@ class _ChatPageState extends State<ChatPage> {
           builder: (context, state) {
             final chatDoc = state.chats[state.selectedChatIndex];
             final chatData = chatDoc.data() as Map<String, dynamic>;
+            final theOtherUserId = state.userId == chatData['master_id'] as String
+                ? chatData['user_id'] as String
+                : chatData['master_id'] as String ;
+            final userInfo = state.additionalInfo[theOtherUserId];
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
+                Column(
                   children: [
-                    ChatHeader(),
-                    Divider(height: 0),
-                    SizedBox(height: AppSize.s10)
+                    ChatHeader(userInfo: userInfo),
+                    const Divider(height: 0),
+                    const SizedBox(height: AppSize.s10)
                   ],
                 ),
                 Expanded(
@@ -76,7 +84,7 @@ class _ChatPageState extends State<ChatPage> {
                       itemCount: chatData["messages"].length ?? 0,
                       itemBuilder: (context, index) {
                         final messages = chatData["messages"];
-                        return messages[index]["sender_id"] == "39"
+                        return messages[index]["sender_id"] == state.userId
                             ? UserChatBubble(
                                 message: messages[index],
                               )
@@ -120,6 +128,7 @@ class _ChatPageState extends State<ChatPage> {
                                         context.read<ChatBloc>().add(
                                             ChatEvent.sendMessage(chatDoc.id,
                                                 _messageController.text));
+                                        _messageController.text = "";
                                         setState(() {});
                                       },
                                       icon: const Icon(
@@ -233,8 +242,9 @@ class MasterChatBubble extends StatelessWidget {
               SizedBox(
                 height: AppSize.s16,
                 child: Text(
-                  message['content'],
-                  // DateFormat('dd MMMM - hh:mm').format(date),
+                  DateFormat('dd MMMM - hh:mm').format(
+                    (message['date'] as Timestamp).toDate(), // Convert Timestamp to DateTime
+                  ),
                   style: getLightStyle(
                     color: ColorManager.tabBarColor,
                     fontSize: FontSizeManager.s13,
@@ -313,7 +323,9 @@ class UserChatBubble extends StatelessWidget {
         SizedBox(
           height: AppSize.s16,
           child: Text(
-            DateFormat('dd MMMM - hh:mm').format(DateTime.now()),
+            DateFormat('dd MMMM - hh:mm').format(
+              (message['date'] as Timestamp).toDate(),
+            ),
             style: getLightStyle(
               color: ColorManager.tabBarColor,
               fontSize: FontSizeManager.s13,
@@ -326,8 +338,10 @@ class UserChatBubble extends StatelessWidget {
 }
 
 class ChatHeader extends StatelessWidget {
+  final UserInfo? userInfo;
   const ChatHeader({
     super.key,
+    required this.userInfo,
   });
 
   @override
@@ -361,11 +375,11 @@ class ChatHeader extends StatelessWidget {
           ),
           Column(
             children: [
-              const CircleAvatar(
-                backgroundImage: AssetImage(ImageAssets.handyman),
+              CircleAvatar(
+                backgroundImage: NetworkImage(userInfo?.imageUrl ?? ""),
               ),
               Text(
-                'Osman Yılmaz',
+                '${userInfo?.name} ${userInfo?.surname}',
                 style: getRegularStyle(
                   color: ColorManager.welcomeTextColor,
                   fontSize: FontSizeManager.s12,

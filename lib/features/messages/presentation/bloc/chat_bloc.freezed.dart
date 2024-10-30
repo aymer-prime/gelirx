@@ -677,8 +677,11 @@ abstract class SendMessage implements ChatEvent {
 mixin _$ChatState {
   bool get isLoading => throw _privateConstructorUsedError;
   dynamic get chats => throw _privateConstructorUsedError;
+  Map<String, UserInfo> get additionalInfo =>
+      throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
   int get selectedChatIndex => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -693,7 +696,12 @@ abstract class $ChatStateCopyWith<$Res> {
       _$ChatStateCopyWithImpl<$Res, ChatState>;
   @useResult
   $Res call(
-      {bool isLoading, dynamic chats, String? error, int selectedChatIndex});
+      {bool isLoading,
+      dynamic chats,
+      Map<String, UserInfo> additionalInfo,
+      String? error,
+      int selectedChatIndex,
+      String? userId});
 }
 
 /// @nodoc
@@ -713,8 +721,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   $Res call({
     Object? isLoading = null,
     Object? chats = freezed,
+    Object? additionalInfo = null,
     Object? error = freezed,
     Object? selectedChatIndex = null,
+    Object? userId = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -725,6 +735,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.chats
           : chats // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      additionalInfo: null == additionalInfo
+          ? _value.additionalInfo
+          : additionalInfo // ignore: cast_nullable_to_non_nullable
+              as Map<String, UserInfo>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -733,6 +747,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.selectedChatIndex
           : selectedChatIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -746,7 +764,12 @@ abstract class _$$ChatStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading, dynamic chats, String? error, int selectedChatIndex});
+      {bool isLoading,
+      dynamic chats,
+      Map<String, UserInfo> additionalInfo,
+      String? error,
+      int selectedChatIndex,
+      String? userId});
 }
 
 /// @nodoc
@@ -764,8 +787,10 @@ class __$$ChatStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? chats = freezed,
+    Object? additionalInfo = null,
     Object? error = freezed,
     Object? selectedChatIndex = null,
+    Object? userId = freezed,
   }) {
     return _then(_$ChatStateImpl(
       isLoading: null == isLoading
@@ -776,6 +801,10 @@ class __$$ChatStateImplCopyWithImpl<$Res>
           ? _value.chats
           : chats // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      additionalInfo: null == additionalInfo
+          ? _value._additionalInfo
+          : additionalInfo // ignore: cast_nullable_to_non_nullable
+              as Map<String, UserInfo>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -784,6 +813,10 @@ class __$$ChatStateImplCopyWithImpl<$Res>
           ? _value.selectedChatIndex
           : selectedChatIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -794,21 +827,34 @@ class _$ChatStateImpl implements _ChatState {
   const _$ChatStateImpl(
       {required this.isLoading,
       required this.chats,
+      required final Map<String, UserInfo> additionalInfo,
       this.error,
-      required this.selectedChatIndex});
+      required this.selectedChatIndex,
+      this.userId})
+      : _additionalInfo = additionalInfo;
 
   @override
   final bool isLoading;
   @override
   final dynamic chats;
+  final Map<String, UserInfo> _additionalInfo;
+  @override
+  Map<String, UserInfo> get additionalInfo {
+    if (_additionalInfo is EqualUnmodifiableMapView) return _additionalInfo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_additionalInfo);
+  }
+
   @override
   final String? error;
   @override
   final int selectedChatIndex;
+  @override
+  final String? userId;
 
   @override
   String toString() {
-    return 'ChatState(isLoading: $isLoading, chats: $chats, error: $error, selectedChatIndex: $selectedChatIndex)';
+    return 'ChatState(isLoading: $isLoading, chats: $chats, additionalInfo: $additionalInfo, error: $error, selectedChatIndex: $selectedChatIndex, userId: $userId)';
   }
 
   @override
@@ -819,14 +865,23 @@ class _$ChatStateImpl implements _ChatState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other.chats, chats) &&
+            const DeepCollectionEquality()
+                .equals(other._additionalInfo, _additionalInfo) &&
             (identical(other.error, error) || other.error == error) &&
             (identical(other.selectedChatIndex, selectedChatIndex) ||
-                other.selectedChatIndex == selectedChatIndex));
+                other.selectedChatIndex == selectedChatIndex) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading,
-      const DeepCollectionEquality().hash(chats), error, selectedChatIndex);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      const DeepCollectionEquality().hash(chats),
+      const DeepCollectionEquality().hash(_additionalInfo),
+      error,
+      selectedChatIndex,
+      userId);
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.
@@ -841,17 +896,23 @@ abstract class _ChatState implements ChatState {
   const factory _ChatState(
       {required final bool isLoading,
       required final dynamic chats,
+      required final Map<String, UserInfo> additionalInfo,
       final String? error,
-      required final int selectedChatIndex}) = _$ChatStateImpl;
+      required final int selectedChatIndex,
+      final String? userId}) = _$ChatStateImpl;
 
   @override
   bool get isLoading;
   @override
   dynamic get chats;
   @override
+  Map<String, UserInfo> get additionalInfo;
+  @override
   String? get error;
   @override
   int get selectedChatIndex;
+  @override
+  String? get userId;
 
   /// Create a copy of ChatState
   /// with the given fields replaced by the non-null parameter values.

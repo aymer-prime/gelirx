@@ -16,42 +16,46 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BookingEvent {
-  UserEntity? get currentUser => throw _privateConstructorUsedError;
-  bool get shouldFilter => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
             UserEntity? currentUser, bool shouldFilter, int? status)
         getBookings,
+    required TResult Function(String orderId, int status) updateOrderStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity? currentUser, bool shouldFilter, int? status)?
         getBookings,
+    TResult? Function(String orderId, int status)? updateOrderStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity? currentUser, bool shouldFilter, int? status)?
         getBookings,
+    TResult Function(String orderId, int status)? updateOrderStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetBookings value) getBookings,
+    required TResult Function(_UpdateOrderStatus value) updateOrderStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetBookings value)? getBookings,
+    TResult? Function(_UpdateOrderStatus value)? updateOrderStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetBookings value)? getBookings,
+    TResult Function(_UpdateOrderStatus value)? updateOrderStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,9 +73,7 @@ abstract class $BookingEventCopyWith<$Res> {
           BookingEvent value, $Res Function(BookingEvent) then) =
       _$BookingEventCopyWithImpl<$Res, BookingEvent>;
   @useResult
-  $Res call({UserEntity? currentUser, bool shouldFilter, int? status});
-
-  $UserEntityCopyWith<$Res>? get currentUser;
+  $Res call({int status});
 }
 
 /// @nodoc
@@ -89,38 +91,14 @@ class _$BookingEventCopyWithImpl<$Res, $Val extends BookingEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentUser = freezed,
-    Object? shouldFilter = null,
-    Object? status = freezed,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      currentUser: freezed == currentUser
-          ? _value.currentUser
-          : currentUser // ignore: cast_nullable_to_non_nullable
-              as UserEntity?,
-      shouldFilter: null == shouldFilter
-          ? _value.shouldFilter
-          : shouldFilter // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: freezed == status
-          ? _value.status
+      status: null == status
+          ? _value.status!
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ) as $Val);
-  }
-
-  /// Create a copy of BookingEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<$Res>? get currentUser {
-    if (_value.currentUser == null) {
-      return null;
-    }
-
-    return $UserEntityCopyWith<$Res>(_value.currentUser!, (value) {
-      return _then(_value.copyWith(currentUser: value) as $Val);
-    });
   }
 }
 
@@ -134,7 +112,6 @@ abstract class _$$GetBookingsImplCopyWith<$Res>
   @useResult
   $Res call({UserEntity? currentUser, bool shouldFilter, int? status});
 
-  @override
   $UserEntityCopyWith<$Res>? get currentUser;
 }
 
@@ -169,6 +146,20 @@ class __$$GetBookingsImplCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
+  }
+
+  /// Create a copy of BookingEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res>? get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+
+    return $UserEntityCopyWith<$Res>(_value.currentUser!, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
   }
 }
 
@@ -221,6 +212,7 @@ class _$GetBookingsImpl implements _GetBookings {
     required TResult Function(
             UserEntity? currentUser, bool shouldFilter, int? status)
         getBookings,
+    required TResult Function(String orderId, int status) updateOrderStatus,
   }) {
     return getBookings(currentUser, shouldFilter, status);
   }
@@ -230,6 +222,7 @@ class _$GetBookingsImpl implements _GetBookings {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity? currentUser, bool shouldFilter, int? status)?
         getBookings,
+    TResult? Function(String orderId, int status)? updateOrderStatus,
   }) {
     return getBookings?.call(currentUser, shouldFilter, status);
   }
@@ -239,6 +232,7 @@ class _$GetBookingsImpl implements _GetBookings {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity? currentUser, bool shouldFilter, int? status)?
         getBookings,
+    TResult Function(String orderId, int status)? updateOrderStatus,
     required TResult orElse(),
   }) {
     if (getBookings != null) {
@@ -251,6 +245,7 @@ class _$GetBookingsImpl implements _GetBookings {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetBookings value) getBookings,
+    required TResult Function(_UpdateOrderStatus value) updateOrderStatus,
   }) {
     return getBookings(this);
   }
@@ -259,6 +254,7 @@ class _$GetBookingsImpl implements _GetBookings {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetBookings value)? getBookings,
+    TResult? Function(_UpdateOrderStatus value)? updateOrderStatus,
   }) {
     return getBookings?.call(this);
   }
@@ -267,6 +263,7 @@ class _$GetBookingsImpl implements _GetBookings {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetBookings value)? getBookings,
+    TResult Function(_UpdateOrderStatus value)? updateOrderStatus,
     required TResult orElse(),
   }) {
     if (getBookings != null) {
@@ -282,9 +279,7 @@ abstract class _GetBookings implements BookingEvent {
       final bool shouldFilter,
       final int? status}) = _$GetBookingsImpl;
 
-  @override
   UserEntity? get currentUser;
-  @override
   bool get shouldFilter;
   @override
   int? get status;
@@ -294,6 +289,165 @@ abstract class _GetBookings implements BookingEvent {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GetBookingsImplCopyWith<_$GetBookingsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateOrderStatusImplCopyWith<$Res>
+    implements $BookingEventCopyWith<$Res> {
+  factory _$$UpdateOrderStatusImplCopyWith(_$UpdateOrderStatusImpl value,
+          $Res Function(_$UpdateOrderStatusImpl) then) =
+      __$$UpdateOrderStatusImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String orderId, int status});
+}
+
+/// @nodoc
+class __$$UpdateOrderStatusImplCopyWithImpl<$Res>
+    extends _$BookingEventCopyWithImpl<$Res, _$UpdateOrderStatusImpl>
+    implements _$$UpdateOrderStatusImplCopyWith<$Res> {
+  __$$UpdateOrderStatusImplCopyWithImpl(_$UpdateOrderStatusImpl _value,
+      $Res Function(_$UpdateOrderStatusImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BookingEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orderId = null,
+    Object? status = null,
+  }) {
+    return _then(_$UpdateOrderStatusImpl(
+      null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateOrderStatusImpl implements _UpdateOrderStatus {
+  const _$UpdateOrderStatusImpl(this.orderId, this.status);
+
+  @override
+  final String orderId;
+  @override
+  final int status;
+
+  @override
+  String toString() {
+    return 'BookingEvent.updateOrderStatus(orderId: $orderId, status: $status)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateOrderStatusImpl &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, orderId, status);
+
+  /// Create a copy of BookingEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateOrderStatusImplCopyWith<_$UpdateOrderStatusImpl> get copyWith =>
+      __$$UpdateOrderStatusImplCopyWithImpl<_$UpdateOrderStatusImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            UserEntity? currentUser, bool shouldFilter, int? status)
+        getBookings,
+    required TResult Function(String orderId, int status) updateOrderStatus,
+  }) {
+    return updateOrderStatus(orderId, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserEntity? currentUser, bool shouldFilter, int? status)?
+        getBookings,
+    TResult? Function(String orderId, int status)? updateOrderStatus,
+  }) {
+    return updateOrderStatus?.call(orderId, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserEntity? currentUser, bool shouldFilter, int? status)?
+        getBookings,
+    TResult Function(String orderId, int status)? updateOrderStatus,
+    required TResult orElse(),
+  }) {
+    if (updateOrderStatus != null) {
+      return updateOrderStatus(orderId, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetBookings value) getBookings,
+    required TResult Function(_UpdateOrderStatus value) updateOrderStatus,
+  }) {
+    return updateOrderStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetBookings value)? getBookings,
+    TResult? Function(_UpdateOrderStatus value)? updateOrderStatus,
+  }) {
+    return updateOrderStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetBookings value)? getBookings,
+    TResult Function(_UpdateOrderStatus value)? updateOrderStatus,
+    required TResult orElse(),
+  }) {
+    if (updateOrderStatus != null) {
+      return updateOrderStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateOrderStatus implements BookingEvent {
+  const factory _UpdateOrderStatus(final String orderId, final int status) =
+      _$UpdateOrderStatusImpl;
+
+  String get orderId;
+  @override
+  int get status;
+
+  /// Create a copy of BookingEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateOrderStatusImplCopyWith<_$UpdateOrderStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

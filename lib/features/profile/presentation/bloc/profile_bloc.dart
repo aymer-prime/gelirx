@@ -8,7 +8,7 @@ part 'profile_event.dart';
 part 'profile_state.dart';
 part 'profile_bloc.freezed.dart';
 
-@LazySingleton()
+@injectable
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ISharedRepository _iSharedRepository;
   ProfileBloc(this._iSharedRepository) : super(const ProfileState.initial()) {

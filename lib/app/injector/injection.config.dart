@@ -94,6 +94,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i468.NotificationHandlerManager(gh<_i892.FirebaseMessaging>()));
     gh.factory<_i464.RemoteService>(
         () => _i464.RemoteService(gh<_i667.DioClient>()));
+    gh.lazySingleton<_i235.IChatRepository>(() => _i756.ChatRepository(
+          gh<_i460.SharedPreferences>(),
+          gh<_i974.FirebaseFirestore>(),
+          gh<_i464.RemoteService>(),
+        ));
     gh.lazySingleton<_i92.IBookingRepository>(
         () => _i678.BookingRepository(gh<_i464.RemoteService>()));
     gh.lazySingleton<_i777.IInteractionsRepository>(
@@ -104,12 +109,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i674.OrderRepository(gh<_i464.RemoteService>()));
     gh.factory<_i902.LocalService>(
         () => _i902.LocalService(gh<_i460.SharedPreferences>()));
+    gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(
+          gh<_i235.IChatRepository>(),
+          gh<_i902.LocalService>(),
+        ));
     gh.lazySingleton<_i287.IFavoriteRepository>(
         () => _i516.FavoriteRepository(gh<_i464.RemoteService>()));
-    gh.lazySingleton<_i235.IChatRepository>(() => _i756.ChatRepository(
-          gh<_i460.SharedPreferences>(),
-          gh<_i974.FirebaseFirestore>(),
-        ));
     gh.factory<_i81.ServiceInteractionBloc>(
         () => _i81.ServiceInteractionBloc(gh<_i777.IInteractionsRepository>()));
     gh.lazySingleton<_i243.ISharedRepository>(() => _i493.SharedRepository(
@@ -131,9 +136,6 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i1020.FavoriteBloc>(
         () => _i1020.FavoriteBloc(gh<_i287.IFavoriteRepository>()));
-    gh.factory<_i16.ChatBloc>(() => _i16.ChatBloc(gh<_i235.IChatRepository>()));
-    gh.factory<_i802.BookingBloc>(
-        () => _i802.BookingBloc(gh<_i92.IBookingRepository>()));
     gh.factory<_i838.OrderBloc>(() => _i838.OrderBloc(
           gh<_i243.ISharedRepository>(),
           gh<_i955.IOrderRepository>(),
@@ -142,8 +144,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i663.AuthStatusBloc(gh<_i1026.IAuthRepository>()));
     gh.factory<_i446.UserVerificationBloc>(
         () => _i446.UserVerificationBloc(gh<_i1026.IAuthRepository>()));
-    gh.lazySingleton<_i469.ProfileBloc>(
+    gh.factory<_i469.ProfileBloc>(
         () => _i469.ProfileBloc(gh<_i243.ISharedRepository>()));
+    gh.factory<_i802.BookingBloc>(() => _i802.BookingBloc(
+          gh<_i92.IBookingRepository>(),
+          gh<_i243.ISharedRepository>(),
+        ));
     gh.factory<_i130.MasterBloc>(() => _i130.MasterBloc(
           gh<_i243.ISharedRepository>(),
           gh<_i777.IInteractionsRepository>(),

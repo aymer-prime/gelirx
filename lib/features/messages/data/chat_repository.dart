@@ -1,17 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:gelirx/app/network/api_exception.dart';
+import 'package:gelirx/app/network/remote_service.dart';
 import 'package:gelirx/app/utils/app_constants.dart';
+import 'package:gelirx/features/auth/data/mappers/auth_mapers.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/v4.dart';
+import '../../auth/data/dtos/auth_dtos.dart';
+import '../../auth/domain/entities/user_entity.dart';
 import '../domain/i_chat_repository.dart';
 
 @LazySingleton(as: IChatRepository)
 class ChatRepository implements IChatRepository {
   final FirebaseFirestore _firestore;
   final SharedPreferences _preferences;
-  ChatRepository(this._preferences, this._firestore);
+  final RemoteService _remoteService;
+  ChatRepository(this._preferences, this._firestore, this._remoteService);
 
   @override
   Stream<Either<ApiException, dynamic>> getChats() async* {
@@ -46,6 +52,28 @@ class ChatRepository implements IChatRepository {
       return right(null);
     } catch (e) {
       return left(ApiException.defaultException("0", e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ApiException, UserInfo>> fetchAdditionalInfo(String userId) async {
+    try {
+      var response = await _remoteService.post(
+        '${Constants.baseUrl}user/master/info.php',
+        options: Options(
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        ),
+        data: {'lang': 'tr', 'user_id': userId},
+      );
+
+      final userInfo = UserInfoDto.fromJson(response).toDomain();
+      return right(userInfo);
+    } on ApiException catch (e) {
+      return left(e);
+    } catch (e) {
+      return left(
+        ApiException.defaultException('-1', e.toString()),
+      );
     }
   }
 }

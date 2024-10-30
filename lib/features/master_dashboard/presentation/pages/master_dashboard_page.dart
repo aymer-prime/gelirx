@@ -298,6 +298,8 @@ class MasterBookingWidget extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
+                        context.read<BookingBloc>().add(
+                            BookingEvent.updateOrderStatus(booking.id,2));
                         context.router.push(const MasterActiveServiceRoute());
                       },
                       style: ElevatedButton.styleFrom(
@@ -317,7 +319,10 @@ class MasterBookingWidget extends StatelessWidget {
                   child: SizedBox(
                     height: 50,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<BookingBloc>().add(
+                            BookingEvent.updateOrderStatus(booking.id,0));
+                      },
                       child: const Text('Decline'),
                     ),
                   ),
